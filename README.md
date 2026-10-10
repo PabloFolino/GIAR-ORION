@@ -6,7 +6,7 @@ GIAR-ORION será un agente de IA local, diseñado para trabajar como **investiga
 
 La idea es que no se limite a responder preguntas: queremos que pueda analizar programas, estudiar documentación, ejecutar pruebas controladas, interpretar resultados y ayudarnos a mejorar los sistemas robóticos.
 
-## 1. ¿Qué queremos que pueda hacer GIAR-ORION?
+## 1. ¿Qué es GIAR-ORION?
 
 Dividiremos sus capacidades en seis áreas.
 
@@ -22,8 +22,6 @@ Dividiremos sus capacidades en seis áreas.
 Estas son capacidades que desarrollaremos progresivamente, no funciones que Ollama proporcione automáticamente.
 
 ## 2. Arquitectura general
-
-Propongo organizar GIAR-ORION en módulos independientes.
 
 ```text
                     GIAR-ORION
@@ -69,7 +67,7 @@ Además, el agente que razona y analiza los experimentos estará separado del co
 
 ---
 
-## 3. ¿Cómo funcionará en tu computadora?
+## 3. Entorno de funcionamiento
 
 Tomaremos como referencia tu entorno actual:
 
@@ -141,19 +139,14 @@ Ese es el salto que buscamos: pasar de un sistema que responde preguntas a uno q
 
 ---
 
-## 6. ¿Cuál es nuestro primer objetivo concreto?
+## 6. Fases del proyecto
 
-No intentaremos desarrollar todo GIAR-ORION de una sola vez.
-
-El primer hito será:
-
-**GIAR-ORION 0.1 — Motor local operativo.**
-
-Esta versión inicial deberá cumplir tres condiciones:
-
-- Ollama instalado y funcionando en Windows.
-- Un modelo de lenguaje seleccionado y probado con tu hardware.
-- Capacidad para responder preguntas técnicas sin depender de una conexión a Internet, una vez preparado el entorno.
-
-Después construiremos el agente en Python, manteniendo separados el motor de lenguaje, la memoria, el conocimiento especializado y las herramientas.
+| Versión | Nombre | Objetivo |
+| --- | --- | --- |
+| 0.1 | **Motor local operativo.** | Ollama instalado y funcionando en Windows.<br><br>- Un modelo de lenguaje seleccionado y probado con tu hardware.<br><br>- Capacidad para responder preguntas técnicas sin depender de una conexión a Internet, una vez preparado el entorno. |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
 
