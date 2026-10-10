@@ -1,5 +1,14 @@
 # GIAR-ORION
 
+## Índice
+
+1. [¿Qué queremos que pueda hacer GIAR-ORION?](#1-qué-queremos-que-pueda-hacer-giar-orion)
+2. [Arquitectura general](#2-arquitectura-general)
+3. [¿Cómo funcionará en tu computadora?](#3-cómo-funcionará-en-tu-computadora)
+4. [Plan de desarrollo](#4-plan-de-desarrollo)
+5. [¿Qué hará que GIAR-ORION sea diferente de un chatbot?](#5-qué-hará-que-giar-orion-sea-diferente-de-un-chatbot)
+6. [Instalación y configuración de Ollama](#6-instalación-y-configuración-de-ollama)
+
 ### *Inteligencia artificial para investigación y desarrollo en robótica autónoma.*
 
 GIAR-ORION será un agente de IA local, diseñado para trabajar como **investigador, ingeniero de software y especialista en aprendizaje por refuerzo aplicado a la robótica**.
@@ -141,7 +150,7 @@ Ese es el salto que buscamos: pasar de un sistema que responde preguntas a uno q
 
 ---
 
-## 6. ¿Cuál es nuestro primer objetivo concreto?
+## 6. Instalación y configuración de Ollama
 
 No intentaremos desarrollar todo GIAR-ORION de una sola vez.
 

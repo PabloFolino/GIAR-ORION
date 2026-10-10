@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="430" viewBox="0 0 1100 430">
+  <rect width="1100" height="430" rx="22" fill="#f4f7fb"/>
+  <text x="550" y="48" font-family="Arial, sans-serif" font-size="27" font-weight="700" text-anchor="middle" fill="#172b4d">GIAR-ORION · Ollama en Windows 11</text>
+  <rect x="55" y="95" width="300" height="245" rx="16" fill="#ffffff" stroke="#a8bdd8" stroke-width="2"/>
+  <rect x="80" y="120" width="250" height="115" rx="10" fill="#1e293b"/>
+  <text x="205" y="157" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="#ffffff">Ollama</text>
+  <text x="205" y="185" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#dbeafe">Motor local de IA</text>
+  <text x="205" y="211" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#dbeafe">localhost:11434</text>
+  <text x="205" y="270" font-family="Arial, sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#172b4d">Aplicación instalada</text>
+  <text x="205" y="295" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#425466">Se ejecuta en segundo plano</text>
+  <path d="M365 215 H425" stroke="#4b6b91" stroke-width="4" fill="none"/>
+  <path d="M414 203 L430 215 L414 227" stroke="#4b6b91" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="445" y="95" width="290" height="245" rx="16" fill="#ffffff" stroke="#a8bdd8" stroke-width="2"/>
+  <text x="590" y="132" font-family="Arial, sans-serif" font-size="19" font-weight="700" text-anchor="middle" fill="#172b4d">Modelos de IA</text>
+  <rect x="475" y="157" width="230" height="55" rx="8" fill="#e5eefb"/>
+  <text x="590" y="190" font-family="Consolas, monospace" font-size="15" text-anchor="middle" fill="#23446d">OLLAMA_MODELS</text>
+  <text x="590" y="242" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#425466">Se guardan en la carpeta</text>
+  <text x="590" y="263" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#425466">configurada por el usuario</text>
+  <text x="590" y="306" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#60758a">Archivos grandes: excluir de Git</text>
+  <path d="M745 215 H805" stroke="#4b6b91" stroke-width="4" fill="none"/>
+  <path d="M794 203 L810 215 L794 227" stroke="#4b6b91" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="825" y="95" width="220" height="245" rx="16" fill="#ffffff" stroke="#a8bdd8" stroke-width="2"/>
+  <text x="935" y="132" font-family="Arial, sans-serif" font-size="19" font-weight="700" text-anchor="middle" fill="#172b4d">Proyecto</text>
+  <rect x="850" y="157" width="170" height="65" rx="8" fill="#e3f5e9"/>
+  <text x="935" y="184" font-family="Consolas, monospace" font-size="14" text-anchor="middle" fill="#21643b">GIAR-ORION</text>
+  <text x="935" y="205" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#21643b">Código y documentos</text>
+  <text x="935" y="260" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#425466">PowerShell / VS Code</text>
+  <text x="935" y="282" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#425466">define la carpeta de trabajo</text>
+  <text x="550" y="390" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#425466">La carpeta del proyecto y la carpeta de modelos son configuraciones distintas.</text>
+</svg>
