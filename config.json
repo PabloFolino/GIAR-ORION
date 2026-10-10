@@ -1,0 +1,14 @@
+{
+    "agent_name": "GIAR-ORION",
+    "version": "0.1",
+    "llm": {
+        "provider": "ollama",
+        "model": "qwen3:8b"
+    },
+    "paths": {
+        "models": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Models",
+        "knowledge": "Knowledge",
+        "memory": "Memory",
+        "logs": "Logs"
+    }
+}
