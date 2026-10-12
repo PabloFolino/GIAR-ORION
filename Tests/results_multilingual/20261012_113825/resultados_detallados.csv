@@ -1,0 +1,823 @@
+﻿test_id,mode,query,rank,source,score,search_seconds,expected_terms,expected_source,text
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8612866401672363,0.0666,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]"
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8556811809539795,0.0666,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot."
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8463274836540222,0.0666,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:"
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8455855846405029,0.0666,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía."
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8424757122993469,0.0666,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica
+**Documento técnico para GIAR-ORION**\
+**Versión:** 2.0\
+**Fecha:** 12 de octubre de 2026\
+**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones
+prácticas de implementación, con fórmulas, ejemplos en Python, criterios
+de diagnóstico y estimaciones de tiempo y memoria."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8368398547172546,0.0092,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"13.1 RAM
+El Replay Buffer suele ser uno de los consumidores previsibles y puede
+estimarse con la fórmula de la sección 9. Si el simulador guarda
+geometría, sensores o imágenes, el consumo adicional puede ser
+importante."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8338574767112732,0.0092,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"9. Replay Buffer y aprendizaje off-policy
+El Replay Buffer almacena transiciones:"
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8323640823364258,0.0092,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"7.1 SAC estándar recibe una recompensa escalar
+Es decir, **una sola cantidad numérica por transición**. Esa cantidad
+puede calcularse combinando muchas métricas: velocidad, equilibrio,
+energía, caídas, seguimiento de consigna, etc."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8293755054473877,0.0092,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8277313709259033,0.0092,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"13.1 RAM
+- Replay Buffer;
+- proceso del simulador;
+- observaciones y registros;
+- Python y bibliotecas;
+- múltiples entornos paralelos;
+- checkpoints temporales y herramientas de diagnóstico."
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8563177585601807,0.0198,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]"
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.855696439743042,0.0198,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"0. Cómo leer este documento y de dónde proviene la información
+**\[SAC\]** Haarnoja et al. (2018), Máxima entropía y
+ artículos de Soft control continuo
+ Actor-Critic off-policy.
+ -----------------------------------------------------------------------"
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8531850576400757,0.0198,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"18. Referencias técnicas
+1. Haarnoja, T. et al. (2018). **Soft Actor-Critic: Off-Policy Maximum
+ Entropy Deep Reinforcement Learning with a Stochastic Actor.**
+ arXiv:1801.01290.\
+ https://arxiv.org/abs/1801.01290"
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8461872339248657,0.0198,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"28.3 Artículos y trabajos históricos
+**\[SAC1\]** Haarnoja, T., Zhou, A., Abbeel, P., & Levine, S. (2018).
+""Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement
+Learning with a Stochastic Actor.""\
+arXiv: https://arxiv.org/abs/1801.01290"
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8416935801506042,0.0198,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.9168257117271423,0.0178,aprendizaje | refuerzo | agente,,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8828212022781372,0.0178,aprendizaje | refuerzo | agente,,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8807119131088257,0.0178,aprendizaje | refuerzo | agente,,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8744062185287476,0.0178,aprendizaje | refuerzo | agente,,"2. Qué problema resuelve el aprendizaje por refuerzo
+En cada paso (t), el agente observa (s_t), elige (a_t), el entorno
+ejecuta la acción y devuelve (r_t), (s\_{t+1}) y señales de terminación."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8600608110427856,0.0178,aprendizaje | refuerzo | agente,,"2. Qué problema resuelve el aprendizaje por refuerzo
+- (`\mathcal `{=tex}S): conjunto de estados u observaciones posibles.
+- (`\mathcal `{=tex}A): conjunto de acciones posibles.
+- (P(s'`\mid `{=tex}s,a)): dinámica de transición; describe la
+ probabilidad de llegar al siguiente estado (s').
+- (R(s,a,s')): recompensa inmediata que asigna el entorno.
+- (`\gamma`{=tex}`\in`{=tex}\[0,1)): factor de descuento de
+ recompensas futuras."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8820381164550781,0.0178,aprendizaje | refuerzo | profundo,,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8764278888702393,0.0178,aprendizaje | refuerzo | profundo,,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8671100735664368,0.0178,aprendizaje | refuerzo | profundo,,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8565335273742676,0.0178,aprendizaje | refuerzo | profundo,,"2. Qué problema resuelve el aprendizaje por refuerzo
+El objetivo no es maximizar solamente la recompensa inmediata, sino la
+suma descontada a lo largo del tiempo:"
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8559079170227051,0.0178,aprendizaje | refuerzo | profundo,,"2. Qué problema resuelve el aprendizaje por refuerzo
+donde:"
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,1,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.88789963722229,0.0175,articulación | dinámica | CoppeliaSim,,"14.6 Callback de articulación personalizada
+CoppeliaSim permite implementar control personalizado mediante callbacks de articulación cuando la articulación está en modo dinámico y el control personalizado está activado. Esto puede servir para controladores de bajo nivel, pero la callback y el motor físico deben configurarse de acuerdo con el manual."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,2,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8845380544662476,0.0175,articulación | dinámica | CoppeliaSim,,"7.7 Dinámica vs. cinemática en una articulación
+CoppeliaSim distingue tres modos de articulación:
+- **Kinematic:** la articulación no es manejada por el módulo de dinámica y puede posicionarse directamente o seguir perfiles de movimiento.
+- **Dependent:** depende de otra articulación mediante una relación lineal.
+- **Dynamic:** la articulación la maneja el módulo de dinámica si la configuración conectada es válida."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,3,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8797016143798828,0.0175,articulación | dinámica | CoppeliaSim,,"1. Qué es CoppeliaSim
+[CoppeliaSim](https://www.coppeliarobotics.com/) es un simulador robótico multiplataforma con entorno gráfico, motor de simulación, API, scripts, plugins y herramientas de cinemática, sensores y planificación. Su arquitectura distribuida permite que distintas partes de una escena sean controladas por scripts embebidos, plugins, nodos ROS/ROS 2 o aplicaciones externas."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,4,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8596405982971191,0.0175,articulación | dinámica | CoppeliaSim,,"8.1 Modos de control dinámico
+Fuente: [Propiedades dinámicas de articulaciones](https://manual.coppeliarobotics.com/en/jointDynamicsProperties.htm)."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,5,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8586753606796265,0.0175,articulación | dinámica | CoppeliaSim,,"5. Arquitectura de una escena y objetos
+CoppeliaSim representa la escena como una jerarquía de objetos. La jerarquía expresa relaciones padre-hijo y transformaciones relativas; no determina por sí sola que un objeto sea dinámico."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8484776020050049,0.018,hip | knee | ankle | joint,,"11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**"
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8437951803207397,0.018,hip | knee | ankle | joint,,"Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8428390622138977,0.018,hip | knee | ankle | joint,,"https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf"
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8400983810424805,0.018,hip | knee | ankle | joint,,"4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8394386768341064,0.018,hip | knee | ankle | joint,,"7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description)."
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8580756187438965,0.0201,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+print(f""VRAM asignada: {allocated:.3f} GiB"")
+ print(f""VRAM reservada por PyTorch: {reserved:.3f} GiB"")
+ print(f""Pico asignado: {peak:.3f} GiB"")
+else:
+ print(""CUDA no está disponible; se está ejecutando en CPU."")
+```"
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8273957371711731,0.0201,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+if torch.cuda.is_available():
+ torch.cuda.reset_peak_memory_stats()
+ # Ejecutar aquí una iteración real de entrenamiento.
+ torch.cuda.synchronize()
+ allocated = torch.cuda.memory_allocated() / (1024 ** 3)
+ reserved = torch.cuda.memory_reserved() / (1024 ** 3)
+ peak = torch.cuda.max_memory_allocated() / (1024 ** 3)"
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8270434141159058,0.0201,torch | cuda | gpu,,"Etapa D: medir rendimiento
+- Medir pasos de entorno por segundo.
+- Medir actualizaciones por segundo.
+- Medir RAM y VRAM tras inicializar las redes y ejecutar
+ actualizaciones reales.
+- Desactivar renderizado innecesario durante entrenamiento, si el
+ entorno lo permite.
+- Registrar versión de Python, PyTorch, CUDA, simulador y
+ configuración."
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,4,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8256250023841858,0.0201,torch | cuda | gpu,,"14.7 Lua frente a Python
+| Criterio | Lua embebido | Python externo |
+|---|---|---|
+| Acceso a objetos | Directo | Mediante API remota |
+| Dependencias de ML | Limitadas frente al ecosistema Python | Excelente ecosistema de NumPy/PyTorch |
+| Latencia de llamadas | No hay ida y vuelta entre procesos | Hay comunicación y serialización |
+| Ciclo de simulación | Integrado | Coordinado por API remota |
+| Depuración de la escena | Cómoda | Depende de cliente y servidor |
+| Entrenamiento RL grande | Útil para lógica local | Generalmente más conveniente |
+| Portabilidad de lógica | Ligada a la escena/API | Código externo separable |
+| Uso recomendado | Automatización local y comportamiento de objetos | Entrenamiento, análisis y orquestación del experimento |"
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8249480724334717,0.0201,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+`memory_allocated` mide memoria ocupada por tensores administrados por
+PyTorch; `memory_reserved` incluye memoria reservada por su asignador.
+Ninguna de estas cifras representa por sí sola todo el uso de VRAM del
+sistema operativo ni de otras aplicaciones."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8712521195411682,0.0187,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+El ejemplo: - premia el seguimiento de velocidad; - penaliza
+inclinación; - penaliza un proxy de potencia mecánica; - penaliza la
+caída; - comprueba que la recompensa sea finita."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8668936491012573,0.0187,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+No garantiza que el robot aprenda a caminar. Debe evaluarse la escala,
+el signo y el efecto de cada término mediante episodios controlados."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8597406148910522,0.0187,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+def reward_robot(vx, target_vx, roll, pitch,
+ torque, joint_velocity, fallen, weights):
+ tracking_error = vx - target_vx
+ r_tracking = np.exp(-(tracking_error ** 2) / 0.25)"
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8577741980552673,0.0187,observación | acción | recompensa,,"19.4 Seguridad
+La recompensa no es un mecanismo de seguridad suficiente. Para un robot
+real se necesitan límites físicos, supervisión, parada de emergencia y
+pruebas controladas."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8574409484863281,0.0187,observación | acción | recompensa,,"29. Conclusiones
+Para robótica, la calidad de la tarea, la observación, las acciones, la
+recompensa, la dinámica del simulador y los mecanismos de seguridad es
+tan importante como el algoritmo. Un agente no debe considerarse exitoso
+sólo porque la recompensa aumente: debe cumplir métricas físicas y
+funcionales independientes y demostrar estabilidad en condiciones
+variadas."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8501061797142029,0.0187,documento | conocimiento | recuperación,,"29. Conclusiones
+**Principio rector para GIAR-ORION:** toda afirmación sobre un
+entrenamiento concreto debe poder rastrearse a la configuración, el
+código, los datos y los registros del experimento. Esta guía establece
+los fundamentos generales; la implementación real debe auditarse por
+separado."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8474425077438354,0.0187,documento | conocimiento | recuperación,,"19. Conclusiones
+Este documento es una guía técnica general. Para certificar el
+comportamiento de una implementación específica de GIAR-ORION, se deben
+revisar sus archivos de configuración, las redes, el motor de
+recompensa, el buffer, el ciclo de actualización y los registros
+experimentales."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,3,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8393995761871338,0.0187,documento | conocimiento | recuperación,,"CoppeliaSim: manual técnico de referencia para GIAR-ORION
+**Fecha de elaboración:** 12 de octubre de 2026 
+**Versión de referencia de la documentación:** CoppeliaSim V4.10.0 (la documentación oficial consultada muestra V4.10). 
+**Plataformas de interés:** Windows 11 y Ubuntu Linux. 
+**Aplicación principal en GIAR-ORION:** simulación física y cinemática de robots, en particular Unitree G1, control externo con Python, experimentación con aprendizaje por refuerzo y auditoría de modelos importados."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.831648051738739,0.0187,documento | conocimiento | recuperación,,"Fundamentos, formulación matemática, algoritmos, historia, aplicaciones en robótica y ejemplos en Python
+**Documento técnico para GIAR-ORION**\
+**Versión:** 1.0\
+**Fecha:** 12 de octubre de 2026\
+**Idioma:** español\
+**Objetivo:** ofrecer una referencia de estudio profunda y trazable
+sobre aprendizaje por refuerzo (RL), desde las definiciones esenciales
+hasta los algoritmos modernos de Deep RL, con especial atención al
+control de robots."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,5,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8245259523391724,0.0187,documento | conocimiento | recuperación,,"CoppeliaSim: manual técnico de referencia para GIAR-ORION
+> **Alcance y criterio documental.** Este documento organiza los conceptos y procedimientos principales del [CoppeliaSim User Manual](https://manual.coppeliarobotics.com/index.html), apoyándose en las páginas oficiales relevantes enlazadas en cada sección. El manual es una documentación web extensa, con páginas de referencia de API, tutoriales, propiedades de objetos y detalles por motor físico; este dossier es una guía técnica amplia y no una reproducción literal de todas sus páginas. Cuando una función o compatibilidad depende de la revisión, el sistema operativo, un plugin o el motor físico, se indica que debe comprobarse en la instalación concreta."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6148152351379395,0.1358,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]"
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6041960716247559,0.1358,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5948528051376343,0.1358,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:"
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5816422700881958,0.1358,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()"
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5667710900306702,0.1358,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+El fragmento siguiente muestra el núcleo matemático de una
+actualización, suponiendo que existen `actor`, `critic1`, `critic2`,
+`target_critic1`, `target_critic2`, sus optimizadores y un lote ya
+convertido a tensores. No reemplaza la implementación completa: se
+omiten detalles de arquitectura, normalización, gestión de episodios y
+guardado."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5664138793945312,0.0638,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"13.1 RAM
+El Replay Buffer suele ser uno de los consumidores previsibles y puede
+estimarse con la fórmula de la sección 9. Si el simulador guarda
+geometría, sensores o imágenes, el consumo adicional puede ser
+importante."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.5563712120056152,0.0638,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"18.1 RAM
+Para un Replay Buffer que almacena observación actual, siguiente
+observación, acción, recompensa y bandera de terminación como `float32`,
+una aproximación es:"
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5497459769248962,0.0638,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"9. Replay Buffer y aprendizaje off-policy
+\[ (s_t,a_t,r_t,s\_{t+1},d_t) \]"
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5337367057800293,0.0638,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"10. Hiperparámetros principales y sus efectos
+Capacidad de \(N\) 100 mil--1 millón Aumenta la
+ Replay Buffer diversidad
+ almacenada y el
+ uso de RAM."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5319554805755615,0.0638,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"9. Replay Buffer y aprendizaje off-policy
+El Replay Buffer almacena transiciones:"
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6032929420471191,0.0724,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]"
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.5853655338287354,0.0724,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"28.3 Artículos y trabajos históricos
+**\[SAC1\]** Haarnoja, T., Zhou, A., Abbeel, P., & Levine, S. (2018).
+""Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement
+Learning with a Stochastic Actor.""\
+arXiv: https://arxiv.org/abs/1801.01290"
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5762870907783508,0.0724,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"18. Referencias técnicas
+1. Haarnoja, T. et al. (2018). **Soft Actor-Critic: Off-Policy Maximum
+ Entropy Deep Reinforcement Learning with a Stochastic Actor.**
+ arXiv:1801.01290.\
+ https://arxiv.org/abs/1801.01290"
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.5685979127883911,0.0724,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"0. Cómo leer este documento y de dónde proviene la información
+**\[SAC\]** Haarnoja et al. (2018), Máxima entropía y
+ artículos de Soft control continuo
+ Actor-Critic off-policy.
+ -----------------------------------------------------------------------"
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5583932995796204,0.0724,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7526494264602661,0.0731,aprendizaje | refuerzo | agente,,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.688831627368927,0.0731,aprendizaje | refuerzo | agente,,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.680347204208374,0.0731,aprendizaje | refuerzo | agente,,"2. Qué problema resuelve el aprendizaje por refuerzo
+En cada paso (t), el agente observa (s_t), elige (a_t), el entorno
+ejecuta la acción y devuelve (r_t), (s\_{t+1}) y señales de terminación."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6802655458450317,0.0731,aprendizaje | refuerzo | agente,,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6678627729415894,0.0731,aprendizaje | refuerzo | agente,,"27. Definiciones para consulta rápida
+- **Acción ((a)):** decisión ejecutada por el agente.
+- **Agente:** sistema que aprende a decidir.
+- **Aprendizaje por refuerzo (RL):** aprendizaje de decisiones
+ mediante interacción y recompensas.
+- **Aprendizaje profundo por refuerzo (Deep RL):** RL que utiliza
+ redes neuronales profundas para aproximar políticas, valores o
+ modelos.
+- **Bootstrapping:** actualizar una estimación usando otra estimación
+ aprendida.
+- **Crítico:** estimador de valor usado para evaluar estados o
+ acciones.
+- **Descuento ((`\gamma`{=tex})):** factor que pondera recompensas
+ futuras.
+- **Entorno:** sistema con el que interactúa el agente.
+- **Episodio:** secuencia de interacción hasta la terminación o el
+ límite definido.
+- **Estado ((s)):** descripción suficiente del entorno para la
+ formulación.
+- **Exploración:** probar acciones para obtener información.
+- **Explotación:** elegir acciones que parecen mejores según lo
+ aprendido.
+- **Función de ventaja ((A)):** diferencia entre valor de una acción y
+ valor del estado.
+- **Función de valor ((V)):** retorno"
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6976203918457031,0.0718,aprendizaje | refuerzo | profundo,,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6856956481933594,0.0718,aprendizaje | refuerzo | profundo,,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6580432653427124,0.0718,aprendizaje | refuerzo | profundo,,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6453772187232971,0.0718,aprendizaje | refuerzo | profundo,,"2. Qué problema resuelve el aprendizaje por refuerzo
+donde:"
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6200562715530396,0.0718,aprendizaje | refuerzo | profundo,,"2. Qué problema resuelve el aprendizaje por refuerzo
+\[ s_t `\rightarrow `{=tex}a_t `\rightarrow `{=tex}(r_t,s\_{t+1},d_t) \]"
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,1,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.6780580282211304,0.0531,articulación | dinámica | CoppeliaSim,,"14.6 Callback de articulación personalizada
+CoppeliaSim permite implementar control personalizado mediante callbacks de articulación cuando la articulación está en modo dinámico y el control personalizado está activado. Esto puede servir para controladores de bajo nivel, pero la callback y el motor físico deben configurarse de acuerdo con el manual."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,2,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.6751203536987305,0.0531,articulación | dinámica | CoppeliaSim,,"7.7 Dinámica vs. cinemática en una articulación
+CoppeliaSim distingue tres modos de articulación:
+- **Kinematic:** la articulación no es manejada por el módulo de dinámica y puede posicionarse directamente o seguir perfiles de movimiento.
+- **Dependent:** depende de otra articulación mediante una relación lineal.
+- **Dynamic:** la articulación la maneja el módulo de dinámica si la configuración conectada es válida."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,3,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.632331132888794,0.0531,articulación | dinámica | CoppeliaSim,,"5. Arquitectura de una escena y objetos
+CoppeliaSim representa la escena como una jerarquía de objetos. La jerarquía expresa relaciones padre-hijo y transformaciones relativas; no determina por sí sola que un objeto sea dinámico."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,4,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.608954668045044,0.0531,articulación | dinámica | CoppeliaSim,,"1. Qué es CoppeliaSim
+[CoppeliaSim](https://www.coppeliarobotics.com/) es un simulador robótico multiplataforma con entorno gráfico, motor de simulación, API, scripts, plugins y herramientas de cinemática, sensores y planificación. Su arquitectura distribuida permite que distintas partes de una escena sean controladas por scripts embebidos, plugins, nodos ROS/ROS 2 o aplicaciones externas."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,5,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.5995338559150696,0.0531,articulación | dinámica | CoppeliaSim,,"7.7 Dinámica vs. cinemática en una articulación
+Fuente: [Modos de articulación](https://manual.coppeliarobotics.com/en/jointModes.htm)."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.575493574142456,0.0572,hip | knee | ankle | joint,,"4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.5677628517150879,0.0572,hip | knee | ankle | joint,,"https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf"
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.5604567527770996,0.0572,hip | knee | ankle | joint,,"11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**"
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.5411654710769653,0.0572,hip | knee | ankle | joint,,"1. Resumen ejecutivo
+- El G1 estándar se publica con **1320 × 450 × 200 mm** en posición de pie, **690 × 450 × 300 mm** plegado y aproximadamente **35 kg con batería**.
+- La página oficial distingue **G1 (23 grados de libertad)** y **G1 EDU (23–43, según opciones)**. Las configuraciones con manos, muñecas adicionales y cintura de 3 DoF cambian la cantidad de articulaciones.
+- El accionamiento se describe como motor síncrono de imanes permanentes (PMSM), rotor interior de baja inercia y alta velocidad, con **doble encoder** y refrigeración local por aire. El par máximo publicado corresponde al mayor motor de la máquina, no a todos los motores: **90 N·m para G1 y 120 N·m para G1 EDU** en la tabla consultada.
+- La batería extraíble se especifica como **13 celdas en serie (13S), 9000 mAh**; cargador **54 V, 5 A**; autonomía declarada de aproximadamente **2 horas**. La duración real depende de la tarea y la configuración.
+- La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el"
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.530375599861145,0.0572,hip | knee | ankle | joint,,"Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales."
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.669856607913971,0.0793,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+print(f""VRAM asignada: {allocated:.3f} GiB"")
+ print(f""VRAM reservada por PyTorch: {reserved:.3f} GiB"")
+ print(f""Pico asignado: {peak:.3f} GiB"")
+else:
+ print(""CUDA no está disponible; se está ejecutando en CPU."")
+```"
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5919365882873535,0.0793,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+if torch.cuda.is_available():
+ torch.cuda.reset_peak_memory_stats()
+ # Ejecutar aquí una iteración real de entrenamiento.
+ torch.cuda.synchronize()
+ allocated = torch.cuda.memory_allocated() / (1024 ** 3)
+ reserved = torch.cuda.memory_reserved() / (1024 ** 3)
+ peak = torch.cuda.max_memory_allocated() / (1024 ** 3)"
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5346683859825134,0.0793,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+``` python
+import torch"
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5231541395187378,0.0793,torch | cuda | gpu,,"14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()"
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.5121375918388367,0.0793,torch | cuda | gpu,,"14.1 Actualización Polyak en PyTorch
+------------------------------------------------------------------------"
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6364279985427856,0.0699,observación | acción | recompensa,,"19. Conclusiones
+En robótica, la calidad del resultado depende tanto del algoritmo como
+del diseño de la recompensa, la semántica de observaciones y acciones,
+la fidelidad del simulador y la calidad de la evaluación. Una recompensa
+con varios componentes normalmente se convierte en un escalar antes de
+alimentar al SAC estándar. Una recompensa realmente vectorial requiere
+una formulación multiobjetivo o una escalarización explícita."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6333359479904175,0.0699,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+def reward_robot(vx, target_vx, roll, pitch,
+ torque, joint_velocity, fallen, weights):
+ tracking_error = vx - target_vx
+ r_tracking = np.exp(-(tracking_error ** 2) / 0.25)"
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6227766871452332,0.0699,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+No garantiza que el robot aprenda a caminar. Debe evaluarse la escala,
+el signo y el efecto de cada término mediante episodios controlados."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6164382696151733,0.0699,observación | acción | recompensa,,"29. Conclusiones
+Para robótica, la calidad de la tarea, la observación, las acciones, la
+recompensa, la dinámica del simulador y los mecanismos de seguridad es
+tan importante como el algoritmo. Un agente no debe considerarse exitoso
+sólo porque la recompensa aumente: debe cumplir métricas físicas y
+funcionales independientes y demostrar estabilidad en condiciones
+variadas."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6158970594406128,0.0699,observación | acción | recompensa,,"14. Cómo se diseña una recompensa
+Una recompensa debe traducir la tarea en una señal numérica que permita
+distinguir resultados mejores y peores. En robótica, suele ser una
+combinación de términos."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6042921543121338,0.0542,documento | conocimiento | recuperación,,"19. Conclusiones
+Este documento es una guía técnica general. Para certificar el
+comportamiento de una implementación específica de GIAR-ORION, se deben
+revisar sus archivos de configuración, las redes, el motor de
+recompensa, el buffer, el ciclo de actualización y los registros
+experimentales."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.5822939872741699,0.0542,documento | conocimiento | recuperación,,"Fundamentos, formulación matemática, algoritmos, historia, aplicaciones en robótica y ejemplos en Python
+**Documento técnico para GIAR-ORION**\
+**Versión:** 1.0\
+**Fecha:** 12 de octubre de 2026\
+**Idioma:** español\
+**Objetivo:** ofrecer una referencia de estudio profunda y trazable
+sobre aprendizaje por refuerzo (RL), desde las definiciones esenciales
+hasta los algoritmos modernos de Deep RL, con especial atención al
+control de robots."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.5708863735198975,0.0542,documento | conocimiento | recuperación,,"10. Procedimiento recomendado para GIAR-ORION
+1. **Fijar el objetivo físico:** registrar modelo comercial, EDU/no EDU, número de DoF, revisión de hardware/firmware, manos instaladas, módulo de cómputo y sensores.
+2. **Fijar el modelo de simulación:** guardar URL, rama, commit y nombre exacto de URDF/MJCF; no mezclar archivos de revisiones distintas.
+3. **Generar un inventario del modelo:** tabla de enlaces, masa, centro de masa, inercia, padre, articulación, eje, rango y esfuerzo máximo modelado.
+4. **Auditar sensores:** inventariar topics y mensajes; registrar IMU(s), frames, unidades, frecuencia, timestamps, cámara y LiDAR.
+5. **Auditar control:** confirmar mapeo índice↔nombre, modo de control, `q/dq/tau/kp/kd`, frecuencia de envío y límites de seguridad.
+6. **Solicitar a Unitree/distribuidor los datos no públicos:** corriente continua/pico de cada actuador, curva par-velocidad, tiempo de respuesta, límites térmicos, temperaturas ambientales permitidas, ficha de batería y masa/BOM de cada conjunto.
+7. **Validar simulación:** comparar postura de reposo, gravedad, masa total,"
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,4,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.5707859396934509,0.0542,documento | conocimiento | recuperación,,"CoppeliaSim: manual técnico de referencia para GIAR-ORION
+**Fecha de elaboración:** 12 de octubre de 2026 
+**Versión de referencia de la documentación:** CoppeliaSim V4.10.0 (la documentación oficial consultada muestra V4.10). 
+**Plataformas de interés:** Windows 11 y Ubuntu Linux. 
+**Aplicación principal en GIAR-ORION:** simulación física y cinemática de robots, en particular Unitree G1, control externo con Python, experimentación con aprendizaje por refuerzo y auditoría de modelos importados."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,5,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.5624837875366211,0.0542,documento | conocimiento | recuperación,,"CoppeliaSim: manual técnico de referencia para GIAR-ORION
+---"
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7380509376525879,0.0506,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]"
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7299386262893677,0.0506,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot."
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7205901145935059,0.0506,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:"
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7092652320861816,0.0506,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()"
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7010520696640015,0.0506,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+El fragmento siguiente muestra el núcleo matemático de una
+actualización, suponiendo que existen `actor`, `critic1`, `critic2`,
+`target_critic1`, `target_critic2`, sus optimizadores y un lote ya
+convertido a tensores. No reemplaza la implementación completa: se
+omiten detalles de arquitectura, normalización, gestión de episodios y
+guardado."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7016268968582153,0.0376,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"13.1 RAM
+El Replay Buffer suele ser uno de los consumidores previsibles y puede
+estimarse con la fórmula de la sección 9. Si el simulador guarda
+geometría, sensores o imágenes, el consumo adicional puede ser
+importante."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.6919952630996704,0.0376,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"18.1 RAM
+Para un Replay Buffer que almacena observación actual, siguiente
+observación, acción, recompensa y bandera de terminación como `float32`,
+una aproximación es:"
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6833339929580688,0.0376,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"9. Replay Buffer y aprendizaje off-policy
+\[ (s_t,a_t,r_t,s\_{t+1},d_t) \]"
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6829065084457397,0.0376,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"9. Replay Buffer y aprendizaje off-policy
+El Replay Buffer almacena transiciones:"
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6794811487197876,0.0376,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"13.1 RAM
+- Replay Buffer;
+- proceso del simulador;
+- observaciones y registros;
+- Python y bibliotecas;
+- múltiples entornos paralelos;
+- checkpoints temporales y herramientas de diagnóstico."
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7298053503036499,0.0379,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]"
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7157763838768005,0.0379,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"28.3 Artículos y trabajos históricos
+**\[SAC1\]** Haarnoja, T., Zhou, A., Abbeel, P., & Levine, S. (2018).
+""Soft Actor-Critic: Off-Policy Maximum Entropy Deep Reinforcement
+Learning with a Stochastic Actor.""\
+arXiv: https://arxiv.org/abs/1801.01290"
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7147361040115356,0.0379,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"18. Referencias técnicas
+1. Haarnoja, T. et al. (2018). **Soft Actor-Critic: Off-Policy Maximum
+ Entropy Deep Reinforcement Learning with a Stochastic Actor.**
+ arXiv:1801.01290.\
+ https://arxiv.org/abs/1801.01290"
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7121471762657166,0.0379,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"0. Cómo leer este documento y de dónde proviene la información
+**\[SAC\]** Haarnoja et al. (2018), Máxima entropía y
+ artículos de Soft control continuo
+ Actor-Critic off-policy.
+ -----------------------------------------------------------------------"
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6997828483581543,0.0379,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8347375392913818,0.0598,aprendizaje | refuerzo | agente,,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7858264446258545,0.0598,aprendizaje | refuerzo | agente,,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7804887294769287,0.0598,aprendizaje | refuerzo | agente,,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7773767113685608,0.0598,aprendizaje | refuerzo | agente,,"2. Qué problema resuelve el aprendizaje por refuerzo
+En cada paso (t), el agente observa (s_t), elige (a_t), el entorno
+ejecuta la acción y devuelve (r_t), (s\_{t+1}) y señales de terminación."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7577997446060181,0.0598,aprendizaje | refuerzo | agente,,"27. Definiciones para consulta rápida
+- **Acción ((a)):** decisión ejecutada por el agente.
+- **Agente:** sistema que aprende a decidir.
+- **Aprendizaje por refuerzo (RL):** aprendizaje de decisiones
+ mediante interacción y recompensas.
+- **Aprendizaje profundo por refuerzo (Deep RL):** RL que utiliza
+ redes neuronales profundas para aproximar políticas, valores o
+ modelos.
+- **Bootstrapping:** actualizar una estimación usando otra estimación
+ aprendida.
+- **Crítico:** estimador de valor usado para evaluar estados o
+ acciones.
+- **Descuento ((`\gamma`{=tex})):** factor que pondera recompensas
+ futuras.
+- **Entorno:** sistema con el que interactúa el agente.
+- **Episodio:** secuencia de interacción hasta la terminación o el
+ límite definido.
+- **Estado ((s)):** descripción suficiente del entorno para la
+ formulación.
+- **Exploración:** probar acciones para obtener información.
+- **Explotación:** elegir acciones que parecen mejores según lo
+ aprendido.
+- **Función de ventaja ((A)):** diferencia entre valor de una acción y
+ valor del estado.
+- **Función de valor ((V)):** retorno"
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7870241403579712,0.0381,aprendizaje | refuerzo | profundo,,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7838668823242188,0.0381,aprendizaje | refuerzo | profundo,,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.762576699256897,0.0381,aprendizaje | refuerzo | profundo,,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7506425380706787,0.0381,aprendizaje | refuerzo | profundo,,"2. Qué problema resuelve el aprendizaje por refuerzo
+donde:"
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7353612780570984,0.0381,aprendizaje | refuerzo | profundo,,"2. Qué problema resuelve el aprendizaje por refuerzo
+\[ s_t `\rightarrow `{=tex}a_t `\rightarrow `{=tex}(r_t,s\_{t+1},d_t) \]"
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,1,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.7829788327217102,0.0365,articulación | dinámica | CoppeliaSim,,"14.6 Callback de articulación personalizada
+CoppeliaSim permite implementar control personalizado mediante callbacks de articulación cuando la articulación está en modo dinámico y el control personalizado está activado. Esto puede servir para controladores de bajo nivel, pero la callback y el motor físico deben configurarse de acuerdo con el manual."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,2,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.779829204082489,0.0365,articulación | dinámica | CoppeliaSim,,"7.7 Dinámica vs. cinemática en una articulación
+CoppeliaSim distingue tres modos de articulación:
+- **Kinematic:** la articulación no es manejada por el módulo de dinámica y puede posicionarse directamente o seguir perfiles de movimiento.
+- **Dependent:** depende de otra articulación mediante una relación lineal.
+- **Dynamic:** la articulación la maneja el módulo de dinámica si la configuración conectada es válida."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,3,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.7455032467842102,0.0365,articulación | dinámica | CoppeliaSim,,"5. Arquitectura de una escena y objetos
+CoppeliaSim representa la escena como una jerarquía de objetos. La jerarquía expresa relaciones padre-hijo y transformaciones relativas; no determina por sí sola que un objeto sea dinámico."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,4,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.7443281412124634,0.0365,articulación | dinámica | CoppeliaSim,,"1. Qué es CoppeliaSim
+[CoppeliaSim](https://www.coppeliarobotics.com/) es un simulador robótico multiplataforma con entorno gráfico, motor de simulación, API, scripts, plugins y herramientas de cinemática, sensores y planificación. Su arquitectura distribuida permite que distintas partes de una escena sean controladas por scripts embebidos, plugins, nodos ROS/ROS 2 o aplicaciones externas."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,5,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.7272018194198608,0.0365,articulación | dinámica | CoppeliaSim,,"19.2 Qué dejar en CoppeliaSim/Lua
+- lógica local de la escena que deba ejecutarse cerca del ciclo de simulación;
+- inicialización de objetos y sensores;
+- controladores auxiliares locales;
+- callbacks de articulaciones cuando se requieran;
+- operaciones que reduzcan muchas llamadas remotas si se ha medido que la comunicación es el cuello de botella."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.7077959775924683,0.0341,hip | knee | ankle | joint,,"4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.7053009271621704,0.0341,hip | knee | ankle | joint,,"https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf"
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.7044671773910522,0.0341,hip | knee | ankle | joint,,"11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**"
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.6870853900909424,0.0341,hip | knee | ankle | joint,,"Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.684476375579834,0.0341,hip | knee | ankle | joint,,"7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description)."
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7639660835266113,0.034,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+print(f""VRAM asignada: {allocated:.3f} GiB"")
+ print(f""VRAM reservada por PyTorch: {reserved:.3f} GiB"")
+ print(f""Pico asignado: {peak:.3f} GiB"")
+else:
+ print(""CUDA no está disponible; se está ejecutando en CPU."")
+```"
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7096661329269409,0.034,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+if torch.cuda.is_available():
+ torch.cuda.reset_peak_memory_stats()
+ # Ejecutar aquí una iteración real de entrenamiento.
+ torch.cuda.synchronize()
+ allocated = torch.cuda.memory_allocated() / (1024 ** 3)
+ reserved = torch.cuda.memory_reserved() / (1024 ** 3)
+ peak = torch.cuda.max_memory_allocated() / (1024 ** 3)"
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.676397442817688,0.034,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+``` python
+import torch"
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6666396260261536,0.034,torch | cuda | gpu,,"Etapa D: medir rendimiento
+- Medir pasos de entorno por segundo.
+- Medir actualizaciones por segundo.
+- Medir RAM y VRAM tras inicializar las redes y ejecutar
+ actualizaciones reales.
+- Desactivar renderizado innecesario durante entrenamiento, si el
+ entorno lo permite.
+- Registrar versión de Python, PyTorch, CUDA, simulador y
+ configuración."
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,5,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.6637661457061768,0.034,torch | cuda | gpu,,"13.3 Medir consumo real en PyTorch
+`memory_allocated` mide memoria ocupada por tensores administrados por
+PyTorch; `memory_reserved` incluye memoria reservada por su asignador.
+Ninguna de estas cifras representa por sí sola todo el uso de VRAM del
+sistema operativo ni de otras aplicaciones."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7465382814407349,0.0391,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+def reward_robot(vx, target_vx, roll, pitch,
+ torque, joint_velocity, fallen, weights):
+ tracking_error = vx - target_vx
+ r_tracking = np.exp(-(tracking_error ** 2) / 0.25)"
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7448351383209229,0.0391,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+No garantiza que el robot aprenda a caminar. Debe evaluarse la escala,
+el signo y el efecto de cada término mediante episodios controlados."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7385733723640442,0.0391,observación | acción | recompensa,,"19. Conclusiones
+En robótica, la calidad del resultado depende tanto del algoritmo como
+del diseño de la recompensa, la semántica de observaciones y acciones,
+la fidelidad del simulador y la calidad de la evaluación. Una recompensa
+con varios componentes normalmente se convierte en un escalar antes de
+alimentar al SAC estándar. Una recompensa realmente vectorial requiere
+una formulación multiobjetivo o una escalarización explícita."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7381817102432251,0.0391,observación | acción | recompensa,,"14.2 Ejemplo de recompensa para control robótico
+El ejemplo: - premia el seguimiento de velocidad; - penaliza
+inclinación; - penaliza un proxy de potencia mecánica; - penaliza la
+caída; - comprueba que la recompensa sea finita."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7369396090507507,0.0391,observación | acción | recompensa,,"29. Conclusiones
+Para robótica, la calidad de la tarea, la observación, las acciones, la
+recompensa, la dinámica del simulador y los mecanismos de seguridad es
+tan importante como el algoritmo. Un agente no debe considerarse exitoso
+sólo porque la recompensa aumente: debe cumplir métricas físicas y
+funcionales independientes y demostrar estabilidad en condiciones
+variadas."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.7258673310279846,0.0362,documento | conocimiento | recuperación,,"19. Conclusiones
+Este documento es una guía técnica general. Para certificar el
+comportamiento de una implementación específica de GIAR-ORION, se deben
+revisar sus archivos de configuración, las redes, el motor de
+recompensa, el buffer, el ciclo de actualización y los registros
+experimentales."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7069710493087769,0.0362,documento | conocimiento | recuperación,,"Fundamentos, formulación matemática, algoritmos, historia, aplicaciones en robótica y ejemplos en Python
+**Documento técnico para GIAR-ORION**\
+**Versión:** 1.0\
+**Fecha:** 12 de octubre de 2026\
+**Idioma:** español\
+**Objetivo:** ofrecer una referencia de estudio profunda y trazable
+sobre aprendizaje por refuerzo (RL), desde las definiciones esenciales
+hasta los algoritmos modernos de Deep RL, con especial atención al
+control de robots."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,3,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.7050927877426147,0.0362,documento | conocimiento | recuperación,,"CoppeliaSim: manual técnico de referencia para GIAR-ORION
+**Fecha de elaboración:** 12 de octubre de 2026 
+**Versión de referencia de la documentación:** CoppeliaSim V4.10.0 (la documentación oficial consultada muestra V4.10). 
+**Plataformas de interés:** Windows 11 y Ubuntu Linux. 
+**Aplicación principal en GIAR-ORION:** simulación física y cinemática de robots, en particular Unitree G1, control externo con Python, experimentación con aprendizaje por refuerzo y auditoría de modelos importados."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.7047533988952637,0.0362,documento | conocimiento | recuperación,,"29. Conclusiones
+**Principio rector para GIAR-ORION:** toda afirmación sobre un
+entrenamiento concreto debe poder rastrearse a la configuración, el
+código, los datos y los registros del experimento. Esta guía establece
+los fundamentos generales; la implementación real debe auditarse por
+separado."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.6956495046615601,0.0362,documento | conocimiento | recuperación,,"10. Procedimiento recomendado para GIAR-ORION
+1. **Fijar el objetivo físico:** registrar modelo comercial, EDU/no EDU, número de DoF, revisión de hardware/firmware, manos instaladas, módulo de cómputo y sensores.
+2. **Fijar el modelo de simulación:** guardar URL, rama, commit y nombre exacto de URDF/MJCF; no mezclar archivos de revisiones distintas.
+3. **Generar un inventario del modelo:** tabla de enlaces, masa, centro de masa, inercia, padre, articulación, eje, rango y esfuerzo máximo modelado.
+4. **Auditar sensores:** inventariar topics y mensajes; registrar IMU(s), frames, unidades, frecuencia, timestamps, cámara y LiDAR.
+5. **Auditar control:** confirmar mapeo índice↔nombre, modo de control, `q/dq/tau/kp/kd`, frecuencia de envío y límites de seguridad.
+6. **Solicitar a Unitree/distribuidor los datos no públicos:** corriente continua/pico de cada actuador, curva par-velocidad, tiempo de respuesta, límites térmicos, temperaturas ambientales permitidas, ficha de batería y masa/BOM de cada conjunto.
+7. **Validar simulación:** comparar postura de reposo, gravedad, masa total,"

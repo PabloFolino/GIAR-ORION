@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-10-12T13:47:28",
+  "model": "qwen3:8b",
+  "ollama_url": "http://localhost:11434",
+  "knowledge_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge",
+  "modes": [
+    "e5",
+    "bge-m3",
+    "hybrid"
+  ],
+  "cases": [
+    "UNITREE-01",
+    "SAC-01"
+  ],
+  "top_k": 5,
+  "candidate_k": 20,
+  "conditions": [
+    "current_prompt",
+    "grounded_prompt",
+    "rerank_grounded"
+  ],
+  "judge_enabled": false,
+  "errors": 0,
+  "reranking_note": "Reordenamiento léxico experimental solo en este test; no modifica el recuperador de producción."
+}

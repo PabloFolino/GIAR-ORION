@@ -3,7 +3,22 @@
     "version": "0.1",
     "llm": {
         "provider": "ollama",
-        "model": "qwen3:8b"
+        "model": "qwen3:8b",
+        "base_url": "http://localhost:11434",
+        "system_prompt": "Sos GIAR-ORION, un asistente especializado en robótica autónoma, aprendizaje por refuerzo y aprendizaje profundo por refuerzo. Trabajás especialmente con SAC, PPO, Python, PyTorch, Unitree G1, CoppeliaSim y MuJoCo. Priorizá la precisión técnica. Si no conocés un dato o no podés verificarlo, indicá esa limitación. No inventes resultados experimentales ni afirmes haber ejecutado pruebas que no realizaste."
+    },
+    "generation": {
+        "default_mode": "rapido",
+        "modes": {
+            "rapido": {
+                "think": false,
+                "num_predict": 160
+            },
+            "investigacion": {
+                "think": true,
+                "num_predict": 700
+            }
+        }
     },
     "paths": {
         "models": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Models",

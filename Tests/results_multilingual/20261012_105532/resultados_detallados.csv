@@ -1,0 +1,431 @@
+﻿test_id,mode,query,rank,source,score,search_seconds,expected_terms,expected_source,text
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.8702702522277832,0.0548,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+En Soft Actor-Critic (SAC), los críticos son redes neuronales que estiman la función de valor de acción Q. Habitualmente, SAC utiliza dos críticos para reducir la sobreestimación del valor de las acciones."
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.8638105988502502,0.0548,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+Para analizar una implementación concreta de SAC, deben verificarse la formulación exacta del objetivo de Bellman, la función de pérdida utilizada, el tratamiento del término de entropía y la frecuencia de actualización de los críticos."
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.860134482383728,0.0548,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.8409651517868042,0.0548,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+SAC utiliza habitualmente dos redes críticas que estiman funciones de valor de acción Q."
+SAC-01,e5,¿Cómo funciona SAC y cómo se actualizan los críticos?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.8401429653167725,0.0548,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.9232989549636841,0.0082,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.8738070726394653,0.0082,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+El Replay Buffer es un búfer de reproducción de experiencias que almacena las transiciones obtenidas durante la interacción del agente con el entorno. Cada transición contiene información sobre el estado, la acción, la recompensa, el estado siguiente y la terminación del episodio."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.8224766254425049,0.0082,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.817294716835022,0.0082,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-02,e5,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.8132920265197754,0.0082,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.8571051359176636,0.0084,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.8370542526245117,0.0084,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"3. Papel de la entropía
+La entropía representa la aleatoriedad de la política."
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.8312735557556152,0.0084,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+En Soft Actor-Critic (SAC), los críticos son redes neuronales que estiman la función de valor de acción Q. Habitualmente, SAC utiliza dos críticos para reducir la sobreestimación del valor de las acciones."
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.825145959854126,0.0084,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+SAC-03,e5,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.8217171430587769,0.0084,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.8268645405769348,0.0084,aprendizaje | refuerzo | agente,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.8265637755393982,0.0084,aprendizaje | refuerzo | agente,,"Actor
+En la variante habitual para acciones continuas, aprende una distribución de probabilidad sobre las acciones posibles."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.8174307346343994,0.0084,aprendizaje | refuerzo | agente,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.8169295191764832,0.0084,aprendizaje | refuerzo | agente,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+RL-01,e5,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.7960224151611328,0.0084,aprendizaje | refuerzo | agente,,"Actor
+El actor representa la política del agente."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.8004012107849121,0.009,aprendizaje | refuerzo | profundo,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.7992035150527954,0.009,aprendizaje | refuerzo | profundo,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.7959623336791992,0.009,aprendizaje | refuerzo | profundo,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.7938026189804077,0.009,aprendizaje | refuerzo | profundo,,"Actor
+En la variante habitual para acciones continuas, aprende una distribución de probabilidad sobre las acciones posibles."
+DRL-01,e5,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.7849358916282654,0.009,aprendizaje | refuerzo | profundo,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.7970443367958069,0.0081,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+En configuraciones con temperatura automática, el coeficiente se ajusta mediante un objetivo de entropía y una función de pérdida específica."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.787391185760498,0.0081,articulación | dinámica | CoppeliaSim,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.785691499710083,0.0081,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+En SAC, el objetivo combina la recompensa esperada con un término de entropía ponderado por un coeficiente de temperatura."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.7854517698287964,0.0081,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+Este coeficiente controla la importancia relativa de la exploración frente a la recompensa."
+COPPELIA-01,e5,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.7850005626678467,0.0081,articulación | dinámica | CoppeliaSim,,"Actor
+En la variante habitual para acciones continuas, aprende una distribución de probabilidad sobre las acciones posibles."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.7714690566062927,0.0091,hip | knee | ankle | joint,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.75888991355896,0.0091,hip | knee | ankle | joint,,"Actualización de los críticos
+Durante el entrenamiento, cada crítico ajusta sus parámetros para reducir el error entre su estimación Q y ese objetivo. Las redes objetivo se utilizan para obtener estimaciones más estables durante este proceso."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.7553882598876953,0.0091,hip | knee | ankle | joint,,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.7526954412460327,0.0091,hip | knee | ankle | joint,,"5. Aspectos que deben verificarse en cada implementación
+Los detalles concretos dependen de la variante de SAC utilizada."
+UNITREE-01,e5,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.7506861686706543,0.0091,hip | knee | ankle | joint,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.7769789695739746,0.0081,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+Los detalles concretos dependen de la variante de SAC utilizada."
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.7742749452590942,0.0081,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+Al analizar una implementación, conviene comprobar:"
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.7741684317588806,0.0081,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.7683000564575195,0.0081,torch | cuda | gpu,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+PYTORCH-01,e5,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.767828106880188,0.0081,torch | cuda | gpu,,"7. Referencias y trazabilidad
+Antes de utilizarlo como referencia bibliográfica formal, deben añadirse las fuentes primarias correspondientes y verificarse los detalles específicos de la implementación estudiada."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",1,SAC\Fundamentos de Soft Actor-Critic.md,0.8437066674232483,0.0087,observación | acción | recompensa,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",2,SAC\Fundamentos de Soft Actor-Critic.md,0.8278708457946777,0.0087,observación | acción | recompensa,,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",3,SAC\Fundamentos de Soft Actor-Critic.md,0.8204859495162964,0.0087,observación | acción | recompensa,,"3. Papel de la entropía
+Este coeficiente controla la importancia relativa de la exploración frente a la recompensa."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",4,SAC\Fundamentos de Soft Actor-Critic.md,0.817863941192627,0.0087,observación | acción | recompensa,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+ROBOT-01,e5,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",5,SAC\Fundamentos de Soft Actor-Critic.md,0.8170187473297119,0.0087,observación | acción | recompensa,,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.7807449102401733,0.0083,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Antes de utilizarlo como referencia bibliográfica formal, deben añadirse las fuentes primarias correspondientes y verificarse los detalles específicos de la implementación estudiada."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.775475025177002,0.0083,documento | conocimiento | recuperación,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.7716364860534668,0.0083,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Este documento constituye una introducción técnica de trabajo."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.7712738513946533,0.0083,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Las conclusiones obtenidas de experimentos deben registrarse por separado, indicando las condiciones en que se realizaron."
+AGENT-01,e5,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.762212872505188,0.0083,documento | conocimiento | recuperación,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.6500825881958008,0.0651,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+En Soft Actor-Critic (SAC), los críticos son redes neuronales que estiman la función de valor de acción Q. Habitualmente, SAC utiliza dos críticos para reducir la sobreestimación del valor de las acciones."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.6291751265525818,0.0651,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+Para analizar una implementación concreta de SAC, deben verificarse la formulación exacta del objetivo de Bellman, la función de pérdida utilizada, el tratamiento del término de entropía y la frecuencia de actualización de los críticos."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5987352132797241,0.0651,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.5707268714904785,0.0651,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+SAC utiliza habitualmente dos redes críticas que estiman funciones de valor de acción Q."
+SAC-01,bge-m3,¿Cómo funciona SAC y cómo se actualizan los críticos?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5451339483261108,0.0651,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.7526882886886597,0.0222,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.6326616406440735,0.0222,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+El Replay Buffer es un búfer de reproducción de experiencias que almacena las transiciones obtenidas durante la interacción del agente con el entorno. Cada transición contiene información sobre el estado, la acción, la recompensa, el estado siguiente y la terminación del episodio."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5089453458786011,0.0222,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.4817993640899658,0.0222,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+SAC-02,bge-m3,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.4717782437801361,0.0222,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+En Soft Actor-Critic (SAC), los críticos son redes neuronales que estiman la función de valor de acción Q. Habitualmente, SAC utiliza dos críticos para reducir la sobreestimación del valor de las acciones."
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.5682775378227234,0.0218,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"3. Papel de la entropía
+La entropía representa la aleatoriedad de la política."
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.5568621158599854,0.0218,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5539778470993042,0.0218,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.5123259425163269,0.0218,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+SAC-03,bge-m3,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5049954056739807,0.0218,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.5801672339439392,0.0239,aprendizaje | refuerzo | agente,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.5354437828063965,0.0239,aprendizaje | refuerzo | agente,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5067914128303528,0.0239,aprendizaje | refuerzo | agente,,"Actor
+En la variante habitual para acciones continuas, aprende una distribución de probabilidad sobre las acciones posibles."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.46419626474380493,0.0239,aprendizaje | refuerzo | agente,,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+RL-01,bge-m3,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.46021538972854614,0.0239,aprendizaje | refuerzo | agente,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.484630823135376,0.0207,aprendizaje | refuerzo | profundo,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.4713548421859741,0.0207,aprendizaje | refuerzo | profundo,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.4469757080078125,0.0207,aprendizaje | refuerzo | profundo,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.3974709212779999,0.0207,aprendizaje | refuerzo | profundo,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+DRL-01,bge-m3,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.3965071439743042,0.0207,aprendizaje | refuerzo | profundo,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.43304014205932617,0.0242,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+En configuraciones con temperatura automática, el coeficiente se ajusta mediante un objetivo de entropía y una función de pérdida específica."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.4029560685157776,0.0242,articulación | dinámica | CoppeliaSim,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.38157328963279724,0.0242,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+Este coeficiente controla la importancia relativa de la exploración frente a la recompensa."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.3764733672142029,0.0242,articulación | dinámica | CoppeliaSim,,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+COPPELIA-01,bge-m3,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.37415486574172974,0.0242,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+En SAC, el objetivo combina la recompensa esperada con un término de entropía ponderado por un coeficiente de temperatura."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.33014172315597534,0.0245,hip | knee | ankle | joint,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.2947070002555847,0.0245,hip | knee | ankle | joint,,"Actualización de los críticos
+Durante el entrenamiento, cada crítico ajusta sus parámetros para reducir el error entre su estimación Q y ese objetivo. Las redes objetivo se utilizan para obtener estimaciones más estables durante este proceso."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.27901512384414673,0.0245,hip | knee | ankle | joint,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.2710779309272766,0.0245,hip | knee | ankle | joint,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+UNITREE-01,bge-m3,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.27015095949172974,0.0245,hip | knee | ankle | joint,,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.3697226941585541,0.028,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+Los detalles concretos dependen de la variante de SAC utilizada."
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.3635226786136627,0.028,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.34982427954673767,0.028,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+Al analizar una implementación, conviene comprobar:"
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.33229172229766846,0.028,torch | cuda | gpu,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+PYTORCH-01,bge-m3,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.3214893937110901,0.028,torch | cuda | gpu,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",1,SAC\Fundamentos de Soft Actor-Critic.md,0.6222632527351379,0.0224,observación | acción | recompensa,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",2,SAC\Fundamentos de Soft Actor-Critic.md,0.5221905708312988,0.0224,observación | acción | recompensa,,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",3,SAC\Fundamentos de Soft Actor-Critic.md,0.5156522989273071,0.0224,observación | acción | recompensa,,"3. Papel de la entropía
+En SAC, el objetivo combina la recompensa esperada con un término de entropía ponderado por un coeficiente de temperatura."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",4,SAC\Fundamentos de Soft Actor-Critic.md,0.5139221549034119,0.0224,observación | acción | recompensa,,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+ROBOT-01,bge-m3,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",5,SAC\Fundamentos de Soft Actor-Critic.md,0.503463864326477,0.0224,observación | acción | recompensa,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.35685551166534424,0.0441,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Este documento constituye una introducción técnica de trabajo."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.34692591428756714,0.0441,documento | conocimiento | recuperación,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.34684109687805176,0.0441,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Antes de utilizarlo como referencia bibliográfica formal, deben añadirse las fuentes primarias correspondientes y verificarse los detalles específicos de la implementación estudiada."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.3407384157180786,0.0441,documento | conocimiento | recuperación,,"Replay Buffer
+El Replay Buffer es un búfer de reproducción de experiencias que almacena las transiciones obtenidas durante la interacción del agente con el entorno. Cada transición contiene información sobre el estado, la acción, la recompensa, el estado siguiente y la terminación del episodio."
+AGENT-01,bge-m3,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.3099651038646698,0.0441,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Las conclusiones obtenidas de experimentos deben registrarse por separado, indicando las condiciones en que se realizaron."
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.760176420211792,0.0381,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+En Soft Actor-Critic (SAC), los críticos son redes neuronales que estiman la función de valor de acción Q. Habitualmente, SAC utiliza dos críticos para reducir la sobreestimación del valor de las acciones."
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.746492862701416,0.0381,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+Para analizar una implementación concreta de SAC, deben verificarse la formulación exacta del objetivo de Bellman, la función de pérdida utilizada, el tratamiento del término de entropía y la frecuencia de actualización de los críticos."
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.7294348478317261,0.0381,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.7058460116386414,0.0381,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+SAC utiliza habitualmente dos redes críticas que estiman funciones de valor de acción Q."
+SAC-01,hybrid,¿Cómo funciona SAC y cómo se actualizan los críticos?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.6872493028640747,0.0381,críticos | función | bellman,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.8379936218261719,0.0312,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.7532343864440918,0.0312,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Replay Buffer
+El Replay Buffer es un búfer de reproducción de experiencias que almacena las transiciones obtenidas durante la interacción del agente con el entorno. Cada transición contiene información sobre el estado, la acción, la recompensa, el estado siguiente y la terminación del episodio."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.6631200313568115,0.0312,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.6521379947662354,0.0312,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+SAC-02,hybrid,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.6371679902076721,0.0312,replay buffer | transiciones | experiencias,SAC\Fundamentos de Soft Actor-Critic.md,"Críticos
+En Soft Actor-Critic (SAC), los críticos son redes neuronales que estiman la función de valor de acción Q. Habitualmente, SAC utiliza dos críticos para reducir la sobreestimación del valor de las acciones."
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.7055414915084839,0.032,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.7026659250259399,0.032,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"3. Papel de la entropía
+La entropía representa la aleatoriedad de la política."
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.6910040378570557,0.032,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.6670215129852295,0.032,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+SAC-03,hybrid,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.6587116718292236,0.032,entropía | política | máxima entropía,SAC\Fundamentos de Soft Actor-Critic.md,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.703515887260437,0.0299,aprendizaje | refuerzo | agente,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.6761866807937622,0.0299,aprendizaje | refuerzo | agente,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.6666775941848755,0.0299,aprendizaje | refuerzo | agente,,"Actor
+En la variante habitual para acciones continuas, aprende una distribución de probabilidad sobre las acciones posibles."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.6343832015991211,0.0299,aprendizaje | refuerzo | agente,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+RL-01,hybrid,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.6281986236572266,0.0299,aprendizaje | refuerzo | agente,,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.642516016960144,0.0304,aprendizaje | refuerzo | profundo,,"1. Descripción general
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo basado en actor-crítico y optimización de máxima entropía."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.6336585879325867,0.0304,aprendizaje | refuerzo | profundo,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.623089611530304,0.0304,aprendizaje | refuerzo | profundo,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.5929257869720459,0.0304,aprendizaje | refuerzo | profundo,,"Actor
+En la variante habitual para acciones continuas, aprende una distribución de probabilidad sobre las acciones posibles."
+DRL-01,hybrid,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5912033915519714,0.0304,aprendizaje | refuerzo | profundo,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.6150422096252441,0.0279,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+En configuraciones con temperatura automática, el coeficiente se ajusta mediante un objetivo de entropía y una función de pérdida específica."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.5951735973358154,0.0279,articulación | dinámica | CoppeliaSim,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.583512544631958,0.0279,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+Este coeficiente controla la importancia relativa de la exploración frente a la recompensa."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.579923152923584,0.0279,articulación | dinámica | CoppeliaSim,,"3. Papel de la entropía
+En SAC, el objetivo combina la recompensa esperada con un término de entropía ponderado por un coeficiente de temperatura."
+COPPELIA-01,hybrid,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5751634836196899,0.0279,articulación | dinámica | CoppeliaSim,,"Actor
+El actor se actualiza para favorecer acciones con valores Q elevados y considerar el término de entropía."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.550805389881134,0.0327,hip | knee | ankle | joint,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.5267984867095947,0.0327,hip | knee | ankle | joint,,"Actualización de los críticos
+Durante el entrenamiento, cada crítico ajusta sus parámetros para reducir el error entre su estimación Q y ese objetivo. Las redes objetivo se utilizan para obtener estimaciones más estables durante este proceso."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5142743587493896,0.0327,hip | knee | ankle | joint,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.5127695798873901,0.0327,hip | knee | ankle | joint,,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+UNITREE-01,hybrid,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5046119689941406,0.0327,hip | knee | ankle | joint,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.5733508467674255,0.0277,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+Los detalles concretos dependen de la variante de SAC utilizada."
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.5688455700874329,0.0277,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+- Arquitectura del actor.
+- Cantidad y arquitectura de los críticos.
+- Uso de redes objetivo.
+- Tamaño del Replay Buffer.
+- Tamaño de los lotes de entrenamiento.
+- Factor de descuento.
+- Coeficiente de actualización de las redes objetivo.
+- Temperatura fija o automática.
+- Frecuencia de actualización de cada red.
+- Funciones de pérdida.
+- Definición de la recompensa del entorno."
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5620496273040771,0.0277,torch | cuda | gpu,,"5. Aspectos que deben verificarse en cada implementación
+Al analizar una implementación, conviene comprobar:"
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.5482471585273743,0.0277,torch | cuda | gpu,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+PYTORCH-01,hybrid,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5448946952819824,0.0277,torch | cuda | gpu,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",1,SAC\Fundamentos de Soft Actor-Critic.md,0.7329849600791931,0.0303,observación | acción | recompensa,,"6. Aplicación a robótica
+Para evaluar un entrenamiento, no basta con observar una recompensa aislada. También deben analizarse la estabilidad, la evolución de las recompensas, el comportamiento de las acciones, las terminaciones de episodios y la reproducibilidad de los resultados."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",2,SAC\Fundamentos de Soft Actor-Critic.md,0.6750307083129883,0.0303,observación | acción | recompensa,,"6. Aplicación a robótica
+En el control robótico, SAC puede utilizarse para aprender políticas de control mediante la interacción con un simulador o un entorno físico."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",3,SAC\Fundamentos de Soft Actor-Critic.md,0.6654704809188843,0.0303,observación | acción | recompensa,,"Actualización de los críticos
+El objetivo de Bellman combina la recompensa inmediata con una estimación del valor futuro esperado. En SAC estándar, también incorpora un término de entropía asociado a la política siguiente."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",4,SAC\Fundamentos de Soft Actor-Critic.md,0.660663902759552,0.0303,observación | acción | recompensa,,"1. Descripción general
+Su objetivo es aprender una política que maximice la recompensa acumulada y, simultáneamente, favorezca la exploración mediante un término de entropía."
+ROBOT-01,hybrid,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",5,SAC\Fundamentos de Soft Actor-Critic.md,0.6593087911605835,0.0303,observación | acción | recompensa,,"3. Papel de la entropía
+En SAC, el objetivo combina la recompensa esperada con un término de entropía ponderado por un coeficiente de temperatura."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,1,SAC\Fundamentos de Soft Actor-Critic.md,0.5642459988594055,0.031,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Este documento constituye una introducción técnica de trabajo."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,2,SAC\Fundamentos de Soft Actor-Critic.md,0.5637930035591125,0.031,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Antes de utilizarlo como referencia bibliográfica formal, deben añadirse las fuentes primarias correspondientes y verificarse los detalles específicos de la implementación estudiada."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,3,SAC\Fundamentos de Soft Actor-Critic.md,0.5612004995346069,0.031,documento | conocimiento | recuperación,,"Replay Buffer
+Durante el entrenamiento de SAC, el agente selecciona lotes de transiciones del Replay Buffer para actualizar las redes neuronales. La reutilización de experiencias permite aprender a partir de interacciones anteriores sin depender exclusivamente de la transición más reciente."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,4,SAC\Fundamentos de Soft Actor-Critic.md,0.5513722896575928,0.031,documento | conocimiento | recuperación,,"Replay Buffer
+El Replay Buffer es un búfer de reproducción de experiencias que almacena las transiciones obtenidas durante la interacción del agente con el entorno. Cada transición contiene información sobre el estado, la acción, la recompensa, el estado siguiente y la terminación del episodio."
+AGENT-01,hybrid,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,5,SAC\Fundamentos de Soft Actor-Critic.md,0.5406194925308228,0.031,documento | conocimiento | recuperación,,"7. Referencias y trazabilidad
+Las conclusiones obtenidas de experimentos deben registrarse por separado, indicando las condiciones en que se realizaron."

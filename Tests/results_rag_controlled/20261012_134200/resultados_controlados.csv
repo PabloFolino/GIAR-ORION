@@ -1,0 +1,1060 @@
+﻿mode,case_id,query,condition,retrieval_seconds,generation_seconds,sources,scores,expected_source_found,expected_terms_in_context,expected_terms_in_answer,retrieved_context,answer,rubric_for_manual_review,note
+e5,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,current_prompt,0.0515,19.8205,"[""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.848478, 0.843795, 0.842839, 0.840098, 0.839439]",True,[],"[""knee""]","[Fragmento 1 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8485]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8438]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8428]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8401]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8394]
+7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description).","**Respuesta:**  
+El contexto proporcionado no especifica las articulaciones principales de las piernas del robot Unitree G1. Sin embargo, se mencionan algunos detalles relevantes:  
+
+1. **Grados de libertad (DoF):**  
+   - El modelo MJCF/XML oficial del G1 (29 DoF con manos) incluye articulaciones para las extremidades, pero no se detallan específicamente las de las piernas.  
+   - Existen variantes como el modelo URDF de 12 DoF y otro de 29 DoF con cintura bloqueada, pero estos no identifican claramente las articulaciones de las piernas.  
+
+2. **Articulaciones comunes en humanoides:**  
+   Aunque no se mencionan directamente, los humanoides típicamente incluyen articulaciones en las piernas como **cadera (hip)**, **rodilla (knee)** y **tobillo (ankle)**. En el caso del G1, se refiere a control de tobillos en el SDK (ejemplo de código en `g1_ankle_swing_example.cpp`), lo que sugiere que las articulaciones de tobillo son una parte clave.  
+
+3. **Limitaciones del contexto:**  
+   - No se encuentran especificaciones detalladas sobre las articulaciones de las piernas en los fragmentos proporcionados.  
+   - La información disponible se centra en grados de libertad y modelos de simulación, no en la nomenclatura de las articulaciones.  
+
+**Conclusión:**  
+El documento técnico no proporciona una lista explícita de las articulaciones principales de las piernas del G1. Para obtener detalles precisos, se recomienda consultar fuentes oficiales como la documentación de Unitree o los repositorios de código fuente.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+e5,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,grounded_prompt,0.0515,9.9744,"[""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.848478, 0.843795, 0.842839, 0.840098, 0.839439]",True,[],[],"[Fragmento 1 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8485]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8438]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8428]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8401]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8394]
+7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description).","La información específica sobre las articulaciones principales de las piernas del robot Unitree G1 **no está explícitamente documentada en los fragmentos proporcionados**. Los archivos mencionados (como los URDF y MJCF en el repositorio `unitree_rl_gym`) describen configuraciones de grados de libertad (DoF) y límites articulares, pero no detallan los nombres o tipos de articulaciones (por ejemplo, rodilla, tobillo, etc.) en el contexto del proyecto GIAR-ORION.  
+
+Para obtener datos precisos, se debería consultar directamente los archivos XML/URDF mencionados en el contexto, como el archivo [g1_29dof_with_hand_rev_1_0.xml](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml) o las especificaciones técnicas oficiales de Unitree.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+e5,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,rerank_grounded,0.008,12.0807,"[""CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.821276, 0.834241, 0.829512, 0.848478, 0.843795]",True,"[""hip_pitch"", ""hip_roll"", ""hip_yaw"", ""knee"", ""ankle_pitch""]","[""hip_pitch"", ""hip_roll"", ""hip_yaw"", ""knee"", ""ankle_pitch""]","[Fragmento 1 | fuente: CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md | score: 0.8213]
+6.1 Árbol cinemático
+```text
+world
+└── G1_base / pelvis
+ ├── left_hip_yaw_joint
+ │ └── left_hip_roll_joint
+ │ └── left_hip_pitch_joint
+ │ └── left_thigh
+ │ └── left_knee_joint
+ │ └── left_shank
+ │ └── left_ankle_pitch_joint
+ │ └── left_foot
+ ├── right_leg_chain
+ └── waist_joint
+ └── torso
+ ├── left_arm_chain
+ ├── right_arm_chain
+ ├── head
+ └── sensors
+```
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8342]
+7.2 Variantes en `unitree_rl_gym`
+- `g1_12dof.xml` / `g1_12dof.urdf`: modelo simplificado para control de piernas.
+- `g1_29dof.xml` y variantes `g1_29dof_lock_waist`: cuerpo con articulaciones de cintura bloqueadas o no, según archivo.
+- `g1_29dof_with_hand_rev_1_0.xml`: modelo de 29 DoF con descripciones de manos y límites de articulación específicos.
+- URDF correspondientes y mallas visuales/colisión.
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8295]
+3.3 Interfaces oficiales relevantes
+1. **`unitree_ros2`**: incluye un ejemplo de bajo nivel para G1, publicación de `LowCmd` en `/lowcmd` y suscripción al estado de bajo nivel (`lowstate` o `lf/lowstate`, según el ejemplo/configuración). El ejemplo declara 29 motores y ofrece un modo de lectura de alta frecuencia de 500 Hz.
+2. **`unitree_sdk2`**: SDK C++ con ejemplos específicos para G1, incluidos ejemplos de control de articulaciones y lectura de IMU/estado.
+3. **Unitree Explore App / manuales oficiales**: configuración inicial, red, calibración de 23/29 DoF, conexión del control remoto, postura/movimiento, batería/cargador y mantenimiento.
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8485]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.8438]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.","**Respuesta directa:**  
+Las articulaciones principales de las piernas del robot Unitree G1, según el árbol cinemático del contexto, incluyen:  
+- **left_hip_yaw_joint** (articulación de cadera en eje Y)  
+- **left_hip_roll_joint** (articulación de cadera en eje X)  
+- **left_hip_pitch_joint** (articulación de cadera en eje Z)  
+- **left_knee_joint** (articulación de rodilla)  
+- **left_ankle_pitch_joint** (articulación de tobillo en eje Z)  
+
+El lado derecho (**right_leg_chain**) no detalla sus articulaciones específicas en el fragmento, pero se asume que siguen una simetría similar al lado izquierdo. La articulación **waist_joint** está asociada al torso, no a las piernas.  
+
+**Explicación adicional:**  
+El contexto no menciona detalles sobre el modelo URDF de 29 DoF ni la configuración exacta de las articulaciones del lado derecho. Para confirmar la cantidad exacta de grados de libertad o parámetros específicos (como limites de movimiento), se debería consultar el archivo `g1_29dof.xml` o la documentación oficial de Unitree.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+e5,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,current_prompt,0.0112,16.6421,"[""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.861287, 0.855681, 0.846327, 0.845586, 0.842476]",True,"[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[Fragmento 1 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.8613]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 2 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8557]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8463]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8456]
+19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8425]
+Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica
+**Documento técnico para GIAR-ORION**\
+**Versión:** 2.0\
+**Fecha:** 12 de octubre de 2026\
+**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones
+prácticas de implementación, con fórmulas, ejemplos en Python, criterios
+de diagnóstico y estimaciones de tiempo y memoria.","**Respuesta:**
+
+**Cómo funciona SAC (Soft Actor-Critic):**  
+SAC es un algoritmo de aprendizaje por refuerzo (RL) de tipo **actor-crítico**, **estocástico** y **off-policy**, diseñado para problemas de control continuo (como el control de motores o robots). Su funcionamiento se basa en tres componentes clave:  
+1. **Política estocástica**: El actor genera acciones con aleatoriedad, lo que fomenta la exploración.  
+2. **Dos críticos**: SAC utiliza dos estimadores independientes para evaluar el valor de las acciones, minimizando la discrepancia entre sus predicciones.  
+3. **Entropía regularizada**: La recompensa se maximiza junto con la entropía (medida de aleatoriedad), lo que equilibra exploración y explotación.  
+
+**Actualización de los críticos:**  
+Los críticos en SAC se actualizan mediante una **pérdida que aproxima el objetivo de Bellman**, con dos variantes:  
+- **Pérdida del crítico**: Se calcula como la diferencia entre el valor actual de la acción (mediante el actor) y el valor objetivo suavizado (basado en la recompensa y la entropía).  
+- **Temperatura (α)**: Controla el compromiso entre recompensa y entropía. Se ajusta durante el entrenamiento para optimizar la exploración.  
+
+Los críticos se actualizan en paralelo, y su valor objetivo se suaviza para evitar sobreajuste. El actor, por su parte, utiliza el mínimo de los valores predichos por los críticos para actualizar su política, favoreciendo acciones con alto valor estimado.  
+
+**Nota:** El contexto no menciona detalles específicos del proyecto GIAR-ORION, pero los fundamentos de SAC se alinean con las descripciones técnicas estándar del algoritmo.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+e5,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,grounded_prompt,0.0112,14.8106,"[""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.861287, 0.855681, 0.846327, 0.845586, 0.842476]",True,"[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""pérdida""]","[Fragmento 1 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.8613]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 2 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8557]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8463]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8456]
+19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8425]
+Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica
+**Documento técnico para GIAR-ORION**\
+**Versión:** 2.0\
+**Fecha:** 12 de octubre de 2026\
+**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones
+prácticas de implementación, con fórmulas, ejemplos en Python, criterios
+de diagnóstico y estimaciones de tiempo y memoria.","**Respuesta directa:**  
+SAC (Soft Actor-Critic) es un algoritmo de aprendizaje por refuerzo off-policy y estocástico que combina una política estocástica, dos críticos y una recompensa aumentada por entropía. Los críticos se actualizan minimizando la pérdida del Bellman, que aproxima el valor esperado de las recompensas futuras. La política (actor) se actualiza para favorecer acciones de alto valor y regular la aleatoriedad mediante la temperatura, mientras que los críticos usan una formulación suavizada para mejorar la estabilidad.  
+
+**Explicación breve:**  
+- **Funcionamiento de SAC:**  
+  - **Política estocástica:** Genera acciones con aleatoriedad controlada por la temperatura.  
+  - **Dos críticos:** Aprenden simultáneamente para reducir la varianza y mejorar la estabilidad.  
+  - **Entropía:** Se maximiza para fomentar la exploración, equilibrando recompensa y aleatoriedad.  
+
+- **Actualización de críticos:**  
+  - Se optimizan minimizando la pérdida del Bellman, que se calcula con las recompensas y los valores predichos por los críticos.  
+  - La formulación suavizada (como en el objetivo de Bellman) ayuda a evitar la sobreajuste y mejora la convergencia.  
+
+**Detalles no especificados en el contexto:**  
+- No se detalla el mecanismo exacto de actualización de los críticos (por ejemplo, si usan redes objetivo o técnicas de regularización adicionales).  
+- Para información más técnica (como implementación o parámetros específicos), se debe consultar el documento técnico ""Fundamentos de SAC_GIAR_ORION.md"" (sección 5, ""Fundamentos matemáticos, implementación y aplicación a robótica"").",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+e5,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,rerank_grounded,0.0088,15.7118,"[""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.845586, 0.861287, 0.855681, 0.846327, 0.836888]",True,"[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""pérdida""]","[Fragmento 1 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8456]
+19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.
+
+---
+
+[Fragmento 2 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.8613]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8557]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8463]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.8369]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()","**Respuesta directa:**  
+SAC (Soft Actor-Critic) utiliza dos críticos que se actualizan minimizando la pérdida que aproxima el objetivo de Bellman, con suavizado por entropía. Los críticos se actualizan en paralelo usando un batch de experiencias, y su optimización se realiza mediante sus respectivos optimizadores. La temperatura controla el compromiso entre recompensa y entropía en la política del actor, no directamente en los críticos.  
+
+**Explicación breve:**  
+Los críticos en SAC se actualizan mediante la pérdida que aproxima el objetivo de Bellman, usando datos de experiencias almacenados en un buffer. La función `update_critics_and_actor` en el contexto muestra cómo se procesa un batch para actualizar los críticos y el actor. Sin embargo, los detalles específicos de la formulación de la pérdida de los críticos (como el uso de entropía suavizada) se mencionan en el fragmento 1, mientras que la implementación técnica se detalla en el fragmento 5.  
+
+**Detalles del contexto:**  
+- Los críticos se actualizan usando el batch de datos (`obs`, `actions`, `rewards`, `next_obs`, `dones`) y optimizadores separados (`critic_optimizer`).  
+- No se especifica explícitamente cómo se sincronizan los críticos con los objetivo de Bellman en el contexto, pero se menciona que la pérdida del crítico busca aproximar ese objetivo.  
+- Para más detalles sobre la formulación matemática de la pérdida de los críticos, se debería consultar el fragmento 1 o la sección 14 del documento.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+bge-m3,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,current_prompt,0.0655,12.1707,"[""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.575494, 0.567763, 0.560457, 0.541165, 0.530376]",True,[],[],"[Fragmento 1 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5755]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5678]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5605]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5412]
+1. Resumen ejecutivo
+- El G1 estándar se publica con **1320 × 450 × 200 mm** en posición de pie, **690 × 450 × 300 mm** plegado y aproximadamente **35 kg con batería**.
+- La página oficial distingue **G1 (23 grados de libertad)** y **G1 EDU (23–43, según opciones)**. Las configuraciones con manos, muñecas adicionales y cintura de 3 DoF cambian la cantidad de articulaciones.
+- El accionamiento se describe como motor síncrono de imanes permanentes (PMSM), rotor interior de baja inercia y alta velocidad, con **doble encoder** y refrigeración local por aire. El par máximo publicado corresponde al mayor motor de la máquina, no a todos los motores: **90 N·m para G1 y 120 N·m para G1 EDU** en la tabla consultada.
+- La batería extraíble se especifica como **13 celdas en serie (13S), 9000 mAh**; cargador **54 V, 5 A**; autonomía declarada de aproximadamente **2 horas**. La duración real depende de la tarea y la configuración.
+- La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5304]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.","Las articulaciones principales de las piernas del robot Unitree G1 no se especifican directamente en los fragmentos proporcionados. Sin embargo, se menciona que el modelo estándar G1 tiene **23 grados de libertad (DoF)**, y versiones como G1 EDU pueden tener entre **23 y 43 DoF** dependiendo de las configuraciones (por ejemplo, con manos, muñecas adicionales o cintura de 3 DoF). 
+
+Los archivos XML/URDF mencionados (como el **MJCF 29 DoF con manos**) sugieren que el modelo de simulación incluye articulaciones en la cintura, rodillas y tobillos, pero no se detallan específicamente las articulaciones de las piernas. Además, el contexto no proporciona una lista explícita de las articulaciones principales de las piernas (como rodilla, tobillo, etc.) ni su cantidad exacta en el modelo estándar. 
+
+**Conclusión:**  
+La información disponible no permite identificar las articulaciones principales de las piernas del G1 con precisión. Se recomienda consultar documentación técnica oficial o fuentes de código fuente (como los repositorios de `unitreerobotics`) para detalles específicos.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+bge-m3,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,grounded_prompt,0.0655,11.8632,"[""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.575494, 0.567763, 0.560457, 0.541165, 0.530376]",True,[],[],"[Fragmento 1 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5755]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5678]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5605]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5412]
+1. Resumen ejecutivo
+- El G1 estándar se publica con **1320 × 450 × 200 mm** en posición de pie, **690 × 450 × 300 mm** plegado y aproximadamente **35 kg con batería**.
+- La página oficial distingue **G1 (23 grados de libertad)** y **G1 EDU (23–43, según opciones)**. Las configuraciones con manos, muñecas adicionales y cintura de 3 DoF cambian la cantidad de articulaciones.
+- El accionamiento se describe como motor síncrono de imanes permanentes (PMSM), rotor interior de baja inercia y alta velocidad, con **doble encoder** y refrigeración local por aire. El par máximo publicado corresponde al mayor motor de la máquina, no a todos los motores: **90 N·m para G1 y 120 N·m para G1 EDU** en la tabla consultada.
+- La batería extraíble se especifica como **13 celdas en serie (13S), 9000 mAh**; cargador **54 V, 5 A**; autonomía declarada de aproximadamente **2 horas**. La duración real depende de la tarea y la configuración.
+- La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5304]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.","**Respuesta directa:**  
+El contexto proporcionado no especifica las articulaciones principales de las piernas del robot Unitree G1.  
+
+**Explicación:**  
+- El documento menciona que el G1 tiene **23 grados de libertad (DoF)** en su configuración estándar y **29 DoF** en versiones con manos o cintura bloqueada (Fragmento 4). Sin embargo, **no detalla las articulaciones específicas de las piernas**.  
+- Las fuentes mencionadas (como los archivos MJCF/URDF en repositorios de GitHub) podrían contener información técnica detallada, pero **el contexto no incluye el contenido de esos archivos**.  
+- Para obtener la lista exacta de articulaciones, se debería consultar directamente los archivos XML/URDF mencionados (por ejemplo, `g1_29dof_with_hand_rev_1_0.xml`) o la documentación oficial de Unitree.  
+
+**Nota:** El G1 es un robot cuadrúpedo, no humanoide, por lo que sus ""piernas"" son estructuras articuladas con múltiples ejes de movimiento, pero los detalles específicos no están disponibles en el contexto proporcionado.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+bge-m3,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,rerank_grounded,0.0225,13.3778,"[""CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.48483, 0.499644, 0.498448, 0.575494, 0.567763]",True,"[""hip_pitch"", ""hip_roll"", ""hip_yaw"", ""knee"", ""ankle_pitch""]","[""hip_pitch"", ""hip_roll"", ""hip_yaw"", ""knee"", ""ankle_pitch""]","[Fragmento 1 | fuente: CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md | score: 0.4848]
+6.1 Árbol cinemático
+```text
+world
+└── G1_base / pelvis
+ ├── left_hip_yaw_joint
+ │ └── left_hip_roll_joint
+ │ └── left_hip_pitch_joint
+ │ └── left_thigh
+ │ └── left_knee_joint
+ │ └── left_shank
+ │ └── left_ankle_pitch_joint
+ │ └── left_foot
+ ├── right_leg_chain
+ └── waist_joint
+ └── torso
+ ├── left_arm_chain
+ ├── right_arm_chain
+ ├── head
+ └── sensors
+```
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.4996]
+7.2 Variantes en `unitree_rl_gym`
+- `g1_12dof.xml` / `g1_12dof.urdf`: modelo simplificado para control de piernas.
+- `g1_29dof.xml` y variantes `g1_29dof_lock_waist`: cuerpo con articulaciones de cintura bloqueadas o no, según archivo.
+- `g1_29dof_with_hand_rev_1_0.xml`: modelo de 29 DoF con descripciones de manos y límites de articulación específicos.
+- URDF correspondientes y mallas visuales/colisión.
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.4984]
+3.3 Interfaces oficiales relevantes
+1. **`unitree_ros2`**: incluye un ejemplo de bajo nivel para G1, publicación de `LowCmd` en `/lowcmd` y suscripción al estado de bajo nivel (`lowstate` o `lf/lowstate`, según el ejemplo/configuración). El ejemplo declara 29 motores y ofrece un modo de lectura de alta frecuencia de 500 Hz.
+2. **`unitree_sdk2`**: SDK C++ con ejemplos específicos para G1, incluidos ejemplos de control de articulaciones y lectura de IMU/estado.
+3. **Unitree Explore App / manuales oficiales**: configuración inicial, red, calibración de 23/29 DoF, conexión del control remoto, postura/movimiento, batería/cargador y mantenimiento.
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5755]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.5678]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf","Las articulaciones principales de las piernas del robot Unitree G1, según el árbol cinemático del contexto, son:  
+- **left_hip_yaw_joint** (articulación de cadera en eje Y)  
+- **left_hip_roll_joint** (articulación de cadera en eje X)  
+- **left_hip_pitch_joint** (articulación de cadera en eje Z)  
+- **left_knee_joint** (articulación de rodilla)  
+- **left_ankle_pitch_joint** (articulación de tobillo en eje Z)  
+
+Estas corresponden al lado izquierdo; el lado derecho (right_leg_chain) tiene una estructura simétrica.  
+
+**Explicación adicional:**  
+El contexto no detalla otros nombres de articulaciones específicas (como ""left_thigh"" o ""left_shank""), pero estos elementos son parte de la cadena cinemática. Para información más técnica (límites, parámetros o configuraciones), se referiría a los archivos XML/URDF mencionados en los fragmentos 4 y 5, como el archivo `g1_29dof_with_hand_rev_1_0.xml`.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+bge-m3,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,current_prompt,0.263,19.5684,"[""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.614815, 0.604196, 0.594853, 0.581642, 0.566771]",True,"[""actor"", ""crítico"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""pérdida""]","[Fragmento 1 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.6148]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 2 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.6042]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5949]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5816]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5668]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+El fragmento siguiente muestra el núcleo matemático de una
+actualización, suponiendo que existen `actor`, `critic1`, `critic2`,
+`target_critic1`, `target_critic2`, sus optimizadores y un lote ya
+convertido a tensores. No reemplaza la implementación completa: se
+omiten detalles de arquitectura, normalización, gestión de episodios y
+guardado.","**Respuesta:**
+
+**1. ¿Cómo funciona SAC?**  
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo (RL) de tipo **actor-crítico**, **estocástico** y **off-policy**. Su funcionamiento se basa en dos componentes principales:  
+- **Actor**: Selecciona acciones en función de una política estocástica, maximizando la recompensa mientras mantiene una cierta **entropía** (exploración).  
+- **Críticos**: Evaluación de las acciones tomadas, estimando el valor esperado de las recompensas futuras.  
+
+SAC optimiza una **recompensa aumentada por entropía**, lo que incentiva la exploración en tareas de control continuo (como el control de motores o robots). Este enfoque es especialmente efectivo para problemas donde la acción debe ser continua y la exploración es crítica para encontrar soluciones óptimas.
+
+---
+
+**2. ¿Cómo se actualizan los críticos?**  
+Los críticos en SAC se actualizan mediante un proceso que incluye:  
+- **Dos estimadores independientes** (critic1 y critic2) para reducir el sesgo de sobreestimación.  
+- **Redes objetivo** (target_critic1 y target_critic2) para estabilizar la actualización, similar al algoritmo DQN.  
+- **Pérdidas basadas en la ecuación de Bellman**:  
+  - Se calculan los valores de Q futuros usando las recompensas, las observaciones posteriores (`next_obs`) y el factor de descuento (`gamma`).  
+  - La pérdida de cada crítico se compara con el valor objetivo, y se optimiza mediante sus respectivos optimizadores.  
+
+En el código ilustrativo (fragmento 4), los críticos se actualizan en paralelo, y el actor se optimiza usando los valores de los críticos, junto con la entropía de la política. Este proceso se repite en cada lote de datos (`batch`), permitiendo una actualización eficiente y estabilizada.  
+
+**Nota:** El contexto no detalla los pasos exactos de las pérdidas ni la arquitectura completa, pero el núcleo matemático se basa en la minimización de la discrepancia entre las predicciones de los críticos y los valores reales, combinado con la regularización por entropía.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+bge-m3,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,grounded_prompt,0.263,13.3154,"[""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.614815, 0.604196, 0.594853, 0.581642, 0.566771]",True,"[""actor"", ""crítico"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""pérdida""]","[Fragmento 1 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.6148]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 2 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.6042]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5949]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5816]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5668]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+El fragmento siguiente muestra el núcleo matemático de una
+actualización, suponiendo que existen `actor`, `critic1`, `critic2`,
+`target_critic1`, `target_critic2`, sus optimizadores y un lote ya
+convertido a tensores. No reemplaza la implementación completa: se
+omiten detalles de arquitectura, normalización, gestión de episodios y
+guardado.","**Respuesta directa:**  
+SAC (Soft Actor-Critic) es un algoritmo de aprendizaje por refuerzo off-policy y estocástico que optimiza una recompensa aumentada por entropía, favoreciendo la exploración. Los críticos se actualizan mediante un proceso que incluye dos estimadores independientes, con pérdidas calculadas usando un lote de datos y optimizadores específicos. El código ilustrativo muestra una función `update_critics_and_actor` que procesa los datos del lote y actualiza los críticos y el actor simultáneamente.  
+
+**Explicación breve:**  
+- **Funcionamiento de SAC:** Maximiza la recompensa con entropía para equilibrar exploración y explotación, usando una red actor (política) y dos redes críticas (valor).  
+- **Actualización de críticos:** Se calculan pérdidas basadas en recompensas, predicciones de critic1/critic2, y el valor objetivo (usando target networks). Los optimizadores `critic_optimizer` actualizan los parámetros de los críticos.  
+
+**Detalles del contexto:**  
+- Los críticos se actualizan en paralelo con sus propios optimizadores (no se especifica si usan actualización con soft update o polyak).  
+- El código muestra una función que procesa lotes de datos, pero no detalla la arquitectura completa ni parámetros adicionales.  
+
+**Qué falta:**  
+- No se menciona explícitamente cómo se actualizan las redes objetivo (target networks) ni el factor de descuento gamma en la implementación.  
+- La sección ""¿Por qué dos críticos?"" (Fragmento 3) sugiere que el uso de dos críticos mejora la estabilidad, pero no detalla el mecanismo exacto.  
+
+**Recomendación:**  
+Para más detalles técnicos, se debería consultar la sección ""14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch"" (Fragmento 4 y 5) o el archivo ""SAC\Fundamentos_de_SAC_GIAR_ORION.md"".",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+bge-m3,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,rerank_grounded,0.0211,11.9471,"[""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.517315, 0.614815, 0.604196, 0.594853, 0.581642]",True,"[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""pérdida""]","[Fragmento 1 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5173]
+19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.
+
+---
+
+[Fragmento 2 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.6148]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.6042]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5949]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.5816]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()","**Respuesta directa:**  
+SAC (Soft Actor-Critic) utiliza dos críticos que se actualizan mediante la pérdida del crítico, que busca aproximar el objetivo de Bellman con objetivos suavizados por entropía. La actualización de los críticos se implementa en el código del fragmento 5, donde se procesan datos de experiencias (observaciones, acciones, recompensas, etc.) para calcular las pérdidas y optimizar los críticos con sus respectivos optimizadores.  
+
+**Explicación breve:**  
+Los críticos en SAC se actualizan en paralelo con el actor, utilizando la pérdida del crítico para minimizar la diferencia entre las recompensas estimadas y los objetivos suavizados. El fragmento 5 muestra la función `update_critics_and_actor`, que procesa lotes de datos y optimiza los críticos junto con el actor. Para detalles técnicos específicos (como la implementación exacta de la pérdida o el uso de objetivos suavizados), se debe consultar el código del fragmento 5.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+hybrid,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,current_prompt,0.0686,19.8489,"[""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.707796, 0.705301, 0.704467, 0.687085, 0.684476]",True,[],[],"[Fragmento 1 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7078]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7053]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7045]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.6871]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.6845]
+7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description).","Las articulaciones principales de las piernas del robot Unitree G1 no se especifican directamente en el contexto proporcionado. Sin embargo, se mencionan los siguientes puntos clave:
+
+1. **Configuración de grados de libertad (DoF):**  
+   - El modelo oficial de MJCF/XML del G1 incluye **29 grados de libertad** (DoF) con manos, lo que sugiere que las piernas y las extremidades superiores están integradas en este total.  
+   - Existe un modelo simplificado de **12 DoF** (URDF), que probablemente excluye las manos y algunas articulaciones secundarias, pero no se detalla específicamente para las piernas.
+
+2. **Articulaciones mencionadas explícitamente:**  
+   - Se referencia el **control de tobillo** (ankle) en el SDK, lo que indica que al menos una articulación de tobillo está presente en las piernas.  
+   - No se mencionan otras articulaciones específicas (como rodilla, cadera, etc.) en el contexto.
+
+3. **Limitaciones del contexto:**  
+   - El dossier técnico no proporciona una lista detallada de las articulaciones de las piernas, enfocándose más en aspectos como límites de esfuerzo, control y simulación.  
+   - Los enlaces a repositorios (ej. GitHub) no incluyen descripciones explícitas de las articulaciones de las piernas.
+
+**Conclusión:**  
+Las piernas del Unitree G1 están integradas en un sistema de 29 DoF total, pero el contexto no detalla las articulaciones específicas de las piernas. Se sabe que incluye al menos una articulación de tobillo, pero no se especifican otras (como rodilla o cadera). Para una descripción precisa, se requeriría acceso a documentación técnica más detallada o modelos 3D del robot.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+hybrid,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,grounded_prompt,0.0686,13.5297,"[""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.707796, 0.705301, 0.704467, 0.687085, 0.684476]",True,[],[],"[Fragmento 1 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7078]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7053]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7045]
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.6871]
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.6845]
+7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description).","La información específica sobre las articulaciones principales de las piernas del robot Unitree G1 **no está explícitamente documentada en los fragmentos proporcionados**. Los archivos mencionados, como el archivo MJCF/XML oficial de 29 grados de libertad (g1_29dof_with_hand_rev_1_0.xml) y los archivos URDF (g1_12dof.urdf, g1_29dof_lock_waist_rev_1_0.urdf), contienen descripciones técnicas del modelo, pero **no se detallan las articulaciones específicas de las piernas** en el contexto recuperado.  
+
+Para obtener los datos exactos, se debería consultar directamente los archivos XML/URDF mencionados en las fuentes (por ejemplo, [g1_29dof_with_hand_rev_1_0.xml](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml) o [g1_12dof.urdf](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf)), donde se especifican los grados de libertad y las articulaciones de cada parte del robot.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+hybrid,UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,rerank_grounded,0.0442,10.1803,"[""CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md"", ""Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md""]","[0.653053, 0.666942, 0.66398, 0.707796, 0.705301]",True,"[""hip_pitch"", ""hip_roll"", ""hip_yaw"", ""knee"", ""ankle_pitch""]","[""hip_pitch"", ""hip_roll"", ""hip_yaw"", ""knee"", ""ankle_pitch""]","[Fragmento 1 | fuente: CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md | score: 0.6531]
+6.1 Árbol cinemático
+```text
+world
+└── G1_base / pelvis
+ ├── left_hip_yaw_joint
+ │ └── left_hip_roll_joint
+ │ └── left_hip_pitch_joint
+ │ └── left_thigh
+ │ └── left_knee_joint
+ │ └── left_shank
+ │ └── left_ankle_pitch_joint
+ │ └── left_foot
+ ├── right_leg_chain
+ └── waist_joint
+ └── torso
+ ├── left_arm_chain
+ ├── right_arm_chain
+ ├── head
+ └── sensors
+```
+
+---
+
+[Fragmento 2 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.6669]
+7.2 Variantes en `unitree_rl_gym`
+- `g1_12dof.xml` / `g1_12dof.urdf`: modelo simplificado para control de piernas.
+- `g1_29dof.xml` y variantes `g1_29dof_lock_waist`: cuerpo con articulaciones de cintura bloqueadas o no, según archivo.
+- `g1_29dof_with_hand_rev_1_0.xml`: modelo de 29 DoF con descripciones de manos y límites de articulación específicos.
+- URDF correspondientes y mallas visuales/colisión.
+
+---
+
+[Fragmento 3 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.6640]
+3.3 Interfaces oficiales relevantes
+1. **`unitree_ros2`**: incluye un ejemplo de bajo nivel para G1, publicación de `LowCmd` en `/lowcmd` y suscripción al estado de bajo nivel (`lowstate` o `lf/lowstate`, según el ejemplo/configuración). El ejemplo declara 29 motores y ofrece un modo de lectura de alta frecuencia de 500 Hz.
+2. **`unitree_sdk2`**: SDK C++ con ejemplos específicos para G1, incluidos ejemplos de control de articulaciones y lectura de IMU/estado.
+3. **Unitree Explore App / manuales oficiales**: configuración inicial, red, calibración de 23/29 DoF, conexión del control remoto, postura/movimiento, batería/cargador y mantenimiento.
+
+---
+
+[Fragmento 4 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7078]
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+---
+
+[Fragmento 5 | fuente: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md | score: 0.7053]
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf","Las articulaciones principales de las piernas del robot Unitree G1, según el fragmento 1 del contexto, incluyen:  
+- **left_hip_yaw_joint** (articulación de cadera en eje Y)  
+- **left_hip_roll_joint** (articulación de cadera en eje X)  
+- **left_hip_pitch_joint** (articulación de cadera en eje Z)  
+- **left_knee_joint** (articulación de rodilla)  
+- **left_ankle_pitch_joint** (articulación de tobillo en eje Z)  
+
+El fragmento no detalla las articulaciones de la pierna derecha (**right_leg_chain**) ni menciona explícitamente las correspondientes a la cadera derecha. Para información completa, se debería consultar el archivo XML de 29 DoF (por ejemplo, `g1_29dof_with_hand_rev_1_0.xml`) mencionado en el fragmento 5.","Responder que el Unitree G1 es un humanoide bípedo y enumerar, para cada pierna, hip_pitch, hip_roll, hip_yaw, knee, ankle_pitch y ankle_roll. No confundirlo con un cuadrúpedo. Si el contexto no incluye la lista, decirlo.",Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+hybrid,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,current_prompt,0.922,20.8314,"[""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.738051, 0.729939, 0.72059, 0.709265, 0.701052]",True,"[""actor"", ""crítico"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[Fragmento 1 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.7381]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 2 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7299]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7206]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7093]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7011]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+El fragmento siguiente muestra el núcleo matemático de una
+actualización, suponiendo que existen `actor`, `critic1`, `critic2`,
+`target_critic1`, `target_critic2`, sus optimizadores y un lote ya
+convertido a tensores. No reemplaza la implementación completa: se
+omiten detalles de arquitectura, normalización, gestión de episodios y
+guardado.","**Respuesta:**
+
+**¿Cómo funciona SAC?**  
+Soft Actor-Critic (SAC) es un algoritmo de aprendizaje por refuerzo (RL) de tipo **actor-crítico**, **estocástico** y **off-policy**. Su objetivo es optimizar una recompensa aumentada por entropía, lo que favorece la exploración. Funciona mediante dos componentes principales:  
+1. **Actor**: Selecciona acciones en función de una política estocástica, buscando maximizar la recompensa.  
+2. **Críticos**: Evaluación de las acciones tomadas, estimando el valor esperado de las recompensas futuras.  
+SAC se aplica especialmente en problemas de control continuo, como el ajuste de motores o movimientos robóticos.  
+
+**¿Cómo se actualizan los críticos?**  
+Los críticos en SAC se actualizan mediante un proceso que incluye:  
+1. **Dos críticos independientes**: SAC utiliza dos estimadores de valor (critic1 y critic2) y toma el mínimo de sus pérdidas para mejorar la estabilidad.  
+2. **Actualización basada en el Bellman**: Los críticos calculan la pérdida usando la ecuación de Bellman, que combina recompensas inmediatas, observaciones futuras y el factor de descuento (γ).  
+3. **Redes objetivo**: Los críticos usan redes objetivo (target_critic1 y target_critic2) para estabilizar la actualización, actualizándose con un factor de soft update (como en DQN).  
+4. **Código ilustrativo**: En el fragmento proporcionado, los críticos se actualizan con un lote de datos (`batch`), calculando el valor esperado de las recompensas futuras y minimizando la diferencia entre las predicciones y los valores reales.  
+
+**Detalles clave:**  
+- Los críticos se actualizan en paralelo, y su optimización se realiza mediante optimizadores separados.  
+- La entropía se incorpora en la función de recompensa para promover la exploración, aunque esto no afecta directamente la actualización de los críticos.  
+- El fragmento menciona que el código es ilustrativo y no incluye detalles completos de arquitectura o implementación.  
+
+**Nota:** No se mencionan contradicciones en el contexto, pero se debe considerar que la descripción se basa en los fragmentos proporcionados, sin profundizar en aspectos técnicos adicionales.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+hybrid,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,grounded_prompt,0.922,12.4894,"[""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.738051, 0.729939, 0.72059, 0.709265, 0.701052]",True,"[""actor"", ""crítico"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""mínimo"", ""pérdida""]","[Fragmento 1 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.7381]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 2 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7299]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7206]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7093]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7011]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+El fragmento siguiente muestra el núcleo matemático de una
+actualización, suponiendo que existen `actor`, `critic1`, `critic2`,
+`target_critic1`, `target_critic2`, sus optimizadores y un lote ya
+convertido a tensores. No reemplaza la implementación completa: se
+omiten detalles de arquitectura, normalización, gestión de episodios y
+guardado.","**Respuesta directa:**  
+SAC (Soft Actor-Critic) es un algoritmo off-policy de tipo actor-crítico que optimiza una recompensa aumentada por entropía, favoreciendo la exploración. Los críticos se actualizan mediante dos estimadores independientes, calculando su pérdida y minimizando el valor mínimo entre ambos. El proceso se implementa en un núcleo de PyTorch que incluye observaciones, acciones, recompensas, observaciones siguientes y banderas de finalización, como se detalla en el fragmento 4 y 5.  
+
+**Explicación breve:**  
+- **Funcionamiento de SAC:** Combina políticas estocásticas con aprendizaje por refuerzo, priorizando la exploración mediante la entropía.  
+- **Actualización de críticos:** Se usan dos redes criticas (critic1 y critic2) que calculan pérdidas basadas en los datos del lote, y se actualizan simultáneamente con sus optimizadores correspondientes. La sincronización con los criticos objetivo (target_critic1, target_critic2) no se detalla en el contexto.  
+
+**Detalles no confirmados:**  
+- No se especifica cómo se sincronizan los criticos objetivo ni la exacta formulación de las pérdidas (ver fragmento 4 y 5 para implementación parcial).  
+- Para más detalles, se debería consultar la sección 3.3 (""¿Por qué dos críticos?"") o el código completo del núcleo de PyTorch.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.
+hybrid,SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,rerank_grounded,0.0303,20.8269,"[""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md"", ""SAC\\Fundamentos_de_SAC_GIAR_ORION.md""]","[0.68145, 0.738051, 0.729939, 0.72059, 0.709265]",True,"[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[""actor"", ""crítico"", ""bellman"", ""mínimo"", ""pérdida""]","[Fragmento 1 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.6815]
+19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.
+
+---
+
+[Fragmento 2 | fuente: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score: 0.7381]
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+---
+
+[Fragmento 3 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7299]
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+---
+
+[Fragmento 4 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7206]
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+---
+
+[Fragmento 5 | fuente: SAC\Fundamentos_de_SAC_GIAR_ORION.md | score: 0.7093]
+14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch
+def update_critics_and_actor(batch, actor,
+ critic1, critic2,
+ target_critic1, target_critic2,
+ actor_optimizer, critic_optimizer,
+ alpha, gamma):
+ obs = batch[""obs""]
+ actions = batch[""actions""]
+ rewards = batch[""rewards""].view(-1, 1)
+ next_obs = batch[""next_obs""]
+ dones = batch[""dones""].view(-1, 1).float()","**Respuesta directa:**  
+SAC (Soft Actor-Critic) utiliza dos críticos que se actualizan mediante la pérdida del objetivo de Bellman suavizado por entropía. Los críticos se actualizan en paralelo usando un batch de experiencias, calculando la pérdida como la diferencia entre las recompensas reales y las predichas por los críticos, ajustando sus parámetros para minimizar esta discrepancia. El contexto no especifica detalles técnicos adicionales sobre el proceso de actualización de los críticos, pero menciona que se usan dos estimadores independientes y que la pérdida del crítico busca aproximar el objetivo de Bellman.  
+
+**Explicación breve:**  
+Los críticos en SAC se actualizan mediante una función de pérdida que combina la recompensa y la entropía (controlada por la temperatura), usando experiencias almacenadas en un buffer. El código en el fragmento 5 muestra cómo se procesa un batch para calcular las pérdidas de los críticos y optimizar sus parámetros. La actualización de los críticos es parte del algoritmo off-policy, donde se reutilizan experiencias previamente recolectadas.  
+
+**Detalles del contexto:**  
+- Los críticos se actualizan usando la pérdida del objetivo de Bellman suavizado por entropía (Fragmento 1 y 5).  
+- Se usan dos críticos independientes y se toma el mínimo de sus estimaciones para reducir el sesgo (Fragmento 4).  
+- El código en Fragmento 5 muestra la función `update_critics_and_actor`, que procesa un batch para calcular las pérdidas y optimizar los críticos.  
+
+**Información no confirmada:**  
+No se especifica cómo se sincronizan los críticos con los target critics (como en DDPG), ni si la temperatura afecta directamente la pérdida de los críticos. Para más detalles, se debería consultar la sección ""14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch"" del archivo mencionado.",Explicar SAC como actor-crítico off-policy de máxima entropía; mencionar dos críticos Q y el mínimo de sus estimaciones para reducir sobreestimación; explicar el objetivo de Bellman/target y distinguir la actualización de los críticos de la del actor. No afirmar detalles del código local si no aparecen en el contexto.,Las coincidencias de términos son indicadores mecánicos; no equivalen a una evaluación semántica.

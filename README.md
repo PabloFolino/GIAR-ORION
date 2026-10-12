@@ -143,7 +143,7 @@ Ese es el salto que buscamos: pasar de un sistema que responde preguntas a uno q
 
 | Versión | Nombre | Objetivo |
 | --- | --- | --- |
-| 0.1 | **Motor local operativo.** | Ollama instalado y funcionando en Windows.<br><br>- Un modelo de lenguaje seleccionado y probado con tu hardware.<br><br>- Capacidad para responder preguntas técnicas sin depender de una conexión a Internet, una vez preparado el entorno. |
+| 0.1 | **Motor local operativo.** |- Ollama instalado y funcionando en Windows.<br><br>- Un modelo de lenguaje seleccionado y probado con tu hardware.<br><br>- Capacidad para responder preguntas técnicas sin depender de una conexión a Internet, una vez preparado el entorno. |
 |  |  |  |
 |  |  |  |
 |  |  |  |

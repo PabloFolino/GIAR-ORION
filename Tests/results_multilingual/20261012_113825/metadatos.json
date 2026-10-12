@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-10-12T11:39:28",
+  "project_root": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION",
+  "knowledge_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge",
+  "modes": [
+    "e5",
+    "bge-m3",
+    "hybrid"
+  ],
+  "top_k": 5,
+  "batch_size": 16,
+  "offline": false,
+  "test_cases": 10,
+  "hardware": {
+    "torch_version": "2.14.0+cu130",
+    "cuda_version": "13.0",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "gpu_memory_allocated_mb": 0.0
+  },
+  "errors": [],
+  "metric_note": "expected_terms_hit_at_k es una señal aproximada por presencia de palabras; no es una métrica de relevancia semántica. Los resultados deben revisarse manualmente antes de elegir un modelo."
+}

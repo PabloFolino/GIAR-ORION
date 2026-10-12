@@ -1,0 +1,17 @@
+{
+    "agent_name": "GIAR-ORION",
+    "agent_version": "0.1",
+    "model": "qwen3:8b",
+    "saved_at": "2026-10-10T21:00:15-03:00",
+    "message_count": 2,
+    "messages": [
+        {
+            "role": "user",
+            "content": "¿Qué diferencia hay entre SAC y PPO?"
+        },
+        {
+            "role": "assistant",
+            "content": "SAC (Soft Actor-Critic) y PPO (Proximal Policy Optimization) son dos algoritmos de **aprendizaje por refuerzo** muy populares en el ámbito de la inteligencia artificial, especialmente en entornos de simulación como **CoppeliaSim** o **MuJoCo**, y en aplicaciones de **robótica autónoma**. A continuación, te explico las diferencias clave entre ambos algoritmos:\n\n---\n\n### 🔍 **1. Fundamentos teóricos**\n\n#### **PPO (Proximal Policy Optimization)**\n- **Base teórica**: Basado en **políticas estocásticas** y el **teorema de divergencia de Kullback-Leibler"
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-12T12:18:41",
+  "project_root": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION",
+  "knowledge_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge",
+  "model": "qwen3:8b",
+  "ollama_url": "http://localhost:11434",
+  "configurations": [
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "top_k": 5,
+  "test_cases": 10,
+  "judge_enabled": true,
+  "judge_model": "qwen3:8b",
+  "offline_retrievers": false,
+  "errors": [],
+  "metric_note": "Las puntuaciones automáticas las genera el mismo LLM evaluado y son orientativas; pueden tener sesgos. Revisar manualmente respuestas y contexto antes de decidir."
+}
