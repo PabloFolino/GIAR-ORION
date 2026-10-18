@@ -1,0 +1,22 @@
+{
+  "experiment": "G1-RAG-10",
+  "timestamp": "20261012_181222",
+  "cases": 20,
+  "mjcf": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge\\Unitree\\G1\\g1_29dof_with_hand.xml",
+  "mjcf_actuator_count": 43,
+  "primary_class_counts": {
+    "identifier_list": 3,
+    "hybrid": 6,
+    "structured": 1,
+    "semantic": 6,
+    "identifier": 2,
+    "manual_classification": 2
+  },
+  "output": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\results_g1_rag07_20261012_175223\\g1_rag10_evidence_coverage.csv",
+  "limitations": [
+    "Clasificación basada en reglas y expresiones regulares; revisar manualmente los casos híbridos.",
+    "La presencia de identificadores no garantiza que la respuesta final sea correcta.",
+    "La verificación de orden solo observa el texto recuperado y no sustituye la extracción del XML.",
+    "Las consultas semánticas quedan pendientes de juicio sobre relevancia y suficiencia."
+  ]
+}

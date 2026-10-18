@@ -15,6 +15,9 @@ from __future__ import annotations
 
 import os
 import re
+import json
+import hashlib
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -25,6 +28,8 @@ import numpy as np
 DEFAULT_KNOWLEDGE_DIR = Path(__file__).resolve().parent.parent / "Knowledge"
 E5_MODEL_NAME = "intfloat/multilingual-e5-base"
 BGE_MODEL_NAME = "BAAI/bge-m3"
+CACHE_DIR = Path(__file__).resolve().parent.parent / "Cache"
+CACHE_FORMAT_VERSION = 1
 
 
 @dataclass
@@ -49,12 +54,26 @@ class MultilingualKnowledgeRetriever:
         overlap_chars: int = 150,
         batch_size: int = 16,
         local_files_only: bool = False,
+        cache_dir: str | Path | None = None,
     ) -> None:
         mode = mode.lower().strip()
         if mode not in {"e5", "bge-m3", "hybrid"}:
             raise ValueError("mode debe ser 'e5', 'bge-m3' o 'hybrid'.")
-        if e5_weight < 0 or bge_weight < 0 or (e5_weight + bge_weight) <= 0:
-            raise ValueError("Los pesos deben ser no negativos y sumar más que cero.")
+        if (
+            not np.isfinite(e5_weight)
+            or not np.isfinite(bge_weight)
+            or e5_weight < 0
+            or bge_weight < 0
+            or (e5_weight + bge_weight) <= 0
+        ):
+            raise ValueError("Los pesos deben ser finitos, no negativos y sumar más que cero.")
+        if mode == "hybrid" and not np.isclose(
+            e5_weight + bge_weight, 1.0, rtol=0.0, atol=1e-6
+        ):
+            raise ValueError(
+                "En modo hybrid, e5_weight y bge_weight deben sumar 1.0 "
+                "(por ejemplo, 0.7 y 0.3)."
+            )
         if chunk_chars < 200:
             raise ValueError("chunk_chars debe ser al menos 200.")
         if overlap_chars < 0 or overlap_chars >= chunk_chars:
@@ -68,6 +87,7 @@ class MultilingualKnowledgeRetriever:
         self.overlap_chars = overlap_chars
         self.batch_size = batch_size
         self.local_files_only = local_files_only
+        self.cache_dir = Path(cache_dir).resolve() if cache_dir is not None else CACHE_DIR.resolve()
 
         if device is None:
             import torch
@@ -80,16 +100,165 @@ class MultilingualKnowledgeRetriever:
                 f"No se encontraron fragmentos Markdown en: {self.knowledge_dir}"
             )
 
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self._cache_metadata_path = self.cache_dir / "metadata.json"
+        self._cache_metadata = self._read_cache_metadata()
+        self._corpus_fingerprint = self._fingerprint_corpus()
+
         self._e5_model: Any = None
         self._bge_model: Any = None
 
         if self.mode in {"e5", "hybrid"}:
             self._load_e5()
-            self._embed_e5_corpus()
+            if not self._load_embeddings_cache("e5"):
+                self._embed_e5_corpus()
+                self._save_embeddings_cache("e5")
 
         if self.mode in {"bge-m3", "hybrid"}:
             self._load_bge()
-            self._embed_bge_corpus()
+            if not self._load_embeddings_cache("bge"):
+                self._embed_bge_corpus()
+                self._save_embeddings_cache("bge")
+
+    def _read_cache_metadata(self) -> dict[str, Any]:
+        """Lee los metadatos de caché; ante cualquier problema, inicia una caché vacía."""
+        try:
+            with self._cache_metadata_path.open("r", encoding="utf-8") as file:
+                metadata = json.load(file)
+            if (
+                isinstance(metadata, dict)
+                and metadata.get("format_version") == CACHE_FORMAT_VERSION
+                and isinstance(metadata.get("models"), dict)
+            ):
+                return metadata
+        except (OSError, json.JSONDecodeError):
+            pass
+        return {"format_version": CACHE_FORMAT_VERSION, "models": {}}
+
+    def _fingerprint_corpus(self) -> str:
+        """Calcula una huella estable del contenido y orden de los fragmentos."""
+        digest = hashlib.sha256()
+        digest.update(
+            f"chunk_chars={self.chunk_chars};overlap_chars={self.overlap_chars}\n".encode("utf-8")
+        )
+        for chunk in self.chunks:
+            digest.update(chunk.source.encode("utf-8"))
+            digest.update(b"\\0")
+            digest.update(chunk.text.encode("utf-8"))
+            digest.update(b"\\0")
+        return digest.hexdigest()
+
+    def _cache_paths(self, model_key: str) -> tuple[Path, str, str]:
+        if model_key == "e5":
+            return self.cache_dir / "e5_embeddings.npy", E5_MODEL_NAME, "embedding_e5"
+        if model_key == "bge":
+            return self.cache_dir / "bge_embeddings.npy", BGE_MODEL_NAME, "embedding_bge"
+        raise ValueError(f"Modelo de caché desconocido: {model_key}")
+
+    def _load_embeddings_cache(self, model_key: str) -> bool:
+        """Carga embeddings si la caché corresponde al corpus y al modelo actual."""
+        path, model_name, attribute = self._cache_paths(model_key)
+        record = self._cache_metadata.get("models", {}).get(model_key, {})
+        if (
+            record.get("model_name") != model_name
+            or record.get("corpus_fingerprint") != self._corpus_fingerprint
+            or record.get("chunk_count") != len(self.chunks)
+            or not path.is_file()
+        ):
+            print(f"GIAR-ORION: caché {model_key.upper()} no válida; se calcularán embeddings.")
+            return False
+
+        try:
+            vectors = np.load(path, allow_pickle=False)
+            if (
+                vectors.ndim != 2
+                or vectors.shape[0] != len(self.chunks)
+                or not np.isfinite(vectors).all()
+                or (
+                    record.get("dimension") is not None
+                    and vectors.shape[1] != record["dimension"]
+                )
+            ):
+                print(f"GIAR-ORION: caché {model_key.upper()} incompatible; se recalcularán embeddings.")
+                return False
+
+            for chunk, vector in zip(self.chunks, vectors):
+                setattr(chunk, attribute, np.asarray(vector, dtype=np.float32))
+            print(
+                f"GIAR-ORION: embeddings {model_key.upper()} cargados desde caché "
+                f"({len(self.chunks)} fragmentos)."
+            )
+            return True
+        except (OSError, ValueError, EOFError):
+            print(f"GIAR-ORION: no se pudo leer la caché {model_key.upper()}; se recalcularán embeddings.")
+            return False
+
+    def _save_embeddings_cache(self, model_key: str) -> None:
+        """Guarda embeddings y metadatos mediante reemplazo atómico de archivos."""
+        path, model_name, attribute = self._cache_paths(model_key)
+        vectors = np.asarray(
+            [getattr(chunk, attribute) for chunk in self.chunks], dtype=np.float32
+        )
+        if (
+            vectors.ndim != 2
+            or vectors.shape[0] != len(self.chunks)
+            or not np.isfinite(vectors).all()
+        ):
+            raise RuntimeError(
+                f"No se pueden guardar embeddings {model_key.upper()}: matriz inválida."
+            )
+
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        temp_path = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="wb",
+                suffix=".npy",
+                prefix=f".{model_key}_",
+                dir=self.cache_dir,
+                delete=False,
+            ) as temp_file:
+                temp_path = Path(temp_file.name)
+                np.save(temp_file, vectors, allow_pickle=False)
+            temp_path.replace(path)
+        finally:
+            if temp_path is not None and temp_path.exists():
+                temp_path.unlink(missing_ok=True)
+
+        self._cache_metadata.setdefault("format_version", CACHE_FORMAT_VERSION)
+        self._cache_metadata.setdefault("models", {})
+        self._cache_metadata["models"][model_key] = {
+            "model_name": model_name,
+            "corpus_fingerprint": self._corpus_fingerprint,
+            "chunk_count": len(self.chunks),
+            "dimension": int(vectors.shape[1]),
+        }
+        self._write_cache_metadata()
+        print(
+            f"GIAR-ORION: caché {model_key.upper()} guardada "
+            f"({len(self.chunks)} fragmentos)."
+        )
+
+    def _write_cache_metadata(self) -> None:
+        """Escribe los metadatos de caché de forma segura."""
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        temp_path = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                mode="w",
+                encoding="utf-8",
+                suffix=".json",
+                prefix=".metadata_",
+                dir=self.cache_dir,
+                delete=False,
+            ) as temp_file:
+                temp_path = Path(temp_file.name)
+                json.dump(self._cache_metadata, temp_file, ensure_ascii=False, indent=2)
+                temp_file.write("\n")
+            temp_path.replace(self._cache_metadata_path)
+        finally:
+            if temp_path is not None and temp_path.exists():
+                temp_path.unlink(missing_ok=True)
 
     def _load_chunks(self) -> list[KnowledgeChunk]:
         if not self.knowledge_dir.exists():

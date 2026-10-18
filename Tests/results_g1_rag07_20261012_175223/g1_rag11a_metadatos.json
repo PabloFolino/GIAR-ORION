@@ -1,0 +1,44 @@
+{
+  "experiment": "G1-RAG-11A",
+  "created_at": "2026-10-12T18:15:11",
+  "source_results_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\results_g1_rag07_20261012_175223",
+  "queries": 20,
+  "fragment_rows": 46,
+  "outputs": [
+    "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\results_g1_rag07_20261012_175223\\g1_rag11a_semantic_review.csv",
+    "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\results_g1_rag07_20261012_175223\\g1_rag11a_case_review.csv"
+  ],
+  "status": "Review sheets prepared; judgments intentionally left pending.",
+  "criteria": {
+    "relevance_judgment": [
+      "RELEVANTE",
+      "PARCIAL",
+      "IRRELEVANTE"
+    ],
+    "answers_query": [
+      "SI",
+      "PARCIALMENTE",
+      "NO"
+    ],
+    "evidence_sufficient": [
+      "SI",
+      "NO",
+      "NO_APLICA"
+    ],
+    "overall_relevance": [
+      "RELEVANTE",
+      "PARCIAL",
+      "IRRELEVANTE"
+    ],
+    "answerability_from_all_fragments": [
+      "SI",
+      "PARCIALMENTE",
+      "NO"
+    ]
+  },
+  "limitations": [
+    "La clasificación de consultas es heurística y debe revisarse.",
+    "No se genera un juicio semántico automático ni se asume que el modelo evaluador sea correcto.",
+    "Las columnas PENDIENTE requieren revisión humana."
+  ]
+}

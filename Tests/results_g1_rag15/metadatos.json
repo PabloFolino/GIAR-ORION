@@ -1,0 +1,31 @@
+{
+  "experiment": "G1-RAG-15",
+  "description": "Comparación controlada de respuestas reales de Qwen con los top-5 fragmentos ya recuperados por G1-RAG-12.",
+  "created_at_local": "2026-10-13T10:32:29.338232-03:00",
+  "input_csv": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\results_g1_rag12\\20261013_095027\\detalle.csv",
+  "output_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\results_g1_rag15",
+  "ollama_url": "http://localhost:11434",
+  "model": "qwen3:8b",
+  "temperature": 0.0,
+  "seed": 42,
+  "system_prompt": "Sos GIAR-ORION, un asistente técnico especializado en robótica y MJCF.\nRespondé en español, con precisión y de forma directa.\nUsá únicamente la evidencia proporcionada en los fragmentos.\nNo completes con conocimiento externo ni inventes datos.\nSi la evidencia no alcanza para responder una parte, decilo explícitamente.\nDiferenciá los hechos explícitos de cualquier inferencia.\nNo afirmes que consultaste archivos o fuentes fuera de los fragmentos.\nNo muestres razonamiento interno; entregá una respuesta técnica verificable.",
+  "method": "Cada consulta se envía dos veces: una con los cinco fragmentos old y otra con los cinco fragmentos new. Mismo modelo, system prompt, temperatura y seed.",
+  "case_ids": [
+    "CONTROL-RL-12",
+    "R07-06",
+    "R07-07",
+    "R07-14",
+    "R07-19"
+  ],
+  "expected_calls": 10,
+  "completed_calls": 10,
+  "success_count": 10,
+  "error_count": 0,
+  "notes": [
+    "No se recalcula la recuperación: se reutilizan los fragmentos del CSV de G1-RAG-12.",
+    "No se modifica main.py ni Agent/MultilingualKnowledgeRetriever.py.",
+    "Los campos de revisión quedan PENDIENTE para evaluación técnica posterior.",
+    "El parámetro think=false puede ser ignorado por versiones antiguas de Ollama; se conserva cualquier campo thinking que la API devuelva.",
+    "La misma semilla y temperatura reducen variabilidad, pero no garantizan identidad determinista en todos los entornos."
+  ]
+}

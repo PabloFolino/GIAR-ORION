@@ -1,0 +1,4 @@
+﻿strategy,found_terms,expected_terms,recall_literal,queries_complete,queries_total,hit_at_k_count
+A_current,6,65,0.0923,2,6,2
+B_grouped_headings,20,65,0.3077,3,6,4
+C_anatomical_groups,20,65,0.3077,3,6,4

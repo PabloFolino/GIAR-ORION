@@ -1,0 +1,16 @@
+{
+  "experiment": "G1-RAG-03",
+  "mode": "e5",
+  "top_k": 5,
+  "dossier": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge\\Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+  "production_retriever": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Agent\\MultilingualKnowledgeRetriever.py",
+  "A": "Fragmentación actual del recuperador.",
+  "B": "Fragmentación experimental por encabezados Markdown.",
+  "C": "Fragmentación experimental por subdivisiones anatómicas en negrita dentro de la sección 6.3.",
+  "note": "Las métricas evalúan presencia literal en top-k; no evalúan respuestas generadas por Qwen.",
+  "dossier_chunks": {
+    "A": 81,
+    "B": 82,
+    "C": 37
+  }
+}

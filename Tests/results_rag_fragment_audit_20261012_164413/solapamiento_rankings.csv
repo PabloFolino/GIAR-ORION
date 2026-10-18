@@ -1,0 +1,11 @@
+﻿case_id,lexical_semantic_exact_overlap,lexical_rrf_exact_overlap,semantic_rrf_exact_overlap,lexical_unique_top5,semantic_unique_top5,note
+AGENT-01,0,3,2,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+COPPELIA-01,0,2,3,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+DRL-01,0,3,2,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+PYTORCH-01,0,2,3,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+RL-01,0,3,2,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+ROBOT-01,0,2,3,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+SAC-01,0,3,2,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+SAC-02,0,2,3,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+SAC-03,0,3,2,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.
+UNITREE-01,0,3,2,5,5,Coincidencia exacta normalizada; no detecta fragmentos parcialmente solapados.

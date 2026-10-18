@@ -1,0 +1,134 @@
+AUDITORÍA MJCF ↔ DOSSIER UNITREE G1
+========================================================================
+MJCF: C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Knowledge\Unitree\G1\g1_29dof_with_hand.xml
+Dossier: C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Knowledge\Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+Modelo declarado: g1_29dof_with_hand
+
+CONTEOS
+- Elementos del bloque actuator: 43
+- Nombres de actuador únicos: 43
+- Articulaciones nombradas en MJCF: 44
+- Cuerpos nombrados: 44
+- Sitios nombrados: 2
+- Sensores explícitos reconocidos: 4
+- Nombres de articulación en sección 6.3 del dossier: 44
+
+VALIDACIONES
+- Actuadores duplicados: ninguno
+- Actuadores cuyo nombre difiere del joint objetivo: ninguno
+- Joints objetivo no encontrados: ninguno
+- Actuadores ausentes de la sección 6.3: ninguno
+- Nombres de la sección 6.3 que no son actuadores: ['floating_base_joint']
+- Sensores MJCF no nombrados explícitamente en el dossier: ninguno
+- Sitios IMU MJCF no mencionados en el dossier: ninguno
+
+ORDEN EXACTO DEL BLOQUE ACTUATOR
+01. left_hip_pitch_joint -> joint=left_hip_pitch_joint
+02. left_hip_roll_joint -> joint=left_hip_roll_joint
+03. left_hip_yaw_joint -> joint=left_hip_yaw_joint
+04. left_knee_joint -> joint=left_knee_joint
+05. left_ankle_pitch_joint -> joint=left_ankle_pitch_joint
+06. left_ankle_roll_joint -> joint=left_ankle_roll_joint
+07. right_hip_pitch_joint -> joint=right_hip_pitch_joint
+08. right_hip_roll_joint -> joint=right_hip_roll_joint
+09. right_hip_yaw_joint -> joint=right_hip_yaw_joint
+10. right_knee_joint -> joint=right_knee_joint
+11. right_ankle_pitch_joint -> joint=right_ankle_pitch_joint
+12. right_ankle_roll_joint -> joint=right_ankle_roll_joint
+13. waist_yaw_joint -> joint=waist_yaw_joint
+14. waist_roll_joint -> joint=waist_roll_joint
+15. waist_pitch_joint -> joint=waist_pitch_joint
+16. left_shoulder_pitch_joint -> joint=left_shoulder_pitch_joint
+17. left_shoulder_roll_joint -> joint=left_shoulder_roll_joint
+18. left_shoulder_yaw_joint -> joint=left_shoulder_yaw_joint
+19. left_elbow_joint -> joint=left_elbow_joint
+20. left_wrist_roll_joint -> joint=left_wrist_roll_joint
+21. left_wrist_pitch_joint -> joint=left_wrist_pitch_joint
+22. left_wrist_yaw_joint -> joint=left_wrist_yaw_joint
+23. left_hand_thumb_0_joint -> joint=left_hand_thumb_0_joint
+24. left_hand_thumb_1_joint -> joint=left_hand_thumb_1_joint
+25. left_hand_thumb_2_joint -> joint=left_hand_thumb_2_joint
+26. left_hand_middle_0_joint -> joint=left_hand_middle_0_joint
+27. left_hand_middle_1_joint -> joint=left_hand_middle_1_joint
+28. left_hand_index_0_joint -> joint=left_hand_index_0_joint
+29. left_hand_index_1_joint -> joint=left_hand_index_1_joint
+30. right_shoulder_pitch_joint -> joint=right_shoulder_pitch_joint
+31. right_shoulder_roll_joint -> joint=right_shoulder_roll_joint
+32. right_shoulder_yaw_joint -> joint=right_shoulder_yaw_joint
+33. right_elbow_joint -> joint=right_elbow_joint
+34. right_wrist_roll_joint -> joint=right_wrist_roll_joint
+35. right_wrist_pitch_joint -> joint=right_wrist_pitch_joint
+36. right_wrist_yaw_joint -> joint=right_wrist_yaw_joint
+37. right_hand_thumb_0_joint -> joint=right_hand_thumb_0_joint
+38. right_hand_thumb_1_joint -> joint=right_hand_thumb_1_joint
+39. right_hand_thumb_2_joint -> joint=right_hand_thumb_2_joint
+40. right_hand_index_0_joint -> joint=right_hand_index_0_joint
+41. right_hand_index_1_joint -> joint=right_hand_index_1_joint
+42. right_hand_middle_0_joint -> joint=right_hand_middle_0_joint
+43. right_hand_middle_1_joint -> joint=right_hand_middle_1_joint
+
+SENSORES EXPLÍCITOS EN MJCF
+- imu-torso-angular-velocity: tipo=gyro; site=imu_in_torso; objname=(no indicado)
+- imu-torso-linear-acceleration: tipo=accelerometer; site=imu_in_torso; objname=(no indicado)
+- imu-pelvis-angular-velocity: tipo=gyro; site=imu_in_pelvis; objname=(no indicado)
+- imu-pelvis-linear-acceleration: tipo=accelerometer; site=imu_in_pelvis; objname=(no indicado)
+
+SITIOS IMU
+- imu_in_pelvis
+- imu_in_torso
+
+CUERPOS NOMBRADOS
+- pelvis
+- left_hip_pitch_link
+- left_hip_roll_link
+- left_hip_yaw_link
+- left_knee_link
+- left_ankle_pitch_link
+- left_ankle_roll_link
+- right_hip_pitch_link
+- right_hip_roll_link
+- right_hip_yaw_link
+- right_knee_link
+- right_ankle_pitch_link
+- right_ankle_roll_link
+- waist_yaw_link
+- waist_roll_link
+- torso_link
+- left_shoulder_pitch_link
+- left_shoulder_roll_link
+- left_shoulder_yaw_link
+- left_elbow_link
+- left_wrist_roll_link
+- left_wrist_pitch_link
+- left_wrist_yaw_link
+- left_hand_thumb_0_link
+- left_hand_thumb_1_link
+- left_hand_thumb_2_link
+- left_hand_middle_0_link
+- left_hand_middle_1_link
+- left_hand_index_0_link
+- left_hand_index_1_link
+- right_shoulder_pitch_link
+- right_shoulder_roll_link
+- right_shoulder_yaw_link
+- right_elbow_link
+- right_wrist_roll_link
+- right_wrist_pitch_link
+- right_wrist_yaw_link
+- right_hand_thumb_0_link
+- right_hand_thumb_1_link
+- right_hand_thumb_2_link
+- right_hand_middle_0_link
+- right_hand_middle_1_link
+- right_hand_index_0_link
+- right_hand_index_1_link
+
+CONSULTAS SUGERIDAS PARA PRUEBAS RAG
+1. Enumerá las articulaciones de la pierna izquierda y citá sus nombres exactos.
+2. ¿Qué articulaciones de cintura aparecen en el bloque actuator y en qué orden?
+3. ¿Cuáles son los sensores IMU definidos en el MJCF y qué mide cada uno?
+4. ¿Qué diferencia hay entre imu_in_torso e imu-torso-angular-velocity?
+5. Enumerá las articulaciones de la mano derecha según el MJCF.
+6. ¿Cuál es el orden exacto de actuadores en el bloque actuator?
+
+Esta auditoría solo lee el XML y el Markdown; no modifica esos archivos.

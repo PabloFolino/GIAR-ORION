@@ -1,0 +1,13 @@
+{
+  "retriever": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Agent\\MultilingualKnowledgeRetriever.py",
+  "knowledge_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge",
+  "dossier": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge\\Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+  "mode": "e5",
+  "top_k": 5,
+  "strategy_A": "Fragmentación de producción sin cambios.",
+  "strategy_B": "Solo el dossier G1 se vuelve a fragmentar por encabezados; el resto del corpus queda igual.",
+  "dossier_chunks_A": 81,
+  "dossier_chunks_B": 82,
+  "query_count": 6,
+  "note": "La cobertura es presencia literal de términos esperados en top-k; no evalúa respuestas generadas por Qwen."
+}

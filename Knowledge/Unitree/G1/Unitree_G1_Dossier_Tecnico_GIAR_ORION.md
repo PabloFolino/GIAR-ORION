@@ -159,6 +159,107 @@ Fuente: [documentación y ejemplos `unitree_ros2`](https://github.com/unitreerob
 
 **No se debe asumir** que la IMU del torso y una segunda IMU, si existe en cierta revisión, tienen el mismo topic, marco de coordenadas, calibración o frecuencia. Registrar el nombre de topic, tipo de mensaje, frame, unidades y timestamp antes de usarlo en RL.
 
+### 6.3 Inventario nominal de las 43 articulaciones actuadas
+
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK.
+
+**A. Pierna izquierda — 6 articulaciones**
+
+1. `left_hip_pitch_joint`
+2. `left_hip_roll_joint`
+3. `left_hip_yaw_joint`
+4. `left_knee_joint`
+5. `left_ankle_pitch_joint`
+6. `left_ankle_roll_joint`
+
+**B. Pierna derecha — 6 articulaciones**
+
+7. `right_hip_pitch_joint`
+8. `right_hip_roll_joint`
+9. `right_hip_yaw_joint`
+10. `right_knee_joint`
+11. `right_ankle_pitch_joint`
+12. `right_ankle_roll_joint`
+
+**C. Cintura — 3 articulaciones**
+
+13. `waist_yaw_joint`
+14. `waist_roll_joint`
+15. `waist_pitch_joint`
+
+**D. Brazo izquierdo — 7 articulaciones**
+
+16. `left_shoulder_pitch_joint`
+17. `left_shoulder_roll_joint`
+18. `left_shoulder_yaw_joint`
+19. `left_elbow_joint`
+20. `left_wrist_roll_joint`
+21. `left_wrist_pitch_joint`
+22. `left_wrist_yaw_joint`
+
+**E. Brazo derecho — 7 articulaciones**
+
+23. `right_shoulder_pitch_joint`
+24. `right_shoulder_roll_joint`
+25. `right_shoulder_yaw_joint`
+26. `right_elbow_joint`
+27. `right_wrist_roll_joint`
+28. `right_wrist_pitch_joint`
+29. `right_wrist_yaw_joint`
+
+**F. Mano izquierda — 7 articulaciones**
+
+30. `left_hand_thumb_0_joint`
+31. `left_hand_thumb_1_joint`
+32. `left_hand_thumb_2_joint`
+33. `left_hand_middle_0_joint`
+34. `left_hand_middle_1_joint`
+35. `left_hand_index_0_joint`
+36. `left_hand_index_1_joint`
+
+**G. Mano derecha — 7 articulaciones**
+
+37. `right_hand_thumb_0_joint`
+38. `right_hand_thumb_1_joint`
+39. `right_hand_thumb_2_joint`
+40. `right_hand_index_0_joint`
+41. `right_hand_index_1_joint`
+42. `right_hand_middle_0_joint`
+43. `right_hand_middle_1_joint`
+
+**Conteo de control:** 12 articulaciones de piernas + 3 de cintura + 14 de brazos + 14 de manos = **43 articulaciones actuadas**. El XML también contiene `floating_base_joint`, de tipo libre, que representa los seis grados de libertad de la base flotante del modelo; no es uno de los 43 motores articulares. El orden anterior agrupa por región anatómica para facilitar la lectura y **no debe usarse como índice de motor** sin contrastarlo con el orden del bloque `<actuator>` del archivo XML y con la interfaz de control utilizada.
+
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+### 6.4 Inventario de IMU y otros sensores
+
+#### IMU representadas en el modelo MJCF
+
+El archivo `g1_29dof_with_hand_rev_1_0.xml` declara dos sitios de referencia para IMU y cuatro canales de medición simulados:
+
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |
+
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles.
+
+#### Otros sensores y dispositivos de percepción indicados para la familia G1
+
+| Sensor o dispositivo | Nombre/identificador verificable en este dossier | Observación |
+|---|---|---|
+| Encoders articulares | No se publica un identificador individual por encoder en las fuentes generales | El fabricante declara doble encoder en las articulaciones; confirmar campos y mapeo en el SDK de la unidad |
+| Cámara de profundidad | Modelo/nombre exacto pendiente de confirmar | Verificar inventario de hardware, controlador y topics |
+| LiDAR 3D | Modelo/nombre exacto pendiente de confirmar | Verificar controlador, topics, frame y frecuencia |
+| Matriz de cuatro micrófonos | Sin nombres individuales confirmados | La página comercial informa una matriz de cuatro micrófonos; no se asignan nombres de canal sin documentación de la unidad |
+| Sensores de fuerza de pie | No confirmados como sensores físicos universales | Algunas interfaces/modelos pueden exponer fuerzas medidas o estimadas; comprobar la variante concreta |
+| BMS / batería | Campos según mensaje y versión del SDK | Puede exponer estado y datos de energía; consultar la definición del mensaje utilizado |
+| Temperatura/estado de motores | Campos según mensaje y versión del SDK | Confirmar nombres de campos en la definición de `LowState` aplicable |
+
+**Importante:** el XML consultado define explícitamente los nombres de los cuatro canales IMU de simulación, pero no declara en ese bloque sensores de cámara, LiDAR, micrófonos, encoders o fuerza de pie con identificadores equivalentes. La lista de hardware comercial de la sección 6.1 y el inventario de sensores simulados son fuentes distintas y no deben mezclarse como si fueran el mismo inventario. Para completar nombres de topics, frames y campos físicos se necesita la versión exacta de `unitree_ros2`/`unitree_sdk2` y, cuando corresponda, el inventario de la unidad.
+
 ## 7. Variantes del producto y del modelo de software
 
 ### 7.1 Variantes comerciales (familia G1)

@@ -1,0 +1,11 @@
+{
+  "experiment": "G1-RAG-08B",
+  "input": "Tests\\results_g1_rag07_20261012_175223\\revision_humana.csv",
+  "model": "qwen3:8b",
+  "url": "http://localhost:11434",
+  "rows_processed": 34,
+  "errors": 0,
+  "elapsed_seconds": 149.38,
+  "output": "Tests\\results_g1_rag07_20261012_175223\\revision_automatica.csv",
+  "warning": "Evaluación automática preliminar; no equivale a revisión humana ni valida por sí sola la respuesta final."
+}

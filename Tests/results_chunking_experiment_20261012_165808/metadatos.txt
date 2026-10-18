@@ -1,0 +1,7 @@
+model=intfloat/multilingual-e5-base
+device=cuda
+documents=4
+legacy_approx_chunks=944
+heading_aware_chunks=301
+top_k=5
+baseline_note=Approximation of the documented existing chunking; not a direct invocation of the production retriever.

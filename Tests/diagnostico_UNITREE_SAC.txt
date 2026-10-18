@@ -1,0 +1,242 @@
+
+====================================================================================================
+CONSULTA: UNITREE-01 | MÉTODO: lexical_only
+====================================================================================================
+
+RANK: 1
+FUENTE: CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md
+TEXTO:
+1. [Qué es CoppeliaSim](#1-qué-es-coppeliasim) 2. [Ediciones y versiones: evaluación](#2-ediciones-y-versiones-evaluación) 3. [Instalación en Windows](#3-instalación-en-windows) 4. [Instalación en Ubuntu](#4-instalación-en-ubuntu) 5. [Arquitectura de una escena y objetos](#5-arquitectura-de-una-escena-y-objetos) 6. [Cinemática: jerarquía y árbol del robot](#6-cinemática-jerarquía-y-árbol-del-robot) 7. [Dinámica: cómo construir correctamente el árbol físico](#7-dinámica-cómo-construir-correctamente-el-árbol-físico) 8. [Articulaciones y control de motores](#8-articulaciones-y-control-de-motores) 9. [Motores físicos: MuJoCo, Bullet, ODE, Vortex y Newton](#9-motores-físicos-mujoco-bullet-ode-vortex-y-newton) 10. [Sensores y adquisición de datos](#10-sensores-y-adquisición-de-datos) 11. [Formas de programar y conectarse](#11-formas-de-programar-y-conectarse) 12. [Python: ejemplos con ZeroMQ Remote API](#12-python-ejemplos-con-zeromq-remote-api) 13. [Python: ROS 2 y otras alternativas](#13-python-ros-2-y-otras-alternativas) 14. [Lua dentro de CoppeliaSim](#14-lua-dentro-de-coppeliasim) 15. [Comparación de interfaces de conexión](#15-comparación-de-interfaces-de-conexión) 16. [Ejecución sincronizada, pasos y rendimiento](#16-ejecución-sincronizada-pasos-y-rendimiento) 17. [Buenas prácticas para un robot humanoide](#17-buenas-prácticas-para-un-robot-humanoide) 18. [Diagnóstico de errores comunes](#18-diagnóstico-de-errores-comunes) 19. [Recomendación para GIAR-ORION y Unitree G1](#19-recomendación-para-giar-orion-y-unitree-g1) 20. [Bibliografía y enlaces oficiales](#20-bibliografía-y-enlaces-oficiales)
+
+RANK: 2
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+- El G1 estándar se publica con **1320 × 450 × 200 mm** en posición de pie, **690 × 450 × 300 mm** plegado y aproximadamente **35 kg con batería**. - La página oficial distingue **G1 (23 grados de libertad)** y **G1 EDU (23–43, según opciones)**. Las configuraciones con manos, muñecas adicionales y cintura de 3 DoF cambian la cantidad de articulaciones. - El accionamiento se describe como motor síncrono de imanes permanentes (PMSM), rotor interior de baja inercia y alta velocidad, con **doble encoder** y refrigeración local por aire. El par máximo publicado corresponde al mayor motor de la máquina, no a todos los motores: **90 N·m para G1 y 120 N·m para G1 EDU** en la tabla consultada. - La batería extraíble se especifica como **13 celdas en serie (13S), 9000 mAh**; cargador **54 V, 5 A**; autonomía declarada de aproximadamente **2 horas**. La duración real depende de la tarea y la configuración. - La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo. - Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**. - Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto. - Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor, la temperatura ambiente operativa certificada ni la masa real de cada pieza física de un robot concreto. Para ello se necesita el manual de la revisión exacta, datos del fabricante o medición de laboratorio.
+
+RANK: 3
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+Fuente de referencia de código: [terminaciones de seguridad en `unitree_sdk2`](https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp).
+
+RANK: 4
+FUENTE: CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md
+TEXTO:
+Un árbol cinemático describe cómo los enlaces se conectan por articulaciones. En un robot serial típico, cada articulación conecta un enlace padre con uno hijo. Un humanoide es una estructura ramificada: la pelvis o base conecta las dos piernas y la cadena superior del torso/brazos.
+
+RANK: 5
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+1. **`unitree_ros2`**: incluye un ejemplo de bajo nivel para G1, publicación de `LowCmd` en `/lowcmd` y suscripción al estado de bajo nivel (`lowstate` o `lf/lowstate`, según el ejemplo/configuración). El ejemplo declara 29 motores y ofrece un modo de lectura de alta frecuencia de 500 Hz. 2. **`unitree_sdk2`**: SDK C++ con ejemplos específicos para G1, incluidos ejemplos de control de articulaciones y lectura de IMU/estado. 3. **Unitree Explore App / manuales oficiales**: configuración inicial, red, calibración de 23/29 DoF, conexión del control remoto, postura/movimiento, batería/cargador y mantenimiento.
+
+====================================================================================================
+CONSULTA: UNITREE-01 | MÉTODO: semantic_only
+====================================================================================================
+
+RANK: 1
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+RANK: 2
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.
+
+RANK: 3
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:** https://github.com/unitreerobotics/unitree_rl_gym
+12. **MJCF 29 DoF con manos:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml
+13. **URDF 12 DoF:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_12dof.urdf
+14. **URDF 29 DoF con cintura bloqueada:** https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_lock_waist_rev_1_0.urdf
+
+RANK: 4
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+4. Límites articulares y límites de esfuerzo
+Fuente: [MJCF/XML oficial G1 29 DoF con manos](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml).
+
+RANK: 5
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description).
+
+====================================================================================================
+CONSULTA: UNITREE-01 | MÉTODO: rrf_fusion
+====================================================================================================
+
+RANK: 1
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+11. Fuentes primarias y técnicas
+1. **Unitree Robotics — G1:** https://www.unitree.com/g1/
+2. **Unitree Robotics — G1+ (modelo actualizado):** https://www.unitree.com/G1pl/
+3. **Unitree Robotics — G1-Comp:** https://www.unitree.com/robocup/
+4. **Unitree Robotics — G1-D:** https://www.unitree.com/mobile/G1-D/
+5. **Unitree Explore App y manuales G1:** https://www.unitree.com/app/g1/
+6. **`unitreerobotics/unitree_ros2`:** https://github.com/unitreerobotics/unitree_ros2
+7. **Ejemplo de control de bajo nivel G1 en ROS 2:** https://github.com/unitreerobotics/unitree_ros2/blob/master/example/src/src/g1/lowlevel/g1_low_level_example.cpp
+8. **`unitreerobotics/unitree_sdk2`:** https://github.com/unitreerobotics/unitree_sdk2
+9. **Ejemplo de control de tobillo G1 y realimentación:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/g1/low_level/g1_ankle_swing_example.cpp
+10. **Umbrales de terminación/seguridad en el SDK:** https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp
+11. **`unitreerobotics/unitree_rl_gym`:**
+
+RANK: 2
+FUENTE: CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md
+TEXTO:
+1. [Qué es CoppeliaSim](#1-qué-es-coppeliasim) 2. [Ediciones y versiones: evaluación](#2-ediciones-y-versiones-evaluación) 3. [Instalación en Windows](#3-instalación-en-windows) 4. [Instalación en Ubuntu](#4-instalación-en-ubuntu) 5. [Arquitectura de una escena y objetos](#5-arquitectura-de-una-escena-y-objetos) 6. [Cinemática: jerarquía y árbol del robot](#6-cinemática-jerarquía-y-árbol-del-robot) 7. [Dinámica: cómo construir correctamente el árbol físico](#7-dinámica-cómo-construir-correctamente-el-árbol-físico) 8. [Articulaciones y control de motores](#8-articulaciones-y-control-de-motores) 9. [Motores físicos: MuJoCo, Bullet, ODE, Vortex y Newton](#9-motores-físicos-mujoco-bullet-ode-vortex-y-newton) 10. [Sensores y adquisición de datos](#10-sensores-y-adquisición-de-datos) 11. [Formas de programar y conectarse](#11-formas-de-programar-y-conectarse) 12. [Python: ejemplos con ZeroMQ Remote API](#12-python-ejemplos-con-zeromq-remote-api) 13. [Python: ROS 2 y otras alternativas](#13-python-ros-2-y-otras-alternativas) 14. [Lua dentro de CoppeliaSim](#14-lua-dentro-de-coppeliasim) 15. [Comparación de interfaces de conexión](#15-comparación-de-interfaces-de-conexión) 16. [Ejecución sincronizada, pasos y rendimiento](#16-ejecución-sincronizada-pasos-y-rendimiento) 17. [Buenas prácticas para un robot humanoide](#17-buenas-prácticas-para-un-robot-humanoide) 18. [Diagnóstico de errores comunes](#18-diagnóstico-de-errores-comunes) 19. [Recomendación para GIAR-ORION y Unitree G1](#19-recomendación-para-giar-orion-y-unitree-g1) 20. [Bibliografía y enlaces oficiales](#20-bibliografía-y-enlaces-oficiales)
+
+RANK: 3
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+Unitree G1 — Dossier técnico con fuentes verificables
+**Proyecto:** GIAR-ORION 
+**Fecha de consulta:** 12 de octubre de 2026 
+**Objetivo:** reunir información de fabricante y repositorios de software sobre el humanoide Unitree G1, con foco en simulación, control y aprendizaje por refuerzo.
+> **Criterio de confiabilidad.** Se priorizan la página oficial de Unitree, la aplicación/manuales oficiales y repositorios de la organización `unitreerobotics`. Los datos publicados para el producto comercial no siempre coinciden con una configuración EDU, una revisión de hardware o el modelo de simulación. Se identifican explícitamente los valores que no están publicados en las fuentes consultadas; no deben completarse con estimaciones como si fueran especificaciones oficiales.
+
+RANK: 4
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+- El G1 estándar se publica con **1320 × 450 × 200 mm** en posición de pie, **690 × 450 × 300 mm** plegado y aproximadamente **35 kg con batería**. - La página oficial distingue **G1 (23 grados de libertad)** y **G1 EDU (23–43, según opciones)**. Las configuraciones con manos, muñecas adicionales y cintura de 3 DoF cambian la cantidad de articulaciones. - El accionamiento se describe como motor síncrono de imanes permanentes (PMSM), rotor interior de baja inercia y alta velocidad, con **doble encoder** y refrigeración local por aire. El par máximo publicado corresponde al mayor motor de la máquina, no a todos los motores: **90 N·m para G1 y 120 N·m para G1 EDU** en la tabla consultada. - La batería extraíble se especifica como **13 celdas en serie (13S), 9000 mAh**; cargador **54 V, 5 A**; autonomía declarada de aproximadamente **2 horas**. La duración real depende de la tarea y la configuración. - La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo. - Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**. - Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto. - Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor, la temperatura ambiente operativa certificada ni la masa real de cada pieza física de un robot concreto. Para ello se necesita el manual de la revisión exacta, datos del fabricante o medición de laboratorio.
+
+RANK: 5
+FUENTE: Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md
+TEXTO:
+Fuente de referencia de código: [terminaciones de seguridad en `unitree_sdk2`](https://github.com/unitreerobotics/unitree_sdk2/blob/main/include/unitree/robot/g1/common/terminations.hpp).
+
+====================================================================================================
+CONSULTA: SAC-01 | MÉTODO: lexical_only
+====================================================================================================
+
+RANK: 1
+FUENTE: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md
+TEXTO:
+**Actor-crítico:** combina política y valor. SAC, PPO en su formulación actor-crítico y muchos métodos continuos pertenecen a esta familia, con diferencias importantes en cómo aprenden y actualizan sus componentes.
+
+RANK: 2
+FUENTE: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md
+TEXTO:
+SAC            Actor-crítico    Acciones        Maximiza           Temperatura, estocástico,     continuas       recompensa más     escalado y off-policy                       entropía; usa dos  estimaciones Q críticos en su     requieren versión moderna    vigilancia. ------------------------------------------------------------------------------------
+
+RANK: 3
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+Los críticos objetivo se actualizan lentamente:
+
+RANK: 4
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+SAC combina una política estocástica, dos críticos, objetivos suavizados por entropía y reutilización de experiencias. La pérdida del crítico busca aproximar el objetivo de Bellman; la pérdida del actor favorece acciones con alto valor estimado y regula la aleatoriedad; la temperatura controla el compromiso entre recompensa y entropía.
+
+RANK: 5
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+1.  **No garantiza convergencia global.** Las redes aproximan funciones no lineales y el entrenamiento puede quedar atrapado en soluciones deficientes. 2.  **Es sensible a la recompensa.** Una señal de recompensa pobre o mal escalada puede conducir a comportamientos no deseados. 3.  **Consume interacciones.** Aunque reutiliza datos, necesita suficientes transiciones informativas. 4.  **La exploración puede ser peligrosa.** Una política estocástica puede producir acciones inestables; en robótica real se necesita una capa de seguridad. 5.  **La función Q puede estar mal estimada.** El mínimo de dos críticos reduce un problema, pero no lo elimina. 6.  **La simulación puede no representar el mundo real.** Diferencias de fricción, masa, latencia, sensores o actuadores pueden degradar la política transferida. 7.  **La observación puede ser insuficiente.** Si faltan variables importantes, la política puede no distinguir situaciones dinámicas diferentes. 8.  **El comportamiento puede sobreajustarse al simulador.** Hay que variar condiciones y evaluar fuera de las condiciones de entrenamiento. 9.  **La variante importa.** SAC continuo moderno, SAC discreto y versiones históricas con una red de valor separada no son idénticos. 10. **La función objetivo no incorpora seguridad por sí sola.** Un castigo por caída no reemplaza límites de torque, supervisión ni parada de emergencia.
+
+====================================================================================================
+CONSULTA: SAC-01 | MÉTODO: semantic_only
+====================================================================================================
+
+RANK: 1
+FUENTE: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md
+TEXTO:
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+RANK: 2
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+RANK: 3
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+3.3 ¿Por qué dos críticos?
+SAC suele aprender dos estimadores independientes y usa el mínimo:
+
+RANK: 4
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.
+
+RANK: 5
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica
+**Documento técnico para GIAR-ORION**\
+**Versión:** 2.0\
+**Fecha:** 12 de octubre de 2026\
+**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones
+prácticas de implementación, con fórmulas, ejemplos en Python, criterios
+de diagnóstico y estimaciones de tiempo y memoria.
+
+====================================================================================================
+CONSULTA: SAC-01 | MÉTODO: rrf_fusion
+====================================================================================================
+
+RANK: 1
+FUENTE: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md
+TEXTO:
+**Actor-crítico:** combina política y valor. SAC, PPO en su formulación actor-crítico y muchos métodos continuos pertenecen a esta familia, con diferencias importantes en cómo aprenden y actualizan sus componentes.
+
+RANK: 2
+FUENTE: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md
+TEXTO:
+2018: Soft Actor-Critic
+Haarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy
+de actor-crítico que optimiza una recompensa aumentada por entropía. La
+formulación favorece exploración y ha sido influyente para tareas de
+control continuo. \[SAC\]
+
+RANK: 3
+FUENTE: RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md
+TEXTO:
+SAC            Actor-crítico    Acciones        Maximiza           Temperatura, estocástico,     continuas       recompensa más     escalado y off-policy                       entropía; usa dos  estimaciones Q críticos en su     requieren versión moderna    vigilancia. ------------------------------------------------------------------------------------
+
+RANK: 4
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+
+RANK: 5
+FUENTE: SAC\Fundamentos_de_SAC_GIAR_ORION.md
+TEXTO:
+Los críticos objetivo se actualizan lentamente:

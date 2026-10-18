@@ -1,0 +1,4 @@
+﻿strategy,found_terms,expected_terms,recall_literal,queries_complete,queries_total,hit_at_k_count
+A_E5,6,65,0.0923,2,6,2
+B_literal,56,65,0.8615,5,6,6
+C_selective,56,65,0.8615,5,6,6

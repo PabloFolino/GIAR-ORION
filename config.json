@@ -12,11 +12,11 @@
         "modes": {
             "rapido": {
                 "think": false,
-                "num_predict": 160
+                "num_predict": 512
             },
             "investigacion": {
                 "think": true,
-                "num_predict": 700
+                "num_predict": 2048
             }
         }
     },
@@ -25,5 +25,15 @@
         "knowledge": "Knowledge",
         "memory": "Memory",
         "logs": "Logs"
+    },
+    "rag": {
+        "enabled": true,
+        "mode": "hybrid",
+        "top_k": 5,
+        "device": "cpu",
+        "local_files_only": false,
+        "show_sources": true,
+        "e5_weight": 0.7,
+        "bge_weight": 0.3
     }
 }

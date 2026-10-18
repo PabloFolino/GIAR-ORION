@@ -1,0 +1,18 @@
+{
+  "experiment": "G1-RAG-06",
+  "timestamp": "20261012_174936",
+  "cases": 9,
+  "routing_correct": 8,
+  "routing_accuracy": 0.8889,
+  "identifier_cases": 5,
+  "semantic_cases": 3,
+  "structured_cases": 1,
+  "top_k": 5,
+  "e5_model": "intfloat/multilingual-e5-base",
+  "device": "cuda",
+  "total_chunks": 941,
+  "dossier_chunks": 81,
+  "mjcf_actuators": 43,
+  "initialization_seconds": 16.912,
+  "note": "Las preguntas conceptuales se evalúan con términos de control orientativos, no con juicio humano de calidad de respuesta. La exactitud de enrutamiento se mide contra las categorías definidas para este conjunto de prueba."
+}

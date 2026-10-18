@@ -1,0 +1,32 @@
+{
+  "experiment": "G1-RAG-12",
+  "timestamp": "20261013_095027",
+  "method": "E5 dense semantic retrieval, each candidate Markdown indexed in isolation",
+  "retriever": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Agent\\MultilingualKnowledgeRetriever.py",
+  "model": "intfloat/multilingual-e5-base",
+  "top_k": 5,
+  "chunk_chars": 1100,
+  "overlap_chars": 150,
+  "candidates": {
+    "old": {
+      "file": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge\\Unitree\\G1\\g1_29dof_with_hand_rag.md",
+      "bytes": 44650,
+      "chunks": 57,
+      "initialization_seconds": 12.173,
+      "device": "cuda"
+    },
+    "new": {
+      "file": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge\\Unitree\\G1\\g1_29dof_with_hand_rag_v2.md",
+      "bytes": 46581,
+      "chunks": 105,
+      "initialization_seconds": 4.325,
+      "device": "cuda"
+    }
+  },
+  "limitations": [
+    "La comparación aísla cada Markdown; no evalúa el comportamiento del router de G1-RAG-07.",
+    "La cobertura literal no mide relevancia ni corrección semántica.",
+    "Los resultados deben revisarse manualmente.",
+    "CONTROL-RL-12 es una consulta de control ajena al contenido MJCF."
+  ]
+}

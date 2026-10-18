@@ -1,0 +1,17 @@
+{
+  "format_version": 1,
+  "models": {
+    "e5": {
+      "model_name": "intfloat/multilingual-e5-base",
+      "corpus_fingerprint": "ddca11294a2c29a688f2cefa91bb6a0410e99d800d18068ac37839d7c39d5b63",
+      "chunk_count": 1072,
+      "dimension": 768
+    },
+    "bge": {
+      "model_name": "BAAI/bge-m3",
+      "corpus_fingerprint": "ddca11294a2c29a688f2cefa91bb6a0410e99d800d18068ac37839d7c39d5b63",
+      "chunk_count": 1072,
+      "dimension": 1024
+    }
+  }
+}

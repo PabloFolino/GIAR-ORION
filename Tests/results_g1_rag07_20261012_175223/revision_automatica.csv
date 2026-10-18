@@ -1,0 +1,356 @@
+﻿case_id,query,predicted_route,acceptable_routes,rank,source,retrieval_score,retrieved_text,relevance_judgment,answers_query,evidence_sufficient,review_notes,auto_relevance_judgment,auto_answers_query,auto_evidence_sufficient,auto_confidence,auto_review_notes,human_review_status,auto_error
+R07-01,Enumerá las seis articulaciones de la pierna izquierda con sus nombres exactos.,identifier,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,6,"6.3 Inventario nominal de las 43 articulaciones actuadas
+1. `left_hip_pitch_joint`
+2. `left_hip_roll_joint`
+3. `left_hip_yaw_joint`
+4. `left_knee_joint`
+5. `left_ankle_pitch_joint`
+6. `left_ankle_roll_joint`",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,PARCIALMENTE,NO,0.5,"El fragmento menciona seis articulaciones de la pierna izquierda, pero no enumera exactamente seis, sino seis articulaciones de la pierna izquierda, y no se especifica si son todas las seis que se piden.",REVISAR,
+R07-02,¿Qué joints corresponden a la pierna izquierda del G1? Lista los identificadores.,identifier,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,6,"6.3 Inventario nominal de las 43 articulaciones actuadas
+1. `left_hip_pitch_joint`
+2. `left_hip_roll_joint`
+3. `left_hip_yaw_joint`
+4. `left_knee_joint`
+5. `left_ankle_pitch_joint`
+6. `left_ankle_roll_joint`",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento proporciona la lista completa de los joints correspondientes a la pierna izquierda del G1, según la consulta.",VALIDAR,
+R07-03,"Dame waist_yaw_joint, waist_roll_joint y waist_pitch_joint en el orden del bloque actuator del MJCF.",structured,structured;identifier,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento contiene exactamente los joints waist_yaw_joint, waist_roll_joint y waist_pitch_joint en el orden solicitado dentro del bloque actuator del MJCF.",VALIDAR,
+R07-04,¿Cuáles son las tres articulaciones de la cintura? No necesito el orden del XML.,identifier,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,3,"6.3 Inventario nominal de las 43 articulaciones actuadas
+13. `waist_yaw_joint`
+14. `waist_roll_joint`
+15. `waist_pitch_joint`",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,PARCIALMENTE,NO,0.6,"El fragmento menciona tres articulaciones de la cintura: `waist_yaw_joint`, `waist_roll_joint` y `waist_pitch_joint`, pero no confirma que sean las tres únicas. La consulta pide las tres articulaciones de la cintura, y aunque el fragmento proporciona tres, no se puede afirmar que sean las únicas sin más información.",REVISAR,
+R07-05,¿Qué sensores IMU aparecen en el MJCF y qué mide cada uno?,semantic,identifier;semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8880955576896667,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles.",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,NO,NO,0.3,"El fragmento menciona los nombres de los sensores IMU en el modelo MJCF (`imu_in_torso` e `imu_in_pelvis`), pero no detalla qué mide cada uno. Además, se enfoca más en la simulación y no en el hardware físico, lo cual no responde completamente la consulta.",REVISAR,
+R07-05,¿Qué sensores IMU aparecen en el MJCF y qué mide cada uno?,semantic,identifier;semantic,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8756587505340576,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento proporciona una tabla que enumera los sensores IMU en el modelo MJCF, junto con las mediciones que realizan, respondiendo directamente a la consulta.",VALIDAR,
+R07-05,¿Qué sensores IMU aparecen en el MJCF y qué mide cada uno?,semantic,identifier;semantic,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8669325113296509,"IMU representadas en el modelo MJCF
+El archivo `g1_29dof_with_hand_rev_1_0.xml` declara dos sitios de referencia para IMU y cuatro canales de medición simulados:",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,NO,NO,0.3,"El fragmento menciona la existencia de sensores IMU en el modelo MJCF y algunos canales de medición simulados, pero no especifica qué sensores IMU aparecen ni qué mide cada uno.",REVISAR,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,identifier,identifier;semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,2,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.7,"El fragmento explica que `imu_in_torso` es el sitio donde se encuentra el sensor `imu-torso-angular-velocity`, que mide la velocidad angular del torso. Sin embargo, no explica directamente la diferencia entre `imu_in_torso` y `imu-torso-angular-velocity`, ya que el primero es un sitio y el segundo es un sensor. Se necesita más información para completar la explicación.",REVISAR,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,identifier,identifier;semantic,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles.",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,PARCIALMENTE,NO,0.6,"El fragmento menciona los nombres `imu_in_torso` e `imu_in_pelvis` como sitios del modelo de simulación, pero no explica claramente la diferencia entre `imu_in_torso` y `imu-torso-angular-velocity`. Además, no proporciona información sobre el sensor `imu-torso-angular-velocity` ni su relación con el primero.",REVISAR,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,semantic,semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8334264755249023,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles.",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,PARCIALMENTE,NO,0.6,"El fragmento menciona que `imu_in_torso` e `imu_in_pelvis` son 'sitios del modelo de simulación' en MJCF, lo cual sugiere una diferencia conceptual entre 'site' y 'sensor', pero no define claramente qué es un 'site' o un 'sensor' en este contexto. No proporciona una explicación completa de la diferencia conceptual solicitada.",REVISAR,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,semantic,semantic,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8251196146011353,"bricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo.
+- Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**.
+- Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto.
+- Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor,",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.0,"El fragmento no aborda la diferencia conceptual entre un site y un sensor en MJCF. En cambio, describe componentes del robot, ejemplos de control, y limitaciones de las fuentes disponibles. No hay información sobre 'site' ni sobre la definición de 'sensor' en el contexto de MJCF.",REVISAR,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,semantic,semantic,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8198952674865723,"8.1 Estructura del modelo
+En los modelos MJCF de MuJoCo, la jerarquía se expresa con elementos anidados `<worldbody>`, `<body>`, `<joint>`, `<geom>` e `<inertial>`. El URDF expresa la misma clase de estructura mediante `<link>`, `<joint>`, `<parent>`, `<child>`, `<origin>`, `<axis>`, `<limit>` e `<inertial>`.",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.0,"El fragmento no aborda la diferencia conceptual entre un site y un sensor en MJCF. En cambio, describe la estructura general de los modelos MJCF y compara con URDF, sin mencionar ni site ni sensor.",REVISAR,
+R07-08,Listá las siete articulaciones de la mano derecha con los nombres exactos.,identifier,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,7,"6.3 Inventario nominal de las 43 articulaciones actuadas
+37. `right_hand_thumb_0_joint`
+38. `right_hand_thumb_1_joint`
+39. `right_hand_thumb_2_joint`
+40. `right_hand_index_0_joint`
+41. `right_hand_index_1_joint`
+42. `right_hand_middle_0_joint`
+43. `right_hand_middle_1_joint`",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.0,"El fragmento menciona solo seis articulaciones de la mano derecha, pero la consulta solicita siete. Además, no se mencionan las articulaciones de los dedos anular y meñique, por lo que no se cumple con la solicitud completa.",REVISAR,
+R07-09,"¿Cuántos actuadores hay y cuáles son, en el orden exacto en que aparecen en actuator?",structured,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento proporciona la lista exacta de actuadores en el orden en que aparecen en 'actuator', respondiendo directamente a la consulta.",VALIDAR,
+R07-10,"Extraé del XML la secuencia de actuadores, sin resumirla.",structured,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento contiene la secuencia completa de actuadores sin resumirla, tal como se solicitó en la consulta.",VALIDAR,
+R07-11,¿Qué función cumple la recompensa durante el aprendizaje por refuerzo?,semantic,semantic,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.9044083952903748,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.7,"El fragmento menciona la recompensa como una señal que recibe el agente, pero no explica claramente su función durante el aprendizaje por refuerzo. La función de la recompensa es un tema central que se menciona de forma indirecta.",REVISAR,
+R07-11,¿Qué función cumple la recompensa durante el aprendizaje por refuerzo?,semantic,semantic,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8952850103378296,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno.",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.7,"El fragmento menciona la recompensa como parte del aprendizaje por refuerzo, pero no explica directamente su función. Solo se indica que está relacionada con el retorno y la toma de decisiones.",REVISAR,
+R07-11,¿Qué función cumple la recompensa durante el aprendizaje por refuerzo?,semantic,semantic,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8822943568229675,"2. Qué problema resuelve el aprendizaje por refuerzo
+- (`\mathcal `{=tex}S): conjunto de estados u observaciones posibles.
+- (`\mathcal `{=tex}A): conjunto de acciones posibles.
+- (P(s'`\mid `{=tex}s,a)): dinámica de transición; describe la
+ probabilidad de llegar al siguiente estado (s').
+- (R(s,a,s')): recompensa inmediata que asigna el entorno.
+- (`\gamma`{=tex}`\in`{=tex}\[0,1)): factor de descuento de
+ recompensas futuras.",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.7,"El fragmento menciona la recompensa (R(s,a,s')) como parte del modelo del aprendizaje por refuerzo, pero no explica su función específica. Por lo tanto, la evidencia es relevante pero incompleta para responder la consulta.",REVISAR,
+R07-12,Explicá la relación entre política del agente y función de valor en RL.,semantic,semantic,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8715773820877075,"12.6 RL de un agente y multiagente
+------------------------------------------------------------------------",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.0,El fragmento recuperado no contiene información sobre la relación entre política del agente y función de valor en aprendizaje por refuerzo.,REVISAR,
+R07-12,Explicá la relación entre política del agente y función de valor en RL.,semantic,semantic,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8586527109146118,"2.6 Política
+La **política** (`\pi`{=tex}) especifica cómo el agente elige acciones.",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.1,"El fragmento solo menciona la definición de política sin abordar la relación con la función de valor, por lo que no es relevante para la consulta.",REVISAR,
+R07-12,Explicá la relación entre política del agente y función de valor en RL.,semantic,semantic,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8574533462524414,"12.6 RL de un agente y multiagente
+En RL de un agente se modela un decisor principal. En RL multiagente
+varios agentes toman decisiones e interactúan, y la recompensa puede ser
+individual o compartida. La interacción entre políticas hace que el
+problema pueda cambiar durante el entrenamiento.",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.0,"El fragmento no aborda la relación entre política del agente y función de valor en aprendizaje por refuerzo. En cambio, se enfoca en la diferencia entre RL de un agente y multiagente, sin mencionar conceptos clave como políticas o funciones de valor.",REVISAR,
+R07-13,Buscá en el dossier el identificador right_hand_index_1_joint.,identifier,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,"6.3 Inventario nominal de las 43 articulaciones actuadas
+37. `right_hand_thumb_0_joint`
+38. `right_hand_thumb_1_joint`
+39. `right_hand_thumb_2_joint`
+40. `right_hand_index_0_joint`
+41. `right_hand_index_1_joint`
+42. `right_hand_middle_0_joint`
+43. `right_hand_middle_1_joint`",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,El fragmento contiene directamente el identificador `right_hand_index_1_joint` en la lista de articulaciones actuadas.,VALIDAR,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,identifier,identifier;semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento define 'imu-pelvis-linear-acceleration' como la aceleración lineal de la pelvis medida mediante acelerómetro, y lo identifica como parte del modelo MJCF.",VALIDAR,
+R07-15,"Quiero comprender cómo el agente decide una acción a partir de las observaciones, no los nombres de las articulaciones.",semantic,semantic,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8555468320846558,"10.2 Relación entre observación y acción
+- orden de las articulaciones;
+- unidad y rango de cada acción;
+- articulaciones realmente actuadas;
+- escalado de la acción normalizada;
+- si la acción representa posición objetivo, velocidad, torque u otra
+ magnitud;
+- frecuencia con la que se aplica la acción;
+- saturaciones y límites físicos.",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.7,"El fragmento aborda aspectos relacionados con cómo se define y ejecuta una acción en un sistema de control, pero no explica directamente cómo el agente toma decisiones a partir de observaciones. Menciona elementos como escalado, frecuencia y magnitudes de acción, pero no detalla el proceso de toma de decisiones basado en observaciones.",REVISAR,
+R07-15,"Quiero comprender cómo el agente decide una acción a partir de las observaciones, no los nombres de las articulaciones.",semantic,semantic,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8553286790847778,"2.4 Acción
+La **acción** (a_t) es la decisión del agente en el instante (t).",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.1,"El fragmento menciona la definición general de acción como decisión del agente, pero no explica cómo se toma esa decisión a partir de observaciones, ni aborda el mecanismo detrás de la elección de acciones en el contexto de aprendizaje por refuerzo.",REVISAR,
+R07-15,"Quiero comprender cómo el agente decide una acción a partir de las observaciones, no los nombres de las articulaciones.",semantic,semantic,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.85295569896698,"10.2 Relación entre observación y acción
+------------------------------------------------------------------------",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO,0.0,"El fragmento recuperado no contiene información específica sobre cómo el agente decide una acción a partir de las observaciones, ni menciona detalles sobre el proceso de toma de decisiones en el contexto de Unitree G1, MJCF o aprendizaje por refuerzo.",REVISAR,
+R07-16,¿Cuáles son los nombres exactos de los joints del brazo izquierdo?,identifier,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,7,"6.3 Inventario nominal de las 43 articulaciones actuadas
+16. `left_shoulder_pitch_joint`
+17. `left_shoulder_roll_joint`
+18. `left_shoulder_yaw_joint`
+19. `left_elbow_joint`
+20. `left_wrist_roll_joint`
+21. `left_wrist_pitch_joint`
+22. `left_wrist_yaw_joint`",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,El fragmento proporciona los nombres exactos de los joints del brazo izquierdo del robot Unitree G1.,VALIDAR,
+R07-17,¿Qué orden tienen los actuadores de la cintura en el XML?,structured,structured;identifier,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento proporciona la lista completa de los actuadores de la cintura en el XML, incluyendo el orden exacto solicitado.",VALIDAR,
+R07-18,Compará la función de recompensa con la política de un agente SAC.,semantic,semantic,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8665449619293213,"7.1 SAC estándar recibe una recompensa escalar
+\[ r_t`\in`{=tex}`\mathbb `{=tex}R \]",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO_APLICA,0.1,"El fragmento menciona la recompensa en el contexto de SAC, pero no compara la función de recompensa con la política de un agente SAC, ni proporciona información suficiente para realizar dicha comparación.",REVISAR,
+R07-18,Compará la función de recompensa con la política de un agente SAC.,semantic,semantic,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8644801378250122,"7.1 SAC estándar recibe una recompensa escalar
+La formulación habitual de SAC usa:",PENDIENTE,PENDIENTE,PENDIENTE,,IRRELEVANTE,NO,NO_APLICA,0.0,"El fragmento recuperado no proporciona información sobre la función de recompensa ni sobre la política de un agente SAC, por lo que no es relevante para comparar estos conceptos.",REVISAR,
+R07-18,Compará la función de recompensa con la política de un agente SAC.,semantic,semantic,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8560950756072998,"19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía.",PENDIENTE,PENDIENTE,PENDIENTE,,PARCIAL,PARCIALMENTE,NO,0.6,"El fragmento menciona aspectos de la función de recompensa y la política en SAC, pero no compara directamente ambas funciones como se solicita en la consulta. La información proporcionada es indirecta y no aborda la comparación explícita.",REVISAR,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,identifier,identifier;semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,SI,SI,1.0,"El fragmento contiene información directa sobre el nombre 'imu_in_pelvis' y confirma que es un sitio/marco en el modelo, no un sensor.",VALIDAR,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,identifier,identifier;semantic,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles.",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.7,"El fragmento menciona que 'imu_in_pelvis' es un sitio del modelo de simulación, pero no confirma si es sensor o site con claridad. La respuesta parcialmente responde la consulta, pero no es suficiente para fundamentar una respuesta completa.",REVISAR,
+R07-20,Extrae todos los actuadores de g1_29dof_with_hand.xml y comprueba si son 43.,structured,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint",PENDIENTE,PENDIENTE,PENDIENTE,,RELEVANTE,PARCIALMENTE,NO,0.8,"El fragmento contiene una lista de actuadores del archivo g1_29dof_with_hand.xml, pero no se menciona el total de actuadores. La lista incluye 43 elementos, pero no se confirma explícitamente que sean 43.",REVISAR,

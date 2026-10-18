@@ -1,0 +1,21 @@
+﻿case_id,strategy,top_k,mean_top_k_term_coverage,distinct_sources_top_k,navigation_or_reference_chunks_top_k,expected_terms_found_anywhere_top_k,expected_terms_coverage_anywhere_top_k
+UNITREE-01,legacy_approx,5,0.0,1,0,,0.0
+SAC-01,legacy_approx,5,0.3667,2,0,critic;crítico;mínimo;tau,0.6667
+SAC-02,legacy_approx,5,0.35,1,0,experiencias;Replay Buffer;transiciones,0.75
+SAC-03,legacy_approx,5,0.45,1,0,entropía;exploración;política;temperatura,1.0
+RL-01,legacy_approx,5,0.44,1,0,acción;agente;entorno;estado;recompensa,1.0
+DRL-01,legacy_approx,5,0.25,1,0,aprendizaje por refuerzo,0.25
+COPPELIA-01,legacy_approx,5,0.2,1,0,articulaciones;dinámica;motor físico,0.75
+PYTORCH-01,legacy_approx,5,0.2,2,0,CUDA;torch.cuda.is_available,0.6667
+ROBOT-01,legacy_approx,5,0.25,2,0,recompensa,0.25
+AGENT-01,legacy_approx,5,0.0,4,0,,0.0
+UNITREE-01,heading_aware,5,0.0833,2,0,left_ankle_pitch_joint;left_hip_pitch_joint;left_hip_roll_joint;left_hip_yaw_joint;left_knee_joint,0.4167
+SAC-01,heading_aware,5,0.3667,2,0,critic;crítico;mínimo;tau,0.6667
+SAC-02,heading_aware,5,0.35,1,0,Replay Buffer;transiciones,0.5
+SAC-03,heading_aware,5,0.45,2,0,entropía;exploración;política;temperatura,1.0
+RL-01,heading_aware,5,0.64,2,0,acción;agente;entorno;estado;recompensa,1.0
+DRL-01,heading_aware,5,0.3,1,0,aprendizaje por refuerzo;redes neuronales,0.5
+COPPELIA-01,heading_aware,5,0.25,1,0,articulaciones;dinámica;motor físico,0.75
+PYTORCH-01,heading_aware,5,0.2,2,0,CUDA;GPU;torch.cuda.is_available,1.0
+ROBOT-01,heading_aware,5,0.25,2,0,acciones;recompensa,0.5
+AGENT-01,heading_aware,5,0.0,4,0,,0.0

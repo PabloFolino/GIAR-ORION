@@ -1,0 +1,424 @@
+﻿case_id,predicted_route,rank,source,score,expected_terms_found,text
+R07-01,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,6,left_hip_pitch_joint;left_hip_roll_joint;left_hip_yaw_joint;left_knee_joint;left_ankle_pitch_joint;left_ankle_roll_joint,"6.3 Inventario nominal de las 43 articulaciones actuadas
+1. `left_hip_pitch_joint`
+2. `left_hip_roll_joint`
+3. `left_hip_yaw_joint`
+4. `left_knee_joint`
+5. `left_ankle_pitch_joint`
+6. `left_ankle_roll_joint`"
+R07-02,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,6,left_hip_pitch_joint;left_hip_roll_joint;left_hip_yaw_joint;left_knee_joint;left_ankle_pitch_joint;left_ankle_roll_joint,"6.3 Inventario nominal de las 43 articulaciones actuadas
+1. `left_hip_pitch_joint`
+2. `left_hip_roll_joint`
+3. `left_hip_yaw_joint`
+4. `left_knee_joint`
+5. `left_ankle_pitch_joint`
+6. `left_ankle_roll_joint`"
+R07-03,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,waist_yaw_joint;waist_roll_joint;waist_pitch_joint,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint"
+R07-04,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,3,waist_yaw_joint;waist_roll_joint;waist_pitch_joint,"6.3 Inventario nominal de las 43 articulaciones actuadas
+13. `waist_yaw_joint`
+14. `waist_roll_joint`
+15. `waist_pitch_joint`"
+R07-05,semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8880955576896667,,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+R07-05,semantic,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8756587505340576,imu-torso-angular-velocity;imu-torso-linear-acceleration;imu-pelvis-angular-velocity;imu-pelvis-linear-acceleration,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+R07-05,semantic,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8669325113296509,,"IMU representadas en el modelo MJCF
+El archivo `g1_29dof_with_hand_rev_1_0.xml` declara dos sitios de referencia para IMU y cuatro canales de medición simulados:"
+R07-05,semantic,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8556510210037231,,"Otros sensores y dispositivos de percepción indicados para la familia G1
+**Importante:** el XML consultado define explícitamente los nombres de los cuatro canales IMU de simulación, pero no declara en ese bloque sensores de cámara, LiDAR, micrófonos, encoders o fuerza de pie con identificadores equivalentes. La lista de hardware comercial de la sección 6.1 y el inventario de sensores simulados son fuentes distintas y no deben mezclarse como si fueran el mismo inventario. Para completar nombres de topics, frames y campos físicos se necesita la versión exacta de `unitree_ros2`/`unitree_sdk2` y, cuando corresponda, el inventario de la unidad."
+R07-05,semantic,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8545622825622559,,"bricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo.
+- Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**.
+- Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto.
+- Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor,"
+R07-06,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,2,imu_in_torso;imu-torso-angular-velocity,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+R07-06,identifier,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,imu_in_torso,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+R07-07,semantic,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8334264755249023,,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+R07-07,semantic,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8251196146011353,sensor,"bricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo.
+- Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**.
+- Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto.
+- Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor,"
+R07-07,semantic,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8198952674865723,,"8.1 Estructura del modelo
+En los modelos MJCF de MuJoCo, la jerarquía se expresa con elementos anidados `<worldbody>`, `<body>`, `<joint>`, `<geom>` e `<inertial>`. El URDF expresa la misma clase de estructura mediante `<link>`, `<joint>`, `<parent>`, `<child>`, `<origin>`, `<axis>`, `<limit>` e `<inertial>`."
+R07-07,semantic,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.817918598651886,sensor,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+R07-07,semantic,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8173267841339111,,"IMU representadas en el modelo MJCF
+El archivo `g1_29dof_with_hand_rev_1_0.xml` declara dos sitios de referencia para IMU y cuatro canales de medición simulados:"
+R07-08,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,7,right_hand_thumb_0_joint;right_hand_thumb_1_joint;right_hand_thumb_2_joint;right_hand_index_0_joint;right_hand_index_1_joint;right_hand_middle_0_joint;right_hand_middle_1_joint,"6.3 Inventario nominal de las 43 articulaciones actuadas
+37. `right_hand_thumb_0_joint`
+38. `right_hand_thumb_1_joint`
+39. `right_hand_thumb_2_joint`
+40. `right_hand_index_0_joint`
+41. `right_hand_index_1_joint`
+42. `right_hand_middle_0_joint`
+43. `right_hand_middle_1_joint`"
+R07-09,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,left_hip_pitch_joint;left_hip_roll_joint;left_hip_yaw_joint;left_knee_joint;left_ankle_pitch_joint;left_ankle_roll_joint;right_hip_pitch_joint;right_hip_roll_joint;right_hip_yaw_joint;right_knee_joint;right_ankle_pitch_joint;right_ankle_roll_joint;waist_yaw_joint;waist_roll_joint;waist_pitch_joint;left_shoulder_pitch_joint;left_shoulder_roll_joint;left_shoulder_yaw_joint;left_elbow_joint;left_wrist_roll_joint;left_wrist_pitch_joint;left_wrist_yaw_joint;left_hand_thumb_0_joint;left_hand_thumb_1_joint;left_hand_thumb_2_joint;left_hand_middle_0_joint;left_hand_middle_1_joint;left_hand_index_0_joint;left_hand_index_1_joint;right_shoulder_pitch_joint;right_shoulder_roll_joint;right_shoulder_yaw_joint;right_elbow_joint;right_wrist_roll_joint;right_wrist_pitch_joint;right_wrist_yaw_joint;right_hand_thumb_0_joint;right_hand_thumb_1_joint;right_hand_thumb_2_joint;right_hand_index_0_joint;right_hand_index_1_joint;right_hand_middle_0_joint;right_hand_middle_1_joint,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint"
+R07-10,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,left_hip_pitch_joint;left_hip_roll_joint;left_hip_yaw_joint;left_knee_joint;left_ankle_pitch_joint;left_ankle_roll_joint;right_hip_pitch_joint;right_hip_roll_joint;right_hip_yaw_joint;right_knee_joint;right_ankle_pitch_joint;right_ankle_roll_joint;waist_yaw_joint;waist_roll_joint;waist_pitch_joint;left_shoulder_pitch_joint;left_shoulder_roll_joint;left_shoulder_yaw_joint;left_elbow_joint;left_wrist_roll_joint;left_wrist_pitch_joint;left_wrist_yaw_joint;left_hand_thumb_0_joint;left_hand_thumb_1_joint;left_hand_thumb_2_joint;left_hand_middle_0_joint;left_hand_middle_1_joint;left_hand_index_0_joint;left_hand_index_1_joint;right_shoulder_pitch_joint;right_shoulder_roll_joint;right_shoulder_yaw_joint;right_elbow_joint;right_wrist_roll_joint;right_wrist_pitch_joint;right_wrist_yaw_joint;right_hand_thumb_0_joint;right_hand_thumb_1_joint;right_hand_thumb_2_joint;right_hand_index_0_joint;right_hand_index_1_joint;right_hand_middle_0_joint;right_hand_middle_1_joint,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint"
+R07-11,semantic,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.9044083952903748,recompensa;aprendizaje,"1. ¿Qué es el aprendizaje por refuerzo?
+El **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un
+área del aprendizaje automático en la que un agente aprende a tomar
+decisiones mediante la interacción con un entorno. El agente ejecuta
+acciones, observa sus consecuencias y recibe una señal de recompensa. El
+objetivo es aprender una conducta que maximice la recompensa acumulada a
+lo largo del tiempo. \[SB, Spinning Up\]"
+R07-11,semantic,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8952850103378296,recompensa;aprendizaje,"29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno."
+R07-11,semantic,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8822943568229675,recompensa;aprendizaje,"2. Qué problema resuelve el aprendizaje por refuerzo
+- (`\mathcal `{=tex}S): conjunto de estados u observaciones posibles.
+- (`\mathcal `{=tex}A): conjunto de acciones posibles.
+- (P(s'`\mid `{=tex}s,a)): dinámica de transición; describe la
+ probabilidad de llegar al siguiente estado (s').
+- (R(s,a,s')): recompensa inmediata que asigna el entorno.
+- (`\gamma`{=tex}`\in`{=tex}\[0,1)): factor de descuento de
+ recompensas futuras."
+R07-11,semantic,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8790687322616577,recompensa;aprendizaje,"2. Qué problema resuelve el aprendizaje por refuerzo
+El objetivo no es maximizar solamente la recompensa inmediata, sino la
+suma descontada a lo largo del tiempo:"
+R07-11,semantic,5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8622641563415527,aprendizaje,"1. ¿Qué es el aprendizaje por refuerzo?
+La diferencia fundamental respecto del aprendizaje supervisado es que
+normalmente no se proporciona una etiqueta correcta para cada decisión.
+El agente debe descubrir qué acciones conducen a mejores resultados, y
+las consecuencias de una acción pueden aparecer muchos pasos después."
+R07-12,semantic,1,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8715773820877075,,"12.6 RL de un agente y multiagente
+------------------------------------------------------------------------"
+R07-12,semantic,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8586527109146118,política,"2.6 Política
+La **política** (`\pi`{=tex}) especifica cómo el agente elige acciones."
+R07-12,semantic,3,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8574533462524414,,"12.6 RL de un agente y multiagente
+En RL de un agente se modela un decisor principal. En RL multiagente
+varios agentes toman decisiones e interactúan, y la recompensa puede ser
+individual o compartida. La interacción entre políticas hace que el
+problema pueda cambiar durante el entrenamiento."
+R07-12,semantic,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.854503870010376,política,"28.2 Documentación técnica y material educativo
+Fuente utilizada para definiciones de agente, entorno, estado, acción,
+política, trayectoria, retorno y panorama de Deep RL."
+R07-12,semantic,5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8536477088928223,valor,"27. Definiciones para consulta rápida
+- **Acción ((a)):** decisión ejecutada por el agente.
+- **Agente:** sistema que aprende a decidir.
+- **Aprendizaje por refuerzo (RL):** aprendizaje de decisiones
+ mediante interacción y recompensas.
+- **Aprendizaje profundo por refuerzo (Deep RL):** RL que utiliza
+ redes neuronales profundas para aproximar políticas, valores o
+ modelos.
+- **Bootstrapping:** actualizar una estimación usando otra estimación
+ aprendida.
+- **Crítico:** estimador de valor usado para evaluar estados o
+ acciones.
+- **Descuento ((`\gamma`{=tex})):** factor que pondera recompensas
+ futuras.
+- **Entorno:** sistema con el que interactúa el agente.
+- **Episodio:** secuencia de interacción hasta la terminación o el
+ límite definido.
+- **Estado ((s)):** descripción suficiente del entorno para la
+ formulación.
+- **Exploración:** probar acciones para obtener información.
+- **Explotación:** elegir acciones que parecen mejores según lo
+ aprendido.
+- **Función de ventaja ((A)):** diferencia entre valor de una acción y
+ valor del estado.
+- **Función de valor ((V)):** retorno"
+R07-13,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,right_hand_index_1_joint,"6.3 Inventario nominal de las 43 articulaciones actuadas
+37. `right_hand_thumb_0_joint`
+38. `right_hand_thumb_1_joint`
+39. `right_hand_thumb_2_joint`
+40. `right_hand_index_0_joint`
+41. `right_hand_index_1_joint`
+42. `right_hand_middle_0_joint`
+43. `right_hand_middle_1_joint`"
+R07-14,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,imu-pelvis-linear-acceleration,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+R07-15,semantic,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8555468320846558,acción,"10.2 Relación entre observación y acción
+- orden de las articulaciones;
+- unidad y rango de cada acción;
+- articulaciones realmente actuadas;
+- escalado de la acción normalizada;
+- si la acción representa posición objetivo, velocidad, torque u otra
+ magnitud;
+- frecuencia con la que se aplica la acción;
+- saturaciones y límites físicos."
+R07-15,semantic,2,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8553286790847778,acción,"2.4 Acción
+La **acción** (a_t) es la decisión del agente en el instante (t)."
+R07-15,semantic,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.85295569896698,acción,"10.2 Relación entre observación y acción
+------------------------------------------------------------------------"
+R07-15,semantic,4,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.852864146232605,,"La articulación debe estar configurada para control de posición.
+ sim.setJointTargetPosition(joint, target)
+sim.step()"
+R07-15,semantic,5,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8515232801437378,,"14.3 Aplicar una consigna a un conjunto de articulaciones
+for i, path in ipairs(jointPaths) do
+ joints[i] = sim.getObject(path)
+ end
+end"
+R07-16,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,7,left_shoulder_pitch_joint;left_shoulder_roll_joint;left_shoulder_yaw_joint;left_elbow_joint;left_wrist_roll_joint;left_wrist_pitch_joint;left_wrist_yaw_joint,"6.3 Inventario nominal de las 43 articulaciones actuadas
+16. `left_shoulder_pitch_joint`
+17. `left_shoulder_roll_joint`
+18. `left_shoulder_yaw_joint`
+19. `left_elbow_joint`
+20. `left_wrist_roll_joint`
+21. `left_wrist_pitch_joint`
+22. `left_wrist_yaw_joint`"
+R07-17,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,waist_yaw_joint;waist_roll_joint;waist_pitch_joint,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint"
+R07-18,semantic,1,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8665449619293213,recompensa,"7.1 SAC estándar recibe una recompensa escalar
+\[ r_t`\in`{=tex}`\mathbb `{=tex}R \]"
+R07-18,semantic,2,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8644801378250122,recompensa,"7.1 SAC estándar recibe una recompensa escalar
+La formulación habitual de SAC usa:"
+R07-18,semantic,3,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8560950756072998,recompensa;política,"19. Conclusiones
+SAC combina una política estocástica, dos críticos, objetivos suavizados
+por entropía y reutilización de experiencias. La pérdida del crítico
+busca aproximar el objetivo de Bellman; la pérdida del actor favorece
+acciones con alto valor estimado y regula la aleatoriedad; la
+temperatura controla el compromiso entre recompensa y entropía."
+R07-18,semantic,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8541468381881714,,"1. Resumen ejecutivo
+SAC aprende simultáneamente:"
+R07-18,semantic,5,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8529600501060486,recompensa,"13. PPO, DDPG, TD3 y SAC: comparación conceptual
+SAC Actor-crítico Acciones Maximiza Temperatura,
+ estocástico, continuas recompensa más escalado y
+ off-policy entropía; usa dos estimaciones Q
+ críticos en su requieren
+ versión moderna vigilancia.
+ ------------------------------------------------------------------------------------"
+R07-19,identifier,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,imu_in_pelvis,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+R07-19,identifier,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,1,imu_in_pelvis,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+R07-20,structured,1,Knowledge\Unitree\G1\g1_29dof_with_hand.xml,1.0,left_hip_pitch_joint;left_hip_roll_joint;left_hip_yaw_joint;left_knee_joint;left_ankle_pitch_joint;left_ankle_roll_joint;right_hip_pitch_joint;right_hip_roll_joint;right_hip_yaw_joint;right_knee_joint;right_ankle_pitch_joint;right_ankle_roll_joint;waist_yaw_joint;waist_roll_joint;waist_pitch_joint;left_shoulder_pitch_joint;left_shoulder_roll_joint;left_shoulder_yaw_joint;left_elbow_joint;left_wrist_roll_joint;left_wrist_pitch_joint;left_wrist_yaw_joint;left_hand_thumb_0_joint;left_hand_thumb_1_joint;left_hand_thumb_2_joint;left_hand_middle_0_joint;left_hand_middle_1_joint;left_hand_index_0_joint;left_hand_index_1_joint;right_shoulder_pitch_joint;right_shoulder_roll_joint;right_shoulder_yaw_joint;right_elbow_joint;right_wrist_roll_joint;right_wrist_pitch_joint;right_wrist_yaw_joint;right_hand_thumb_0_joint;right_hand_thumb_1_joint;right_hand_thumb_2_joint;right_hand_index_0_joint;right_hand_index_1_joint;right_hand_middle_0_joint;right_hand_middle_1_joint,"left_hip_pitch_joint
+left_hip_roll_joint
+left_hip_yaw_joint
+left_knee_joint
+left_ankle_pitch_joint
+left_ankle_roll_joint
+right_hip_pitch_joint
+right_hip_roll_joint
+right_hip_yaw_joint
+right_knee_joint
+right_ankle_pitch_joint
+right_ankle_roll_joint
+waist_yaw_joint
+waist_roll_joint
+waist_pitch_joint
+left_shoulder_pitch_joint
+left_shoulder_roll_joint
+left_shoulder_yaw_joint
+left_elbow_joint
+left_wrist_roll_joint
+left_wrist_pitch_joint
+left_wrist_yaw_joint
+left_hand_thumb_0_joint
+left_hand_thumb_1_joint
+left_hand_thumb_2_joint
+left_hand_middle_0_joint
+left_hand_middle_1_joint
+left_hand_index_0_joint
+left_hand_index_1_joint
+right_shoulder_pitch_joint
+right_shoulder_roll_joint
+right_shoulder_yaw_joint
+right_elbow_joint
+right_wrist_roll_joint
+right_wrist_pitch_joint
+right_wrist_yaw_joint
+right_hand_thumb_0_joint
+right_hand_thumb_1_joint
+right_hand_thumb_2_joint
+right_hand_index_0_joint
+right_hand_index_1_joint
+right_hand_middle_0_joint
+right_hand_middle_1_joint"

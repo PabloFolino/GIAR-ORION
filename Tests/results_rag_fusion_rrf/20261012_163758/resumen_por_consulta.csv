@@ -1,0 +1,31 @@
+﻿case_id,query,method,lexical_version,semantic_mode,top_k,candidate_k,rrf_k,lexical_weight,semantic_weight,retrieval_seconds,returned_results,expected_term_count,found_term_count,term_coverage,found_terms,expected_source,expected_source_found
+UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0167,5,6,0,0.0,,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,True
+UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0445,5,6,0,0.0,,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,True
+UNITREE-01,¿Cuáles son las articulaciones principales de las piernas del robot Unitree G1?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0612,5,6,0,0.0,,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,True
+SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0111,5,5,5,1.0,actor | crítico | bellman | mínimo | pérdida,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0087,5,5,5,1.0,actor | crítico | bellman | mínimo | pérdida,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-01,¿Cómo funciona SAC y cómo se actualizan los críticos?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0198,5,5,2,0.4,actor | crítico,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-02,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0162,5,4,2,0.5,replay buffer | transiciones,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-02,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.01,5,4,3,0.75,replay buffer | transiciones | off-policy,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-02,¿Qué función cumple el Replay Buffer durante el entrenamiento de SAC?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0262,5,4,3,0.75,replay buffer | transiciones | off-policy,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-03,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0138,5,4,2,0.5,entropía | política,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-03,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0099,5,4,2,0.5,entropía | exploración,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+SAC-03,¿Qué relación existe entre la entropía y la política en Soft Actor-Critic?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0237,5,4,3,0.75,entropía | política | exploración,SAC\Fundamentos_de_SAC_GIAR_ORION.md,True
+RL-01,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0116,5,5,5,1.0,agente | estado | acción | recompensa | política,,
+RL-01,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0086,5,5,5,1.0,agente | estado | acción | recompensa | política,,
+RL-01,¿Qué es el aprendizaje por refuerzo y cómo aprende un agente?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0202,5,5,5,1.0,agente | estado | acción | recompensa | política,,
+DRL-01,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0134,5,3,3,1.0,redes neuronales | política | recompensa,,
+DRL-01,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.01,5,3,2,0.6667,política | recompensa,,
+DRL-01,¿Qué diferencia hay entre aprendizaje por refuerzo y aprendizaje profundo por refuerzo?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0234,5,3,3,1.0,redes neuronales | política | recompensa,,
+COPPELIA-01,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0138,5,4,3,0.75,articulaciones | dinámica | motor,,
+COPPELIA-01,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0091,5,4,3,0.75,articulaciones | dinámica | motor,,
+COPPELIA-01,¿Cómo se configuran las articulaciones y la dinámica física en CoppeliaSim?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.023,5,4,3,0.75,articulaciones | dinámica | motor,,
+PYTORCH-01,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0159,5,3,1,0.3333,cuda,,
+PYTORCH-01,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0094,5,3,2,0.6667,torch.cuda.is_available | cuda,,
+PYTORCH-01,¿Cómo comprobar si PyTorch puede utilizar la GPU NVIDIA mediante CUDA?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0253,5,3,2,0.6667,torch.cuda.is_available | cuda,,
+ROBOT-01,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",lexical_only,revisado,e5,5,20,60,1.0,1.0,0.016,5,4,3,0.75,acciones | recompensa | entorno,,
+ROBOT-01,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",semantic_only,revisado,e5,5,20,60,1.0,1.0,0.01,5,4,2,0.5,acciones | recompensa,,
+ROBOT-01,"¿Cómo se relacionan las observaciones, las acciones y la función de recompensa en el control de un robot?",rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.026,5,4,2,0.5,acciones | recompensa,,
+AGENT-01,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,lexical_only,revisado,e5,5,20,60,1.0,1.0,0.0111,5,4,0,0.0,,,
+AGENT-01,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,semantic_only,revisado,e5,5,20,60,1.0,1.0,0.0094,5,4,0,0.0,,,
+AGENT-01,¿Cómo se recuperan documentos de la base de conocimientos de GIAR-ORION?,rrf_fusion,revisado,e5,5,20,60,1.0,1.0,0.0205,5,4,0,0.0,,,

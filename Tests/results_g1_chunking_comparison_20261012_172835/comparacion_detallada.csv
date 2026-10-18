@@ -1,0 +1,200 @@
+﻿strategy,case_id,query,rank,source,score,mode,expected_terms_found,text
+A_current,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8519027233123779,e5,,"8.1 Estructura del modelo
+El modelo de G1 contiene, según variante:"
+A_current,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,2,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.846687912940979,e5,,"19. Recomendación para GIAR-ORION y Unitree G1
+Este diagrama es una propuesta de arquitectura; los nombres de módulos deben ajustarse a la estructura real del repositorio."
+A_current,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8461496829986572,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+A_current,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8460508584976196,e5,,"7.2 Variantes en `unitree_rl_gym`
+Fuente: [directorio oficial de modelos G1 en `unitree_rl_gym`](https://github.com/unitreerobotics/unitree_rl_gym/tree/main/resources/robots/g1_description)."
+A_current,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8436259031295776,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+A_current,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8637239933013916,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+A_current,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8619643449783325,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+A_current,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,3,CoppeliaSim\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md,0.8442304134368896,e5,,"6.1 Árbol cinemático
+Este diagrama ilustra la topología; el orden real de las articulaciones debe tomarse del URDF/MJCF de la variante. No usarlo como una definición exacta del árbol del G1."
+A_current,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8426192402839661,e5,,"Rangos articulares comerciales publicados
+- Cintura Z: ±155°.
+- Rodilla: 0–165°.
+- Cadera: pitch ±154°, roll −30° a +170°, yaw ±158°.
+- Muñeca: pitch ±92,5° y yaw ±92,5° en las configuraciones correspondientes.
+- G1 EDU puede tener cintura X/Y adicional de ±30° según la opción instalada."
+A_current,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8367534875869751,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+**Conteo de control:** 12 articulaciones de piernas + 3 de cintura + 14 de brazos + 14 de manos = **43 articulaciones actuadas**. El XML también contiene `floating_base_joint`, de tipo libre, que representa los seis grados de libertad de la base flotante del modelo; no es uno de los 43 motores articulares. El orden anterior agrupa por región anatómica para facilitar la lectura y **no debe usarse como índice de motor** sin contrastarlo con el orden del bloque `<actuator>` del archivo XML y con la interfaz de control utilizada."
+A_current,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8828607201576233,e5,,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+A_current,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8784506320953369,e5,imu-torso-angular-velocity;imu-torso-linear-acceleration;imu-pelvis-angular-velocity;imu-pelvis-linear-acceleration,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+A_current,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8733221292495728,e5,,"IMU representadas en el modelo MJCF
+El archivo `g1_29dof_with_hand_rev_1_0.xml` declara dos sitios de referencia para IMU y cuatro canales de medición simulados:"
+A_current,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.85589599609375,e5,,"Otros sensores y dispositivos de percepción indicados para la familia G1
+**Importante:** el XML consultado define explícitamente los nombres de los cuatro canales IMU de simulación, pero no declara en ese bloque sensores de cámara, LiDAR, micrófonos, encoders o fuerza de pie con identificadores equivalentes. La lista de hardware comercial de la sección 6.1 y el inventario de sensores simulados son fuentes distintas y no deben mezclarse como si fueran el mismo inventario. Para completar nombres de topics, frames y campos físicos se necesita la versión exacta de `unitree_ros2`/`unitree_sdk2` y, cuando corresponda, el inventario de la unidad."
+A_current,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8514889478683472,e5,,"bricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo.
+- Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**.
+- Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto.
+- Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor,"
+A_current,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8715944290161133,e5,imu_in_torso,"IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+A_current,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8702844381332397,e5,imu_in_torso;imu-torso-angular-velocity,"IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+A_current,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8569830656051636,e5,,"bricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo.
+- Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**.
+- Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto.
+- Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda mecánico del actuador, el tiempo de respuesta de cada motor,"
+A_current,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8507546186447144,e5,,"2.2 Estado y observación no siempre son lo mismo
+- orientación del torso o cuaternión de IMU;
+- velocidad angular y aceleración;
+- velocidades lineales estimadas;
+- posiciones y velocidades articulares;
+- altura y orientación del torso;
+- contactos de los pies;
+- velocidad objetivo;
+- acciones anteriores."
+A_current,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.84894859790802,e5,,"3.2 Variables de mando y realimentación expuestas por el software
+- **Comando:** `q` (posición objetivo), `dq` (velocidad objetivo), `tau` (par feed-forward), `kp` y `kd` (ganancias del control).
+- **Estado:** `q` (posición), `dq` (velocidad), `tau_est`/par estimado y datos de estado/temperatura del motor, según el mensaje y la versión del SDK.
+- **IMU:** orientación/ángulos de Euler, velocidad angular del giroscopio y aceleración, según la estructura del mensaje y el ejemplo utilizado.
+- **Batería/gestión de potencia:** estado BMS y datos de energía disponibles en las interfaces que los publiquen.
+- **Otros:** mando inalámbrico; en determinadas interfaces también fuerzas de pie estimadas/medidas."
+A_current,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8558909296989441,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+**G. Mano derecha — 7 articulaciones**"
+A_current,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8515838980674744,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+A_current,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8513743877410889,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+A_current,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,4,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8473764657974243,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+**F. Mano izquierda — 7 articulaciones**"
+A_current,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8470616340637207,e5,,"8.1 Estructura del modelo
+El modelo de G1 contiene, según variante:"
+A_current,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,1,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8656635880470276,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+A_current,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,2,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8600190281867981,e5,,"8.1 Estructura del modelo
+El modelo de G1 contiene, según variante:"
+A_current,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,3,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8555681705474854,e5,,"6.3 Inventario nominal de las 43 articulaciones actuadas
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+A_current,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8415608406066895,e5,,"Acción
+Cada componente se escala a la consigna física del actuador
+correspondiente."
+A_current,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,5,Unitree\G1\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8359490036964417,e5,,"1. Resumen ejecutivo
+- El G1 estándar se publica con **1320 × 450 × 200 mm** en posición de pie, **690 × 450 × 300 mm** plegado y aproximadamente **35 kg con batería**.
+- La página oficial distingue **G1 (23 grados de libertad)** y **G1 EDU (23–43, según opciones)**. Las configuraciones con manos, muñecas adicionales y cintura de 3 DoF cambian la cantidad de articulaciones.
+- El accionamiento se describe como motor síncrono de imanes permanentes (PMSM), rotor interior de baja inercia y alta velocidad, con **doble encoder** y refrigeración local por aire. El par máximo publicado corresponde al mayor motor de la máquina, no a todos los motores: **90 N·m para G1 y 120 N·m para G1 EDU** en la tabla consultada.
+- La batería extraíble se especifica como **13 celdas en serie (13S), 9000 mAh**; cargador **54 V, 5 A**; autonomía declarada de aproximadamente **2 horas**. La duración real depende de la tarea y la configuración.
+- La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el"
+B_grouped_headings,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,1,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8778270483016968,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**A. Pierna izquierda — 6 articulaciones**"
+B_grouped_headings,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,2,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8757455348968506,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**B. Pierna derecha — 6 articulaciones**"
+B_grouped_headings,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,3,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8672903776168823,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+23. `right_shoulder_pitch_joint`
+24. `right_shoulder_roll_joint`
+25. `right_shoulder_yaw_joint`
+26. `right_elbow_joint`
+27. `right_wrist_roll_joint`
+28. `right_wrist_pitch_joint`
+29. `right_wrist_yaw_joint`"
+B_grouped_headings,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,4,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.865999698638916,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**G. Mano derecha — 7 articulaciones**"
+B_grouped_headings,G1-01,Enumerá las seis articulaciones de la pierna izquierda del Unitree G1 usando los nombres exactos del modelo.,5,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8657082319259644,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**F. Mano izquierda — 7 articulaciones**"
+B_grouped_headings,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,1,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8674479126930237,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+B_grouped_headings,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,2,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8617638945579529,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+B_grouped_headings,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,3,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8507897853851318,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**Conteo de control:** 12 articulaciones de piernas + 3 de cintura + 14 de brazos + 14 de manos = **43 articulaciones actuadas**. El XML también contiene `floating_base_joint`, de tipo libre, que representa los seis grados de libertad de la base flotante del modelo; no es uno de los 43 motores articulares. El orden anterior agrupa por región anatómica para facilitar la lectura y **no debe usarse como índice de motor** sin contrastarlo con el orden del bloque `<actuator>` del archivo XML y con la interfaz de control utilizada."
+B_grouped_headings,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,4,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8503248691558838,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**C. Cintura — 3 articulaciones**"
+B_grouped_headings,G1-02,¿Cuáles son las tres articulaciones de la cintura del G1 y en qué orden aparecen en el bloque actuator del MJCF?,5,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8445425033569336,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**D. Brazo izquierdo — 7 articulaciones**"
+B_grouped_headings,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,1,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8900173306465149,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > IMU representadas en el modelo MJCF
+El archivo `g1_29dof_with_hand_rev_1_0.xml` declara dos sitios de referencia para IMU y cuatro canales de medición simulados:"
+B_grouped_headings,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,2,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8880881071090698,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+B_grouped_headings,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,3,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.873656690120697,e5,imu-torso-angular-velocity;imu-torso-linear-acceleration;imu-pelvis-angular-velocity;imu-pelvis-linear-acceleration,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+B_grouped_headings,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,4,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8574283123016357,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > Otros sensores y dispositivos de percepción indicados para la familia G1
+**Importante:** el XML consultado define explícitamente los nombres de los cuatro canales IMU de simulación, pero no declara en ese bloque sensores de cámara, LiDAR, micrófonos, encoders o fuerza de pie con identificadores equivalentes. La lista de hardware comercial de la sección 6.1 y el inventario de sensores simulados son fuentes distintas y no deben mezclarse como si fueran el mismo inventario. Para completar nombres de topics, frames y campos físicos se necesita la versión exacta de `unitree_ros2`/`unitree_sdk2` y, cuando corresponda, el inventario de la unidad."
+B_grouped_headings,G1-03,¿Cuáles son los cuatro sensores IMU definidos en el modelo MJCF y qué mide cada uno?,5,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.844858705997467,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > Otros sensores y dispositivos de percepción indicados para la familia G1
+| Sensor o dispositivo | Nombre/identificador verificable en este dossier | Observación |
+|---|---|---|
+| Encoders articulares | No se publica un identificador individual por encoder en las fuentes generales | El fabricante declara doble encoder en las articulaciones; confirmar campos y mapeo en el SDK de la unidad |
+| Cámara de profundidad | Modelo/nombre exacto pendiente de confirmar | Verificar inventario de hardware, controlador y topics |
+| LiDAR 3D | Modelo/nombre exacto pendiente de confirmar | Verificar controlador, topics, frame y frecuencia |
+| Matriz de cuatro micrófonos | Sin nombres individuales confirmados | La página comercial informa una matriz de cuatro micrófonos; no se asignan nombres de canal sin documentación de la unidad |
+| Sensores de fuerza de pie | No confirmados como sensores físicos universales | Algunas interfaces/modelos pueden exponer fuerzas medidas o estimadas;"
+B_grouped_headings,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,1,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8740333914756775,e5,imu_in_torso,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > IMU representadas en el modelo MJCF
+Los nombres `imu_in_torso` e `imu_in_pelvis` son **sitios del modelo de simulación**; no demuestran por sí solos que toda unidad física tenga dos módulos IMU independientes ubicados exactamente allí. El propio XML define ruido y frecuencias de corte para los sensores simulados. Para el robot físico se deben verificar el mensaje `LowState`, el SDK/ROS 2 correspondiente y los marcos de coordenadas disponibles."
+B_grouped_headings,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,2,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8665425777435303,e5,imu_in_torso;imu-torso-angular-velocity,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.4 Inventario de IMU y otros sensores > IMU representadas en el modelo MJCF
+| Sitio / marco en el modelo | Nombre del sensor MJCF | Medición |
+|---|---|---|
+| `imu_in_torso` | `imu-torso-angular-velocity` | Velocidad angular del torso mediante giroscopio |
+| `imu_in_torso` | `imu-torso-linear-acceleration` | Aceleración lineal del torso mediante acelerómetro |
+| `imu_in_pelvis` | `imu-pelvis-angular-velocity` | Velocidad angular de la pelvis mediante giroscopio |
+| `imu_in_pelvis` | `imu-pelvis-linear-acceleration` | Aceleración lineal de la pelvis mediante acelerómetro |"
+B_grouped_headings,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,3,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8566229343414307,e5,,"ende de la tarea y la configuración.
+- La página del fabricante enumera cámara de profundidad, LiDAR 3D, matriz de cuatro micrófonos, altavoz de 5 W, Wi-Fi 6 y Bluetooth 5.2. No identifica en esa tabla el fabricante/modelo exacto de cada sensor ni todas sus tasas de muestreo.
+- Para control y telemetría hay ejemplos oficiales en `unitree_ros2` y `unitree_sdk2`. El ejemplo ROS 2 de bajo nivel usa `LowCmd` para mandar objetivos de posición/velocidad/par y `LowState` para leer estado de motores e IMU. El ejemplo activa lectura a **500 Hz**; eso es una frecuencia de ejemplo del lazo/lectura, **no una medición del tiempo de respuesta mecánico del motor**.
+- Para simulación, `unitree_rl_gym` publica descripciones URDF y MJCF/XML de variantes G1 de 12, 29 DoF y 29 DoF con manos, entre otras. Estos archivos son una fuente técnica valiosa para jerarquía, masas, inercias, ejes, rangos articulares y límites de actuador del modelo concreto.
+- Las fuentes públicas consultadas **no permiten confirmar de forma general** la corriente máxima por motor, la curva par-velocidad, el ancho de banda"
+B_grouped_headings,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,4,SAC\Fundamentos_de_SAC_GIAR_ORION.md,0.8507546186447144,e5,,"2.2 Estado y observación no siempre son lo mismo
+- orientación del torso o cuaternión de IMU;
+- velocidad angular y aceleración;
+- velocidades lineales estimadas;
+- posiciones y velocidades articulares;
+- altura y orientación del torso;
+- contactos de los pies;
+- velocidad objetivo;
+- acciones anteriores."
+B_grouped_headings,G1-04,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,5,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8492507338523865,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.2 Cómo acceder a los datos
+**No se debe asumir** que la IMU del torso y una segunda IMU, si existe en cierta revisión, tienen el mismo topic, marco de coordenadas, calibración o frecuencia. Registrar el nombre de topic, tipo de mensaje, frame, unidades y timestamp antes de usarlo en RL."
+B_grouped_headings,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,1,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8576043844223022,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**G. Mano derecha — 7 articulaciones**"
+B_grouped_headings,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,2,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8549273014068604,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**E. Brazo derecho — 7 articulaciones**"
+B_grouped_headings,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,3,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8547321557998657,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**F. Mano izquierda — 7 articulaciones**"
+B_grouped_headings,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,4,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.853577733039856,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+B_grouped_headings,G1-05,Enumerá las siete articulaciones de la mano derecha del G1 con sus identificadores exactos.,5,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8534668684005737,e5,right_hand_thumb_0_joint;right_hand_thumb_1_joint;right_hand_thumb_2_joint;right_hand_index_0_joint;right_hand_index_1_joint;right_hand_middle_0_joint;right_hand_middle_1_joint,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+37. `right_hand_thumb_0_joint`
+38. `right_hand_thumb_1_joint`
+39. `right_hand_thumb_2_joint`
+40. `right_hand_index_0_joint`
+41. `right_hand_index_1_joint`
+42. `right_hand_middle_0_joint`
+43. `right_hand_middle_1_joint`"
+B_grouped_headings,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,1,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8692991733551025,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+La siguiente lista corresponde **específicamente al modelo de simulación** `g1_29dof_with_hand_rev_1_0.xml` del repositorio `unitreerobotics/unitree_rl_gym`. En ese archivo hay 43 motores/articulaciones actuadas: 29 del cuerpo y 14 de las manos (7 por mano). No debe interpretarse como una lista universal para todas las variantes físicas del G1. La configuración real depende del hardware, las manos instaladas y la versión del firmware/SDK."
+B_grouped_headings,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,2,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8516041040420532,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+Fuente del inventario y nombres exactos: [MJCF/XML oficial G1 29 DoF con manos, `g1_29dof_with_hand_rev_1_0.xml`](https://github.com/unitreerobotics/unitree_rl_gym/blob/main/resources/robots/g1_description/g1_29dof_with_hand_rev_1_0.xml)."
+B_grouped_headings,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,3,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8421478271484375,e5,,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+**Conteo de control:** 12 articulaciones de piernas + 3 de cintura + 14 de brazos + 14 de manos = **43 articulaciones actuadas**. El XML también contiene `floating_base_joint`, de tipo libre, que representa los seis grados de libertad de la base flotante del modelo; no es uno de los 43 motores articulares. El orden anterior agrupa por región anatómica para facilitar la lectura y **no debe usarse como índice de motor** sin contrastarlo con el orden del bloque `<actuator>` del archivo XML y con la interfaz de control utilizada."
+B_grouped_headings,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,4,RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md,0.8415608406066895,e5,,"Acción
+Cada componente se escala a la consigna física del actuador
+correspondiente."
+B_grouped_headings,G1-06,Enumerá los 43 actuadores del modelo G1 en el orden exacto en que aparecen en el bloque actuator del MJCF.,5,Unitree/G1/Unitree_G1_Dossier_Tecnico_GIAR_ORION.md,0.8382978439331055,e5,right_shoulder_pitch_joint;right_shoulder_roll_joint;right_shoulder_yaw_joint;right_elbow_joint;right_wrist_roll_joint;right_wrist_pitch_joint;right_wrist_yaw_joint,"Unitree G1 — Dossier técnico con fuentes verificables > 6. Sensores > 6.3 Inventario nominal de las 43 articulaciones actuadas
+23. `right_shoulder_pitch_joint`
+24. `right_shoulder_roll_joint`
+25. `right_shoulder_yaw_joint`
+26. `right_elbow_joint`
+27. `right_wrist_roll_joint`
+28. `right_wrist_pitch_joint`
+29. `right_wrist_yaw_joint`"

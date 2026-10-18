@@ -1,0 +1,34 @@
+{
+  "created_at": "2026-10-12T16:38:20",
+  "experiment": "independent_rrf_ranking_fusion",
+  "project_root": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION",
+  "knowledge_dir": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Knowledge",
+  "lexical_version": "revisado",
+  "semantic_mode": "e5",
+  "top_k": 5,
+  "candidate_k": 20,
+  "rrf_k": 60,
+  "lexical_weight": 1.0,
+  "semantic_weight": 1.0,
+  "cases": [
+    "UNITREE-01",
+    "SAC-01",
+    "SAC-02",
+    "SAC-03",
+    "RL-01",
+    "DRL-01",
+    "COPPELIA-01",
+    "PYTORCH-01",
+    "ROBOT-01",
+    "AGENT-01"
+  ],
+  "methods": [
+    "lexical_only",
+    "semantic_only",
+    "rrf_fusion"
+  ],
+  "generation_enabled": false,
+  "offline_retrievers": false,
+  "errors": 0,
+  "metric_note": "La cobertura de términos y la presencia de fuente son indicadores parciales. No equivalen a relevancia semántica ni a calidad de respuesta."
+}

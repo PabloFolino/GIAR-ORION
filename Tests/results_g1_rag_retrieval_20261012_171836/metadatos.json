@@ -1,0 +1,8 @@
+{
+  "retriever": "Agent\\MultilingualKnowledgeRetriever.py",
+  "knowledge_dir": "Knowledge",
+  "mode": "e5",
+  "top_k": 5,
+  "query_count": 6,
+  "note": "Mide presencia de términos esperados en los fragmentos recuperados; no evalúa respuestas de Qwen."
+}

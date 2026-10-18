@@ -1,0 +1,54 @@
+﻿case_id,candidate,query,model,temperature,status,answer,thinking,elapsed_seconds,prompt_eval_count,eval_count,chunk_count,source_file,error,technical_accuracy_review,evidence_coverage_review,unsupported_claims_review,review_notes
+CONTROL-RL-12,old,Explicá la relación entre política del agente y función de valor en RL.,qwen3:8b,0.0,OK,"La evidencia proporcionada no aborda la relación entre política del agente y función de valor en el aprendizaje por refuerzo (RL). Los fragmentos presentados son técnicos y se enfocan en descripciones de componentes mecánicos, sensores y estructuras de un modelo robótico, pero no contienen información sobre conceptos teóricos de RL como política del agente o función de valor. Por lo tanto, no es posible responder a la consulta basándose únicamente en la evidencia proporcionada.",,12.661,1937,115,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+CONTROL-RL-12,new,Explicá la relación entre política del agente y función de valor en RL.,qwen3:8b,0.0,OK,"La evidencia proporcionada no aborda la relación entre política del agente y función de valor en el aprendizaje por refuerzo (RL). Los fragmentos describen actuadores y sus atributos en un modelo de robot, pero no contienen información sobre conceptos teóricos de RL como política o función de valor. Por lo tanto, no es posible responder a la consulta basándose únicamente en la evidencia proporcionada.",,4.33,807,93,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-06,old,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,qwen3:8b,0.0,OK,"La diferencia entre el sitio `imu_in_torso` y el sensor `imu-torso-angular-velocity` es la siguiente:
+
+- **`imu_in_torso`** es un **sitio** definido en el modelo, con una posición específica en el cuerpo (`pos` = `-0.03959 -0.00224 0.13792`) y está asociado al **torso_link**. Este sitio sirve como referencia para ubicar sensores o componentes en el modelo.
+
+- **`imu-torso-angular-velocity`** es un **sensor** de tipo **gyro** que mide la **velocidad angular** del torso. Este sensor está **referenciado al sitio `imu_in_torso`**, lo que significa que su ubicación y orientación están basadas en este sitio.
+
+En resumen:
+- `imu_in_torso` es un **sitio** con una posición definida.
+- `imu-torso-angular-velocity` es un **sensor** que mide la velocidad angular y está **vinculado al sitio `imu_in_torso`**.",,7.03,1639,248,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-06,new,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,qwen3:8b,0.0,OK,"El sitio `imu_in_torso` es una ubicación definida en el modelo (sección Sites), a la cual se refieren dos sensores: `imu-torso-angular-velocity` y `imu-torso-linear-acceleration`.
+
+- **Sensor `imu-torso-angular-velocity`:**  
+  - Tipo: `gyro` (sensor de velocidad angular).  
+  - Referencia: `imu_in_torso`.  
+  - Parámetros: `noise=5e-4`, `cutoff=34.9`.
+
+- **Sensor `imu-torso-linear-acceleration`:**  
+  - Tipo: `accelerometer` (sensor de aceleración lineal).  
+  - Referencia: `imu_in_torso`.  
+  - Parámetros: `noise=1e-2`, `cutoff=157`.
+
+**Diferencia clave:**  
+El sensor `imu-torso-angular-velocity` mide la velocidad angular, mientras que el sensor `imu-torso-linear-acceleration` mide la aceleración lineal. Ambos sensores están ubicados en el mismo sitio `imu_in_torso`, pero miden magnitudes físicas distintas.",,6.679,885,265,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-07,old,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,qwen3:8b,0.0,OK,"En MJCF, un **site** es un elemento geométrico o de referencia definido en el XML, mientras que un **sensor** es un elemento declarado específicamente como sensor. 
+
+La columna `site` en la descripción de un sensor indica una referencia a un site, pero no significa que el site sea un sensor. Los sensores se listan según sus propios elementos XML, y las relaciones entre sensores y sites se establecen explícitamente mediante el atributo `site` en cada sensor. No se crean relaciones si el XML no las declara.
+
+No se deduce que un `site` sea un sensor; los sensores y los sites son entidades distintas en el modelo.",,4.843,724,153,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-07,new,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,qwen3:8b,0.0,OK,"En MJCF, un **site** y un **sensor** son elementos XML distintos con roles diferentes:
+
+- Un **site** es un elemento que puede ser referenciado por un sensor. No es un sensor en sí mismo.
+- Un **sensor** es un elemento que puede tener un atributo `site`, el cual identifica el site al que se refiere. El atributo `site` no convierte al sensor en un site.
+
+La relación entre un sensor y un site se establece explícitamente mediante el atributo `site` en el elemento sensor. No se infieren relaciones que no estén declaradas en el XML.",,4.846,798,135,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-14,old,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,qwen3:8b,0.0,OK,"El sensor **imu-pelvis-linear-acceleration** está definido en el **fragmento 1** y **fragmento 2**. 
+
+- **Dónde está definido**: En la tabla de ""Sensores"" del **fragmento 1**, y en la tabla de ""Relaciones sensor–site"" del **fragmento 2**.
+- **Qué representa**: Es un **acelerómetro** ubicado en el **site referenciado ""imu_in_pelvis""**, el cual está asociado al **body ""pelvis""**. Este sensor mide la **aceleración lineal** en el cuerpo de la pelvis.",,5.058,1655,141,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-14,new,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,qwen3:8b,0.0,OK,"El parámetro `imu-pelvis-linear-acceleration` está definido en el archivo `g1_29dof_with_hand_rag_v2.md` y representa la aceleración lineal medida por un acelerómetro ubicado en el sitio `imu_in_pelvis`.
+
+- **Site referenciado:** `imu_in_pelvis` (definido en la sección Sites).
+- **Elemento sensor:** `accelerometer`.
+- **Parámetros:** 
+  - `noise = 1e-2`
+  - `cutoff = 157`
+- **Body contenedor:** `pelvis`
+- **Posición del site:** `0.04525 0 -0.08339` (respecto al body `pelvis`)
+
+No se menciona explícitamente el joint o body referenciado, ni se especifica la orientación del site.",,5.642,838,198,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-19,old,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,qwen3:8b,0.0,OK,"El nombre **imu_in_pelvis** es un **site**, ya que aparece en la columna ""Nombre"" de la tabla de ""Sites"" en el fragmento 3, donde se describe como un sitio con posición y orientación. No es un sensor, ya que los sensores se listan con nombres como ""imu-pelvis-angular-velocity"" y ""imu-pelvis-linear-acceleration"" en los fragmentos 1 y 2.",,4.309,1592,97,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,
+R07-19,new,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,qwen3:8b,0.0,OK,"El nombre `imu_in_pelvis` es un **site**, ya que se describe en el fragmento 2 como un ""Site `imu_in_pelvis`"" con atributos de posición y tamaño. No es un sensor, ya que los sensores mencionados en los fragmentos (como `imu-pelvis-linear-acceleration` y `imu-pelvis-angular-velocity`) son referenciados a este site, pero no son el nombre del site en sí.",,4.291,888,101,5,C:\Users\pfoli\Documents\Facultad\GIAR2026\GIAR-ORION\Tests\results_g1_rag12\20261013_095027\detalle.csv,,PENDIENTE,PENDIENTE,PENDIENTE,

@@ -1,0 +1,277 @@
+﻿query_id,consulta,documento,ranking,puntaje_similitud,objetivo_consulta,terminos_esperados,terminos_encontrados,fuente,fragmento,evaluacion_humana,motivo_evaluacion,respuesta_puede_apoyarse,observaciones
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,old,1,0.884335,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag.md,"6. Relaciones sensor–site
+| Sensor | Tipo de sensor | Site referenciado | Validación del nombre | Parámetros registrados |
+| --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | site encontrado | noise=1e-2; cutoff=157 |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | site encontrado | noise=1e-2; cutoff=157 |",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,old,2,0.877175,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag.md,"5. Sensores
+| Nombre | Tipo | Site referenciado | Joint | Body | objtype | objname | noise | cutoff | Otros atributos |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | — | — | — | — | 1e-2 | 157 | — |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | — | — | — | — | 1e-2 | 157 | — |",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,old,3,0.840612,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag.md,"4. Sites
+| Nombre | Contenedor | Posición (`pos`) | Orientación (`quat`) | Otros atributos |
+| --- | --- | --- | --- | --- |
+| imu_in_pelvis | pelvis | 0.04525 0 -0.08339 | — | `size`=`0.01` |
+| imu_in_torso | torso_link | -0.03959 -0.00224 0.13792 | — | `size`=`0.01` |",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,old,4,0.83331,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag.md,"| right_hand_thumb_2_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`-1.74533 0`; `actuatorfrcrange`=`-1.4 1.4` |
+| right_hand_thumb_2_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_hand_thumb_0_link/right_hand_thumb_1_link/right_hand_thumb_2_link | — | — | geoms=2; sites=0; inertial=sí |
+| right_hand_middle_0_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_hand_middle_0_link | right_hand_middle_0_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`0 1.5708`; `actuatorfrcrange`=`-1.4 1.4` |
+| right_hand_middle_0_link |",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,old,5,0.832913,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag.md,".0892 2.6704`; `actuatorfrcrange`=`-25 25` |
+| left_shoulder_pitch_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_shoulder_roll_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link | left_shoulder_roll_joint | hinge | `pos`=`0 0 0`; `axis`=`1 0 0`; `range`=`-1.5882 2.2515`; `actuatorfrcrange`=`-25 25` |
+| left_shoulder_roll_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_shoulder_yaw_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link | left_shoulder_yaw_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`-2.618 2.618`; `actuatorfrcrange`=`-25 25` |
+| left_shoulder_yaw_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_elbow_link |",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,old,1,0.84851,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag.md,"5. Sensores
+Cada fila representa un elemento sensor declarado en el XML. La columna `site` es una referencia al nombre de un site cuando el atributo aparece en el sensor; no significa que el site sea el sensor.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,old,2,0.845333,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag.md,"4. Sites
+Un `site` es un elemento geométrico/de referencia definido en el XML. Esta tabla describe únicamente los atributos presentes; no lo clasifica como sensor.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,old,3,0.818811,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag.md,"6. Relaciones sensor–site
+Relaciones explícitas obtenidas del atributo `site` de cada sensor. No se crean relaciones si el XML no las declara.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,old,4,0.814977,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag.md,"Modelo MJCF: g1_29dof_with_hand
+> Documento generado automáticamente desde el XML de origen. Los nombres y valores técnicos se extraen del archivo; no se infieren propiedades no declaradas.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,old,5,0.814905,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag.md,"8. Notas de alcance
+- Este archivo es una representación de consulta; el XML original sigue siendo la fuente de verdad.
+- No se renombran identificadores.
+- No se deduce que un `site` sea un sensor: los sensores se listan según sus propios elementos XML.
+- Los atributos omitidos de una tabla especializada pueden aparecer en el inventario de identificadores.
+- El generador no modifica el XML ni otros archivos del proyecto.",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,old,1,0.861868,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag.md,"5. Sensores
+| Nombre | Tipo | Site referenciado | Joint | Body | objtype | objname | noise | cutoff | Otros atributos |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | — | — | — | — | 1e-2 | 157 | — |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | — | — | — | — | 1e-2 | 157 | — |",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,old,2,0.848975,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag.md,"6. Relaciones sensor–site
+| Sensor | Tipo de sensor | Site referenciado | Validación del nombre | Parámetros registrados |
+| --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | site encontrado | noise=1e-2; cutoff=157 |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | site encontrado | noise=1e-2; cutoff=157 |",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,old,3,0.819091,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag.md,"2. Estructura cinemática: cuerpos y joints
+| Body | Ruta del body | Joint | Tipo de joint | Otros datos del joint/body |
+| --- | --- | --- | --- | --- |
+| pelvis | pelvis | floating_base_joint | free | `limited`=`false`; `actuatorfrclimited`=`false` |
+| pelvis | pelvis | — | — | geoms=3; sites=1; inertial=sí |
+| left_hip_pitch_link | pelvis/left_hip_pitch_link | left_hip_pitch_joint | hinge | `pos`=`0 0 0`; `axis`=`0 1 0`; `range`=`-2.5307 2.8798`; `actuatorfrcrange`=`-88 88` |
+| left_hip_pitch_link | pelvis/left_hip_pitch_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_hip_roll_link | pelvis/left_hip_pitch_link/left_hip_roll_link | left_hip_roll_joint | hinge | `pos`=`0 0 0`; `axis`=`1 0 0`; `range`=`-0.5236 2.9671`; `actuatorfrcrange`=`-88 88` |
+| left_hip_roll_link | pelvis/left_hip_pitch_link/left_hip_roll_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_hip_yaw_link | pelvis/left_hip_pitch_link/left_hip_roll_link/left_hip_yaw_link | left_hip_yaw_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`-2.7576 2.7576`; `actuatorfrcrange`=`-88 88` |
+| left_hip_yaw_link",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,old,4,0.819035,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag.md,"4. Sites
+| Nombre | Contenedor | Posición (`pos`) | Orientación (`quat`) | Otros atributos |
+| --- | --- | --- | --- | --- |
+| imu_in_pelvis | pelvis | 0.04525 0 -0.08339 | — | `size`=`0.01` |
+| imu_in_torso | torso_link | -0.03959 -0.00224 0.13792 | — | `size`=`0.01` |",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,old,5,0.81444,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag.md,"oll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_hand_index_0_link | — | — | geoms=2; sites=0; inertial=sí |
+| right_hand_index_1_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_hand_index_0_link/right_hand_index_1_link | right_hand_index_1_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`0 1.74533`; `actuatorfrcrange`=`-1.4 1.4` |
+| right_hand_index_1_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/right_shoulder_pitch_link/right_shoulder_roll_link/right_shoulder_yaw_link/right_elbow_link/right_wrist_roll_link/right_wrist_pitch_link/right_wrist_yaw_link/right_hand_index_0_link/right_hand_index_1_link | — | — | geoms=2; sites=0; inertial=sí |",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,old,1,0.864933,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag.md,"6. Relaciones sensor–site
+| Sensor | Tipo de sensor | Site referenciado | Validación del nombre | Parámetros registrados |
+| --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | site encontrado | noise=1e-2; cutoff=157 |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | site encontrado | noise=1e-2; cutoff=157 |",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,old,2,0.864691,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag.md,"5. Sensores
+| Nombre | Tipo | Site referenciado | Joint | Body | objtype | objname | noise | cutoff | Otros atributos |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | — | — | — | — | 1e-2 | 157 | — |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | — | — | — | — | 1e-2 | 157 | — |",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,old,3,0.861017,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag.md,"4. Sites
+| Nombre | Contenedor | Posición (`pos`) | Orientación (`quat`) | Otros atributos |
+| --- | --- | --- | --- | --- |
+| imu_in_pelvis | pelvis | 0.04525 0 -0.08339 | — | `size`=`0.01` |
+| imu_in_torso | torso_link | -0.03959 -0.00224 0.13792 | — | `size`=`0.01` |",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,old,4,0.840644,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag.md,"_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_wrist_pitch_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link | left_wrist_pitch_joint | hinge | `pos`=`0 0 0`; `axis`=`0 1 0`; `range`=`-1.61443 1.61443`; `actuatorfrcrange`=`-5 5` |
+| left_wrist_pitch_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_wrist_yaw_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link | left_wrist_yaw_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`-1.61443 1.61443`; `actuatorfrcrange`=`-5",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,old,5,0.839345,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag.md,"ist_pitch_link/left_wrist_yaw_link/left_hand_thumb_0_link/left_hand_thumb_1_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_hand_thumb_2_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link/left_hand_thumb_0_link/left_hand_thumb_1_link/left_hand_thumb_2_link | left_hand_thumb_2_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`0 1.74533`; `actuatorfrcrange`=`-1.4 1.4` |
+| left_hand_thumb_2_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link/left_hand_thumb_0_link/left_hand_thumb_1_link/left_hand_thumb_2_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_hand_middle_0_link |",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,old,1,0.794958,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag.md,"7. Inventario de identificadores
+| Tipo de elemento | Nombre exacto | Atributos adicionales |
+| --- | --- | --- |
+| mesh | pelvis | `file`=`pelvis.STL` |
+| mesh | pelvis_contour_link | `file`=`pelvis_contour_link.STL` |
+| mesh | left_hip_pitch_link | `file`=`left_hip_pitch_link.STL` |
+| mesh | left_hip_roll_link | `file`=`left_hip_roll_link.STL` |
+| mesh | left_hip_yaw_link | `file`=`left_hip_yaw_link.STL` |
+| mesh | left_knee_link | `file`=`left_knee_link.STL` |
+| mesh | left_ankle_pitch_link | `file`=`left_ankle_pitch_link.STL` |
+| mesh | left_ankle_roll_link | `file`=`left_ankle_roll_link.STL` |
+| mesh | right_hip_pitch_link | `file`=`right_hip_pitch_link.STL` |
+| mesh | right_hip_roll_link | `file`=`right_hip_roll_link.STL` |
+| mesh | right_hip_yaw_link | `file`=`right_hip_yaw_link.STL` |
+| mesh | right_knee_link | `file`=`right_knee_link.STL` |
+| mesh | right_ankle_pitch_link | `file`=`right_ankle_pitch_link.STL` |
+| mesh | right_ankle_roll_link | `file`=`right_ankle_roll_link.STL` |
+| mesh | waist_yaw_link | `file`=`waist_yaw_link.STL` |
+| mesh | waist_roll_link |",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,old,2,0.79355,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag.md,"6. Relaciones sensor–site
+| Sensor | Tipo de sensor | Site referenciado | Validación del nombre | Parámetros registrados |
+| --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | site encontrado | noise=1e-2; cutoff=157 |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | site encontrado | noise=5e-4; cutoff=34.9 |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | site encontrado | noise=1e-2; cutoff=157 |",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,old,3,0.793478,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag.md,".0892 2.6704`; `actuatorfrcrange`=`-25 25` |
+| left_shoulder_pitch_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_shoulder_roll_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link | left_shoulder_roll_joint | hinge | `pos`=`0 0 0`; `axis`=`1 0 0`; `range`=`-1.5882 2.2515`; `actuatorfrcrange`=`-25 25` |
+| left_shoulder_roll_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_shoulder_yaw_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link | left_shoulder_yaw_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`-2.618 2.618`; `actuatorfrcrange`=`-25 25` |
+| left_shoulder_yaw_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_elbow_link |",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,old,4,0.793136,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag.md,"5. Sensores
+| Nombre | Tipo | Site referenciado | Joint | Body | objtype | objname | noise | cutoff | Otros atributos |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| imu-torso-angular-velocity | gyro | imu_in_torso | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-torso-linear-acceleration | accelerometer | imu_in_torso | — | — | — | — | 1e-2 | 157 | — |
+| imu-pelvis-angular-velocity | gyro | imu_in_pelvis | — | — | — | — | 5e-4 | 34.9 | — |
+| imu-pelvis-linear-acceleration | accelerometer | imu_in_pelvis | — | — | — | — | 1e-2 | 157 | — |",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,old,5,0.791294,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag.md,"_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_wrist_pitch_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link | left_wrist_pitch_joint | hinge | `pos`=`0 0 0`; `axis`=`0 1 0`; `range`=`-1.61443 1.61443`; `actuatorfrcrange`=`-5 5` |
+| left_wrist_pitch_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link | — | — | geoms=2; sites=0; inertial=sí |
+| left_wrist_yaw_link | pelvis/waist_yaw_link/waist_roll_link/torso_link/left_shoulder_pitch_link/left_shoulder_roll_link/left_shoulder_yaw_link/left_elbow_link/left_wrist_roll_link/left_wrist_pitch_link/left_wrist_yaw_link | left_wrist_yaw_joint | hinge | `pos`=`0 0 0`; `axis`=`0 0 1`; `range`=`-1.61443 1.61443`; `actuatorfrcrange`=`-5",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,new,1,0.895768,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag_v2.md,"`imu-torso-angular-velocity` referencia al site `imu_in_torso`
+- **Elemento sensor:** `gyro`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`5e-4`; cutoff=`34.9`.",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,new,2,0.890593,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag_v2.md,"Sensor `imu-torso-angular-velocity`
+- **Tipo de sensor:** `gyro`.
+- **Site referenciado:** `imu_in_torso` (existe en la sección Sites).
+- **Joint referenciado:** `no declarado`.
+- **Body referenciado:** `no declarado`.
+- **Ruido (`noise`):** `5e-4`.
+- **Frecuencia de corte/parámetro `cutoff`:** `34.9`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,new,3,0.880868,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag_v2.md,"Sensor `imu-torso-linear-acceleration`
+- **Tipo de sensor:** `accelerometer`.
+- **Site referenciado:** `imu_in_torso` (existe en la sección Sites).
+- **Joint referenciado:** `no declarado`.
+- **Body referenciado:** `no declarado`.
+- **Ruido (`noise`):** `1e-2`.
+- **Frecuencia de corte/parámetro `cutoff`:** `157`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,new,4,0.88037,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag_v2.md,"`imu-torso-linear-acceleration` referencia al site `imu_in_torso`
+- **Elemento sensor:** `accelerometer`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`1e-2`; cutoff=`157`.",PENDIENTE,,PENDIENTE,
+R07-06,Explicá la diferencia entre el sitio imu_in_torso y el sensor imu-torso-angular-velocity.,new,5,0.876952,Recuperar tanto el site como el sensor y su relación explícita.,,imu_in_torso;imu-torso-angular-velocity,g1_29dof_with_hand_rag_v2.md,"`imu-pelvis-angular-velocity` referencia al site `imu_in_pelvis`
+- **Elemento sensor:** `gyro`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`5e-4`; cutoff=`34.9`.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,new,1,0.875405,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag_v2.md,"Sites
+Un site y un sensor son elementos XML diferentes. Un site puede ser referenciado por un sensor; esa referencia no convierte al site en sensor.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,new,2,0.872678,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag_v2.md,"Notas de interpretación
+- Los nombres entre backticks se conservan literalmente del XML.
+- `site` es el nombre de un atributo de referencia en algunos sensores; no es el nombre del sensor.
+- `no declarado` significa que el atributo no aparece en ese elemento XML; no equivale a cero.
+- Las explicaciones de este documento describen la estructura extraída y no sustituyen la documentación completa de MJCF.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,new,3,0.844234,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag_v2.md,"Sensores
+Cada bloque representa un elemento sensor explícito dentro de `<sensor>`. El atributo `site` identifica el site referenciado cuando está presente.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,new,4,0.830613,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag_v2.md,"Modelo MJCF: g1_29dof_with_hand
+- **Archivo fuente:** `g1_29dof_with_hand.xml`.
+- **Elemento raíz:** `mujoco`; atributos: `model`=`g1_29dof_with_hand`.
+- **Resumen:** 44 bodies; 44 joints/freejoints; 43 actuadores; 104 geoms; 50 meshes; 2 sites; 4 sensores.
+- **Uso del documento:** referencia estructurada derivada del XML para búsquedas técnicas. El XML original sigue siendo la fuente de verdad.",PENDIENTE,,PENDIENTE,
+R07-07,¿Qué diferencia conceptual hay entre un site y un sensor en MJCF?,new,5,0.817067,Comprobar si el fragmento ayuda a distinguir los dos tipos de elemento.,,site;sensor,g1_29dof_with_hand_rag_v2.md,"Relaciones explícitas sensor–site
+Relaciones extraídas del atributo `site` de cada sensor. No se infieren relaciones ausentes del XML.",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,new,1,0.892505,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag_v2.md,"`imu-pelvis-linear-acceleration` referencia al site `imu_in_pelvis`
+- **Elemento sensor:** `accelerometer`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`1e-2`; cutoff=`157`.",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,new,2,0.873056,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag_v2.md,"Sensor `imu-pelvis-linear-acceleration`
+- **Tipo de sensor:** `accelerometer`.
+- **Site referenciado:** `imu_in_pelvis` (existe en la sección Sites).
+- **Joint referenciado:** `no declarado`.
+- **Body referenciado:** `no declarado`.
+- **Ruido (`noise`):** `1e-2`.
+- **Frecuencia de corte/parámetro `cutoff`:** `157`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,new,3,0.855557,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag_v2.md,"`imu-pelvis-angular-velocity` referencia al site `imu_in_pelvis`
+- **Elemento sensor:** `gyro`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`5e-4`; cutoff=`34.9`.",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,new,4,0.841984,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag_v2.md,"`imu-torso-linear-acceleration` referencia al site `imu_in_torso`
+- **Elemento sensor:** `accelerometer`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`1e-2`; cutoff=`157`.",PENDIENTE,,PENDIENTE,
+R07-14,¿Dónde está definido imu-pelvis-linear-acceleration y qué representa?,new,5,0.841303,Recuperar el tipo de sensor y el site al que referencia.,,imu-pelvis-linear-acceleration;imu_in_pelvis;accelerometer,g1_29dof_with_hand_rag_v2.md,"Site `imu_in_pelvis`
+- **Body contenedor:** `pelvis`.
+- **Posición (`pos`):** `0.04525 0 -0.08339`.
+- **Orientación (`quat`):** `no declarado`.
+- **Otros atributos:** `size`=`0.01`.",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,new,1,0.878995,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag_v2.md,"Sensor `imu-pelvis-linear-acceleration`
+- **Tipo de sensor:** `accelerometer`.
+- **Site referenciado:** `imu_in_pelvis` (existe en la sección Sites).
+- **Joint referenciado:** `no declarado`.
+- **Body referenciado:** `no declarado`.
+- **Ruido (`noise`):** `1e-2`.
+- **Frecuencia de corte/parámetro `cutoff`:** `157`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,new,2,0.87801,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag_v2.md,"Site `imu_in_pelvis`
+- **Body contenedor:** `pelvis`.
+- **Posición (`pos`):** `0.04525 0 -0.08339`.
+- **Orientación (`quat`):** `no declarado`.
+- **Otros atributos:** `size`=`0.01`.",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,new,3,0.877413,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag_v2.md,"`imu-pelvis-linear-acceleration` referencia al site `imu_in_pelvis`
+- **Elemento sensor:** `accelerometer`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`1e-2`; cutoff=`157`.",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,new,4,0.877257,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag_v2.md,"`imu-pelvis-angular-velocity` referencia al site `imu_in_pelvis`
+- **Elemento sensor:** `gyro`.
+- **Validación de referencia:** site declarado en el XML.
+- **Parámetros:** noise=`5e-4`; cutoff=`34.9`.",PENDIENTE,,PENDIENTE,
+R07-19,Buscá el nombre imu_in_pelvis y decime si es sensor o site.,new,5,0.875433,Identificar el tipo correcto de imu_in_pelvis.,,imu_in_pelvis;site,g1_29dof_with_hand_rag_v2.md,"Sensor `imu-pelvis-angular-velocity`
+- **Tipo de sensor:** `gyro`.
+- **Site referenciado:** `imu_in_pelvis` (existe en la sección Sites).
+- **Joint referenciado:** `no declarado`.
+- **Body referenciado:** `no declarado`.
+- **Ruido (`noise`):** `5e-4`.
+- **Frecuencia de corte/parámetro `cutoff`:** `34.9`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,new,1,0.797505,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag_v2.md,"Actuador `right_ankle_roll_joint`
+- **Tipo XML:** `motor`.
+- **Joint referenciado:** `right_ankle_roll_joint`.
+- **Site referenciado:** `no declarado`.
+- **Tendon referenciado:** `no declarado`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,new,2,0.796824,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag_v2.md,"Actuador `left_ankle_roll_joint`
+- **Tipo XML:** `motor`.
+- **Joint referenciado:** `left_ankle_roll_joint`.
+- **Site referenciado:** `no declarado`.
+- **Tendon referenciado:** `no declarado`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,new,3,0.795574,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag_v2.md,"Actuador `left_shoulder_roll_joint`
+- **Tipo XML:** `motor`.
+- **Joint referenciado:** `left_shoulder_roll_joint`.
+- **Site referenciado:** `no declarado`.
+- **Tendon referenciado:** `no declarado`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,new,4,0.794601,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag_v2.md,"Actuador `right_shoulder_roll_joint`
+- **Tipo XML:** `motor`.
+- **Joint referenciado:** `right_shoulder_roll_joint`.
+- **Site referenciado:** `no declarado`.
+- **Tendon referenciado:** `no declarado`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
+CONTROL-RL-12,Explicá la relación entre política del agente y función de valor en RL.,new,5,0.793901,Control negativo: esta consulta es de RL y no debería resolverse solo con el Markdown del MJCF.,política;valor,,g1_29dof_with_hand_rag_v2.md,"Actuador `right_wrist_roll_joint`
+- **Tipo XML:** `motor`.
+- **Joint referenciado:** `right_wrist_roll_joint`.
+- **Site referenciado:** `no declarado`.
+- **Tendon referenciado:** `no declarado`.
+- **Otros atributos:** sin atributos adicionales.",PENDIENTE,,PENDIENTE,
