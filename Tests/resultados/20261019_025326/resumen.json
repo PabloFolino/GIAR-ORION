@@ -1,0 +1,14 @@
+{
+  "queries": 24,
+  "records": 48,
+  "successful_records": 48,
+  "retrieval_expected_source_hit_at_k_pct": 100.0,
+  "mean_retrieval_seconds": 0.107,
+  "mean_retrieved_chunks": 5.0,
+  "generation_records": 48,
+  "nonempty_answer_pct": 100.0,
+  "abstention_match_pct": 68.8,
+  "truncations": 0,
+  "mean_generation_seconds": 9.072,
+  "verifier": "No invocado: requiere adaptar llamadas a la interfaz exacta de Agent/ResponseVerifier.py. Usar casos_verificador_controlados.json y registrar TP/TN/FP/FN."
+}

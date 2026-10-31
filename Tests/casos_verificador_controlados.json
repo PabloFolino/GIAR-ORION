@@ -1,0 +1,12 @@
+[
+{"id":"V01","category":"correct_should_accept","answer":"El actor representa la política; el crítico estima el valor Q de una acción en un estado.","expected_decision":"accept","purpose":"Respuesta correcta breve."},
+{"id":"V02","category":"correct_should_accept","answer":"La pérdida del crítico mide la discrepancia entre la estimación Q y el objetivo de Bellman.","expected_decision":"accept","purpose":"Relación conceptual documentada."},
+{"id":"V03","category":"correct_should_accept","answer":"Si la documentación no especifica gamma, no es posible afirmar su valor a partir de ella.","expected_decision":"accept","purpose":"Abstención apropiada."},
+{"id":"V04","category":"incorrect_should_reject","answer":"El actor recibe directamente la pérdida del crítico y el objetivo de Bellman como entradas de observación.","expected_decision":"reject","purpose":"Relación conceptual incorrecta."},
+{"id":"V05","category":"incorrect_should_reject","answer":"El crítico genera las acciones y el actor calcula el error de Bellman.","expected_decision":"reject","purpose":"Funciones invertidas."},
+{"id":"V06","category":"unsupported_should_flag","answer":"El proyecto usa alpha=0.2, gamma=0.99 y tau=0.005.","expected_decision":"reject_or_flag","purpose":"Valores numéricos sin evidencia específica."},
+{"id":"V07","category":"incomplete_should_flag","answer":"SAC es un algoritmo de aprendizaje por refuerzo.","expected_decision":"flag_incomplete","purpose":"Respuesta incompleta ante pregunta relacional."},
+{"id":"V08","category":"correct_should_accept","answer":"Antes de transferir a hardware real, validar límites físicos, latencias, supervisión y mecanismos de parada.","expected_decision":"accept","purpose":"Precauciones de seguridad."},
+{"id":"V09","category":"incorrect_should_reject","answer":"La pérdida del crítico se utiliza como etiqueta directa para actualizar los parámetros del actor; Bellman actualiza al actor.","expected_decision":"reject","purpose":"Objetivos de entrenamiento mal atribuidos."},
+{"id":"V10","category":"unsupported_should_flag","answer":"La política convergió exactamente en 300 episodios y obtuvo recompensa media de 87.4.","expected_decision":"reject_or_flag","purpose":"Afirmaciones empíricas inventadas."}
+]

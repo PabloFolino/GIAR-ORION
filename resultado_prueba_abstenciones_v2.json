@@ -1,0 +1,375 @@
+{
+  "n": 40,
+  "TP": 18,
+  "TN": 21,
+  "FP": 1,
+  "FN": 0,
+  "partial": 5,
+  "accuracy": 0.975,
+  "precision": 0.9473684210526315,
+  "recall": 1.0,
+  "specificity": 0.9545454545454546,
+  "f1": 0.972972972972973,
+  "rows": [
+    {
+      "case_id": "A01",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No hay información suficiente para determinar el valor exacto de alpha en el entrenamiento actual."
+    },
+    {
+      "case_id": "A02",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "La documentación no especifica el valor de gamma usado por el proyecto."
+    },
+    {
+      "case_id": "A03",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No se menciona ningún valor numérico para tau en los fragmentos recuperados."
+    },
+    {
+      "case_id": "A04",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No puedo confirmar la recompensa media de la última ejecución real porque no se aportan registros de esa ejecución."
+    },
+    {
+      "case_id": "A05",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No es posible determinar cuántos episodios exactos necesitó la política para converger."
+    },
+    {
+      "case_id": "A06",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "La evidencia proporcionada no contiene el nombre del archivo de configuración que se está ejecutando."
+    },
+    {
+      "case_id": "A07",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No se dispone de datos suficientes para afirmar qué versión de la política está desplegada."
+    },
+    {
+      "case_id": "A08",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "El valor exacto no está documentado en el contexto recuperado."
+    },
+    {
+      "case_id": "A09",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No figura en la documentación una medición de latencia del robot físico."
+    },
+    {
+      "case_id": "A10",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "Por lo tanto, no hay información suficiente para establecer el umbral utilizado."
+    },
+    {
+      "case_id": "A11",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El actor genera acciones a partir del estado y la política aprendida."
+    },
+    {
+      "case_id": "A12",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El crítico estima el valor Q de una pareja estado-acción."
+    },
+    {
+      "case_id": "A13",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "La pérdida del crítico compara su predicción con el objetivo de Bellman."
+    },
+    {
+      "case_id": "A14",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "La política define una distribución de probabilidad sobre las acciones posibles."
+    },
+    {
+      "case_id": "A15",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El factor gamma pondera el valor futuro en el objetivo de Bellman."
+    },
+    {
+      "case_id": "A16",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "Antes del entrenamiento se deben comprobar los límites de las acciones y la finitud de las recompensas."
+    },
+    {
+      "case_id": "A17",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "La respuesta es que el actor selecciona acciones y el crítico las evalúa."
+    },
+    {
+      "case_id": "A18",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "En SAC, el término de entropía favorece la exploración de la política."
+    },
+    {
+      "case_id": "A19",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El replay buffer almacena transiciones para reutilizarlas durante el aprendizaje."
+    },
+    {
+      "case_id": "A20",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El objetivo se calcula con la recompensa inmediata y una estimación descontada del valor futuro."
+    },
+    {
+      "case_id": "A21",
+      "expected_abstention": false,
+      "predicted_status": "partial",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "uncertainty_plus_substantive_content",
+      "answer": "La evidencia no especifica el valor exacto de gamma; sí explica que gamma es el factor de descuento."
+    },
+    {
+      "case_id": "A22",
+      "expected_abstention": false,
+      "predicted_status": "partial",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "uncertainty_plus_substantive_content",
+      "answer": "No hay información suficiente sobre la recompensa media real, pero sí se puede explicar cómo se calcula una recompensa."
+    },
+    {
+      "case_id": "A23",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "Aunque no se conoce el valor configurado de tau, tau controla la actualización de las redes objetivo."
+    },
+    {
+      "case_id": "A24",
+      "expected_abstention": false,
+      "predicted_status": "partial",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "uncertainty_plus_substantive_content",
+      "answer": "No puedo confirmar el valor real de alpha. En SAC, alpha controla la importancia del término de entropía."
+    },
+    {
+      "case_id": "A25",
+      "expected_abstention": false,
+      "predicted_status": "partial",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "uncertainty_plus_substantive_content",
+      "answer": "La documentación no incluye la métrica final de la ejecución, así que no puede informarse esa cifra. Para evaluarla se necesita el registro de entrenamiento."
+    },
+    {
+      "case_id": "A26",
+      "expected_abstention": false,
+      "predicted_status": "partial",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "uncertainty_plus_substantive_content",
+      "answer": "No se puede determinar el valor de tau con estos fragmentos. El valor de tau debe leerse en la configuración efectiva del entrenamiento."
+    },
+    {
+      "case_id": "A27",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No se puede determinar el valor exacto de gamma con la evidencia disponible."
+    },
+    {
+      "case_id": "A28",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "La evidencia no incluye datos de la última ejecución; por tanto, no puedo confirmar su recompensa media."
+    },
+    {
+      "case_id": "A29",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No hay datos suficientes. La pregunta requiere el registro de la ejecución real."
+    },
+    {
+      "case_id": "A30",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No se menciona un número de episodios ni un criterio de convergencia para la política actual."
+    },
+    {
+      "case_id": "A31",
+      "expected_abstention": false,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": false,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "La evidencia recuperada describe el concepto de gamma y no proporciona el valor configurado."
+    },
+    {
+      "case_id": "A32",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El actor produce acciones; el crítico estima su valor. Esa es la distinción principal."
+    },
+    {
+      "case_id": "A33",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No puedo afirmar que 0.005 sea el valor del proyecto: aparece en un ejemplo, no en una configuración efectiva verificada."
+    },
+    {
+      "case_id": "A34",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El fragmento muestra tau=0.005 como ejemplo de configuración, pero no demuestra que ese sea el valor activo del proyecto."
+    },
+    {
+      "case_id": "A35",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "La respuesta no debe inventar un valor exacto. Para confirmar el parámetro hay que inspeccionar el archivo de configuración cargado."
+    },
+    {
+      "case_id": "A36",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No se proporciona el valor activo del parámetro en la evidencia recuperada."
+    },
+    {
+      "case_id": "A37",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "Aunque falta el valor numérico exacto, sí puede explicarse la función del parámetro: gamma descuenta el valor futuro."
+    },
+    {
+      "case_id": "A38",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "No se puede confirmar el valor porque los fragmentos recuperados solo contienen ejemplos genéricos."
+    },
+    {
+      "case_id": "A39",
+      "expected_abstention": false,
+      "predicted_status": "answer",
+      "predicted_abstention": false,
+      "match": true,
+      "reason": "no_abstention_cue",
+      "answer": "El crítico aprende a aproximar el objetivo de Bellman minimizando el error entre la estimación Q y el objetivo."
+    },
+    {
+      "case_id": "A40",
+      "expected_abstention": true,
+      "predicted_status": "abstention",
+      "predicted_abstention": true,
+      "match": true,
+      "reason": "explicit_lack_of_evidence_without_answer",
+      "answer": "La evidencia disponible no permite establecer qué configuración se utilizó en la última ejecución."
+    }
+  ]
+}

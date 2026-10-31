@@ -1,0 +1,79 @@
+{
+  "id": "Q1_actor_critic",
+  "query": "Explica qué es la política del agente en aprendizaje por refuerzo, qué función cumple la función de valor y cómo se relacionan ambas en una arquitectura Actor-Critic.",
+  "status": "OK",
+  "fragments": [
+    {
+      "rank": 1,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.8129842281341553,
+      "text": "12.2 Basado en valor vs. basado en política\n**Actor-crítico:** combina política y valor. SAC, PPO en su formulación\nactor-crítico y muchos métodos continuos pertenecen a esta familia, con\ndiferencias importantes en cómo aprenden y actualizan sus componentes."
+    },
+    {
+      "rank": 2,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.8046077489852905,
+      "text": "11.5 Actor-crítico\nLos métodos actor-crítico combinan: - un actor, que aprende la\npolítica; - un crítico, que estima valor o ventaja para orientar la\nactualización del actor."
+    },
+    {
+      "rank": 3,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.8023716807365417,
+      "text": "29. Conclusiones\nEl aprendizaje por refuerzo estudia cómo aprender decisiones a partir de\ninteracción y recompensas acumuladas. Su formulación utiliza estados,\nacciones, políticas, transiciones, retornos y funciones de valor. Las\necuaciones de Bellman expresan la relación entre la recompensa inmediata\ny el valor futuro; los métodos MC, TD, Q-learning y gradientes de\npolítica ofrecen distintas formas de estimar o maximizar ese retorno."
+    },
+    {
+      "rank": 4,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.7915499210357666,
+      "text": "27. Definiciones para consulta rápida\n- **Acción ((a)):** decisión ejecutada por el agente.\n- **Agente:** sistema que aprende a decidir.\n- **Aprendizaje por refuerzo (RL):** aprendizaje de decisiones\n mediante interacción y recompensas.\n- **Aprendizaje profundo por refuerzo (Deep RL):** RL que utiliza\n redes neuronales profundas para aproximar políticas, valores o\n modelos.\n- **Bootstrapping:** actualizar una estimación usando otra estimación\n aprendida.\n- **Crítico:** estimador de valor usado para evaluar estados o\n acciones.\n- **Descuento ((`\\gamma`{=tex})):** factor que pondera recompensas\n futuras.\n- **Entorno:** sistema con el que interactúa el agente.\n- **Episodio:** secuencia de interacción hasta la terminación o el\n límite definido.\n- **Estado ((s)):** descripción suficiente del entorno para la\n formulación.\n- **Exploración:** probar acciones para obtener información.\n- **Explotación:** elegir acciones que parecen mejores según lo\n aprendido.\n- **Función de ventaja ((A)):** diferencia entre valor de una acción y\n valor del estado.\n- **Función de valor ((V)):** retorno"
+    },
+    {
+      "rank": 5,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.7912500500679016,
+      "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot."
+    }
+  ],
+  "modes": {
+    "rapido": {
+      "status": "OK",
+      "answer": "**Política del agente** en aprendizaje por refuerzo es la estrategia que define qué acción tomar en cada estado. Formalmente, es una función que mapea estados a distribuciones de acciones, indicando la probabilidad de elegir cada acción en un estado dado.\n\n**Función de valor** es una estimación del retorno esperado desde un estado (o acción) hacia adelante. En el contexto de los algoritmos de aprendizaje por refuerzo, la función de valor ayuda a evaluar la utilidad de un estado o acción, permitiendo al agente tomar decisiones más informadas.\n\nEn una arquitectura **Actor-Critic**, se distinguen dos componentes:\n\n- **Actor**: Aprende la política, es decir, decide qué acción tomar en cada estado.\n- **Critic**: Estima el valor (o ventaja) de un estado o acción, proporcionando una evaluación que el actor utiliza para mejorar su política.\n\nPor lo tanto, la **función de valor** cumple el rol de **evaluar** las decisiones del **actor**, permitiendo que este ajuste su política para maximizar el retorno esperado. Esta relación es fundamental en los algoritmos actor-crítico, como SAC y PPO, que combinan ambos componentes para lograr un aprendizaje eficiente.",
+      "thinking": "",
+      "elapsed_seconds_wall": 13.669,
+      "total_duration_ns": 11551298300,
+      "load_duration_ns": 5432412400,
+      "prompt_eval_count": 1133,
+      "prompt_eval_duration_ns": 522409000,
+      "eval_count": 286,
+      "eval_duration_ns": 5586917000,
+      "done_reason": "stop",
+      "error": "",
+      "parameters": {
+        "think": false,
+        "num_predict": 512,
+        "temperature": 0.0,
+        "seed": 42
+      }
+    },
+    "investigacion": {
+      "status": "OK",
+      "answer": "**Política del agente:**  \nLa política define la estrategia que sigue el agente para seleccionar acciones en función de los estados observados. En aprendizaje por refuerzo, representa la relación entre estados y acciones, determinando qué acción tomar en cada situación para maximizar la recompensa acumulada.\n\n**Función de valor:**  \nLa función de valor (V) estima el retorno esperado (recompensas futuras descuentadas) a partir de un estado o acción. Su función es evaluar la utilidad de un estado o acción, proporcionando una métrica para comparar decisiones y guiar la mejora de la política.\n\n**Relación en Actor-Critic:**  \nEn arquitecturas Actor-Critic (Fragmentos 1 y 2), se combinan dos componentes:  \n- **Actor:** Aprende la política (decide acciones).  \n- **Crítico:** Estima la función de valor (evalúa estados o acciones).  \n\nEl crítico proporciona retroalimentación al actor sobre la calidad de sus decisiones, permitiendo que el actor actualice su política para maximizar el retorno. La función de valor (V) o ventaja (A) se usa como referencia para ajustar la política, mientras que el actor ejecuta las acciones basadas en esta evaluación.  \n\n**Evidencia limitada:**  \nNo se menciona explícitamente cómo se actualizan los componentes en Actor-Critic ni detalles sobre el cálculo de la función de valor. La relación se describe de forma general, sin profundizar en ecuaciones o algoritmos específicos.",
+      "thinking": "Okay, the user is asking about the policy in reinforcement learning, the role of the value function, and how they relate in an Actor-Critic architecture. Let me check the provided fragments to find the relevant information.\n\nFragment 1 mentions Actor-Critic combining policy and value. Fragment 2 explains that Actor-Critic has an actor (learns policy) and a critic (estimates value to guide the actor). Fragment 4 defines the value function as the return and the critic as a value estimator. Fragment 3 talks about Bellman equations relating immediate reward and future value, which is part of value functions. \n\nSo, the policy is what the agent uses to decide actions. The value function estimates the expected return, helping the policy improve. In Actor-Critic, the actor (policy) and critic (value function) work together. The critic's estimates guide the actor's updates. The evidence supports this, but I need to make sure not to add external knowledge. The answer should directly reference the fragments without extra info.\n",
+      "elapsed_seconds_wall": 13.551,
+      "total_duration_ns": 11522445700,
+      "load_duration_ns": 12033100,
+      "prompt_eval_count": 1127,
+      "prompt_eval_duration_ns": 57498000,
+      "eval_count": 560,
+      "eval_duration_ns": 11433986000,
+      "done_reason": "stop",
+      "error": "",
+      "parameters": {
+        "think": true,
+        "num_predict": 2048,
+        "temperature": 0.0,
+        "seed": 42
+      }
+    }
+  }
+}

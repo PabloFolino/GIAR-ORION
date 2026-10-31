@@ -1,0 +1,38 @@
+{
+  "id": "Q2_sac",
+  "query": "Según la documentación disponible, ¿qué es SAC y cuáles son las características que lo distinguen como algoritmo de aprendizaje por refuerzo?",
+  "system_prompt": "Sos GIAR-ORION, un asistente técnico especializado en robótica y aprendizaje por refuerzo.\nRespondé en español, con precisión y de forma directa.\nUsá únicamente la evidencia proporcionada en los fragmentos.\nNo inventes datos ni completes con conocimiento externo.\nSi la evidencia no alcanza para responder, señalá esa limitación.\nEntregá una respuesta técnica verificable.",
+  "user_prompt": "CONSULTA DEL USUARIO:\nSegún la documentación disponible, ¿qué es SAC y cuáles son las características que lo distinguen como algoritmo de aprendizaje por refuerzo?\n\nEVIDENCIA RECUPERADA:\n\n--- FRAGMENTO 1 | archivo=SAC\\Fundamentos_de_SAC_GIAR_ORION.md | score=0.8073890805244446 ---\n1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.\n--- FIN FRAGMENTO 1 ---\n\n--- FRAGMENTO 2 | archivo=RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.7954697608947754 ---\n2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]\n--- FIN FRAGMENTO 2 ---\n\n--- FRAGMENTO 3 | archivo=SAC\\Fundamentos_de_SAC_GIAR_ORION.md | score=0.7779361605644226 ---\n1. Resumen ejecutivo\nLa característica distintiva de SAC es que intenta maximizar tanto la\nrecompensa acumulada como la entropía de la política. En términos\nprácticos, no busca solamente obtener una buena acción: durante el\naprendizaje también procura conservar suficiente exploración.\n--- FIN FRAGMENTO 3 ---\n\n--- FRAGMENTO 4 | archivo=SAC\\Fundamentos_de_SAC_GIAR_ORION.md | score=0.7729092836380005 ---\nSoft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n> **Alcance y trazabilidad.** Este documento amplía el archivo\n> introductorio *Fundamentos de Soft Actor-Critic.md*. La formulación\n> matemática se contrasta con el artículo original de SAC y la\n> documentación técnica de OpenAI Spinning Up. Los ejemplos de\n> recompensa y de control se presentan como diseños ilustrativos, no\n> como la configuración confirmada de un proyecto particular. Para\n> afirmar qué parámetros, recompensas o límites utiliza un entrenamiento\n> concreto, hay que inspeccionar sus archivos de configuración y su\n> código.\n--- FIN FRAGMENTO 4 ---\n\n--- FRAGMENTO 5 | archivo=SAC\\Fundamentos_de_SAC_GIAR_ORION.md | score=0.7650654315948486 ---\nSoft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n**Documento técnico para GIAR-ORION**\\\n**Versión:** 2.0\\\n**Fecha:** 12 de octubre de 2026\\\n**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones\nprácticas de implementación, con fórmulas, ejemplos en Python, criterios\nde diagnóstico y estimaciones de tiempo y memoria.\n--- FIN FRAGMENTO 5 ---\n\nRespondé basándote exclusivamente en estos fragmentos. Indicá expresamente si falta evidencia para alguna parte.",
+  "fragments": [
+    {
+      "rank": 1,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.8073890805244446,
+      "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot."
+    },
+    {
+      "rank": 2,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.7954697608947754,
+      "text": "2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]"
+    },
+    {
+      "rank": 3,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.7779361605644226,
+      "text": "1. Resumen ejecutivo\nLa característica distintiva de SAC es que intenta maximizar tanto la\nrecompensa acumulada como la entropía de la política. En términos\nprácticos, no busca solamente obtener una buena acción: durante el\naprendizaje también procura conservar suficiente exploración."
+    },
+    {
+      "rank": 4,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.7729092836380005,
+      "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n> **Alcance y trazabilidad.** Este documento amplía el archivo\n> introductorio *Fundamentos de Soft Actor-Critic.md*. La formulación\n> matemática se contrasta con el artículo original de SAC y la\n> documentación técnica de OpenAI Spinning Up. Los ejemplos de\n> recompensa y de control se presentan como diseños ilustrativos, no\n> como la configuración confirmada de un proyecto particular. Para\n> afirmar qué parámetros, recompensas o límites utiliza un entrenamiento\n> concreto, hay que inspeccionar sus archivos de configuración y su\n> código."
+    },
+    {
+      "rank": 5,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.7650654315948486,
+      "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n**Documento técnico para GIAR-ORION**\\\n**Versión:** 2.0\\\n**Fecha:** 12 de octubre de 2026\\\n**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones\nprácticas de implementación, con fórmulas, ejemplos en Python, criterios\nde diagnóstico y estimaciones de tiempo y memoria."
+    }
+  ]
+}

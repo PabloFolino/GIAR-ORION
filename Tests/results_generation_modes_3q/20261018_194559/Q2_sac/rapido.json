@@ -1,0 +1,20 @@
+{
+  "status": "OK",
+  "answer": "**SAC (Soft Actor-Critic)** es un algoritmo de aprendizaje por refuerzo profundo (*Deep Reinforcement Learning*, DRL), de tipo **actor-crítico**, **estocástico** y **off-policy**. Se utiliza especialmente para problemas de control con acciones continuas, como regular el par de motores, la velocidad de articulaciones o las consignas de un robot.\n\nLas características que lo distinguen como algoritmo de aprendizaje por refuerzo son:\n\n1. **Actor-crítico**: Combina un actor que toma decisiones (acciones) y un crítico que evalúa las acciones mediante una función de valor.\n2. **Estocástico**: La política no selecciona acciones determinísticas, sino que introduce una componente aleatoria para favorecer la exploración.\n3. **Off-policy**: Puede aprender desde cualquier experiencia, no necesariamente la generada por la política actual.\n4. **Optimización de recompensa aumentada por entropía**: Maximiza tanto la recompensa acumulada como la entropía de la política. Esto permite una exploración más eficiente durante el aprendizaje, evitando que la política se estanque en soluciones locales óptimas pero poco explorativas.\n\nNo se proporciona evidencia sobre las fórmulas matemáticas, implementación específica o aplicaciones concretas, aunque se menciona que el documento técnico aborda estos aspectos.",
+  "thinking": "",
+  "elapsed_seconds_wall": 8.323,
+  "total_duration_ns": 6292762100,
+  "load_duration_ns": 10325100,
+  "prompt_eval_count": 998,
+  "prompt_eval_duration_ns": 426559000,
+  "eval_count": 315,
+  "eval_duration_ns": 5725851000,
+  "done_reason": "stop",
+  "error": "",
+  "parameters": {
+    "think": false,
+    "num_predict": 512,
+    "temperature": 0.0,
+    "seed": 42
+  }
+}

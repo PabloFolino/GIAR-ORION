@@ -1,0 +1,37 @@
+{
+  "id": "Q3_critic_sac",
+  "query": "Según la documentación disponible, ¿qué función cumple el crítico en SAC y cómo contribuye al aprendizaje de la política del actor?",
+  "user_prompt": "CONSULTA DEL USUARIO:\nSegún la documentación disponible, ¿qué función cumple el crítico en SAC y cómo contribuye al aprendizaje de la política del actor?\n\nEVIDENCIA RECUPERADA:\n\n--- FRAGMENTO 1 | archivo=SAC\\Fundamentos_de_SAC_GIAR_ORION.md | score=0.7873084545135498 ---\n1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.\n--- FIN FRAGMENTO 1 ---\n\n--- FRAGMENTO 2 | archivo=RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.7869830131530762 ---\n2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]\n--- FIN FRAGMENTO 2 ---\n\n--- FRAGMENTO 3 | archivo=SAC\\Fundamentos_de_SAC_GIAR_ORION.md | score=0.7812044024467468 ---\n19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.\n--- FIN FRAGMENTO 3 ---\n\n--- FRAGMENTO 4 | archivo=RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.7792477607727051 ---\n12.2 Basado en valor vs. basado en política\n**Actor-crítico:** combina política y valor. SAC, PPO en su formulación\nactor-crítico y muchos métodos continuos pertenecen a esta familia, con\ndiferencias importantes en cómo aprenden y actualizan sus componentes.\n--- FIN FRAGMENTO 4 ---\n\n--- FRAGMENTO 5 | archivo=RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.7639689445495605 ---\n11.5 Actor-crítico\nLos métodos actor-crítico combinan: - un actor, que aprende la\npolítica; - un crítico, que estima valor o ventaja para orientar la\nactualización del actor.\n--- FIN FRAGMENTO 5 ---\n\nRespondé basándote exclusivamente en estos fragmentos. Indicá expresamente si falta evidencia para alguna parte.",
+  "fragments": [
+    {
+      "rank": 1,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.7873084545135498,
+      "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot."
+    },
+    {
+      "rank": 2,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.7869830131530762,
+      "text": "2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]"
+    },
+    {
+      "rank": 3,
+      "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+      "score": 0.7812044024467468,
+      "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía."
+    },
+    {
+      "rank": 4,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.7792477607727051,
+      "text": "12.2 Basado en valor vs. basado en política\n**Actor-crítico:** combina política y valor. SAC, PPO en su formulación\nactor-crítico y muchos métodos continuos pertenecen a esta familia, con\ndiferencias importantes en cómo aprenden y actualizan sus componentes."
+    },
+    {
+      "rank": 5,
+      "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+      "score": 0.7639689445495605,
+      "text": "11.5 Actor-crítico\nLos métodos actor-crítico combinan: - un actor, que aprende la\npolítica; - un crítico, que estima valor o ventaja para orientar la\nactualización del actor."
+    }
+  ]
+}

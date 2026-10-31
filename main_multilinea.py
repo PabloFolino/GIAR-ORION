@@ -583,6 +583,7 @@ def iniciar_agente(config: dict) -> None:
     print("  /limpiar               Borrar el historial de la sesión")
     print("  /guardar               Guardar la conversación actual")
     print("  /sesiones              Listar conversaciones guardadas")
+    print("  /abrir N               Recuperar una conversación guardada por número")
     print("  /modo rapido           Activar el modo rápido")
     print("  /modo investigacion    Activar el modo de investigación")
     print("  Consulta multilínea: Enter agrega una línea")
@@ -621,7 +622,7 @@ def iniciar_agente(config: dict) -> None:
             numero = int(partes[1]) 
             mensajes_recuperados = recuperar_conversacion( config, numero, ) 
             if mensajes_recuperados is not None: 
-                mensajes = [ mensajes[0:0] ]  if False else mensajes[:1] 
+                mensajes = mensajes[:1]
                 mensajes.extend(mensajes_recuperados) 
             continue
 
@@ -641,9 +642,6 @@ def iniciar_agente(config: dict) -> None:
                 print(f"Error al guardar la conversación: {error}")
             continue
 
-        if comando == "/sesiones":
-            listar_conversaciones(config)
-            continue
 
         if comando.startswith("/modo"):
             partes = comando.split(maxsplit=1)

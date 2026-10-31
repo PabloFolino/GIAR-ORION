@@ -1,0 +1,77 @@
+INSTRUCCIÓN DE SISTEMA:
+Sos GIAR-ORION, un asistente técnico especializado en robótica y aprendizaje por refuerzo.
+Respondé en español, con precisión y de forma directa.
+Usá únicamente la evidencia proporcionada en los fragmentos.
+No inventes datos ni completes con conocimiento externo.
+Si la evidencia no alcanza para responder, señalá esa limitación.
+Entregá una respuesta técnica verificable.
+
+PROMPT:
+CONSULTA DEL USUARIO:
+Explica qué es la política del agente en aprendizaje por refuerzo, qué función cumple la función de valor y cómo se relacionan ambas en una arquitectura Actor-Critic.
+
+EVIDENCIA RECUPERADA:
+
+--- FRAGMENTO 1 | archivo=RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.8129842281341553 ---
+12.2 Basado en valor vs. basado en política
+**Actor-crítico:** combina política y valor. SAC, PPO en su formulación
+actor-crítico y muchos métodos continuos pertenecen a esta familia, con
+diferencias importantes en cómo aprenden y actualizan sus componentes.
+--- FIN FRAGMENTO 1 ---
+
+--- FRAGMENTO 2 | archivo=RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.8046077489852905 ---
+11.5 Actor-crítico
+Los métodos actor-crítico combinan: - un actor, que aprende la
+política; - un crítico, que estima valor o ventaja para orientar la
+actualización del actor.
+--- FIN FRAGMENTO 2 ---
+
+--- FRAGMENTO 3 | archivo=RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.8023716807365417 ---
+29. Conclusiones
+El aprendizaje por refuerzo estudia cómo aprender decisiones a partir de
+interacción y recompensas acumuladas. Su formulación utiliza estados,
+acciones, políticas, transiciones, retornos y funciones de valor. Las
+ecuaciones de Bellman expresan la relación entre la recompensa inmediata
+y el valor futuro; los métodos MC, TD, Q-learning y gradientes de
+política ofrecen distintas formas de estimar o maximizar ese retorno.
+--- FIN FRAGMENTO 3 ---
+
+--- FRAGMENTO 4 | archivo=RL\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md | score=0.7915499210357666 ---
+27. Definiciones para consulta rápida
+- **Acción ((a)):** decisión ejecutada por el agente.
+- **Agente:** sistema que aprende a decidir.
+- **Aprendizaje por refuerzo (RL):** aprendizaje de decisiones
+ mediante interacción y recompensas.
+- **Aprendizaje profundo por refuerzo (Deep RL):** RL que utiliza
+ redes neuronales profundas para aproximar políticas, valores o
+ modelos.
+- **Bootstrapping:** actualizar una estimación usando otra estimación
+ aprendida.
+- **Crítico:** estimador de valor usado para evaluar estados o
+ acciones.
+- **Descuento ((`\gamma`{=tex})):** factor que pondera recompensas
+ futuras.
+- **Entorno:** sistema con el que interactúa el agente.
+- **Episodio:** secuencia de interacción hasta la terminación o el
+ límite definido.
+- **Estado ((s)):** descripción suficiente del entorno para la
+ formulación.
+- **Exploración:** probar acciones para obtener información.
+- **Explotación:** elegir acciones que parecen mejores según lo
+ aprendido.
+- **Función de ventaja ((A)):** diferencia entre valor de una acción y
+ valor del estado.
+- **Función de valor ((V)):** retorno
+--- FIN FRAGMENTO 4 ---
+
+--- FRAGMENTO 5 | archivo=SAC\Fundamentos_de_SAC_GIAR_ORION.md | score=0.7912500500679016 ---
+1. Resumen ejecutivo
+**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo
+profundo (*Deep Reinforcement Learning*, DRL), de tipo
+**actor-crítico**, **estocástico** y **off-policy**. Se usa
+especialmente para problemas de control con acciones continuas, como
+regular el par de motores, la velocidad de articulaciones o las
+consignas de un robot.
+--- FIN FRAGMENTO 5 ---
+
+Respondé basándote exclusivamente en estos fragmentos. Indicá expresamente si falta evidencia para alguna parte.

@@ -1,0 +1,1356 @@
+{
+  "timestamp": "20261019_030120",
+  "root": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION",
+  "config_snapshot": {
+    "rag": {
+      "enabled": true,
+      "mode": "hybrid",
+      "top_k": 5,
+      "device": "cpu",
+      "local_files_only": false,
+      "show_sources": true,
+      "e5_weight": 0.7,
+      "bge_weight": 0.3
+    },
+    "llm": {
+      "provider": "ollama",
+      "model": "qwen3:8b",
+      "base_url": "http://localhost:11434",
+      "system_prompt": "Sos GIAR-ORION, un asistente especializado en robótica autónoma, aprendizaje por refuerzo y aprendizaje profundo por refuerzo. Trabajás especialmente con SAC, PPO, Python, PyTorch, Unitree G1, CoppeliaSim y MuJoCo. Priorizá la precisión técnica. Si no conocés un dato o no podés verificarlo, indicá esa limitación. No inventes resultados experimentales ni afirmes haber ejecutado pruebas que no realizaste."
+    },
+    "modes": {
+      "rapido": {
+        "think": false,
+        "num_predict": 1536
+      },
+      "investigacion": {
+        "think": true,
+        "num_predict": 2048
+      }
+    }
+  },
+  "retriever_init_seconds": 18.238,
+  "case_count": 24,
+  "records": [
+    {
+      "case_id": "R01",
+      "category": "SAC",
+      "query": "¿Qué es SAC y qué tipo de algoritmo es?",
+      "retrieval_seconds": 1.031,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8118386268615723,
+        0.801659882068634,
+        0.7641974687576294,
+        0.7603724598884583,
+        0.7596744894981384
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]",
+          "score": 0.8118386268615723,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.",
+          "score": 0.801659882068634,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "11. Límites de funcionamiento y fallas típicas\nSAC es potente, pero no es un optimizador universal.",
+          "score": 0.7641974687576294,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n**Documento técnico para GIAR-ORION**\\\n**Versión:** 2.0\\\n**Fecha:** 12 de octubre de 2026\\\n**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones\nprácticas de implementación, con fórmulas, ejemplos en Python, criterios\nde diagnóstico y estimaciones de tiempo y memoria.",
+          "score": 0.7603724598884583,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\nSAC **no garantiza** que el robot aprenda a caminar, que converja en una\ncantidad determinada de episodios ni que encuentre una política segura.\nEl resultado depende de la definición del estado, las acciones, la\nrecompensa, el simulador, la arquitectura de las redes, la cantidad de\ndatos y los hiperparámetros.",
+          "score": 0.7596744894981384,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R02",
+      "category": "SAC",
+      "query": "¿Qué función cumple el actor en SAC?",
+      "retrieval_seconds": 0.045,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7660947442054749,
+        0.7583557963371277,
+        0.741955041885376,
+        0.7375450134277344,
+        0.7241523265838623
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]",
+          "score": 0.7660947442054749,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.",
+          "score": 0.7583557963371277,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.",
+          "score": 0.741955041885376,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "3.1 Actor\nEn SAC para acciones continuas, normalmente una red neuronal calcula la\nmedia (`\\mu`{=tex}*`\\theta`{=tex}(s)) y la desviación estándar\n(`\\sigma`{=tex}*`\\theta`{=tex}(s)) de una distribución gaussiana.\nDespués se toma una muestra y se limita al rango de acción permitido.",
+          "score": 0.7375450134277344,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "12.2 Basado en valor vs. basado en política\n**Actor-crítico:** combina política y valor. SAC, PPO en su formulación\nactor-crítico y muchos métodos continuos pertenecen a esta familia, con\ndiferencias importantes en cómo aprenden y actualizan sus componentes.",
+          "score": 0.7241523265838623,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R03",
+      "category": "SAC",
+      "query": "¿Qué función cumple el crítico en SAC?",
+      "retrieval_seconds": 0.049,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7837119102478027,
+        0.7829477787017822,
+        0.7737029790878296,
+        0.767278254032135,
+        0.7426390647888184
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]",
+          "score": 0.7837119102478027,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.",
+          "score": 0.7829477787017822,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.",
+          "score": 0.7737029790878296,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "3.3 ¿Por qué dos críticos?\nSAC suele aprender dos estimadores independientes y usa el mínimo:",
+          "score": 0.767278254032135,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "12.2 Basado en valor vs. basado en política\n**Actor-crítico:** combina política y valor. SAC, PPO en su formulación\nactor-crítico y muchos métodos continuos pertenecen a esta familia, con\ndiferencias importantes en cómo aprenden y actualizan sus componentes.",
+          "score": 0.7426390647888184,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R04",
+      "category": "relaciones",
+      "query": "Explica la relación entre actor, crítico, pérdida del crítico y objetivo de Bellman.",
+      "retrieval_seconds": 0.044,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8023654222488403,
+        0.7830430269241333,
+        0.7594540119171143,
+        0.7527535557746887,
+        0.7502692937850952
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.",
+          "score": 0.8023654222488403,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\nEl objetivo de los críticos es:",
+          "score": 0.7830430269241333,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\nSe muestrea una nueva acción del actor actual para el estado siguiente:",
+          "score": 0.7594540119171143,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\n- (r): recompensa inmediata guardada en el buffer.\n- (`\\gamma`{=tex}): cuánto importa el futuro.\n- (d): indicador de terminación verdadera del episodio.\n- (Q\\_{`\\bar`{=tex}`\\phi`{=tex}\\_i}): críticos objetivo.\n- (`\\min`{=tex}*i Q*{`\\bar`{=tex}`\\phi`{=tex}\\_i}): estimación\n conservadora del valor futuro.\n- (-`\\alpha`{=tex}`\\log`{=tex}`\\pi`{=tex}(a'`\\mid `{=tex}s')):\n contribución de entropía.\n- (1-d): anula el valor futuro cuando la transición termina realmente\n el episodio.",
+          "score": 0.7527535557746887,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "11.5 Actor-crítico\n------------------------------------------------------------------------",
+          "score": 0.7502692937850952,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R05",
+      "category": "relaciones",
+      "query": "¿Para qué se utiliza el objetivo de Bellman al entrenar el crítico?",
+      "retrieval_seconds": 0.032,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7763453722000122,
+        0.7655102014541626,
+        0.7487702965736389,
+        0.7381816506385803,
+        0.7294902801513672
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\nEl objetivo de los críticos es:",
+          "score": 0.7763453722000122,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.",
+          "score": 0.7655102014541626,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\n- (r): recompensa inmediata guardada en el buffer.\n- (`\\gamma`{=tex}): cuánto importa el futuro.\n- (d): indicador de terminación verdadera del episodio.\n- (Q\\_{`\\bar`{=tex}`\\phi`{=tex}\\_i}): críticos objetivo.\n- (`\\min`{=tex}*i Q*{`\\bar`{=tex}`\\phi`{=tex}\\_i}): estimación\n conservadora del valor futuro.\n- (-`\\alpha`{=tex}`\\log`{=tex}`\\pi`{=tex}(a'`\\mid `{=tex}s')):\n contribución de entropía.\n- (1-d): anula el valor futuro cuando la transición termina realmente\n el episodio.",
+          "score": 0.7487702965736389,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\n**Importante:** en entornos con límite artificial de duración, hay que\ndistinguir \"terminó el episodio por éxito/fallo\" de \"se agotó el tiempo\nlímite\". Confundir `terminated` y `truncated` puede sesgar el objetivo\nde Bellman.",
+          "score": 0.7381816506385803,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "16. Lista de comprobación para auditar una implementación concreta\n- [ ] Definición exacta del vector de observación.\n- [ ] Orden y dimensión de las acciones.\n- [ ] Escala y límites físicos de cada acción.\n- [ ] Arquitectura del actor.\n- [ ] Arquitectura de los dos críticos.\n- [ ] Uso de redes objetivo.\n- [ ] Fórmula exacta de la pérdida del actor.\n- [ ] Fórmula exacta del objetivo de Bellman.\n- [ ] Corrección de log-probabilidad para la transformación `tanh`.\n- [ ] Temperatura fija o automática y su pérdida.\n- [ ] Tamaño y tipo de datos del Replay Buffer.\n- [ ] Tamaño del lote.\n- [ ] Factor de descuento y tasa de aprendizaje.\n- [ ] Convención del coeficiente Polyak.\n- [ ] Frecuencia de actualizaciones por paso de entorno.\n- [ ] Tratamiento de `terminated` frente a `truncated`.\n- [ ] Fórmula de recompensa y componentes registrados.\n- [ ] Condiciones de caída y fin de episodio.\n- [ ] Guardado y carga de redes, optimizadores y temperatura.\n- [ ] Evaluación independiente del entrenamiento.\n- [ ] Medición de tiempo por paso, RAM y VRAM.",
+          "score": 0.7294902801513672,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R06",
+      "category": "relaciones",
+      "query": "¿Qué mide la pérdida del crítico y con qué se compara?",
+      "retrieval_seconds": 0.034,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7740288972854614,
+        0.7631535530090332,
+        0.7629987001419067,
+        0.7545029520988464,
+        0.7411078214645386
+      ],
+      "evidence_term_coverage": 0.5,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.2 Pérdida de cada crítico\n\\[ L_Q=L\\_{Q_1}+L\\_{Q_2} \\]",
+          "score": 0.7740288972854614,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.2 Pérdida de cada crítico\nLa pérdida conjunta suele ser:",
+          "score": 0.7631535530090332,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.2 Pérdida de cada crítico\nCada crítico minimiza el error cuadrático medio entre su predicción y el\nobjetivo:",
+          "score": 0.7629987001419067,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.2 Pérdida de cada crítico\n\\[ L\\_{Q_i}(`\\phi`{=tex}*i)=\n`\\mathbb `{=tex}E*{(s,a,r,s',d)`\\sim`{=tex}`\\mathcal `{=tex}D} `\\left[\n\\left(Q_{\\phi_i}(s,a)-y\\right)^2\n\\right]`{=tex}\\]",
+          "score": 0.7545029520988464,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "11.5 Actor-crítico\nEl crítico puede disminuir la varianza respecto de usar directamente el\nretorno completo. Sin embargo, un crítico incorrecto también puede\nintroducir sesgo o desestabilizar el aprendizaje.",
+          "score": 0.7411078214645386,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R07",
+      "category": "abstención",
+      "query": "Según la documentación del proyecto, ¿cuál es el valor numérico exacto de alpha?",
+      "retrieval_seconds": 0.032,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.70326167345047,
+        0.6960307359695435,
+        0.6917099952697754,
+        0.689913809299469,
+        0.6892794966697693
+      ],
+      "evidence_term_coverage": null,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "4.1 Temperatura fija y automática\n\\[ L(`\\alpha`{=tex})=\n`\\mathbb `{=tex}E\\_{a_t`\\sim`{=tex}`\\pi`{=tex}\\_`\\theta`{=tex}}\n`\\left[-\\log\\alpha\\,\n(\\log\\pi_\\theta(a_t\\mid s_t)+\\mathcal H_{\\text{obj}})\\right]`{=tex}\\]",
+          "score": 0.70326167345047,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\nif terminated:\n break",
+          "score": 0.6960307359695435,
+          "mode": "hybrid"
+        },
+        {
+          "source": "Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+          "text": "9. Tabla de datos confirmados y pendientes\n| Tema solicitado | Estado en fuentes consultadas | Qué usar/qué falta |\n|---|---|---|\n| Tamaño y masa total | Publicado por Unitree | 1320×450×200 mm, ~35 kg con batería; EDU ~35 kg+ |\n| Masa de cada elemento físico | Parcial en URDF/MJCF como masa de eslabón modelado | No equivale necesariamente a masa de pieza real; pedir BOM/CAD oficial |\n| Tipo de motor | Publicado de forma general | PMSM de imanes permanentes, rotor interior, baja inercia/alta velocidad |\n| Par máximo | Publicado parcialmente | 90 N·m G1 / 120 N·m G1 EDU para rodilla según tabla; no generalizar |\n| Límites angulares | Rangos comerciales + rangos por articulación en MJCF/URDF | Usar el archivo de la variante y validar con firmware |\n| Doble encoder | Publicado | Posición/velocidad; detalles eléctricos y precisión por confirmar |\n| IMU | Interfaz visible en SDK | Modelo físico exacto, ubicación y tasa deben verificarse |\n| Cámara de profundidad y LiDAR 3D | Publicado | Modelo, FOV, rango, resolución, frecuencia: revisar lote/manual |\n| Fuerza en pies | Algunos",
+          "score": 0.6917099952697754,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "4.1 Temperatura fija y automática\n**Temperatura fija:** (`\\alpha`{=tex}) se configura manualmente y no\ncambia durante el entrenamiento.",
+          "score": 0.689913809299469,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\nprint(\"Valores Q aprendidos para el estado inicial:\")\nprint(Q[state_id((0, 0))])\n```",
+          "score": 0.6892794966697693,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R08",
+      "category": "abstención",
+      "query": "¿Qué valor exacto de gamma usa el entrenamiento actual?",
+      "retrieval_seconds": 0.035,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7253943681716919,
+        0.7224128246307373,
+        0.7221530079841614,
+        0.7198598980903625,
+        0.7172631621360779
+      ],
+      "evidence_term_coverage": null,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "12.1 Ejemplo puramente ilustrativo\n**No son tiempos medidos en GIAR-ORION.** Para estimar el entrenamiento\nreal, medir durante unos minutos: 1. pasos de entorno por segundo; 2.\nactualizaciones por segundo; 3. tiempo de reset; 4. tiempo de\nevaluación; 5. uso de CPU, RAM, VRAM y GPU.",
+          "score": 0.7253943681716919,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "16. Lista de comprobación para auditar una implementación concreta\n**La documentación general explica el algoritmo; el código determina la\nvariante exacta que se está ejecutando.** Para evaluar un entrenamiento\nconcreto hay que comparar las ecuaciones anteriores con las funciones de\npérdida, la configuración y el entorno real.",
+          "score": 0.7224128246307373,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\nQ[s, action] += learning_rate * (target - Q[s, action])\n pos = next_pos",
+          "score": 0.7221530079841614,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "12. Tiempo de entrenamiento: cómo estimarlo correctamente\ndonde:",
+          "score": 0.7198598980903625,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "12. Tiempo de entrenamiento: cómo estimarlo correctamente\n\\[ T\\_{`\\text{total}`{=tex}}`\\approx`{=tex}\nN\\_{`\\text{env}`{=tex}},t\\_{`\\text{env}`{=tex}}\n+N\\_{`\\text{updates}`{=tex}},t\\_{`\\text{update}`{=tex}}\n+T\\_{`\\text{evaluación}`{=tex}}+T\\_{`\\text{guardado}`{=tex}} \\]",
+          "score": 0.7172631621360779,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R09",
+      "category": "abstención",
+      "query": "¿Cuál es el valor exacto de tau configurado en el proyecto actual?",
+      "retrieval_seconds": 0.038,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.731191873550415,
+        0.7236279249191284,
+        0.7075070738792419,
+        0.7046408653259277,
+        0.7044300436973572
+      ],
+      "evidence_term_coverage": null,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.4 Actualización de redes objetivo\nEjemplo: si (`\\tau=0.005`{=tex}), cada actualización mueve lentamente la\nred objetivo un 0.5 % hacia los parámetros actuales. El valor concreto\ndebe validarse para la frecuencia de actualización utilizada.",
+          "score": 0.731191873550415,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "3.4 Redes objetivo\nEn esta convención, (`\\tau`{=tex}) es pequeño, por ejemplo 0.005.\nAlgunas bibliotecas usan el parámetro complementario\n(`\\rho=1`{=tex}-`\\tau`{=tex}), cercano a 1. Por eso hay que comprobar\nqué convención utiliza el código antes de copiar un valor.",
+          "score": 0.7236279249191284,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "14.1 Actualización Polyak en PyTorch\n``` python\n@torch.no_grad()\ndef soft_update(source, target, tau=0.005):\n for source_param, target_param in zip(\n source.parameters(), target.parameters()\n ):\n target_param.lerp_(source_param, tau)\n```",
+          "score": 0.7075070738792419,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.4 Actualización de redes objetivo\nCon la convención (`\\tau`{=tex}) pequeño:",
+          "score": 0.7046408653259277,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "2. Qué problema resuelve el aprendizaje por refuerzo\nAquí (`\\tau`{=tex}) representa una trayectoria completa generada al\ninteractuar con el entorno.",
+          "score": 0.7044300436973572,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R10",
+      "category": "RL",
+      "query": "¿Qué diferencia hay entre política, función de valor y función Q?",
+      "retrieval_seconds": 0.036,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7853761911392212,
+        0.7735108137130737,
+        0.7647151947021484,
+        0.7593265771865845,
+        0.7561407685279846
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "6. Función de valor de acción\nLa función (Q) ayuda a comparar acciones en una situación. No es una\nprobabilidad ni una recompensa inmediata: es una estimación del retorno\nfuturo.",
+          "score": 0.7853761911392212,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "12.2 Basado en valor vs. basado en política\n**Value-based:** aprende valores de estados o acciones y deriva una\npolítica de ellos. Q-learning y DQN son ejemplos.",
+          "score": 0.7735108137130737,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "según lo\n aprendido.\n- **Función de ventaja ((A)):** diferencia entre valor de una acción y\n valor del estado.\n- **Función de valor ((V)):** retorno esperado desde un estado.\n- **Función Q ((Q)):** retorno esperado al ejecutar una acción en un\n estado y continuar con una política.\n- **Gradiente de política:** derivada del objetivo esperado respecto\n de los parámetros de la política.\n- **MDP:** proceso de decisión de Markov.\n- **Modelo:** representación de la dinámica o de la recompensa del\n entorno.\n- **Off-policy:** aprende de datos generados por una política\n diferente o anterior.\n- **On-policy:** aprende usando datos de la política que se optimiza o\n una versión próxima.\n- **Observación ((o)):** información disponible para el agente.\n- **Política ((`\\pi`{=tex})):** regla que especifica cómo elegir\n acciones.\n- **POMDP:** proceso de decisión de Markov parcialmente observable.\n- **Recompensa ((r)):** señal inmediata que evalúa una transición.\n- **Replay Buffer:** memoria de transiciones reutilizadas por ciertos\n algoritmos.\n- **Retorno ((G)):** suma descontada de recompensas",
+          "score": 0.7647151947021484,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "6. Función de valor de acción\nLa función (Q\\^`\\pi`{=tex}(s,a)) representa el retorno esperado al\nejecutar primero (a) en (s) y luego seguir (`\\pi`{=tex}):",
+          "score": 0.7593265771865845,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "10. Q-learning\nQ-learning es un algoritmo TD off-policy que aprende una función de\nvalor de acción óptima sin requerir que la política de comportamiento\nsea la misma política que se evalúa. \\[Watkins, SB\\]",
+          "score": 0.7561407685279846,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R11",
+      "category": "RL",
+      "query": "¿Qué significa que un algoritmo sea off-policy?",
+      "retrieval_seconds": 0.045,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8026265501976013,
+        0.7897056341171265,
+        0.7851660251617432,
+        0.7825977206230164,
+        0.7663785219192505
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "12.3 On-policy vs. off-policy\n**Off-policy:** puede aprender con datos de una política de\ncomportamiento distinta y reutilizar experiencias pasadas. Q-learning,\nDQN y SAC son ejemplos habituales.",
+          "score": 0.8026265501976013,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "12.3 On-policy vs. off-policy\n**On-policy:** aprende principalmente con datos generados por la\npolítica que se está optimizando o una versión muy próxima. PPO es un\nejemplo típico.",
+          "score": 0.7897056341171265,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "10.1 ¿Qué significa off-policy?\nLa acción que genera los datos puede proceder de una política\nexploratoria, mientras que el objetivo usa la acción futura con mayor Q\nestimado. Por ejemplo, el agente explora con (`\\epsilon`{=tex})-greedy,\npero el objetivo de Q-learning usa el máximo sobre las acciones\nsiguientes.",
+          "score": 0.7851660251617432,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "9. Replay Buffer y aprendizaje off-policy\nDurante la actualización se selecciona aleatoriamente un lote de tamaño\n(B). El agente puede reutilizar una experiencia muchas veces y aprender\nde datos generados por políticas anteriores. Esa es la ventaja principal\nde ser *off-policy*.",
+          "score": 0.7825977206230164,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "10. Q-learning\nQ-learning es un algoritmo TD off-policy que aprende una función de\nvalor de acción óptima sin requerir que la política de comportamiento\nsea la misma política que se evalúa. \\[Watkins, SB\\]",
+          "score": 0.7663785219192505,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R12",
+      "category": "RL",
+      "query": "¿Qué papel cumple la recompensa en aprendizaje por refuerzo?",
+      "retrieval_seconds": 0.034,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8433197736740112,
+        0.8429893851280212,
+        0.8119847774505615,
+        0.8077435493469238,
+        0.8059983253479004
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "29. Conclusiones\nEl aprendizaje por refuerzo estudia cómo aprender decisiones a partir de\ninteracción y recompensas acumuladas. Su formulación utiliza estados,\nacciones, políticas, transiciones, retornos y funciones de valor. Las\necuaciones de Bellman expresan la relación entre la recompensa inmediata\ny el valor futuro; los métodos MC, TD, Q-learning y gradientes de\npolítica ofrecen distintas formas de estimar o maximizar ese retorno.",
+          "score": 0.8433197736740112,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "1. ¿Qué es el aprendizaje por refuerzo?\nEl **aprendizaje por refuerzo** (*Reinforcement Learning*, RL) es un\nárea del aprendizaje automático en la que un agente aprende a tomar\ndecisiones mediante la interacción con un entorno. El agente ejecuta\nacciones, observa sus consecuencias y recibe una señal de recompensa. El\nobjetivo es aprender una conducta que maximice la recompensa acumulada a\nlo largo del tiempo. \\[SB, Spinning Up\\]",
+          "score": 0.8429893851280212,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "2. Qué problema resuelve el aprendizaje por refuerzo\n- (`\\mathcal `{=tex}S): conjunto de estados u observaciones posibles.\n- (`\\mathcal `{=tex}A): conjunto de acciones posibles.\n- (P(s'`\\mid `{=tex}s,a)): dinámica de transición; describe la\n probabilidad de llegar al siguiente estado (s').\n- (R(s,a,s')): recompensa inmediata que asigna el entorno.\n- (`\\gamma`{=tex}`\\in`{=tex}\\[0,1)): factor de descuento de\n recompensas futuras.",
+          "score": 0.8119847774505615,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "2. Qué problema resuelve el aprendizaje por refuerzo\nEl objetivo no es maximizar solamente la recompensa inmediata, sino la\nsuma descontada a lo largo del tiempo:",
+          "score": 0.8077435493469238,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "2. Qué problema resuelve el aprendizaje por refuerzo\ndonde:",
+          "score": 0.8059983253479004,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R13",
+      "category": "robótica",
+      "query": "¿Qué validar en el entorno antes de entrenar SAC para robótica?",
+      "retrieval_seconds": 0.031,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8203191757202148,
+        0.7826499938964844,
+        0.7719184160232544,
+        0.7703211903572083,
+        0.7664780616760254
+      ],
+      "evidence_term_coverage": 0.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "15. Protocolo recomendado para evaluar un SAC de robótica\nAntes de entrenar durante muchas horas, seguir un proceso de validación\npor etapas.",
+          "score": 0.8203191757202148,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\nSAC **no garantiza** que el robot aprenda a caminar, que converja en una\ncantidad determinada de episodios ni que encuentre una política segura.\nEl resultado depende de la definición del estado, las acciones, la\nrecompensa, el simulador, la arquitectura de las redes, la cantidad de\ndatos y los hiperparámetros.",
+          "score": 0.7826499938964844,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nEn robótica, la calidad del resultado depende tanto del algoritmo como\ndel diseño de la recompensa, la semántica de observaciones y acciones,\nla fidelidad del simulador y la calidad de la evaluación. Una recompensa\ncon varios componentes normalmente se convierte en un escalar antes de\nalimentar al SAC estándar. Una recompensa realmente vectorial requiere\nuna formulación multiobjetivo o una escalarización explícita.",
+          "score": 0.7719184160232544,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n> **Alcance y trazabilidad.** Este documento amplía el archivo\n> introductorio *Fundamentos de Soft Actor-Critic.md*. La formulación\n> matemática se contrasta con el artículo original de SAC y la\n> documentación técnica de OpenAI Spinning Up. Los ejemplos de\n> recompensa y de control se presentan como diseños ilustrativos, no\n> como la configuración confirmada de un proyecto particular. Para\n> afirmar qué parámetros, recompensas o límites utiliza un entrenamiento\n> concreto, hay que inspeccionar sus archivos de configuración y su\n> código.",
+          "score": 0.7703211903572083,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n**Documento técnico para GIAR-ORION**\\\n**Versión:** 2.0\\\n**Fecha:** 12 de octubre de 2026\\\n**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones\nprácticas de implementación, con fórmulas, ejemplos en Python, criterios\nde diagnóstico y estimaciones de tiempo y memoria.",
+          "score": 0.7664780616760254,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R14",
+      "category": "robótica",
+      "query": "¿Qué comprobar en la función de recompensa antes de un entrenamiento largo?",
+      "retrieval_seconds": 0.037,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7857314944267273,
+        0.7749570608139038,
+        0.772239625453949,
+        0.7706165313720703,
+        0.7625705003738403
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "7.5 Buenas prácticas para recompensas\n- Registrar por separado cada término y su distribución.\n- Comprobar que todas las magnitudes son finitas (`NaN` e `Inf` deben\n detenerse o registrarse como error).\n- Vigilar el rango de cada componente.\n- Evitar recompensas que sólo se obtengan por explotar un error del\n simulador.\n- Penalizar caídas con un criterio verificable, no sólo con una\n inclinación arbitraria.\n- No premiar la velocidad si el robot está fuera de control.\n- Evaluar también estabilidad, tasa de éxito, energía, suavidad y\n generalización.\n- Separar las recompensas de entrenamiento de las métricas de\n evaluación cuando sea conveniente.",
+          "score": 0.7857314944267273,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "Evaluación\nAdemás de la recompensa: - medir error de velocidad; - medir tasa de\ncaída; - comprobar estabilidad; - registrar acciones saturadas; -\nevaluar diferentes estados iniciales.",
+          "score": 0.7749570608139038,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Etapa B: validar recompensa\n- Calcular cada componente de recompensa en trayectorias conocidas.\n- Verificar signos: lo deseable debe aumentar la recompensa y lo\n indeseable debe reducirla.\n- Revisar rangos y unidades.\n- Comprobar casos extremos: caída, estado inválido, límite articular,\n objetivo alcanzado.\n- Guardar histogramas o estadísticas por componente.",
+          "score": 0.772239625453949,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "Recompensa\nLa recompensa favorece el seguimiento de velocidad y penaliza caídas y\nenergía. Los pesos y el término de energía requieren definición y\nvalidación.",
+          "score": 0.7706165313720703,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "2.1 Por qué se necesita una función de recompensa\nLa recompensa define qué significa \"hacerlo bien\". El algoritmo no\nconoce por sí mismo conceptos como caminar estable, no caerse, ahorrar\nenergía o seguir una velocidad objetivo. Esos objetivos deben expresarse\nen señales numéricas.",
+          "score": 0.7625705003738403,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R15",
+      "category": "robótica",
+      "query": "¿Qué comprobaciones numéricas hacer durante actualizaciones de SAC?",
+      "retrieval_seconds": 0.038,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7810554504394531,
+        0.7562297582626343,
+        0.7490109205245972,
+        0.7480787634849548,
+        0.7479071021080017
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "16. Lista de comprobación para auditar una implementación concreta\nPara saber qué hace realmente un repositorio SAC, inspeccionar:",
+          "score": 0.7810554504394531,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch\nEl fragmento siguiente muestra el núcleo matemático de una\nactualización, suponiendo que existen `actor`, `critic1`, `critic2`,\n`target_critic1`, `target_critic2`, sus optimizadores y un lote ya\nconvertido a tensores. No reemplaza la implementación completa: se\nomiten detalles de arquitectura, normalización, gestión de episodios y\nguardado.",
+          "score": 0.7562297582626343,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Etapa C: validar actualizaciones\n- Ejecutar un lote artificial pequeño.\n- Confirmar que pérdidas y gradientes sean finitos.\n- Comprobar que los parámetros cambien tras `optimizer.step()`.\n- Confirmar que las redes objetivo cambien lentamente.\n- Revisar que la log-probabilidad tenga la forma esperada.\n- Comprobar el valor y la evolución de (`\\alpha`{=tex}).",
+          "score": 0.7490109205245972,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "7.1 SAC estándar recibe una recompensa escalar\nEs decir, **una sola cantidad numérica por transición**. Esa cantidad\npuede calcularse combinando muchas métricas: velocidad, equilibrio,\nenergía, caídas, seguimiento de consigna, etc.",
+          "score": 0.7480787634849548,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "14. Un núcleo ilustrativo de las pérdidas SAC en PyTorch\ndef update_critics_and_actor(batch, actor,\n critic1, critic2,\n target_critic1, target_critic2,\n actor_optimizer, critic_optimizer,\n alpha, gamma):\n obs = batch[\"obs\"]\n actions = batch[\"actions\"]\n rewards = batch[\"rewards\"].view(-1, 1)\n next_obs = batch[\"next_obs\"]\n dones = batch[\"dones\"].view(-1, 1).float()",
+          "score": 0.7479071021080017,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R16",
+      "category": "robótica",
+      "query": "¿Qué métricas registrar al evaluar el entrenamiento de una política?",
+      "retrieval_seconds": 0.037,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7602633237838745,
+        0.755687415599823,
+        0.7501325011253357,
+        0.749428391456604,
+        0.7427259683609009
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Etapa E: entrenamiento y evaluación\n- Fijar semillas y guardar la configuración exacta.\n- Registrar recompensa media, dispersión y métricas físicas.\n- Evaluar periódicamente la política sin exploración adicional.\n- Guardar checkpoints y reanudar desde ellos.\n- Repetir la evaluación con varias semillas y condiciones iniciales.\n- No transferir a hardware real hasta probar límites, latencias,\n supervisión y mecanismos de parada.",
+          "score": 0.7602633237838745,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\n1. **Actor o política** (`\\pi`{=tex}\\_`\\theta`{=tex}(a`\\mid `{=tex}s)):\n dada una observación (s), produce una distribución de probabilidad\n sobre acciones posibles.\n2. **Dos críticos** (Q\\_{`\\phi`{=tex}*1}(s,a)) y\n (Q*{`\\phi`{=tex}\\_2}(s,a)): estiman el retorno esperado de ejecutar\n la acción (a) en el estado (s).\n3. **Dos críticos objetivo** (Q\\_{`\\bar`{=tex}`\\phi`{=tex}*1}) y\n (Q*{`\\bar`{=tex}`\\phi`{=tex}\\_2}): copias lentas de los críticos\n principales que estabilizan el objetivo de aprendizaje.\n4. **Replay Buffer** (`\\mathcal `{=tex}D): almacena transiciones\n anteriores para volver a utilizarlas durante el aprendizaje.\n5. **Temperatura** (`\\alpha`{=tex}): pondera la entropía de la política\n frente a la recompensa. Puede ser fija o ajustarse automáticamente.",
+          "score": 0.755687415599823,
+          "mode": "hybrid"
+        },
+        {
+          "source": "Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+          "text": "as ambientales permitidas, ficha de batería y masa/BOM de cada conjunto.\n7. **Validar simulación:** comparar postura de reposo, gravedad, masa total, centros de masa, límites articulares y respuesta a pequeñas órdenes seguras antes de entrenar políticas RL.",
+          "score": 0.7501325011253357,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "12.1 Ejemplo puramente ilustrativo\n**No son tiempos medidos en GIAR-ORION.** Para estimar el entrenamiento\nreal, medir durante unos minutos: 1. pasos de entorno por segundo; 2.\nactualizaciones por segundo; 3. tiempo de reset; 4. tiempo de\nevaluación; 5. uso de CPU, RAM, VRAM y GPU.",
+          "score": 0.749428391456604,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "17. Glosario\n- **Actor:** red que representa la política y genera acciones.\n- **Crítico:** red que estima el valor Q de un estado y una acción.\n- **Q-value:** retorno futuro descontado estimado.\n- **Off-policy:** permite aprender de transiciones generadas por\n políticas anteriores.\n- **Replay Buffer:** memoria de transiciones reutilizadas para\n entrenar.\n- **Entropía:** medida de dispersión de la política.\n- **Temperatura (`\\alpha`{=tex}):** coeficiente que pondera la\n entropía.\n- **Objetivo de Bellman:** valor de referencia usado para entrenar los\n críticos.\n- **Red objetivo:** copia actualizada lentamente para estabilizar los\n objetivos.\n- **Reparametrización:** forma de muestrear una acción manteniendo un\n camino de gradiente hacia el actor.\n- **Política estocástica:** política que define una distribución sobre\n acciones.\n- **Saturación:** situación en la que una acción llega repetidamente a\n sus límites.\n- **Sim-to-real:** transferencia de una política aprendida en\n simulación a un robot físico.\n- **Escalarización:** combinación de varios objetivos en una sola\n recompensa.\n-",
+          "score": 0.7427259683609009,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R17",
+      "category": "multilingüe",
+      "query": "Explain the role of the critic in Soft Actor-Critic and how it supports actor learning. Answer only from available documents.",
+      "retrieval_seconds": 0.04,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7965065836906433,
+        0.7750176191329956,
+        0.7743417620658875,
+        0.7731574773788452,
+        0.7702626585960388
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.",
+          "score": 0.7965065836906433,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "18. Referencias técnicas\n2. Haarnoja, T. et al. (2018). **Soft Actor-Critic Algorithms and\n Applications.** arXiv:1812.05905.\\\n https://arxiv.org/abs/1812.05905",
+          "score": 0.7750176191329956,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "28.3 Artículos y trabajos históricos\n**\\[SAC2\\]** Haarnoja, T., Zhou, A., Hartikainen, K., et al. (2018).\n\"Soft Actor-Critic Algorithms and Applications.\"\\\narXiv: https://arxiv.org/abs/1812.05905",
+          "score": 0.7743417620658875,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n> **Alcance y trazabilidad.** Este documento amplía el archivo\n> introductorio *Fundamentos de Soft Actor-Critic.md*. La formulación\n> matemática se contrasta con el artículo original de SAC y la\n> documentación técnica de OpenAI Spinning Up. Los ejemplos de\n> recompensa y de control se presentan como diseños ilustrativos, no\n> como la configuración confirmada de un proyecto particular. Para\n> afirmar qué parámetros, recompensas o límites utiliza un entrenamiento\n> concreto, hay que inspeccionar sus archivos de configuración y su\n> código.",
+          "score": 0.7731574773788452,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n------------------------------------------------------------------------",
+          "score": 0.7702626585960388,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R18",
+      "category": "paráfrasis",
+      "query": "En SAC, ¿cómo sabe la política qué acciones son mejores? Describe el papel del crítico sin inventar detalles.",
+      "retrieval_seconds": 0.035,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7916976809501648,
+        0.7859931588172913,
+        0.7858235836029053,
+        0.7784104347229004,
+        0.7780510187149048
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "2018: Soft Actor-Critic\nHaarnoja y colaboradores desarrollaron SAC como un algoritmo off-policy\nde actor-crítico que optimiza una recompensa aumentada por entropía. La\nformulación favorece exploración y ha sido influyente para tareas de\ncontrol continuo. \\[SAC\\]",
+          "score": 0.7916976809501648,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\nLa característica distintiva de SAC es que intenta maximizar tanto la\nrecompensa acumulada como la entropía de la política. En términos\nprácticos, no busca solamente obtener una buena acción: durante el\naprendizaje también procura conservar suficiente exploración.",
+          "score": 0.7859931588172913,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.",
+          "score": 0.7858235836029053,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "12.2 Basado en valor vs. basado en política\n**Actor-crítico:** combina política y valor. SAC, PPO en su formulación\nactor-crítico y muchos métodos continuos pertenecen a esta familia, con\ndiferencias importantes en cómo aprenden y actualizan sus componentes.",
+          "score": 0.7784104347229004,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\n**Soft Actor-Critic (SAC)** es un algoritmo de aprendizaje por refuerzo\nprofundo (*Deep Reinforcement Learning*, DRL), de tipo\n**actor-crítico**, **estocástico** y **off-policy**. Se usa\nespecialmente para problemas de control con acciones continuas, como\nregular el par de motores, la velocidad de articulaciones o las\nconsignas de un robot.",
+          "score": 0.7780510187149048,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R19",
+      "category": "integración",
+      "query": "Relaciona objetivo de Bellman, error de estimación del crítico y actualización de parámetros.",
+      "retrieval_seconds": 0.035,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8188421130180359,
+        0.783679187297821,
+        0.7780711650848389,
+        0.7722864747047424,
+        0.7683576345443726
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\nEl objetivo de los críticos es:",
+          "score": 0.8188421130180359,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\nInterpretación:",
+          "score": 0.783679187297821,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nSAC combina una política estocástica, dos críticos, objetivos suavizados\npor entropía y reutilización de experiencias. La pérdida del crítico\nbusca aproximar el objetivo de Bellman; la pérdida del actor favorece\nacciones con alto valor estimado y regula la aleatoriedad; la\ntemperatura controla el compromiso entre recompensa y entropía.",
+          "score": 0.7780711650848389,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\n- (r): recompensa inmediata guardada en el buffer.\n- (`\\gamma`{=tex}): cuánto importa el futuro.\n- (d): indicador de terminación verdadera del episodio.\n- (Q\\_{`\\bar`{=tex}`\\phi`{=tex}\\_i}): críticos objetivo.\n- (`\\min`{=tex}*i Q*{`\\bar`{=tex}`\\phi`{=tex}\\_i}): estimación\n conservadora del valor futuro.\n- (-`\\alpha`{=tex}`\\log`{=tex}`\\pi`{=tex}(a'`\\mid `{=tex}s')):\n contribución de entropía.\n- (1-d): anula el valor futuro cuando la transición termina realmente\n el episodio.",
+          "score": 0.7722864747047424,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "5.1 Objetivo de Bellman suavizado\n\\[ y=r+`\\gamma`{=tex}(1-d) `\\left[\n\\min_{i\\in\\{1,2\\}}Q_{\\bar\\phi_i}(s',a')\n-\\alpha\\log\\pi_\\theta(a'\\mid s')\n\\right]`{=tex}\\]",
+          "score": 0.7683576345443726,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R20",
+      "category": "abstención",
+      "query": "¿Qué recompensa media obtuvo la última ejecución real del proyecto?",
+      "retrieval_seconds": 0.031,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.6791760325431824,
+        0.6766360998153687,
+        0.6738613843917847,
+        0.6736577153205872,
+        0.6725048422813416
+      ],
+      "evidence_term_coverage": null,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\nif terminated:\n break",
+          "score": 0.6791760325431824,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "14. Cómo se diseña una recompensa\ndonde cada término representa una métrica diferente y los pesos expresan\nprioridades.",
+          "score": 0.6766360998153687,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "7.1 SAC estándar recibe una recompensa escalar\nEs decir, **una sola cantidad numérica por transición**. Esa cantidad\npuede calcularse combinando muchas métricas: velocidad, equilibrio,\nenergía, caídas, seguimiento de consigna, etc.",
+          "score": 0.6738613843917847,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "Recompensa\n- [ ] Cada término tiene una justificación.\n- [ ] Se registran los componentes por separado.\n- [ ] Escalas y signos comprobados.\n- [ ] Se prueba si el agente puede explotar el diseño.\n- [ ] La métrica final es independiente de la recompensa cuando sea\n posible.",
+          "score": 0.6736577153205872,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "14.1 Recompensa escalar y multiobjetivo\nUna recompensa vectorial real:",
+          "score": 0.6725048422813416,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R21",
+      "category": "abstención",
+      "query": "¿Cuántos episodios exactos necesitó la política actual para converger según los documentos?",
+      "retrieval_seconds": 0.032,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "Agente-ORION\\Documents\\GIAR_ORION_Arquitectura.md"
+      ],
+      "retrieved_scores": [
+        0.6779011487960815,
+        0.6725543737411499,
+        0.6711981296539307,
+        0.6690458655357361,
+        0.6640329360961914
+      ],
+      "evidence_term_coverage": null,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "16. Episodios, pasos y actualizaciones\nSi un episodio tiene 200 pasos, 300 episodios representan 60.000 pasos.\nSi tiene 5.000 pasos, representan 1.500.000. La diferencia es de 25\nveces.",
+          "score": 0.6779011487960815,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "16. Episodios, pasos y actualizaciones\nNo basta con decir \"entrené 300 episodios\". Hay que registrar:",
+          "score": 0.6725543737411499,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "12.2 Episodios no son una unidad suficiente\n------------------------------------------------------------------------",
+          "score": 0.6711981296539307,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "12.2 Episodios no son una unidad suficiente\n\"300 episodios\" puede significar muy poco o mucho trabajo según la\nduración de cada episodio. Si cada episodio tiene 200 pasos, son 60.000\npasos; si tiene 5.000 pasos, son 1.500.000. Para comparar experimentos,\nregistrar pasos de entorno, actualizaciones, duración y configuración,\nademás del número de episodios.",
+          "score": 0.6690458655357361,
+          "mode": "hybrid"
+        },
+        {
+          "source": "Agente-ORION\\Documents\\GIAR_ORION_Arquitectura.md",
+          "text": "3. Flujo lógico general\nLa secuencia exacta de llamadas, condiciones y tratamiento de errores debe verificarse en el código vigente.",
+          "score": 0.6640329360961914,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R22",
+      "category": "seguridad",
+      "query": "¿Qué precauciones seguir antes de transferir una política a un robot físico?",
+      "retrieval_seconds": 0.033,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md",
+        "Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+        "CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.816486656665802,
+        0.7794947624206543,
+        0.7691869139671326,
+        0.7547292709350586,
+        0.7518988847732544
+      ],
+      "evidence_term_coverage": 1.0,
+      "retrieved_fragments": [
+        {
+          "source": "CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md",
+          "text": "17.5 Sim-to-real\nPara transferir políticas a un robot real, tener en cuenta:\n- diferencias entre simulador y hardware;\n- latencia y jitter;\n- límites reales de actuadores;\n- saturación;\n- ruido y sesgo de sensores;\n- frecuencia de control;\n- contactos y fricción;\n- variación de masa/carga;\n- seguridad y parada de emergencia.",
+          "score": 0.816486656665802,
+          "mode": "hybrid"
+        },
+        {
+          "source": "Unitree\\G1\\Unitree_G1_Dossier_Tecnico_GIAR_ORION.md",
+          "text": "3.3 Interfaces oficiales relevantes\n**Precaución:** el control de bajo nivel puede mover el robot con fuerza. Primero se debe probar sin carga, con soporte físico apropiado, parada de emergencia y límites conservadores. No enviar comandos de torque/posición a un humanoide real basándose solo en un ejemplo genérico.",
+          "score": 0.7794947624206543,
+          "mode": "hybrid"
+        },
+        {
+          "source": "CoppeliaSim\\CoppeliaSim_Manual_Tecnico_GIAR_ORION.md",
+          "text": "17.5 Sim-to-real\nUn modelo que “camina” en la simulación no prueba por sí solo que la política sea segura en un robot físico.",
+          "score": 0.7691869139671326,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Advertencias sobre el ejemplo\n1. `actor(obs)` debe devolver una acción reparametrizada, la\n log-probabilidad corregida por `tanh` y una acción determinista.\n2. Los críticos deben devolver un escalar por transición, normalmente\n con forma `[batch, 1]`.\n3. La máscara `dones` debe reflejar correctamente la semántica de\n terminación y truncamiento del entorno.\n4. Si `alpha` es automático, debe calcularse y optimizarse mediante una\n pérdida adicional.\n5. Después de la actualización se deben actualizar las redes objetivo.\n6. Para evitar que el actor acumule gradientes en los críticos durante\n su actualización, algunas implementaciones congelan temporalmente\n sus parámetros. No siempre es obligatorio para la corrección\n numérica, pero puede ahorrar cómputo.\n7. No ejecutar este fragmento con un robot real sin validación, límites\n físicos, parada de emergencia y supervisión.",
+          "score": 0.7547292709350586,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\nSAC **no garantiza** que el robot aprenda a caminar, que converja en una\ncantidad determinada de episodios ni que encuentre una política segura.\nEl resultado depende de la definición del estado, las acciones, la\nrecompensa, el simulador, la arquitectura de las redes, la cantidad de\ndatos y los hiperparámetros.",
+          "score": 0.7518988847732544,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R23",
+      "category": "ambigüedad",
+      "query": "¿Qué valor usa el proyecto?",
+      "retrieval_seconds": 0.032,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.7148926854133606,
+        0.7127702832221985,
+        0.7083181142807007,
+        0.7073442339897156,
+        0.7060298919677734
+      ],
+      "evidence_term_coverage": null,
+      "retrieved_fragments": [
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\n**Qué enseña el ejemplo:** - el agente explora al principio y luego\nreduce la exploración; - la tabla Q almacena un valor por estado y\nacción; - el objetivo combina recompensa inmediata y mejor valor futuro\nestimado; - la recompensa de llegada es escalar.",
+          "score": 0.7148926854133606,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "14. Cómo se diseña una recompensa\ndonde cada término representa una métrica diferente y los pesos expresan\nprioridades.",
+          "score": 0.7127702832221985,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\nif terminated:\n break",
+          "score": 0.7083181142807007,
+          "mode": "hybrid"
+        },
+        {
+          "source": "RL\\Fundamentos_de_Aprendizaje_por_Refuerzo_RL_GIAR_ORION.md",
+          "text": "En el objetivo no se suma valor futuro.\n next_value = 0.0 if terminated else np.max(Q[ns])\n target = reward + gamma * next_value\nprint(\"Valores Q aprendidos para el estado inicial:\")\nprint(Q[state_id((0, 0))])\n```",
+          "score": 0.7073442339897156,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "7.1 SAC estándar recibe una recompensa escalar\nLos pesos (w_i) determinan el compromiso entre objetivos. Sus magnitudes\nimportan: si un término vale cientos y otro centésimas, el primero puede\ndominar el aprendizaje.",
+          "score": 0.7060298919677734,
+          "mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "case_id": "R24",
+      "category": "síntesis",
+      "query": "Resume un protocolo por etapas para validar entrenamiento SAC en robótica.",
+      "retrieval_seconds": 0.032,
+      "retrieved_count": 5,
+      "expected_source_hit_at_k": true,
+      "retrieved_sources": [
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+        "SAC\\Fundamentos_de_SAC_GIAR_ORION.md"
+      ],
+      "retrieved_scores": [
+        0.8793113231658936,
+        0.7869793176651001,
+        0.782231867313385,
+        0.7820565700531006,
+        0.7792232632637024
+      ],
+      "evidence_term_coverage": 0.6666666666666666,
+      "retrieved_fragments": [
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "15. Protocolo recomendado para evaluar un SAC de robótica\nAntes de entrenar durante muchas horas, seguir un proceso de validación\npor etapas.",
+          "score": 0.8793113231658936,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "19. Conclusiones\nEn robótica, la calidad del resultado depende tanto del algoritmo como\ndel diseño de la recompensa, la semántica de observaciones y acciones,\nla fidelidad del simulador y la calidad de la evaluación. Una recompensa\ncon varios componentes normalmente se convierte en un escalar antes de\nalimentar al SAC estándar. Una recompensa realmente vectorial requiere\nuna formulación multiobjetivo o una escalarización explícita.",
+          "score": 0.7869793176651001,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n**Documento técnico para GIAR-ORION**\\\n**Versión:** 2.0\\\n**Fecha:** 12 de octubre de 2026\\\n**Propósito:** explicar SAC desde sus fundamentos hasta las decisiones\nprácticas de implementación, con fórmulas, ejemplos en Python, criterios\nde diagnóstico y estimaciones de tiempo y memoria.",
+          "score": 0.782231867313385,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "Soft Actor-Critic (SAC): fundamentos matemáticos, implementación y aplicación a robótica\n> **Alcance y trazabilidad.** Este documento amplía el archivo\n> introductorio *Fundamentos de Soft Actor-Critic.md*. La formulación\n> matemática se contrasta con el artículo original de SAC y la\n> documentación técnica de OpenAI Spinning Up. Los ejemplos de\n> recompensa y de control se presentan como diseños ilustrativos, no\n> como la configuración confirmada de un proyecto particular. Para\n> afirmar qué parámetros, recompensas o límites utiliza un entrenamiento\n> concreto, hay que inspeccionar sus archivos de configuración y su\n> código.",
+          "score": 0.7820565700531006,
+          "mode": "hybrid"
+        },
+        {
+          "source": "SAC\\Fundamentos_de_SAC_GIAR_ORION.md",
+          "text": "1. Resumen ejecutivo\nSAC **no garantiza** que el robot aprenda a caminar, que converja en una\ncantidad determinada de episodios ni que encuentre una política segura.\nEl resultado depende de la definición del estado, las acciones, la\nrecompensa, el simulador, la arquitectura de las redes, la cantidad de\ndatos y los hiperparámetros.",
+          "score": 0.7792232632637024,
+          "mode": "hybrid"
+        }
+      ]
+    }
+  ]
+}
