@@ -1,0 +1,146 @@
+{
+  "test": "EV-010",
+  "verifier_version": "0.2",
+  "nli_model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda",
+  "cases": [
+    {
+      "case_id": "EV-010-A",
+      "claim": "SAC es un algoritmo de aprendizaje por refuerzo off-policy.",
+      "expected_status": "SUPPORTED",
+      "observed_status": "SUPPORTED",
+      "passed": true,
+      "best_entailment_score": 0.98828125,
+      "best_contradiction_score": 0.004222869873046875
+    },
+    {
+      "case_id": "EV-010-B",
+      "claim": "SAC es un algoritmo de aprendizaje por refuerzo on-policy.",
+      "expected_status": "CONTRADICTED",
+      "observed_status": "CONTRADICTED",
+      "passed": true,
+      "best_entailment_score": 0.0003724098205566406,
+      "best_contradiction_score": 0.9990234375
+    },
+    {
+      "case_id": "EV-010-C",
+      "claim": "SAC fue desarrollado originalmente para clasificar imágenes médicas.",
+      "expected_status": "INSUFFICIENT",
+      "observed_status": "INSUFFICIENT",
+      "passed": true,
+      "best_entailment_score": 0.0004987716674804688,
+      "best_contradiction_score": 0.0131378173828125
+    }
+  ],
+  "integration_report": {
+    "verifier": "EvidenceVerifier",
+    "version": "0.2",
+    "checks": {
+      "web_url_reference_check": {
+        "status": "PASS",
+        "urls_found_in_response": [],
+        "urls_matched_to_search_results": [],
+        "urls_not_found_in_search_results": []
+      },
+      "rag_source_reference_check": {
+        "status": "PASS",
+        "retrieved_sources": [
+          "EV010_SAC_evidence_synthetic.md"
+        ],
+        "sources_mentioned_literally": [
+          "EV010_SAC_evidence_synthetic.md"
+        ]
+      },
+      "duplicate_web_reference_check": {
+        "status": "PASS",
+        "duplicate_urls": []
+      },
+      "semantic_support_check": {
+        "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+        "device": "cuda",
+        "thresholds": {
+          "entailment": 0.8,
+          "contradiction": 0.8,
+          "decision_margin": 0.15
+        },
+        "claims": [
+          {
+            "claim": "SAC es un algoritmo de aprendizaje por refuerzo off-policy.",
+            "status": "SUPPORTED",
+            "best_entailment_score": 0.98828125,
+            "best_contradiction_score": 0.004222869873046875,
+            "comparisons": [
+              {
+                "evidence_type": "RAG",
+                "source": "EV010_SAC_evidence_synthetic.md",
+                "scores": {
+                  "entailment": 0.98828125,
+                  "neutral": 0.007442474365234375,
+                  "contradiction": 0.004222869873046875
+                }
+              }
+            ]
+          },
+          {
+            "claim": "SAC es un algoritmo de aprendizaje por refuerzo on-policy.",
+            "status": "CONTRADICTED",
+            "best_entailment_score": 0.0003724098205566406,
+            "best_contradiction_score": 0.9990234375,
+            "comparisons": [
+              {
+                "evidence_type": "RAG",
+                "source": "EV010_SAC_evidence_synthetic.md",
+                "scores": {
+                  "entailment": 0.0003724098205566406,
+                  "neutral": 0.0004887580871582031,
+                  "contradiction": 0.9990234375
+                }
+              }
+            ]
+          },
+          {
+            "claim": "SAC fue desarrollado originalmente para clasificar imágenes médicas.",
+            "status": "INSUFFICIENT",
+            "best_entailment_score": 0.0004987716674804688,
+            "best_contradiction_score": 0.0131378173828125,
+            "comparisons": [
+              {
+                "evidence_type": "RAG",
+                "source": "EV010_SAC_evidence_synthetic.md",
+                "scores": {
+                  "entailment": 0.0004987716674804688,
+                  "neutral": 0.986328125,
+                  "contradiction": 0.0131378173828125
+                }
+              }
+            ]
+          }
+        ],
+        "overall_status": "MIXED_EVIDENCE",
+        "limitations": [
+          "Los scores NLI no son probabilidades calibradas de verdad.",
+          "SUPPORTED es una estimación de implicación textual, no certificación científica.",
+          "DDGS se evalúa solo con title + description, no con el artículo completo.",
+          "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+          "No se realiza extracción automática de afirmaciones.",
+          "La selección de evidencia se limita a los primeros elementos recibidos."
+        ]
+      }
+    },
+    "evidence_counts": {
+      "rag_fragments": 1,
+      "rag_unique_sources": 1,
+      "web_results": 0,
+      "web_unique_urls": 0
+    },
+    "overall_status": "REFERENCE_CHECKS_PASSED",
+    "limitations": [
+      "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+      "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+      "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+      "No se realiza verificación semántica ni comprobación científica.",
+      "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+    ]
+  },
+  "note": "Evidencia sintética. Esta prueba evalúa integración técnica; no demuestra exactitud científica general ni valida documentos reales."
+}

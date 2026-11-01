@@ -1,0 +1,50 @@
+{
+  "suite": "GIAR-ORION EvidenceVerifier semantic benchmark",
+  "version": "0.1",
+  "status": "CONTROLLED_TEST_FIXTURES",
+  "important_note": "Los textos de evidencia son fixtures sintéticos creados para probar la clasificación lógica relativa a la evidencia. No son citas de documentación real ni validan hechos científicos sobre SAC.",
+  "labels": [
+    "SUPPORTED",
+    "PARTIALLY_SUPPORTED",
+    "INSUFFICIENT",
+    "CONTRADICTED"
+  ],
+  "cases": [
+    {
+      "id": "EV-008-A",
+      "claim": "SAC utiliza una política estocástica.",
+      "evidence": [
+        "En esta descripción del algoritmo SAC, el actor representa una política estocástica."
+      ],
+      "expected": "SUPPORTED",
+      "rationale": "La evidencia afirma explícitamente la misma proposición."
+    },
+    {
+      "id": "EV-008-B",
+      "claim": "SAC utiliza una política determinista.",
+      "evidence": [
+        "En esta descripción del algoritmo SAC, el actor representa una política estocástica."
+      ],
+      "expected": "CONTRADICTED",
+      "rationale": "La evidencia especifica una política estocástica, opuesta a la afirmación determinista."
+    },
+    {
+      "id": "EV-008-C",
+      "claim": "Esta implementación de SAC utiliza tres redes Actor.",
+      "evidence": [
+        "La arquitectura descrita contiene una red Actor y dos redes Critic."
+      ],
+      "expected": "CONTRADICTED",
+      "rationale": "La evidencia describe una sola red Actor, no tres."
+    },
+    {
+      "id": "EV-008-D",
+      "claim": "SAC garantiza que cualquier robot consiga caminar.",
+      "evidence": [
+        "SAC es un algoritmo de aprendizaje por refuerzo que optimiza una política mediante interacción con un entorno."
+      ],
+      "expected": "INSUFFICIENT",
+      "rationale": "La evidencia describe el algoritmo, pero no afirma ni niega una garantía universal de locomoción."
+    }
+  ]
+}

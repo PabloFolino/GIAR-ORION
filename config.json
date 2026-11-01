@@ -1,39 +1,54 @@
 {
-  "agent_name": "GIAR-ORION",
-  "version": "0.1",
-  "llm": {
-    "provider": "ollama",
-    "model": "qwen3:8b",
-    "base_url": "http://localhost:11434",
-    "system_prompt": "Sos GIAR-ORION, un asistente especializado en robótica autónoma, aprendizaje por refuerzo y aprendizaje profundo por refuerzo. Trabajás especialmente con SAC, PPO, Python, PyTorch, Unitree G1, CoppeliaSim y MuJoCo. Priorizá la precisión técnica. Si no conocés un dato o no podés verificarlo, indicá esa limitación. No inventes resultados experimentales ni afirmes haber ejecutado pruebas que no realizaste."
-  },
-  "generation": {
-    "default_mode": "rapido",
-    "modes": {
-      "rapido": {
-        "think": false,
-        "num_predict": 1536
-      },
-      "investigacion": {
-        "think": true,
-        "num_predict": 2048
-      }
+    "agent_name": "GIAR-ORION",
+    "version": "0.1",
+    "llm": {
+        "provider": "ollama",
+        "model": "qwen3:8b",
+        "base_url": "http://localhost:11434",
+        "system_prompt": "Sos GIAR-ORION, un asistente especializado en robótica autónoma, aprendizaje por refuerzo y aprendizaje profundo por refuerzo. Trabajás especialmente con SAC, PPO, Python, PyTorch, Unitree G1, CoppeliaSim y MuJoCo. Priorizá la precisión técnica. Si no conocés un dato o no podés verificarlo, indicá esa limitación. No inventes resultados experimentales ni afirmes haber ejecutado pruebas que no realizaste."
+    },
+    "generation": {
+        "default_mode": "rapido",
+        "modes": {
+            "rapido": {
+                "think": false,
+                "num_predict": 1536
+            },
+            "investigacion": {
+                "think": true,
+                "num_predict": 2048
+            }
+        }
+    },
+    "paths": {
+        "models": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Models",
+        "knowledge": "Knowledge",
+        "memory": "Memory",
+        "logs": "Logs"
+    },
+    "rag": {
+        "enabled": true,
+        "mode": "hybrid",
+        "top_k": 5,
+        "device": "cpu",
+        "local_files_only": false,
+        "show_sources": true,
+        "e5_weight": 0.7,
+        "bge_weight": 0.3
+    },
+    "web_search": {
+        "enabled": true,
+        "provider": "ddgs",
+        "max_results": 5,
+        "safesearch": "moderate",
+        "region": "wt-wt",
+        "authorized_domains": [
+            "arxiv.org",
+            "github.com",
+            "huggingface.co",
+            "unitree.com",
+            "mujoco.org",
+            "coppeliarobotics.com"
+        ]
     }
-  },
-  "paths": {
-    "models": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Models",
-    "knowledge": "Knowledge",
-    "memory": "Memory",
-    "logs": "Logs"
-  },
-  "rag": {
-    "enabled": true,
-    "mode": "hybrid",
-    "top_k": 5,
-    "device": "cpu",
-    "local_files_only": false,
-    "show_sources": true,
-    "e5_weight": 0.7,
-    "bge_weight": 0.3
-  }
 }

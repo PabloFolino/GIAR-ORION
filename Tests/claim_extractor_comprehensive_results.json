@@ -1,0 +1,188 @@
+{
+  "suite": "ClaimExtractor comprehensive",
+  "extractor_version": "0.1.2",
+  "model": "qwen3:8b",
+  "summary": {
+    "total": 29,
+    "passed": 29,
+    "review": 0,
+    "failed": 0,
+    "errors": 0
+  },
+  "tests": [
+    {
+      "id": "D01_constructor_valido",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "qwen3:8b"
+    },
+    {
+      "id": "D02_base_url_vacia",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Se produjo ValueError como se esperaba."
+    },
+    {
+      "id": "D03_modelo_vacio",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Se produjo ValueError como se esperaba."
+    },
+    {
+      "id": "D04_num_predict_invalido",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Se produjo ValueError como se esperaba."
+    },
+    {
+      "id": "D05_timeout_invalido",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Se produjo ValueError como se esperaba."
+    },
+    {
+      "id": "D06_segmentacion_dos_oraciones",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Resultado coincidente."
+    },
+    {
+      "id": "D07_ignora_lineas_vacias",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Resultado coincidente."
+    },
+    {
+      "id": "D08_texto_vacio_sin_unidades",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Resultado coincidente."
+    },
+    {
+      "id": "D09_json_directo",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Resultado coincidente."
+    },
+    {
+      "id": "D10_json_en_fence",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Resultado coincidente."
+    },
+    {
+      "id": "D11_json_malformado",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Se produjo ClaimExtractorError como se esperaba."
+    },
+    {
+      "id": "D12_validacion_correcta",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Valor True."
+    },
+    {
+      "id": "D13_detecta_unidad_omitida",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Valor False."
+    },
+    {
+      "id": "D14_detecta_id_duplicado",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Valor False."
+    },
+    {
+      "id": "D15_detecta_status_invalido",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Valor False."
+    },
+    {
+      "id": "D16_detecta_factual_sin_claims",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Valor False."
+    },
+    {
+      "id": "D17_detecta_nonfactual_con_claims",
+      "category": "deterministic",
+      "status": "PASS",
+      "detail": "Valor False."
+    },
+    {
+      "id": "L01_texto_tecnico_simple",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=2; complete=True; esperado=2-5; Dos afirmaciones técnicas explícitas."
+    },
+    {
+      "id": "L02_oracion_compuesta",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=1; claims=3; complete=True; esperado=3-7; Separación de varias afirmaciones dentro de una oración."
+    },
+    {
+      "id": "L03_pregunta",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=1; claims=0; complete=True; esperado=0-0; No convertir preguntas en afirmaciones."
+    },
+    {
+      "id": "L04_opinion",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=1; claims=0; complete=True; esperado=0-2; Distinguir opinión de afirmaciones factuales."
+    },
+    {
+      "id": "L05_negacion",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=2; complete=True; esperado=2-5; Preservar negación y contenido afirmativo."
+    },
+    {
+      "id": "L06_datos_numericos",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=3; complete=True; esperado=3-6; Conservar cantidades y relaciones numéricas."
+    },
+    {
+      "id": "L07_condicional",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=2; complete=True; esperado=2-6; No convertir condiciones en hechos universales."
+    },
+    {
+      "id": "L08_causa_y_consecuencia",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=2; complete=True; esperado=2-5; Separar afirmación y consecuencia potencial."
+    },
+    {
+      "id": "L09_no_factual_mixto",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=3; claims=0; complete=True; esperado=0-2; Títulos, preguntas e instrucciones."
+    },
+    {
+      "id": "L10_parrafo_extenso",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=5; claims=5; complete=True; esperado=5-10; Cobertura de un párrafo técnico con varias unidades."
+    },
+    {
+      "id": "L11_citas_y_atribucion",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=2; complete=True; esperado=2-4; Afirmaciones atribuidas a una fuente o archivo."
+    },
+    {
+      "id": "L12_ingles_tecnico",
+      "category": "ollama_integration",
+      "status": "PASS",
+      "detail": "units=2; claims=2; complete=True; esperado=2-5; Texto técnico en inglés."
+    }
+  ]
+}

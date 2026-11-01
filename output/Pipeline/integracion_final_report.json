@@ -1,0 +1,444 @@
+{
+  "test": "ClaimExtractor + EvidenceVerifier + ClaimVerificationPipeline",
+  "test_timestamp": "2026-11-01T09:46:13.954827-03:00",
+  "pipeline_version": "0.1.0",
+  "scenarios": {
+    "mixed_evidence": {
+      "pipeline": "ClaimVerificationPipeline",
+      "pipeline_version": "0.1.0",
+      "status": "MIXED_EVIDENCE",
+      "can_present_as_supported": false,
+      "claims_submitted": 5,
+      "extractor_version": "0.1.2",
+      "verifier_version": "0.2.1",
+      "extraction": {
+        "extractor": "ClaimExtractor",
+        "version": "0.1.2",
+        "model": "qwen3:8b",
+        "complete": true,
+        "unit_count": 4,
+        "classified_unit_count": 4,
+        "claim_count": 5,
+        "claims": [
+          {
+            "claim": "La Tierra orbita alrededor del Sol.",
+            "unit_id": 1,
+            "source_unit": "La Tierra orbita alrededor del Sol."
+          },
+          {
+            "claim": "La Tierra tiene dos lunas naturales.",
+            "unit_id": 2,
+            "source_unit": "La Tierra tiene dos lunas naturales."
+          },
+          {
+            "claim": "La Tierra es el centro del sistema solar.",
+            "unit_id": 3,
+            "source_unit": "La Tierra es el centro del sistema solar."
+          },
+          {
+            "claim": "La Tierra posee un satélite natural llamado Luna.",
+            "unit_id": 4,
+            "source_unit": "La Tierra posee un satélite natural llamado Luna y su diámetro medio es de 12.742 kilómetros."
+          },
+          {
+            "claim": "Su diámetro medio es de 12.742 kilómetros.",
+            "unit_id": 4,
+            "source_unit": "La Tierra posee un satélite natural llamado Luna y su diámetro medio es de 12.742 kilómetros."
+          }
+        ],
+        "coverage": [
+          {
+            "unit_id": 1,
+            "status": "FACTUAL",
+            "claims": [
+              "La Tierra orbita alrededor del Sol."
+            ]
+          },
+          {
+            "unit_id": 2,
+            "status": "FACTUAL",
+            "claims": [
+              "La Tierra tiene dos lunas naturales."
+            ]
+          },
+          {
+            "unit_id": 3,
+            "status": "FACTUAL",
+            "claims": [
+              "La Tierra es el centro del sistema solar."
+            ]
+          },
+          {
+            "unit_id": 4,
+            "status": "FACTUAL",
+            "claims": [
+              "La Tierra posee un satélite natural llamado Luna.",
+              "Su diámetro medio es de 12.742 kilómetros."
+            ]
+          }
+        ],
+        "errors": [],
+        "notes": [],
+        "limitations": [
+          "La cobertura estructural no garantiza exhaustividad semántica.",
+          "El modelo puede omitir afirmaciones o clasificarlas incorrectamente.",
+          "La extracción no verifica la verdad ni el respaldo de las afirmaciones.",
+          "Si complete es False, la respuesta no debe considerarse verificada."
+        ]
+      },
+      "verification": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.2.1",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "Astronomia - órbita terrestre",
+              "Astronomia - satélite natural"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15
+            },
+            "claims": [
+              {
+                "claim": "La Tierra orbita alrededor del Sol.",
+                "status": "SUPPORTED",
+                "best_entailment_score": 0.99267578125,
+                "best_contradiction_score": 0.0127716064453125,
+                "comparisons": [
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - órbita terrestre",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.99267578125,
+                      "neutral": 0.005657196044921875,
+                      "contradiction": 0.0019083023071289062
+                    }
+                  },
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - satélite natural",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.216796875,
+                      "neutral": 0.7705078125,
+                      "contradiction": 0.0127716064453125
+                    }
+                  }
+                ]
+              },
+              {
+                "claim": "La Tierra tiene dos lunas naturales.",
+                "status": "CONTRADICTED",
+                "best_entailment_score": 0.00691986083984375,
+                "best_contradiction_score": 0.990234375,
+                "comparisons": [
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - órbita terrestre",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00691986083984375,
+                      "neutral": 0.990234375,
+                      "contradiction": 0.0027980804443359375
+                    }
+                  },
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - satélite natural",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.000942230224609375,
+                      "neutral": 0.00905609130859375,
+                      "contradiction": 0.990234375
+                    }
+                  }
+                ]
+              },
+              {
+                "claim": "La Tierra es el centro del sistema solar.",
+                "status": "INSUFFICIENT",
+                "best_entailment_score": 0.0657958984375,
+                "best_contradiction_score": 0.041534423828125,
+                "comparisons": [
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - órbita terrestre",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0462646484375,
+                      "neutral": 0.93798828125,
+                      "contradiction": 0.01593017578125
+                    }
+                  },
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - satélite natural",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0657958984375,
+                      "neutral": 0.892578125,
+                      "contradiction": 0.041534423828125
+                    }
+                  }
+                ]
+              },
+              {
+                "claim": "La Tierra posee un satélite natural llamado Luna.",
+                "status": "SUPPORTED",
+                "best_entailment_score": 0.99609375,
+                "best_contradiction_score": 0.024444580078125,
+                "comparisons": [
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - órbita terrestre",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.006549835205078125,
+                      "neutral": 0.96923828125,
+                      "contradiction": 0.024444580078125
+                    }
+                  },
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - satélite natural",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.99609375,
+                      "neutral": 0.0019073486328125,
+                      "contradiction": 0.00206756591796875
+                    }
+                  }
+                ]
+              },
+              {
+                "claim": "Su diámetro medio es de 12.742 kilómetros.",
+                "status": "INSUFFICIENT",
+                "best_entailment_score": 0.189453125,
+                "best_contradiction_score": 0.01123809814453125,
+                "comparisons": [
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - órbita terrestre",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.14111328125,
+                      "neutral": 0.849609375,
+                      "contradiction": 0.00936126708984375
+                    }
+                  },
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Astronomia - satélite natural",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.189453125,
+                      "neutral": 0.79931640625,
+                      "contradiction": 0.01123809814453125
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "MIXED_EVIDENCE",
+            "limitations": [
+              "Los scores NLI no son probabilidades calibradas de verdad.",
+              "SUPPORTED es una estimación de implicación textual, no certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "No se realiza extracción automática de afirmaciones.",
+              "La contradicción se filtra conservadoramente cuando los textos identifican roles técnicos distintos.",
+              "El filtro de roles es una salvaguarda léxica limitada; no resuelve todas las relaciones semánticas.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 2,
+          "rag_unique_sources": 2,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "reference_status": "RAG_SOURCES_NOT_CITED",
+      "semantic_status": "MIXED_EVIDENCE",
+      "limitations": [
+        "La cobertura estructural del extractor no demuestra exhaustividad semántica.",
+        "Los puntajes NLI no son probabilidades calibradas.",
+        "El respaldo semántico no equivale a una verificación científica definitiva.",
+        "Los resultados DDGS contienen título y fragmento; no necesariamente el contenido completo de la página."
+      ]
+    },
+    "conflicting_evidence": {
+      "pipeline": "ClaimVerificationPipeline",
+      "pipeline_version": "0.1.0",
+      "status": "CONTRADICTED",
+      "can_present_as_supported": false,
+      "claims_submitted": 1,
+      "extractor_version": "0.1.2",
+      "verifier_version": "0.2.1",
+      "extraction": {
+        "extractor": "ClaimExtractor",
+        "version": "0.1.2",
+        "model": "qwen3:8b",
+        "complete": true,
+        "unit_count": 1,
+        "classified_unit_count": 1,
+        "claim_count": 1,
+        "claims": [
+          {
+            "claim": "La Tierra tiene dos lunas naturales.",
+            "unit_id": 1,
+            "source_unit": "La Tierra tiene dos lunas naturales."
+          }
+        ],
+        "coverage": [
+          {
+            "unit_id": 1,
+            "status": "FACTUAL",
+            "claims": [
+              "La Tierra tiene dos lunas naturales."
+            ]
+          }
+        ],
+        "errors": [],
+        "notes": [],
+        "limitations": [
+          "La cobertura estructural no garantiza exhaustividad semántica.",
+          "El modelo puede omitir afirmaciones o clasificarlas incorrectamente.",
+          "La extracción no verifica la verdad ni el respaldo de las afirmaciones.",
+          "Si complete es False, la respuesta no debe considerarse verificada."
+        ]
+      },
+      "verification": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.2.1",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "Fuente A - astronomía",
+              "Fuente B - afirmación opuesta"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15
+            },
+            "claims": [
+              {
+                "claim": "La Tierra tiene dos lunas naturales.",
+                "status": "CONTRADICTED",
+                "best_entailment_score": 0.796875,
+                "best_contradiction_score": 0.98876953125,
+                "comparisons": [
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Fuente A - astronomía",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0005311965942382812,
+                      "neutral": 0.01091766357421875,
+                      "contradiction": 0.98876953125
+                    }
+                  },
+                  {
+                    "evidence_type": "RAG",
+                    "source": "Fuente B - afirmación opuesta",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.796875,
+                      "neutral": 0.1419677734375,
+                      "contradiction": 0.06103515625
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "CONTRADICTED",
+            "limitations": [
+              "Los scores NLI no son probabilidades calibradas de verdad.",
+              "SUPPORTED es una estimación de implicación textual, no certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "No se realiza extracción automática de afirmaciones.",
+              "La contradicción se filtra conservadoramente cuando los textos identifican roles técnicos distintos.",
+              "El filtro de roles es una salvaguarda léxica limitada; no resuelve todas las relaciones semánticas.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 2,
+          "rag_unique_sources": 2,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "reference_status": "RAG_SOURCES_NOT_CITED",
+      "semantic_status": "CONTRADICTED",
+      "limitations": [
+        "La cobertura estructural del extractor no demuestra exhaustividad semántica.",
+        "Los puntajes NLI no son probabilidades calibradas.",
+        "El respaldo semántico no equivale a una verificación científica definitiva.",
+        "Los resultados DDGS contienen título y fragmento; no necesariamente el contenido completo de la página."
+      ]
+    }
+  },
+  "test_limitations": [
+    "La evidencia es sintética y controlada; no mide confiabilidad en fuentes reales.",
+    "El escenario de respaldo parcial depende de cómo Qwen atomice el enunciado y de la inferencia NLI.",
+    "El escenario contradictorio comprueba la respuesta del NLI ante dos fragmentos opuestos, no la veracidad externa de las fuentes.",
+    "Esta prueba usa evidencias RAG; no evalúa recuperación DDGS ni descarga de páginas web.",
+    "Los resultados NLI no son probabilidades calibradas ni certificaciones científicas."
+  ]
+}

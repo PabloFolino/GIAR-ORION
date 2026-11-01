@@ -1,0 +1,58 @@
+{
+  "suite": "EV-009",
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "correct": 3,
+  "total": 3,
+  "results": [
+    {
+      "id": "EV-009-A",
+      "source": "Networks.py — P_Network.forward() y P_Network.sample_normal()",
+      "premise": "En Networks.py, P_Network.forward calcula los parámetros mu y sigma de una distribución Normal. P_Network.sample_normal construye Normal(mu, sigma), utiliza rsample() cuando reparameterize=True y aplica la función tanh a la muestra para restringir la acción.",
+      "claim": "La política del actor genera acciones mediante una distribución Normal, utiliza muestreo reparametrizado cuando está habilitado y aplica tanh a la acción.",
+      "expected": "SUPPORTED",
+      "predicted": "SUPPORTED",
+      "scores": {
+        "entailment": 0.9697265625,
+        "neutral": 0.014312744140625,
+        "contradiction": 0.015899658203125
+      },
+      "match": true
+    },
+    {
+      "id": "EV-009-B",
+      "source": "SAC.py — inicialización de P0-STAND; Networks.py — P_Network.forward()",
+      "premise": "En SAC.py, para P0-STAND se establece pref_dim=0 y se construye P_Network con obs_dim, act_dim y pref_dim. En Networks.py, P_Network.forward recibe state y pref. Cuando pref_dim es cero, la primera capa recibe solamente state; no concatena action como entrada del actor.",
+      "claim": "En esta implementación P0-STAND, la red Actor recibe el vector de estado y el vector de acción como entradas de su primera capa.",
+      "expected": "CONTRADICTED",
+      "predicted": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.46044921875,
+        "neutral": 0.027587890625,
+        "contradiction": 0.51171875
+      },
+      "match": true
+    },
+    {
+      "id": "EV-009-C",
+      "source": "SAC.py — creación de log_alpha y actualización de Alpha_loss",
+      "premise": "En SAC.py, log_alpha se crea como un tensor con requires_grad=True. El optimizador de temperatura Adam recibe [self.log_alpha]. La pérdida Alpha_loss se calcula multiplicando self.log_alpha por el error de entropía desacoplado. La expresión exp(log_alpha) se utiliza para obtener alpha en otros cálculos, como la pérdida de la política.",
+      "claim": "En esta implementación, el optimizador de temperatura actualiza directamente alpha igual a exp(log_alpha), en lugar de actualizar log_alpha.",
+      "expected": "CONTRADICTED",
+      "predicted": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0012197494506835938,
+        "neutral": 0.08154296875,
+        "contradiction": 0.9169921875
+      },
+      "match": true
+    }
+  ],
+  "limitations": [
+    "Las premisas son resúmenes en lenguaje natural derivados de los archivos fuente indicados.",
+    "La prueba evalúa NLI sobre tres fragmentos técnicos; no valida todo el repositorio.",
+    "Los scores NLI no son probabilidades calibradas de verdad.",
+    "Una clasificación neutral significa evidencia insuficiente en este par, no que la afirmación sea falsa."
+  ]
+}

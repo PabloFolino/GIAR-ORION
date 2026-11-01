@@ -1,0 +1,91 @@
+{
+  "suite": "GIAR-ORION EvidenceVerifier semantic benchmark",
+  "dataset_version": "0.1",
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda:0",
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "correct": 4,
+  "total": 4,
+  "accuracy_on_synthetic_fixtures": 1.0,
+  "results": [
+    {
+      "id": "EV-008-A",
+      "claim": "SAC utiliza una política estocástica.",
+      "expected": "SUPPORTED",
+      "predicted": "SUPPORTED",
+      "match": true,
+      "evidence_results": [
+        {
+          "evidence": "En esta descripción del algoritmo SAC, el actor representa una política estocástica.",
+          "prediction": "SUPPORTED",
+          "scores": {
+            "entailment": 0.98291015625,
+            "neutral": 0.01515960693359375,
+            "contradiction": 0.0018825531005859375
+          }
+        }
+      ]
+    },
+    {
+      "id": "EV-008-B",
+      "claim": "SAC utiliza una política determinista.",
+      "expected": "CONTRADICTED",
+      "predicted": "CONTRADICTED",
+      "match": true,
+      "evidence_results": [
+        {
+          "evidence": "En esta descripción del algoritmo SAC, el actor representa una política estocástica.",
+          "prediction": "CONTRADICTED",
+          "scores": {
+            "entailment": 0.225830078125,
+            "neutral": 0.0287933349609375,
+            "contradiction": 0.74560546875
+          }
+        }
+      ]
+    },
+    {
+      "id": "EV-008-C",
+      "claim": "Esta implementación de SAC utiliza tres redes Actor.",
+      "expected": "CONTRADICTED",
+      "predicted": "CONTRADICTED",
+      "match": true,
+      "evidence_results": [
+        {
+          "evidence": "La arquitectura descrita contiene una red Actor y dos redes Critic.",
+          "prediction": "CONTRADICTED",
+          "scores": {
+            "entailment": 0.0012111663818359375,
+            "neutral": 0.0022144317626953125,
+            "contradiction": 0.99658203125
+          }
+        }
+      ]
+    },
+    {
+      "id": "EV-008-D",
+      "claim": "SAC garantiza que cualquier robot consiga caminar.",
+      "expected": "INSUFFICIENT",
+      "predicted": "INSUFFICIENT",
+      "match": true,
+      "evidence_results": [
+        {
+          "evidence": "SAC es un algoritmo de aprendizaje por refuerzo que optimiza una política mediante interacción con un entorno.",
+          "prediction": "INSUFFICIENT",
+          "scores": {
+            "entailment": 0.0005383491516113281,
+            "neutral": 0.9716796875,
+            "contradiction": 0.0276336669921875
+          }
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Los casos son fixtures sintéticos, no documentación científica real.",
+    "Las puntuaciones NLI no son probabilidades calibradas de verdad.",
+    "PARTIALLY_SUPPORTED no se infiere con esta prueba de afirmaciones completas.",
+    "La agregación es deliberadamente simple y no resuelve conflictos entre múltiples fuentes.",
+    "El resultado no constituye todavía una validación del EvidenceVerifier integrado."
+  ]
+}

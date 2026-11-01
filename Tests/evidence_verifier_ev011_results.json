@@ -1,0 +1,362 @@
+{
+  "test": "EV-011",
+  "verifier_version": "0.2.1",
+  "nli_model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda",
+  "individual_cases": [
+    {
+      "case_id": "EV011-01",
+      "language": "es",
+      "category": "supported_paraphrase",
+      "claim": "Soft Actor-Critic pertenece a los métodos off-policy de aprendizaje por refuerzo.",
+      "evidence": [
+        "SAC es un algoritmo de aprendizaje por refuerzo off-policy."
+      ],
+      "expected": "SUPPORTED",
+      "observed": "SUPPORTED",
+      "passed": true,
+      "entailment_score": 0.9765625,
+      "contradiction_score": 0.0027103424072265625,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.9765625,
+            "neutral": 0.0208892822265625,
+            "contradiction": 0.0027103424072265625
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-02",
+      "language": "en",
+      "category": "supported_paraphrase",
+      "claim": "SAC is a deep RL method that learns from previously collected experience rather than only the current policy.",
+      "evidence": [
+        "Soft Actor-Critic is an off-policy deep reinforcement learning algorithm."
+      ],
+      "expected": "SUPPORTED",
+      "observed": "INSUFFICIENT",
+      "passed": false,
+      "entailment_score": 0.149658203125,
+      "contradiction_score": 0.003147125244140625,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.149658203125,
+            "neutral": 0.84716796875,
+            "contradiction": 0.003147125244140625
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-03",
+      "language": "es",
+      "category": "contradiction",
+      "claim": "En SAC, el actor utiliza exclusivamente una política determinista y no representa distribuciones de probabilidad.",
+      "evidence": [
+        "En SAC, la política del actor es estocástica y modela una distribución de probabilidad sobre las acciones."
+      ],
+      "expected": "CONTRADICTED",
+      "observed": "CONTRADICTED",
+      "passed": true,
+      "entailment_score": 0.00035762786865234375,
+      "contradiction_score": 0.9990234375,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.00035762786865234375,
+            "neutral": 0.00038051605224609375,
+            "contradiction": 0.9990234375
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-04",
+      "language": "en",
+      "category": "contradiction",
+      "claim": "The SAC actor is purely deterministic and does not represent a probability distribution over actions.",
+      "evidence": [
+        "The SAC actor produces a probability distribution over actions; it is not defined as a purely deterministic policy."
+      ],
+      "expected": "CONTRADICTED",
+      "observed": "CONTRADICTED",
+      "passed": true,
+      "entailment_score": 0.0012378692626953125,
+      "contradiction_score": 0.998046875,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.0012378692626953125,
+            "neutral": 0.0008549690246582031,
+            "contradiction": 0.998046875
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-05",
+      "language": "es",
+      "category": "neutral_unrelated",
+      "claim": "SAC fue creado originalmente para detectar tumores en imágenes de resonancia magnética.",
+      "evidence": [
+        "SAC es un algoritmo de aprendizaje por refuerzo off-policy."
+      ],
+      "expected": "INSUFFICIENT",
+      "observed": "INSUFFICIENT",
+      "passed": true,
+      "entailment_score": 0.0002923011779785156,
+      "contradiction_score": 0.00669097900390625,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.0002923011779785156,
+            "neutral": 0.9931640625,
+            "contradiction": 0.00669097900390625
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-06",
+      "language": "en",
+      "category": "neutral_unrelated",
+      "claim": "The first implementation of SAC was written in the Rust programming language.",
+      "evidence": [
+        "The replay buffer stores transitions collected while interacting with the environment."
+      ],
+      "expected": "INSUFFICIENT",
+      "observed": "INSUFFICIENT",
+      "passed": true,
+      "entailment_score": 0.00021696090698242188,
+      "contradiction_score": 0.0002143383026123047,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.00021696090698242188,
+            "neutral": 0.99951171875,
+            "contradiction": 0.0002143383026123047
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-07",
+      "language": "es",
+      "category": "lexical_overlap_wrong_relation",
+      "claim": "La red Actor recibe los parámetros de una distribución Normal y genera el vector de estado.",
+      "evidence": [
+        "La red Actor recibe el vector de estado y genera los parámetros de una distribución Normal."
+      ],
+      "expected": "CONTRADICTED",
+      "observed": "INSUFFICIENT",
+      "passed": false,
+      "entailment_score": 0.438232421875,
+      "contradiction_score": 0.55126953125,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": false,
+          "scores": {
+            "entailment": 0.438232421875,
+            "neutral": 0.0104217529296875,
+            "contradiction": 0.55126953125
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-08",
+      "language": "en",
+      "category": "lexical_overlap_wrong_relation",
+      "claim": "The actor estimates the action value from the state and action.",
+      "evidence": [
+        "The critic estimates the action value from the state and action."
+      ],
+      "expected": "INSUFFICIENT",
+      "observed": "INSUFFICIENT",
+      "passed": true,
+      "entailment_score": 0.0028133392333984375,
+      "contradiction_score": 0.0,
+      "comparisons": [
+        {
+          "evidence_type": "RAG",
+          "source": "EV011_synthetic_evidence_1.md",
+          "role_mismatch": true,
+          "scores": {
+            "entailment": 0.0028133392333984375,
+            "neutral": 0.06378173828125,
+            "contradiction": 0.93359375
+          }
+        }
+      ]
+    }
+  ],
+  "special_cases": [
+    {
+      "case_id": "EV011-09",
+      "expected": "PARTIALLY_SUPPORTED",
+      "observed": "PARTIALLY_SUPPORTED",
+      "passed": true,
+      "claim_results": [
+        {
+          "claim": "SAC es un algoritmo de aprendizaje por refuerzo off-policy.",
+          "status": "SUPPORTED",
+          "best_entailment_score": 0.984375,
+          "best_contradiction_score": 0.00182342529296875,
+          "comparisons": [
+            {
+              "evidence_type": "RAG",
+              "source": "EV011_synthetic_evidence_1.md",
+              "role_mismatch": false,
+              "scores": {
+                "entailment": 0.984375,
+                "neutral": 0.0139312744140625,
+                "contradiction": 0.00182342529296875
+              }
+            }
+          ]
+        },
+        {
+          "claim": "SAC fue implementado originalmente en el lenguaje Rust.",
+          "status": "INSUFFICIENT",
+          "best_entailment_score": 0.035369873046875,
+          "best_contradiction_score": 0.0136566162109375,
+          "comparisons": [
+            {
+              "evidence_type": "RAG",
+              "source": "EV011_synthetic_evidence_1.md",
+              "role_mismatch": false,
+              "scores": {
+                "entailment": 0.035369873046875,
+                "neutral": 0.951171875,
+                "contradiction": 0.0136566162109375
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "EV011-10",
+      "expected": "CONFLICTING_EVIDENCE",
+      "observed": "CONFLICTING_EVIDENCE",
+      "passed": true,
+      "claim_results": [
+        {
+          "claim": "SAC es un algoritmo off-policy.",
+          "status": "CONFLICTING_EVIDENCE",
+          "best_entailment_score": 0.9306640625,
+          "best_contradiction_score": 0.9951171875,
+          "comparisons": [
+            {
+              "evidence_type": "RAG",
+              "source": "EV011_synthetic_evidence_1.md",
+              "role_mismatch": false,
+              "scores": {
+                "entailment": 0.9306640625,
+                "neutral": 0.04718017578125,
+                "contradiction": 0.0223846435546875
+              }
+            },
+            {
+              "evidence_type": "RAG",
+              "source": "EV011_synthetic_evidence_2.md",
+              "role_mismatch": false,
+              "scores": {
+                "entailment": 0.002170562744140625,
+                "neutral": 0.0025386810302734375,
+                "contradiction": 0.9951171875
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "metrics": {
+    "individual_case_count": 8,
+    "individual_matches": 6,
+    "confusion_matrix_expected_rows_predicted_columns": {
+      "SUPPORTED": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 0,
+        "INSUFFICIENT": 1
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 2,
+        "INSUFFICIENT": 1
+      },
+      "INSUFFICIENT": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 0,
+        "INSUFFICIENT": 3
+      }
+    },
+    "supported_precision": 1.0,
+    "supported_recall": 0.5,
+    "false_positives": [],
+    "false_negatives": [
+      {
+        "case_id": "EV011-02",
+        "language": "en",
+        "category": "supported_paraphrase",
+        "claim": "SAC is a deep RL method that learns from previously collected experience rather than only the current policy.",
+        "evidence": [
+          "Soft Actor-Critic is an off-policy deep reinforcement learning algorithm."
+        ],
+        "expected": "SUPPORTED",
+        "observed": "INSUFFICIENT",
+        "passed": false,
+        "entailment_score": 0.149658203125,
+        "contradiction_score": 0.003147125244140625,
+        "comparisons": [
+          {
+            "evidence_type": "RAG",
+            "source": "EV011_synthetic_evidence_1.md",
+            "role_mismatch": false,
+            "scores": {
+              "entailment": 0.149658203125,
+              "neutral": 0.84716796875,
+              "contradiction": 0.003147125244140625
+            }
+          }
+        ]
+      }
+    ],
+    "partial_aggregation_passed": true,
+    "conflicting_evidence_passed": true,
+    "total_matches_including_special_cases": 8,
+    "total_cases_including_special_cases": 10
+  },
+  "limitations": [
+    "Los diez casos son sintéticos y fueron diseñados para esta evaluación.",
+    "El conjunto es pequeño y no representa una muestra estadística del uso real.",
+    "Las etiquetas esperadas describen la relación con los fragmentos proporcionados, no la verdad universal de cada afirmación.",
+    "Los scores NLI no son probabilidades calibradas de verdad.",
+    "Un resultado satisfactorio no garantiza ausencia de alucinaciones.",
+    "La métrica de falsos positivos/falsos negativos se calcula sobre los ocho casos individuales, no sobre las pruebas especiales."
+  ]
+}
