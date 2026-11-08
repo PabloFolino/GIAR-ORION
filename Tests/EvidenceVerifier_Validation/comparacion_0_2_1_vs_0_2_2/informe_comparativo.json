@@ -1,0 +1,328 @@
+{
+  "evaluation": "EvidenceVerifier 0.2.1 vs 0.2.2 experimental",
+  "timestamp": "2026-11-05T15:08:25",
+  "dataset": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\EvidenceVerifier_Validation\\dataset_120_casos.json",
+  "dataset_name": "EvidenceVerifier Validation 120",
+  "total_cases": 120,
+  "method": {
+    "same_cases_and_order": true,
+    "same_claims_and_evidence": true,
+    "evidence_split_delimiter": "||",
+    "max_evidence_per_claim": 10,
+    "nli_model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+    "thresholds": {
+      "entailment": 0.8,
+      "contradiction": 0.8,
+      "decision_margin": 0.15
+    },
+    "experimental_normalization": "Ollama qwen3:8b",
+    "execution_order": [
+      "0.2.1",
+      "0.2.2"
+    ],
+    "gold_label_field": "gold_verifier (fallback gold_nli)"
+  },
+  "version_0_2_1": {
+    "cases": 120,
+    "correct": 86,
+    "accuracy_pct": 71.67,
+    "prediction_counts": {
+      "SUPPORTED": 31,
+      "CONTRADICTED": 35,
+      "INSUFFICIENT": 52,
+      "CONFLICTING_EVIDENCE": 2
+    },
+    "gold_counts": {
+      "SUPPORTED": 54,
+      "CONTRADICTED": 29,
+      "INSUFFICIENT": 37
+    },
+    "confusion_matrix_rows_gold_columns_prediction": {
+      "SUPPORTED": {
+        "SUPPORTED": 30,
+        "CONTRADICTED": 5,
+        "INSUFFICIENT": 17,
+        "CONFLICTING_EVIDENCE": 2
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 25,
+        "INSUFFICIENT": 4,
+        "CONFLICTING_EVIDENCE": 0
+      },
+      "INSUFFICIENT": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 5,
+        "INSUFFICIENT": 31,
+        "CONFLICTING_EVIDENCE": 0
+      }
+    },
+    "by_group": {
+      "A_SUPPORT": {
+        "cases": 20,
+        "correct": 17,
+        "accuracy_pct": 85.0
+      },
+      "B_CONTRADICTION": {
+        "cases": 20,
+        "correct": 17,
+        "accuracy_pct": 85.0
+      },
+      "C_NEUTRAL": {
+        "cases": 15,
+        "correct": 15,
+        "accuracy_pct": 100.0
+      },
+      "D_PARAPHRASE": {
+        "cases": 20,
+        "correct": 7,
+        "accuracy_pct": 35.0
+      },
+      "E_ROLE_DISTINCTION": {
+        "cases": 15,
+        "correct": 10,
+        "accuracy_pct": 66.67
+      },
+      "F_MULTI_EVIDENCE": {
+        "cases": 15,
+        "correct": 11,
+        "accuracy_pct": 73.33
+      },
+      "G_ROBUSTNESS": {
+        "cases": 15,
+        "correct": 9,
+        "accuracy_pct": 60.0
+      }
+    },
+    "mean_case_seconds": 0.117,
+    "version_label": "0.2.1",
+    "module_path": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\EvidenceVerifier_Validation\\EvidenceVerifier_0_2_1_reference.py",
+    "total_seconds": 14.072
+  },
+  "version_0_2_2": {
+    "cases": 120,
+    "correct": 85,
+    "accuracy_pct": 70.83,
+    "prediction_counts": {
+      "SUPPORTED": 31,
+      "CONTRADICTED": 34,
+      "INSUFFICIENT": 53,
+      "CONFLICTING_EVIDENCE": 2
+    },
+    "gold_counts": {
+      "SUPPORTED": 54,
+      "CONTRADICTED": 29,
+      "INSUFFICIENT": 37
+    },
+    "confusion_matrix_rows_gold_columns_prediction": {
+      "SUPPORTED": {
+        "SUPPORTED": 30,
+        "CONTRADICTED": 5,
+        "INSUFFICIENT": 17,
+        "CONFLICTING_EVIDENCE": 2
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 24,
+        "INSUFFICIENT": 5,
+        "CONFLICTING_EVIDENCE": 0
+      },
+      "INSUFFICIENT": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 5,
+        "INSUFFICIENT": 31,
+        "CONFLICTING_EVIDENCE": 0
+      }
+    },
+    "by_group": {
+      "A_SUPPORT": {
+        "cases": 20,
+        "correct": 17,
+        "accuracy_pct": 85.0
+      },
+      "B_CONTRADICTION": {
+        "cases": 20,
+        "correct": 16,
+        "accuracy_pct": 80.0
+      },
+      "C_NEUTRAL": {
+        "cases": 15,
+        "correct": 15,
+        "accuracy_pct": 100.0
+      },
+      "D_PARAPHRASE": {
+        "cases": 20,
+        "correct": 6,
+        "accuracy_pct": 30.0
+      },
+      "E_ROLE_DISTINCTION": {
+        "cases": 15,
+        "correct": 10,
+        "accuracy_pct": 66.67
+      },
+      "F_MULTI_EVIDENCE": {
+        "cases": 15,
+        "correct": 11,
+        "accuracy_pct": 73.33
+      },
+      "G_ROBUSTNESS": {
+        "cases": 15,
+        "correct": 10,
+        "accuracy_pct": 66.67
+      }
+    },
+    "mean_case_seconds": 15.045,
+    "version_label": "0.2.2",
+    "module_path": "C:\\Users\\pfoli\\Documents\\Facultad\\GIAR2026\\GIAR-ORION\\Tests\\EvidenceVerifier_Validation\\EvidenceVerifier_0_2_2_experimental.py",
+    "total_seconds": 1805.393
+  },
+  "delta_accuracy_percentage_points": -0.84,
+  "improved_cases": [
+    "EV-068",
+    "EV-079",
+    "EV-110"
+  ],
+  "worsened_cases": [
+    "EV-035",
+    "EV-064",
+    "EV-066",
+    "EV-089"
+  ],
+  "unchanged_correctness_cases": [
+    "EV-001",
+    "EV-002",
+    "EV-003",
+    "EV-004",
+    "EV-005",
+    "EV-006",
+    "EV-007",
+    "EV-008",
+    "EV-009",
+    "EV-010",
+    "EV-011",
+    "EV-012",
+    "EV-013",
+    "EV-014",
+    "EV-015",
+    "EV-016",
+    "EV-017",
+    "EV-018",
+    "EV-019",
+    "EV-020",
+    "EV-021",
+    "EV-022",
+    "EV-023",
+    "EV-024",
+    "EV-025",
+    "EV-026",
+    "EV-027",
+    "EV-028",
+    "EV-029",
+    "EV-030",
+    "EV-031",
+    "EV-032",
+    "EV-033",
+    "EV-034",
+    "EV-036",
+    "EV-037",
+    "EV-038",
+    "EV-039",
+    "EV-040",
+    "EV-041",
+    "EV-042",
+    "EV-043",
+    "EV-044",
+    "EV-045",
+    "EV-046",
+    "EV-047",
+    "EV-048",
+    "EV-049",
+    "EV-050",
+    "EV-051",
+    "EV-052",
+    "EV-053",
+    "EV-054",
+    "EV-055",
+    "EV-056",
+    "EV-057",
+    "EV-058",
+    "EV-059",
+    "EV-060",
+    "EV-061",
+    "EV-062",
+    "EV-063",
+    "EV-065",
+    "EV-067",
+    "EV-069",
+    "EV-070",
+    "EV-071",
+    "EV-072",
+    "EV-073",
+    "EV-074",
+    "EV-075",
+    "EV-076",
+    "EV-077",
+    "EV-078",
+    "EV-080",
+    "EV-081",
+    "EV-082",
+    "EV-083",
+    "EV-084",
+    "EV-085",
+    "EV-086",
+    "EV-087",
+    "EV-088",
+    "EV-090",
+    "EV-091",
+    "EV-092",
+    "EV-093",
+    "EV-094",
+    "EV-095",
+    "EV-096",
+    "EV-097",
+    "EV-098",
+    "EV-099",
+    "EV-100",
+    "EV-101",
+    "EV-102",
+    "EV-103",
+    "EV-104",
+    "EV-105",
+    "EV-106",
+    "EV-107",
+    "EV-108",
+    "EV-109",
+    "EV-111",
+    "EV-112",
+    "EV-113",
+    "EV-114",
+    "EV-115",
+    "EV-116",
+    "EV-117",
+    "EV-118",
+    "EV-119",
+    "EV-120"
+  ],
+  "prediction_transitions": {
+    "SUPPORTED -> SUPPORTED": 28,
+    "CONTRADICTED -> CONTRADICTED": 34,
+    "INSUFFICIENT -> INSUFFICIENT": 49,
+    "CONTRADICTED -> INSUFFICIENT": 1,
+    "SUPPORTED -> INSUFFICIENT": 3,
+    "INSUFFICIENT -> SUPPORTED": 3,
+    "CONFLICTING_EVIDENCE -> CONFLICTING_EVIDENCE": 2
+  },
+  "normalization_totals_0_2_2": {
+    "requested": 255,
+    "succeeded": 245,
+    "fallback": 10
+  },
+  "limitations": [
+    "Dataset sintético curado; no equivale a un benchmark externo.",
+    "La evaluación mide clasificación de pares afirmación-evidencia, no calidad de extracción de claims ni RAG real.",
+    "Los textos separados por || se entregan como evidencias RAG independientes.",
+    "La normalización con Qwen puede alterar negaciones, modalidad, cantidades o relaciones; auditar textos originales y normalizados en el JSON.",
+    "Los scores NLI no son probabilidades calibradas.",
+    "La latencia de 0.2.2 incluye llamadas a Ollama; la de 0.2.1 no."
+  ]
+}

@@ -1,0 +1,374 @@
+{
+  "experiment": "EvidenceVerifier A/B/C recalculation with calibration dataset revision 1.2",
+  "date": "2026-11-07",
+  "dataset_file": "dataset_calibracion_80_revision_1_2_reconstruida.json",
+  "nli_scores_file": "resultados_nli(1).json",
+  "nli_model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "nli_device_recorded": "cuda",
+  "nli_elapsed_seconds_recorded": 1.0530446998309344,
+  "calibration_cases": 80,
+  "nli_pairs_in_full_file": 135,
+  "nli_pairs_used": 90,
+  "unique_case_ids_in_full_nli_file": 120,
+  "aggregation": "max entailment and max contradiction across evidence pairs per case; original EvidenceVerifier 0.2.1 classification logic",
+  "decision_margin": 0.15,
+  "contradiction_threshold": 0.8,
+  "role_filter": "C only; exact lexical role detector from EvidenceVerifier(6).py; role-mismatched evidence excluded from contradiction max, but not entailment max",
+  "variants": {
+    "A": {
+      "configuration": {
+        "ent_th": 0.8,
+        "role_filter": false
+      },
+      "accuracy": 0.7,
+      "correct": 56,
+      "total": 80,
+      "prediction_counts": {
+        "SUPPORTED": 19,
+        "INSUFFICIENT": 32,
+        "CONTRADICTED": 28,
+        "CONFLICTING_EVIDENCE": 1
+      },
+      "confusion_matrix_labels": [
+        "SUPPORTED",
+        "CONTRADICTED",
+        "INSUFFICIENT",
+        "CONFLICTING_EVIDENCE"
+      ],
+      "confusion_matrix": [
+        [
+          19,
+          2,
+          11,
+          1
+        ],
+        [
+          0,
+          17,
+          1,
+          0
+        ],
+        [
+          0,
+          9,
+          20,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.5757575757575758,
+          "f1": 0.7307692307692307,
+          "support": 33
+        },
+        "CONTRADICTED": {
+          "precision": 0.6071428571428571,
+          "recall": 0.9444444444444444,
+          "f1": 0.7391304347826086,
+          "support": 18
+        },
+        "INSUFFICIENT": {
+          "precision": 0.625,
+          "recall": 0.6896551724137931,
+          "f1": 0.6557377049180327,
+          "support": 29
+        },
+        "CONFLICTING_EVIDENCE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "supported_true_positive": 19,
+      "supported_false_positive": 0,
+      "supported_precision": 1.0,
+      "contradicted_true_positive": 17,
+      "contradicted_false_positive": 11,
+      "contradicted_precision": 0.6071428571428571,
+      "accuracy_with_pre_revision_labels": 0.7,
+      "accuracy_delta_due_to_label_revision": 0.0,
+      "by_group": {
+        "A_SUPPORT": {
+          "correct": 12,
+          "total": 13,
+          "accuracy": 0.9230769230769231
+        },
+        "B_CONTRADICTION": {
+          "correct": 11,
+          "total": 13,
+          "accuracy": 0.8461538461538461
+        },
+        "C_NEUTRAL": {
+          "correct": 10,
+          "total": 10,
+          "accuracy": 1.0
+        },
+        "D_PARAPHRASE": {
+          "correct": 4,
+          "total": 13,
+          "accuracy": 0.3076923076923077
+        },
+        "E_ROLE_DISTINCTION": {
+          "correct": 5,
+          "total": 10,
+          "accuracy": 0.5
+        },
+        "F_MULTI_EVIDENCE": {
+          "correct": 8,
+          "total": 10,
+          "accuracy": 0.8
+        },
+        "G_ROBUSTNESS": {
+          "correct": 6,
+          "total": 11,
+          "accuracy": 0.5454545454545454
+        }
+      }
+    },
+    "B": {
+      "configuration": {
+        "ent_th": 0.7,
+        "role_filter": false
+      },
+      "accuracy": 0.7125,
+      "correct": 57,
+      "total": 80,
+      "prediction_counts": {
+        "SUPPORTED": 20,
+        "INSUFFICIENT": 31,
+        "CONTRADICTED": 28,
+        "CONFLICTING_EVIDENCE": 1
+      },
+      "confusion_matrix_labels": [
+        "SUPPORTED",
+        "CONTRADICTED",
+        "INSUFFICIENT",
+        "CONFLICTING_EVIDENCE"
+      ],
+      "confusion_matrix": [
+        [
+          20,
+          2,
+          10,
+          1
+        ],
+        [
+          0,
+          17,
+          1,
+          0
+        ],
+        [
+          0,
+          9,
+          20,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.6060606060606061,
+          "f1": 0.7547169811320755,
+          "support": 33
+        },
+        "CONTRADICTED": {
+          "precision": 0.6071428571428571,
+          "recall": 0.9444444444444444,
+          "f1": 0.7391304347826086,
+          "support": 18
+        },
+        "INSUFFICIENT": {
+          "precision": 0.6451612903225806,
+          "recall": 0.6896551724137931,
+          "f1": 0.6666666666666666,
+          "support": 29
+        },
+        "CONFLICTING_EVIDENCE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "supported_true_positive": 20,
+      "supported_false_positive": 0,
+      "supported_precision": 1.0,
+      "contradicted_true_positive": 17,
+      "contradicted_false_positive": 11,
+      "contradicted_precision": 0.6071428571428571,
+      "accuracy_with_pre_revision_labels": 0.7125,
+      "accuracy_delta_due_to_label_revision": 0.0,
+      "by_group": {
+        "A_SUPPORT": {
+          "correct": 12,
+          "total": 13,
+          "accuracy": 0.9230769230769231
+        },
+        "B_CONTRADICTION": {
+          "correct": 11,
+          "total": 13,
+          "accuracy": 0.8461538461538461
+        },
+        "C_NEUTRAL": {
+          "correct": 10,
+          "total": 10,
+          "accuracy": 1.0
+        },
+        "D_PARAPHRASE": {
+          "correct": 4,
+          "total": 13,
+          "accuracy": 0.3076923076923077
+        },
+        "E_ROLE_DISTINCTION": {
+          "correct": 5,
+          "total": 10,
+          "accuracy": 0.5
+        },
+        "F_MULTI_EVIDENCE": {
+          "correct": 8,
+          "total": 10,
+          "accuracy": 0.8
+        },
+        "G_ROBUSTNESS": {
+          "correct": 7,
+          "total": 11,
+          "accuracy": 0.6363636363636364
+        }
+      }
+    },
+    "C": {
+      "configuration": {
+        "ent_th": 0.8,
+        "role_filter": true
+      },
+      "accuracy": 0.725,
+      "correct": 58,
+      "total": 80,
+      "prediction_counts": {
+        "SUPPORTED": 19,
+        "INSUFFICIENT": 36,
+        "CONTRADICTED": 24,
+        "CONFLICTING_EVIDENCE": 1
+      },
+      "confusion_matrix_labels": [
+        "SUPPORTED",
+        "CONTRADICTED",
+        "INSUFFICIENT",
+        "CONFLICTING_EVIDENCE"
+      ],
+      "confusion_matrix": [
+        [
+          19,
+          2,
+          11,
+          1
+        ],
+        [
+          0,
+          16,
+          2,
+          0
+        ],
+        [
+          0,
+          6,
+          23,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.5757575757575758,
+          "f1": 0.7307692307692307,
+          "support": 33
+        },
+        "CONTRADICTED": {
+          "precision": 0.6666666666666666,
+          "recall": 0.8888888888888888,
+          "f1": 0.7619047619047619,
+          "support": 18
+        },
+        "INSUFFICIENT": {
+          "precision": 0.6388888888888888,
+          "recall": 0.7931034482758621,
+          "f1": 0.7076923076923077,
+          "support": 29
+        },
+        "CONFLICTING_EVIDENCE": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        }
+      },
+      "supported_true_positive": 19,
+      "supported_false_positive": 0,
+      "supported_precision": 1.0,
+      "contradicted_true_positive": 16,
+      "contradicted_false_positive": 8,
+      "contradicted_precision": 0.6666666666666666,
+      "accuracy_with_pre_revision_labels": 0.725,
+      "accuracy_delta_due_to_label_revision": 0.0,
+      "by_group": {
+        "A_SUPPORT": {
+          "correct": 12,
+          "total": 13,
+          "accuracy": 0.9230769230769231
+        },
+        "B_CONTRADICTION": {
+          "correct": 11,
+          "total": 13,
+          "accuracy": 0.8461538461538461
+        },
+        "C_NEUTRAL": {
+          "correct": 10,
+          "total": 10,
+          "accuracy": 1.0
+        },
+        "D_PARAPHRASE": {
+          "correct": 4,
+          "total": 13,
+          "accuracy": 0.3076923076923077
+        },
+        "E_ROLE_DISTINCTION": {
+          "correct": 8,
+          "total": 10,
+          "accuracy": 0.8
+        },
+        "F_MULTI_EVIDENCE": {
+          "correct": 8,
+          "total": 10,
+          "accuracy": 0.8
+        },
+        "G_ROBUSTNESS": {
+          "correct": 5,
+          "total": 11,
+          "accuracy": 0.45454545454545453
+        }
+      }
+    }
+  },
+  "important_scope_note": "This is a recalculation on precomputed NLI scores; no NLI inference was run. Calibration only; the 40-case holdout was not accessed."
+}

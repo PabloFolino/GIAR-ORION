@@ -1,0 +1,226 @@
+{
+  "dataset": "GIAR-ORION Controlled Technical Paraphrase Experiments",
+  "version": "1.0",
+  "purpose": "Experimentos exploratorios P1-P4. No usar el holdout reservado ni modificar umbrales/producción.",
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "pair_semantics": "Premise=evidence; hypothesis=claim. Se evalúa si la evidencia implica la afirmación.",
+  "experiments": [
+    {
+      "id": "P1_TERMINOLOGICAL",
+      "description": "Equivalencias terminológicas: distintos nombres para el mismo componente o entidad.",
+      "cases": [
+        {
+          "id": "P1-01",
+          "gold": "SUPPORTED",
+          "claim": "El buffer de reproducción almacena transiciones.",
+          "evidence": "The replay memory stores transitions."
+        },
+        {
+          "id": "P1-02",
+          "gold": "SUPPORTED",
+          "claim": "La red de política representa al Actor.",
+          "evidence": "The policy network is the actor component."
+        },
+        {
+          "id": "P1-03",
+          "gold": "SUPPORTED",
+          "claim": "Las redes Q corresponden a los Critics.",
+          "evidence": "The critic networks are the Q-function estimators."
+        },
+        {
+          "id": "P1-04",
+          "gold": "SUPPORTED",
+          "claim": "La función de valor de acción depende del estado y de la acción.",
+          "evidence": "The state-action value function is Q(s,a)."
+        },
+        {
+          "id": "P1-05",
+          "gold": "SUPPORTED",
+          "claim": "El coeficiente de temperatura pondera el término de entropía.",
+          "evidence": "Alpha scales the entropy term."
+        },
+        {
+          "id": "P1-06",
+          "gold": "SUPPORTED",
+          "claim": "La memoria de experiencias conserva transiciones anteriores.",
+          "evidence": "The replay buffer retains previously collected transitions."
+        },
+        {
+          "id": "P1-07",
+          "gold": "CONTRADICTED",
+          "claim": "El Actor es el estimador de valores Q.",
+          "evidence": "The critic, not the actor, estimates Q-values."
+        },
+        {
+          "id": "P1-08",
+          "gold": "INSUFFICIENT",
+          "claim": "El buffer de reproducción contiene 500 000 transiciones.",
+          "evidence": "The replay memory stores transitions."
+        }
+      ]
+    },
+    {
+      "id": "P2_FUNCTIONAL",
+      "description": "Equivalencias funcionales: mecanismo y resultado funcional expresados de forma distinta.",
+      "cases": [
+        {
+          "id": "P2-01",
+          "gold": "SUPPORTED",
+          "claim": "La política puede producir distintas acciones para una misma observación.",
+          "evidence": "Given the same observation, sampling from the policy can yield different actions."
+        },
+        {
+          "id": "P2-02",
+          "gold": "SUPPORTED",
+          "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+          "evidence": "Randomly sampling stored transitions helps decorrelate training batches."
+        },
+        {
+          "id": "P2-03",
+          "gold": "SUPPORTED",
+          "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+          "evidence": "The policy update balances high Q estimates with an entropy contribution."
+        },
+        {
+          "id": "P2-04",
+          "gold": "SUPPORTED",
+          "claim": "La actualización del Critic ajusta sus estimaciones para aproximar el objetivo de Bellman.",
+          "evidence": "The critic parameters are trained by minimizing a Bellman-target regression error."
+        },
+        {
+          "id": "P2-05",
+          "gold": "SUPPORTED",
+          "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+          "evidence": "Changing the temperature coefficient changes the weight assigned to policy entropy."
+        },
+        {
+          "id": "P2-06",
+          "gold": "SUPPORTED",
+          "claim": "El aprendizaje off-policy permite actualizar la política con transiciones generadas anteriormente.",
+          "evidence": "A target policy can be updated using transitions collected by an earlier behavior policy."
+        },
+        {
+          "id": "P2-07",
+          "gold": "INSUFFICIENT",
+          "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+          "evidence": "The policy outputs actions that are applied to the environment.",
+          "note": "La evidencia atribuye la salida de acciones a la política, pero no niega explícitamente otras responsabilidades del buffer; no alcanza para contradicción estricta."
+        },
+        {
+          "id": "P2-08",
+          "gold": "INSUFFICIENT",
+          "claim": "El Actor tarda 4 milisegundos en generar una acción.",
+          "evidence": "The policy maps observations to an action distribution."
+        }
+      ]
+    },
+    {
+      "id": "P3_CONCEPTUAL",
+      "description": "Equivalencias conceptuales: el mismo principio explicado con formulaciones abstractas distintas.",
+      "cases": [
+        {
+          "id": "P3-01",
+          "gold": "SUPPORTED",
+          "claim": "La regularización entrópica evita que la política se vuelva determinista demasiado pronto.",
+          "evidence": "Entropy regularization discourages premature collapse to a deterministic policy."
+        },
+        {
+          "id": "P3-02",
+          "gold": "SUPPORTED",
+          "claim": "SAC busca un equilibrio entre obtener recompensa y mantener diversidad en el comportamiento.",
+          "evidence": "The maximum-entropy objective trades off expected return against policy randomness."
+        },
+        {
+          "id": "P3-03",
+          "gold": "SUPPORTED",
+          "claim": "Usar el menor valor estimado por dos Critics ayuda a limitar la sobreestimación.",
+          "evidence": "Taking the minimum of two Q estimates mitigates optimistic value bias."
+        },
+        {
+          "id": "P3-04",
+          "gold": "SUPPORTED",
+          "claim": "La reutilización de experiencias anteriores permite aprender sin depender únicamente de datos recién generados.",
+          "evidence": "Off-policy updates can learn from previously collected behavior data."
+        },
+        {
+          "id": "P3-05",
+          "gold": "SUPPORTED",
+          "claim": "Separar la política de la evaluación de valores permite que Actor y Critics cumplan objetivos diferentes.",
+          "evidence": "The policy is optimized for action selection while Q estimators are trained to predict returns."
+        },
+        {
+          "id": "P3-06",
+          "gold": "SUPPORTED",
+          "claim": "La política puede mantener cierto grado de exploración incluso después del entrenamiento.",
+          "evidence": "An entropy-regularized policy may remain stochastic after convergence."
+        },
+        {
+          "id": "P3-07",
+          "gold": "CONTRADICTED",
+          "claim": "Maximizar la entropía obliga a la política a elegir siempre la misma acción.",
+          "evidence": "A stochastic policy can assign probability to multiple actions."
+        },
+        {
+          "id": "P3-08",
+          "gold": "INSUFFICIENT",
+          "claim": "La exploración permitió que el robot caminara 12 metros.",
+          "evidence": "Entropy regularization encourages stochastic policies."
+        }
+      ]
+    },
+    {
+      "id": "P4_DOMAIN_KNOWLEDGE",
+      "description": "Relaciones que requieren conocimiento técnico de SAC/RL, no solo equivalencia léxica.",
+      "cases": [
+        {
+          "id": "P4-01",
+          "gold": "SUPPORTED",
+          "claim": "El uso de dos estimadores Q y la selección del menor reduce el sesgo optimista.",
+          "evidence": "Clipped double-Q uses the lower of two Q estimates to reduce overestimation."
+        },
+        {
+          "id": "P4-02",
+          "gold": "SUPPORTED",
+          "claim": "El Actor se actualiza usando información de valor proporcionada por los Critics.",
+          "evidence": "The policy gradient uses Q-function estimates to improve the actor."
+        },
+        {
+          "id": "P4-03",
+          "gold": "SUPPORTED",
+          "claim": "La temperatura puede ajustarse automáticamente para aproximar una entropía objetivo.",
+          "evidence": "Automatic entropy tuning adjusts alpha toward a target policy entropy."
+        },
+        {
+          "id": "P4-04",
+          "gold": "SUPPORTED",
+          "claim": "El objetivo del Critic puede incluir la recompensa inmediata y el valor futuro descontado.",
+          "evidence": "The soft Bellman target combines reward with a discounted next-state value term."
+        },
+        {
+          "id": "P4-05",
+          "gold": "SUPPORTED",
+          "claim": "En SAC, la política estocástica permite muestrear acciones y estimar gradientes mediante una formulación reparametrizada.",
+          "evidence": "The reparameterization trick expresses sampled actions as a differentiable function of noise and policy parameters."
+        },
+        {
+          "id": "P4-06",
+          "gold": "SUPPORTED",
+          "claim": "Una política puede aprender de datos generados por una política de comportamiento diferente.",
+          "evidence": "Off-policy learning permits the target policy to learn from behavior-policy data."
+        },
+        {
+          "id": "P4-07",
+          "gold": "CONTRADICTED",
+          "claim": "En SAC estándar, el Actor minimiza directamente el error de regresión de Bellman del Critic.",
+          "evidence": "The critic is trained with a Bellman regression loss, while the actor optimizes a policy objective."
+        },
+        {
+          "id": "P4-08",
+          "gold": "INSUFFICIENT",
+          "claim": "La temperatura automática convergió a un valor de 0.15 en el experimento.",
+          "evidence": "Some SAC implementations use automatic entropy-temperature optimization."
+        }
+      ]
+    }
+  ]
+}

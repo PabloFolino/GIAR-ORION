@@ -1,0 +1,1762 @@
+{
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda",
+  "elapsed_seconds": 1.0530446998309344,
+  "pairs": [
+    {
+      "id": "EV-001",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "SAC es off-policy.",
+      "evidence": "SAC is an off-policy reinforcement learning algorithm.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.97607421875,
+        "neutral": 0.0196380615234375,
+        "contradiction": 0.004528045654296875
+      }
+    },
+    {
+      "id": "EV-002",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El Actor representa una política estocástica.",
+      "evidence": "The actor parameterizes a stochastic policy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.94775390625,
+        "neutral": 0.0279541015625,
+        "contradiction": 0.024383544921875
+      }
+    },
+    {
+      "id": "EV-003",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El Critic estima valores Q.",
+      "evidence": "The critic estimates state-action values.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.0005478858947753906,
+        "neutral": 0.01259613037109375,
+        "contradiction": 0.98681640625
+      }
+    },
+    {
+      "id": "EV-004",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El Replay Buffer almacena transiciones.",
+      "evidence": "Experience tuples are stored in a replay buffer.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.93212890625,
+        "neutral": 0.05072021484375,
+        "contradiction": 0.0170135498046875
+      }
+    },
+    {
+      "id": "EV-005",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "La entropía favorece la exploración.",
+      "evidence": "The entropy term encourages stochastic exploration.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99462890625,
+        "neutral": 0.00510406494140625,
+        "contradiction": 0.0002548694610595703
+      }
+    },
+    {
+      "id": "EV-006",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "SAC combina recompensa y entropía.",
+      "evidence": "The SAC objective combines expected return and entropy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98486328125,
+        "neutral": 0.01369476318359375,
+        "contradiction": 0.0013561248779296875
+      }
+    },
+    {
+      "id": "EV-007",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "SAC puede utilizar dos Critics.",
+      "evidence": "Twin Q-functions are commonly used in SAC.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.484130859375,
+        "neutral": 0.220947265625,
+        "contradiction": 0.294921875
+      }
+    },
+    {
+      "id": "EV-008",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "La temperatura pondera la entropía.",
+      "evidence": "The temperature coefficient controls the entropy contribution.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.921875,
+        "neutral": 0.06439208984375,
+        "contradiction": 0.01381683349609375
+      }
+    },
+    {
+      "id": "EV-009",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "Q depende del estado y la acción.",
+      "evidence": "A Q-function estimates return given a state and action.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98095703125,
+        "neutral": 0.0185546875,
+        "contradiction": 0.0005197525024414062
+      }
+    },
+    {
+      "id": "EV-010",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El Actor genera parámetros de una distribución de acciones.",
+      "evidence": "The actor maps observations to parameters of an action distribution.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.90185546875,
+        "neutral": 0.08685302734375,
+        "contradiction": 0.01107025146484375
+      }
+    },
+    {
+      "id": "EV-011",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "SAC es un método Actor-Critic.",
+      "evidence": "Soft Actor-Critic is an actor-critic method.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98583984375,
+        "neutral": 0.012359619140625,
+        "contradiction": 0.0017032623291015625
+      }
+    },
+    {
+      "id": "EV-012",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El objetivo de máxima entropía busca maximizar retorno y entropía.",
+      "evidence": "Maximum-entropy RL maximizes expected return and policy entropy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.56103515625,
+        "neutral": 0.437744140625,
+        "contradiction": 0.0011844635009765625
+      }
+    },
+    {
+      "id": "EV-013",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "Una target network puede estabilizar el aprendizaje.",
+      "evidence": "A slowly updated target network can stabilize critic learning.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99755859375,
+        "neutral": 0.00240325927734375,
+        "contradiction": 0.0002377033233642578
+      }
+    },
+    {
+      "id": "EV-014",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "Una transición incluye estado, acción y recompensa.",
+      "evidence": "A transition contains state, action, and reward.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99658203125,
+        "neutral": 0.00276947021484375,
+        "contradiction": 0.0004715919494628906
+      }
+    },
+    {
+      "id": "EV-015",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "SAC se diseñó originalmente para acciones continuas.",
+      "evidence": "The original SAC algorithm targets continuous action spaces.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99267578125,
+        "neutral": 0.006748199462890625,
+        "contradiction": 0.0006518363952636719
+      }
+    },
+    {
+      "id": "EV-016",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El Replay Buffer permite reutilizar datos anteriores.",
+      "evidence": "A replay buffer allows previously collected data to be sampled again.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98681640625,
+        "neutral": 0.01258087158203125,
+        "contradiction": 0.0005936622619628906
+      }
+    },
+    {
+      "id": "EV-017",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "El Actor se optimiza mediante gradientes de política.",
+      "evidence": "The actor is optimized using policy gradients.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.994140625,
+        "neutral": 0.0050811767578125,
+        "contradiction": 0.0007472038269042969
+      }
+    },
+    {
+      "id": "EV-018",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "Los Critics aproximan funciones Q.",
+      "evidence": "Critic networks approximate Q-functions.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.990234375,
+        "neutral": 0.007228851318359375,
+        "contradiction": 0.0024890899658203125
+      }
+    },
+    {
+      "id": "EV-019",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "SAC es un algoritmo de aprendizaje por refuerzo.",
+      "evidence": "Soft Actor-Critic is a reinforcement learning algorithm.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.93896484375,
+        "neutral": 0.052398681640625,
+        "contradiction": 0.0084686279296875
+      }
+    },
+    {
+      "id": "EV-020",
+      "group": "A_SUPPORT",
+      "pair_index": 0,
+      "claim": "La política puede muestrear acciones diferentes para un mismo estado.",
+      "evidence": "A stochastic policy may sample different actions for the same state.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98974609375,
+        "neutral": 0.00927734375,
+        "contradiction": 0.0007872581481933594
+      }
+    },
+    {
+      "id": "EV-021",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC es on-policy.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0019893646240234375,
+        "neutral": 0.0007748603820800781,
+        "contradiction": 0.9970703125
+      }
+    },
+    {
+      "id": "EV-022",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Actor es determinista.",
+      "evidence": "The SAC actor represents a stochastic policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00457000732421875,
+        "neutral": 0.004436492919921875,
+        "contradiction": 0.9912109375
+      }
+    },
+    {
+      "id": "EV-023",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC utiliza exactamente un Critic.",
+      "evidence": "Standard twin-critic SAC uses two Q-functions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00022292137145996094,
+        "neutral": 0.0004355907440185547,
+        "contradiction": 0.99951171875
+      }
+    },
+    {
+      "id": "EV-024",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Actor estima directamente Q.",
+      "evidence": "The critic estimates Q-values; the actor represents the policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.002002716064453125,
+        "neutral": 0.01386260986328125,
+        "contradiction": 0.984375
+      }
+    },
+    {
+      "id": "EV-025",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Critic genera las acciones.",
+      "evidence": "The actor samples actions from the policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0158538818359375,
+        "neutral": 0.00919342041015625,
+        "contradiction": 0.97509765625
+      }
+    },
+    {
+      "id": "EV-026",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC no utiliza recompensas.",
+      "evidence": "The SAC critic target includes the reward signal.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0010547637939453125,
+        "neutral": 0.0016727447509765625,
+        "contradiction": 0.9970703125
+      }
+    },
+    {
+      "id": "EV-027",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Replay Buffer contiene solo la última transición.",
+      "evidence": "The replay buffer retains many past transitions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 8.273124694824219e-05,
+        "neutral": 0.00164794921875,
+        "contradiction": 0.998046875
+      }
+    },
+    {
+      "id": "EV-028",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC requiere exclusivamente acciones discretas.",
+      "evidence": "The original SAC algorithm targets continuous action spaces.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00021696090698242188,
+        "neutral": 0.002025604248046875,
+        "contradiction": 0.99755859375
+      }
+    },
+    {
+      "id": "EV-029",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "La temperatura no afecta el objetivo.",
+      "evidence": "The temperature coefficient scales the entropy term.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00031185150146484375,
+        "neutral": 0.01195526123046875,
+        "contradiction": 0.98779296875
+      }
+    },
+    {
+      "id": "EV-030",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "La política estocástica siempre elige una acción fija.",
+      "evidence": "A stochastic policy can assign probability to multiple actions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 5.8591365814208984e-05,
+        "neutral": 0.0026988983154296875,
+        "contradiction": 0.9970703125
+      }
+    },
+    {
+      "id": "EV-031",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC excluye la entropía.",
+      "evidence": "The maximum-entropy objective explicitly includes policy entropy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0004711151123046875,
+        "neutral": 0.0015077590942382812,
+        "contradiction": 0.998046875
+      }
+    },
+    {
+      "id": "EV-032",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El aprendizaje off-policy solo usa datos actuales.",
+      "evidence": "Off-policy learning can use data from another behavior policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00010484457015991211,
+        "neutral": 0.0027408599853515625,
+        "contradiction": 0.9970703125
+      }
+    },
+    {
+      "id": "EV-033",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC carece de funciones Q.",
+      "evidence": "SAC uses Q-functions to estimate action values.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00029587745666503906,
+        "neutral": 0.0006337165832519531,
+        "contradiction": 0.9990234375
+      }
+    },
+    {
+      "id": "EV-034",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Actor y el Critic cumplen la misma función.",
+      "evidence": "The actor represents the policy and the critic evaluates state-action values.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0008563995361328125,
+        "neutral": 0.0012187957763671875,
+        "contradiction": 0.998046875
+      }
+    },
+    {
+      "id": "EV-035",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El buffer calcula la recompensa.",
+      "evidence": "The environment provides the reward signal.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.03765869140625,
+        "neutral": 0.07391357421875,
+        "contradiction": 0.88818359375
+      }
+    },
+    {
+      "id": "EV-036",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Critic controla directamente los motores.",
+      "evidence": "The low-level controller sends commands to the motors.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.006336212158203125,
+        "neutral": 0.137451171875,
+        "contradiction": 0.8564453125
+      }
+    },
+    {
+      "id": "EV-037",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Actor calcula la pérdida de Bellman.",
+      "evidence": "The critic is trained using a Bellman-style regression loss.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.35009765625,
+        "neutral": 0.044525146484375,
+        "contradiction": 0.60546875
+      }
+    },
+    {
+      "id": "EV-038",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "SAC es un método exclusivamente on-policy.",
+      "evidence": "SAC is an off-policy actor-critic algorithm.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0003559589385986328,
+        "neutral": 0.0008068084716796875,
+        "contradiction": 0.9990234375
+      }
+    },
+    {
+      "id": "EV-039",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "La entropía se minimiza para eliminar exploración.",
+      "evidence": "The SAC objective rewards policy entropy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00036454200744628906,
+        "neutral": 0.10748291015625,
+        "contradiction": 0.89208984375
+      }
+    },
+    {
+      "id": "EV-040",
+      "group": "B_CONTRADICTION",
+      "pair_index": 0,
+      "claim": "El Replay Buffer ejecuta acciones.",
+      "evidence": "The policy outputs actions applied to the environment.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.3037109375,
+        "neutral": 0.117431640625,
+        "contradiction": 0.57861328125
+      }
+    },
+    {
+      "id": "EV-041",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "SAC fue publicado en 2018.",
+      "evidence": "The replay buffer stores past transitions.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.000782012939453125,
+        "neutral": 0.9931640625,
+        "contradiction": 0.006084442138671875
+      }
+    },
+    {
+      "id": "EV-042",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El Unitree G1 tiene 29 grados de libertad.",
+      "evidence": "The SAC actor represents a stochastic policy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.075927734375,
+        "neutral": 0.4248046875,
+        "contradiction": 0.499267578125
+      }
+    },
+    {
+      "id": "EV-043",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El entrenamiento duró 300 episodios.",
+      "evidence": "The critic estimates state-action values.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.002593994140625,
+        "neutral": 0.90087890625,
+        "contradiction": 0.09674072265625
+      }
+    },
+    {
+      "id": "EV-044",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "La temperatura inicial fue 0.2.",
+      "evidence": "A replay buffer stores experience tuples.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.02337646484375,
+        "neutral": 0.82470703125,
+        "contradiction": 0.1519775390625
+      }
+    },
+    {
+      "id": "EV-045",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El modelo se entrenó en una RTX 5070.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.007549285888671875,
+        "neutral": 0.97998046875,
+        "contradiction": 0.0124664306640625
+      }
+    },
+    {
+      "id": "EV-046",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El episodio duró 12 segundos.",
+      "evidence": "The entropy term encourages stochastic policies.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.00014507770538330078,
+        "neutral": 0.99951171875,
+        "contradiction": 0.00021648406982421875
+      }
+    },
+    {
+      "id": "EV-047",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El simulador fue CoppeliaSim.",
+      "evidence": "The actor outputs actions according to a policy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.003955841064453125,
+        "neutral": 0.9873046875,
+        "contradiction": 0.00865936279296875
+      }
+    },
+    {
+      "id": "EV-048",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "La recompensa máxima fue 850.",
+      "evidence": "Twin critics can be used in SAC.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0396728515625,
+        "neutral": 0.8505859375,
+        "contradiction": 0.10980224609375
+      }
+    },
+    {
+      "id": "EV-049",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El robot pesa 35 kg.",
+      "evidence": "The replay buffer stores transitions.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0006580352783203125,
+        "neutral": 0.9990234375,
+        "contradiction": 0.00030994415283203125
+      }
+    },
+    {
+      "id": "EV-050",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El código utiliza Python 3.14.",
+      "evidence": "The SAC objective includes entropy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0277862548828125,
+        "neutral": 0.9404296875,
+        "contradiction": 0.031951904296875
+      }
+    },
+    {
+      "id": "EV-051",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "La tasa de aprendizaje fue 0.0003.",
+      "evidence": "The actor represents a policy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0960693359375,
+        "neutral": 0.728515625,
+        "contradiction": 0.17529296875
+      }
+    },
+    {
+      "id": "EV-052",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El experimento fue nocturno.",
+      "evidence": "Off-policy learning can reuse past data.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0005130767822265625,
+        "neutral": 0.9990234375,
+        "contradiction": 0.0002868175506591797
+      }
+    },
+    {
+      "id": "EV-053",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "La escena tiene cuatro obstáculos.",
+      "evidence": "The critic evaluates state-action pairs.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.10205078125,
+        "neutral": 0.658203125,
+        "contradiction": 0.239501953125
+      }
+    },
+    {
+      "id": "EV-054",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "La frecuencia de control fue 200 Hz.",
+      "evidence": "The policy may be stochastic.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0007176399230957031,
+        "neutral": 0.99658203125,
+        "contradiction": 0.0028095245361328125
+      }
+    },
+    {
+      "id": "EV-055",
+      "group": "C_NEUTRAL",
+      "pair_index": 0,
+      "claim": "El archivo se llama config.py.",
+      "evidence": "SAC is an actor-critic method.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0083770751953125,
+        "neutral": 0.315185546875,
+        "contradiction": 0.67626953125
+      }
+    },
+    {
+      "id": "EV-056",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El Actor selecciona acciones desde una política probabilística.",
+      "evidence": "The policy network defines a distribution from which actions are sampled.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.1055908203125,
+        "neutral": 0.8037109375,
+        "contradiction": 0.0904541015625
+      }
+    },
+    {
+      "id": "EV-057",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "Los Critics estiman la calidad de las acciones.",
+      "evidence": "The Q networks score state-action pairs.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.0247955322265625,
+        "neutral": 0.176025390625,
+        "contradiction": 0.79931640625
+      }
+    },
+    {
+      "id": "EV-058",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El Replay Buffer desacopla recolección y aprendizaje.",
+      "evidence": "Random replay sampling reduces temporal correlation.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.00508880615234375,
+        "neutral": 0.05340576171875,
+        "contradiction": 0.94140625
+      }
+    },
+    {
+      "id": "EV-059",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "La temperatura regula el compromiso entre retorno y aleatoriedad.",
+      "evidence": "A larger entropy coefficient emphasizes stochastic behavior.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.0002168416976928711,
+        "neutral": 0.004486083984375,
+        "contradiction": 0.9951171875
+      }
+    },
+    {
+      "id": "EV-060",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "SAC reutiliza experiencias pasadas.",
+      "evidence": "Previously collected transitions are sampled for gradient updates.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.94677734375,
+        "neutral": 0.05096435546875,
+        "contradiction": 0.002368927001953125
+      }
+    },
+    {
+      "id": "EV-061",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "La política conserva exploración después de aprender.",
+      "evidence": "An entropy-regularized policy can remain stochastic after training.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.94140625,
+        "neutral": 0.0302886962890625,
+        "contradiction": 0.028228759765625
+      }
+    },
+    {
+      "id": "EV-062",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El Actor favorece acciones de alto valor y entropía.",
+      "evidence": "The policy update uses Q estimates and an entropy term.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.131103515625,
+        "neutral": 0.55029296875,
+        "contradiction": 0.318359375
+      }
+    },
+    {
+      "id": "EV-063",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "Los Critics aproximan objetivos Q.",
+      "evidence": "Q parameters are updated using a Bellman-style regression loss.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.1395263671875,
+        "neutral": 0.53515625,
+        "contradiction": 0.325439453125
+      }
+    },
+    {
+      "id": "EV-064",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El objetivo usa una estimación del siguiente estado.",
+      "evidence": "The bootstrapped target depends on the next observation and action.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.9111328125,
+        "neutral": 0.0794677734375,
+        "contradiction": 0.0094146728515625
+      }
+    },
+    {
+      "id": "EV-065",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "La política no elige siempre la misma acción.",
+      "evidence": "A stochastic policy may sample different actions in the same state.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98876953125,
+        "neutral": 0.0107879638671875,
+        "contradiction": 0.00036072731018066406
+      }
+    },
+    {
+      "id": "EV-066",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El aprendizaje off-policy admite experiencias anteriores.",
+      "evidence": "The target policy can learn from older behavior-policy data.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.9326171875,
+        "neutral": 0.061065673828125,
+        "contradiction": 0.006519317626953125
+      }
+    },
+    {
+      "id": "EV-067",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El buffer contiene experiencias del agente.",
+      "evidence": "The memory stores tuples collected during interaction.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.08343505859375,
+        "neutral": 0.8759765625,
+        "contradiction": 0.040679931640625
+      }
+    },
+    {
+      "id": "EV-068",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "Q(s,a) depende del estado y la acción.",
+      "evidence": "Q(s,a) represents expected return for action a in state s.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.6025390625,
+        "neutral": 0.361083984375,
+        "contradiction": 0.03631591796875
+      }
+    },
+    {
+      "id": "EV-069",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "SAC combina evaluación y optimización de política.",
+      "evidence": "The actor is optimized while critics estimate action values.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.345458984375,
+        "neutral": 0.63623046875,
+        "contradiction": 0.018218994140625
+      }
+    },
+    {
+      "id": "EV-070",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "La entropía evita una política demasiado concentrada.",
+      "evidence": "The entropy regularizer discourages premature deterministic collapse.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.40380859375,
+        "neutral": 0.477783203125,
+        "contradiction": 0.118408203125
+      }
+    },
+    {
+      "id": "EV-071",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "Dos Critics reducen el sesgo optimista.",
+      "evidence": "SAC commonly uses the smaller of two Q estimates.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.7255859375,
+        "neutral": 0.114990234375,
+        "contradiction": 0.1591796875
+      }
+    },
+    {
+      "id": "EV-072",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "Actor y Critics tienen objetivos distintos.",
+      "evidence": "The policy maximizes its objective while Q networks minimize prediction error.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.1678466796875,
+        "neutral": 0.68115234375,
+        "contradiction": 0.15087890625
+      }
+    },
+    {
+      "id": "EV-073",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El buffer muestrea experiencias no consecutivas.",
+      "evidence": "Mini-batches are randomly drawn from stored experience.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99365234375,
+        "neutral": 0.0056915283203125,
+        "contradiction": 0.0008134841918945312
+      }
+    },
+    {
+      "id": "EV-074",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "La temperatura puede optimizarse automáticamente.",
+      "evidence": "Some SAC implementations optimize the entropy temperature.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.0032806396484375,
+        "neutral": 0.99609375,
+        "contradiction": 0.0004341602325439453
+      }
+    },
+    {
+      "id": "EV-075",
+      "group": "D_PARAPHRASE",
+      "pair_index": 0,
+      "claim": "El Actor produce parámetros de distribución.",
+      "evidence": "The actor outputs distribution parameters such as mean and standard deviation.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.998046875,
+        "neutral": 0.001720428466796875,
+        "contradiction": 0.0002225637435913086
+      }
+    },
+    {
+      "id": "EV-076",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Actor estima el valor Q.",
+      "evidence": "The critic estimates Q-values.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.011199951171875,
+        "neutral": 0.020355224609375,
+        "contradiction": 0.96826171875
+      }
+    },
+    {
+      "id": "EV-077",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Critic genera acciones.",
+      "evidence": "The actor samples actions.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0384521484375,
+        "neutral": 0.0321044921875,
+        "contradiction": 0.9296875
+      }
+    },
+    {
+      "id": "EV-078",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Replay Buffer calcula la recompensa.",
+      "evidence": "The environment provides the reward.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.010894775390625,
+        "neutral": 0.0232696533203125,
+        "contradiction": 0.9658203125
+      }
+    },
+    {
+      "id": "EV-079",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El entorno actualiza pesos del Actor.",
+      "evidence": "The optimizer updates actor parameters.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.80419921875,
+        "neutral": 0.06915283203125,
+        "contradiction": 0.12646484375
+      }
+    },
+    {
+      "id": "EV-080",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "La IMU almacena transiciones.",
+      "evidence": "The replay buffer stores transitions.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.1268310546875,
+        "neutral": 0.276123046875,
+        "contradiction": 0.59716796875
+      }
+    },
+    {
+      "id": "EV-081",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El robot configura la tasa de aprendizaje.",
+      "evidence": "The optimizer configuration sets the learning rate.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0281982421875,
+        "neutral": 0.042449951171875,
+        "contradiction": 0.92919921875
+      }
+    },
+    {
+      "id": "EV-082",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Actor calcula la pérdida de Bellman.",
+      "evidence": "The critic uses a Bellman-style target.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.08367919921875,
+        "neutral": 0.447021484375,
+        "contradiction": 0.46923828125
+      }
+    },
+    {
+      "id": "EV-083",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Critic selecciona la siguiente observación.",
+      "evidence": "The environment returns the next observation.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.171630859375,
+        "neutral": 0.4228515625,
+        "contradiction": 0.405517578125
+      }
+    },
+    {
+      "id": "EV-084",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Replay Buffer ejecuta acciones.",
+      "evidence": "The policy outputs actions.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.21826171875,
+        "neutral": 0.0828857421875,
+        "contradiction": 0.69873046875
+      }
+    },
+    {
+      "id": "EV-085",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Actor mide velocidad angular.",
+      "evidence": "The IMU measures angular velocity.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.031585693359375,
+        "neutral": 0.02374267578125,
+        "contradiction": 0.94482421875
+      }
+    },
+    {
+      "id": "EV-086",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "Q configura límites articulares.",
+      "evidence": "Joint limits are properties of the robot model.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.020050048828125,
+        "neutral": 0.09539794921875,
+        "contradiction": 0.884765625
+      }
+    },
+    {
+      "id": "EV-087",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El optimizador almacena observaciones históricas.",
+      "evidence": "The replay buffer stores observations.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.08447265625,
+        "neutral": 0.76220703125,
+        "contradiction": 0.1534423828125
+      }
+    },
+    {
+      "id": "EV-088",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El entorno representa la política estocástica.",
+      "evidence": "The actor represents the stochastic policy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0009775161743164062,
+        "neutral": 0.0037174224853515625,
+        "contradiction": 0.9951171875
+      }
+    },
+    {
+      "id": "EV-089",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Critic controla motores.",
+      "evidence": "The low-level controller sends commands to motors.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.607421875,
+        "neutral": 0.148681640625,
+        "contradiction": 0.2440185546875
+      }
+    },
+    {
+      "id": "EV-090",
+      "group": "E_ROLE_DISTINCTION",
+      "pair_index": 0,
+      "claim": "El Actor calcula la recompensa.",
+      "evidence": "The reward function computes reward from environment behavior.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0225677490234375,
+        "neutral": 0.03802490234375,
+        "contradiction": 0.939453125
+      }
+    },
+    {
+      "id": "EV-091",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "SAC es off-policy.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98486328125,
+        "neutral": 0.01201629638671875,
+        "contradiction": 0.0031890869140625
+      }
+    },
+    {
+      "id": "EV-091",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "SAC es off-policy.",
+      "evidence": "The actor represents a stochastic policy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.017425537109375,
+        "neutral": 0.005863189697265625,
+        "contradiction": 0.9765625
+      }
+    },
+    {
+      "id": "EV-092",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El Actor es estocástico.",
+      "evidence": "The actor outputs a probability distribution.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.5439453125,
+        "neutral": 0.3212890625,
+        "contradiction": 0.134521484375
+      }
+    },
+    {
+      "id": "EV-092",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El Actor es estocástico.",
+      "evidence": "The critic estimates Q-values.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.07666015625,
+        "neutral": 0.1788330078125,
+        "contradiction": 0.74462890625
+      }
+    },
+    {
+      "id": "EV-093",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "SAC utiliza dos Critics.",
+      "evidence": "Twin Q-functions are used in SAC.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.039337158203125,
+        "neutral": 0.16259765625,
+        "contradiction": 0.79833984375
+      }
+    },
+    {
+      "id": "EV-093",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "SAC utiliza dos Critics.",
+      "evidence": "The replay buffer stores transitions.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.07147216796875,
+        "neutral": 0.3701171875,
+        "contradiction": 0.55859375
+      }
+    },
+    {
+      "id": "EV-094",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "SAC es on-policy.",
+      "evidence": "SAC is off-policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0018396377563476562,
+        "neutral": 0.0006155967712402344,
+        "contradiction": 0.99755859375
+      }
+    },
+    {
+      "id": "EV-094",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "SAC es on-policy.",
+      "evidence": "The actor outputs a stochastic policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.552734375,
+        "neutral": 0.129150390625,
+        "contradiction": 0.318359375
+      }
+    },
+    {
+      "id": "EV-095",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El Actor estima Q.",
+      "evidence": "The actor represents the policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.002544403076171875,
+        "neutral": 0.01444244384765625,
+        "contradiction": 0.98291015625
+      }
+    },
+    {
+      "id": "EV-095",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El Actor estima Q.",
+      "evidence": "The critic estimates Q-values.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.047027587890625,
+        "neutral": 0.036865234375,
+        "contradiction": 0.916015625
+      }
+    },
+    {
+      "id": "EV-096",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "La entropía integra el objetivo.",
+      "evidence": "The SAC objective includes entropy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99072265625,
+        "neutral": 0.00827789306640625,
+        "contradiction": 0.0011196136474609375
+      }
+    },
+    {
+      "id": "EV-096",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "La entropía integra el objetivo.",
+      "evidence": "The environment returns observations.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.061370849609375,
+        "neutral": 0.873046875,
+        "contradiction": 0.06561279296875
+      }
+    },
+    {
+      "id": "EV-097",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El entrenamiento duró 100 episodios.",
+      "evidence": "SAC is off-policy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0020275115966796875,
+        "neutral": 0.9091796875,
+        "contradiction": 0.0889892578125
+      }
+    },
+    {
+      "id": "EV-097",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El entrenamiento duró 100 episodios.",
+      "evidence": "The actor is stochastic.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0009241104125976562,
+        "neutral": 0.98779296875,
+        "contradiction": 0.01116180419921875
+      }
+    },
+    {
+      "id": "EV-098",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El robot usa motor NEMA17.",
+      "evidence": "SAC uses a replay buffer.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.07391357421875,
+        "neutral": 0.3173828125,
+        "contradiction": 0.60888671875
+      }
+    },
+    {
+      "id": "EV-098",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El robot usa motor NEMA17.",
+      "evidence": "The critic estimates action values.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.1807861328125,
+        "neutral": 0.640625,
+        "contradiction": 0.178466796875
+      }
+    },
+    {
+      "id": "EV-099",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "SAC usa exactamente un Critic.",
+      "evidence": "Twin critics are used in standard SAC.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0001392364501953125,
+        "neutral": 0.000324249267578125,
+        "contradiction": 0.99951171875
+      }
+    },
+    {
+      "id": "EV-099",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "SAC usa exactamente un Critic.",
+      "evidence": "The actor outputs actions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0111541748046875,
+        "neutral": 0.04095458984375,
+        "contradiction": 0.94775390625
+      }
+    },
+    {
+      "id": "EV-100",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El Actor es determinista.",
+      "evidence": "The actor represents a stochastic policy.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.01087188720703125,
+        "neutral": 0.0065765380859375,
+        "contradiction": 0.982421875
+      }
+    },
+    {
+      "id": "EV-100",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El Actor es determinista.",
+      "evidence": "The buffer stores transitions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0106964111328125,
+        "neutral": 0.032318115234375,
+        "contradiction": 0.95703125
+      }
+    },
+    {
+      "id": "EV-101",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "La política es estocástica.",
+      "evidence": "The actor represents a stochastic policy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.97705078125,
+        "neutral": 0.012542724609375,
+        "contradiction": 0.01043701171875
+      }
+    },
+    {
+      "id": "EV-101",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "La política es estocástica.",
+      "evidence": "The critic evaluates Q-values.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.1456298828125,
+        "neutral": 0.3720703125,
+        "contradiction": 0.482421875
+      }
+    },
+    {
+      "id": "EV-102",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El buffer almacena transiciones.",
+      "evidence": "The replay buffer stores transitions.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.998046875,
+        "neutral": 0.0014858245849609375,
+        "contradiction": 0.0005421638488769531
+      }
+    },
+    {
+      "id": "EV-102",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El buffer almacena transiciones.",
+      "evidence": "The actor outputs actions.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.0182342529296875,
+        "neutral": 0.91064453125,
+        "contradiction": 0.07098388671875
+      }
+    },
+    {
+      "id": "EV-103",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El Critic genera acciones.",
+      "evidence": "The actor generates actions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00443267822265625,
+        "neutral": 0.07330322265625,
+        "contradiction": 0.92236328125
+      }
+    },
+    {
+      "id": "EV-103",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El Critic genera acciones.",
+      "evidence": "The critic evaluates actions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0123443603515625,
+        "neutral": 0.10687255859375,
+        "contradiction": 0.880859375
+      }
+    },
+    {
+      "id": "EV-104",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "La temperatura regula entropía.",
+      "evidence": "Temperature scales the entropy term.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.98193359375,
+        "neutral": 0.0168914794921875,
+        "contradiction": 0.0013837814331054688
+      }
+    },
+    {
+      "id": "EV-104",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "La temperatura regula entropía.",
+      "evidence": "SAC is off-policy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.0203857421875,
+        "neutral": 0.07476806640625,
+        "contradiction": 0.90478515625
+      }
+    },
+    {
+      "id": "EV-105",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 0,
+      "claim": "El episodio duró 20 segundos.",
+      "evidence": "The actor is stochastic.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.0008521080017089844,
+        "neutral": 0.99267578125,
+        "contradiction": 0.006496429443359375
+      }
+    },
+    {
+      "id": "EV-105",
+      "group": "F_MULTI_EVIDENCE",
+      "pair_index": 1,
+      "claim": "El episodio duró 20 segundos.",
+      "evidence": "SAC is off-policy.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.00040912628173828125,
+        "neutral": 0.99365234375,
+        "contradiction": 0.00589752197265625
+      }
+    },
+    {
+      "id": "EV-106",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "SAC no es on-policy; es off-policy.",
+      "evidence": "SAC is an off-policy method, not an on-policy method.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.998046875,
+        "neutral": 0.0014209747314453125,
+        "contradiction": 0.0005435943603515625
+      }
+    },
+    {
+      "id": "EV-107",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "El Actor no estima Q; representa la política.",
+      "evidence": "The actor represents the policy; the critic estimates Q.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.072998046875,
+        "neutral": 0.06256103515625,
+        "contradiction": 0.8642578125
+      }
+    },
+    {
+      "id": "EV-108",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "SAC emplea dos funciones Q twin-critic.",
+      "evidence": "The twin-critic variant uses two Q estimators.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.10211181640625,
+        "neutral": 0.890625,
+        "contradiction": 0.007167816162109375
+      }
+    },
+    {
+      "id": "EV-109",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "La política de SAC puede ser gaussiana.",
+      "evidence": "A common SAC actor uses a Gaussian policy.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.99658203125,
+        "neutral": 0.0030689239501953125,
+        "contradiction": 0.0002579689025878906
+      }
+    },
+    {
+      "id": "EV-110",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "El buffer conserva experiencias anteriores.",
+      "evidence": "Previously collected experience is retained in replay memory.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.724609375,
+        "neutral": 0.27197265625,
+        "contradiction": 0.0033168792724609375
+      }
+    },
+    {
+      "id": "EV-111",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "Alpha pondera la entropía.",
+      "evidence": "Alpha multiplies the entropy term.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.04412841796875,
+        "neutral": 0.034515380859375,
+        "contradiction": 0.92138671875
+      }
+    },
+    {
+      "id": "EV-112",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "SAC usa tres Critics.",
+      "evidence": "The standard twin-critic architecture uses two critics.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.002166748046875,
+        "neutral": 0.010772705078125,
+        "contradiction": 0.98681640625
+      }
+    },
+    {
+      "id": "EV-113",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "El Actor es una red de evaluación de valores.",
+      "evidence": "The actor is the policy network, not the value estimator.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.00131988525390625,
+        "neutral": 0.0017118453979492188,
+        "contradiction": 0.9970703125
+      }
+    },
+    {
+      "id": "EV-114",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "El Critic produce la distribución de acciones.",
+      "evidence": "The actor produces the action distribution.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 0.0007767677307128906,
+        "neutral": 0.010955810546875,
+        "contradiction": 0.98828125
+      }
+    },
+    {
+      "id": "EV-115",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "El buffer contiene tuplas (s,a,r,s').",
+      "evidence": "A replay buffer stores state, action, reward, next-state tuples.",
+      "gold": "SUPPORTED",
+      "scores": {
+        "entailment": 0.998046875,
+        "neutral": 0.0013647079467773438,
+        "contradiction": 0.0007100105285644531
+      }
+    },
+    {
+      "id": "EV-116",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "La recompensa máxima fue 900.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.01505279541015625,
+        "neutral": 0.916015625,
+        "contradiction": 0.06884765625
+      }
+    },
+    {
+      "id": "EV-117",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "Alpha vale 0.15.",
+      "evidence": "The entropy coefficient controls entropy contribution.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.01082611083984375,
+        "neutral": 0.97314453125,
+        "contradiction": 0.01580810546875
+      }
+    },
+    {
+      "id": "EV-118",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "SAC siempre usa exactamente dos Critics.",
+      "evidence": "Implementations of SAC can differ in critic count.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 5.21540641784668e-05,
+        "neutral": 0.00605010986328125,
+        "contradiction": 0.994140625
+      }
+    },
+    {
+      "id": "EV-119",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "El Actor siempre produce acciones idénticas.",
+      "evidence": "A stochastic actor can sample different actions.",
+      "gold": "CONTRADICTED",
+      "scores": {
+        "entailment": 8.338689804077148e-05,
+        "neutral": 0.0013895034790039062,
+        "contradiction": 0.99853515625
+      }
+    },
+    {
+      "id": "EV-120",
+      "group": "G_ROBUSTNESS",
+      "pair_index": 0,
+      "claim": "Se entrenó en CoppeliaSim 4.10.",
+      "evidence": "SAC can be trained in simulated environments.",
+      "gold": "INSUFFICIENT",
+      "scores": {
+        "entailment": 0.002887725830078125,
+        "neutral": 0.99365234375,
+        "contradiction": 0.0035037994384765625
+      }
+    }
+  ]
+}

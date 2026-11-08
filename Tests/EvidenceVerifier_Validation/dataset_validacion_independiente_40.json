@@ -1,0 +1,386 @@
+{
+  "dataset": "EvidenceVerifier Validation 120 - VALIDATION_INDEPENDENT_40",
+  "version": "1.0",
+  "partition": "VALIDATION_INDEPENDENT_40",
+  "purpose": "Holdout reservado. No usar para elegir umbrales; ejecutar una sola vez con la configuración ya congelada.",
+  "source_dataset": "EvidenceVerifier Validation 120",
+  "split_seed": 20261107,
+  "split_method": "Estratificado por grupo y etiqueta gold_verifier (fallback gold_nli)",
+  "total_cases": 40,
+  "groups": {
+    "F_MULTI_EVIDENCE": 5,
+    "D_PARAPHRASE": 7,
+    "A_SUPPORT": 7,
+    "G_ROBUSTNESS": 4,
+    "E_ROLE_DISTINCTION": 5,
+    "C_NEUTRAL": 5,
+    "B_CONTRADICTION": 7
+  },
+  "gold_labels": {
+    "CONTRADICTED": 10,
+    "SUPPORTED": 18,
+    "INSUFFICIENT": 12
+  },
+  "cases": [
+    {
+      "id": "EV-100",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El Actor es determinista.",
+      "evidence": "The actor represents a stochastic policy. || The buffer stores transitions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-061",
+      "group": "D_PARAPHRASE",
+      "claim": "La política conserva exploración después de aprender.",
+      "evidence": "An entropy-regularized policy can remain stochastic after training.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-007",
+      "group": "A_SUPPORT",
+      "claim": "SAC puede utilizar dos Critics.",
+      "evidence": "Twin Q-functions are commonly used in SAC.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-011",
+      "group": "A_SUPPORT",
+      "claim": "SAC es un método Actor-Critic.",
+      "evidence": "Soft Actor-Critic is an actor-critic method.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-116",
+      "group": "G_ROBUSTNESS",
+      "claim": "La recompensa máxima fue 900.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-103",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El Critic genera acciones.",
+      "evidence": "The actor generates actions. || The critic evaluates actions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-083",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Critic selecciona la siguiente observación.",
+      "evidence": "The environment returns the next observation.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-052",
+      "group": "C_NEUTRAL",
+      "claim": "El experimento fue nocturno.",
+      "evidence": "Off-policy learning can reuse past data.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-113",
+      "group": "G_ROBUSTNESS",
+      "claim": "El Actor es una red de evaluación de valores.",
+      "evidence": "The actor is the policy network, not the value estimator.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-051",
+      "group": "C_NEUTRAL",
+      "claim": "La tasa de aprendizaje fue 0.0003.",
+      "evidence": "The actor represents a policy.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-032",
+      "group": "B_CONTRADICTION",
+      "claim": "El aprendizaje off-policy solo usa datos actuales.",
+      "evidence": "Off-policy learning can use data from another behavior policy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-046",
+      "group": "C_NEUTRAL",
+      "claim": "El episodio duró 12 segundos.",
+      "evidence": "The entropy term encourages stochastic policies.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-115",
+      "group": "G_ROBUSTNESS",
+      "claim": "El buffer contiene tuplas (s,a,r,s').",
+      "evidence": "A replay buffer stores state, action, reward, next-state tuples.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-006",
+      "group": "A_SUPPORT",
+      "claim": "SAC combina recompensa y entropía.",
+      "evidence": "The SAC objective combines expected return and entropy.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-025",
+      "group": "B_CONTRADICTION",
+      "claim": "El Critic genera las acciones.",
+      "evidence": "The actor samples actions from the policy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-104",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "La temperatura regula entropía.",
+      "evidence": "Temperature scales the entropy term. || SAC is off-policy.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-098",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El robot usa motor NEMA17.",
+      "evidence": "SAC uses a replay buffer. || The critic estimates action values.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-024",
+      "group": "B_CONTRADICTION",
+      "claim": "El Actor estima directamente Q.",
+      "evidence": "The critic estimates Q-values; the actor represents the policy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-014",
+      "group": "A_SUPPORT",
+      "claim": "Una transición incluye estado, acción y recompensa.",
+      "evidence": "A transition contains state, action, and reward.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-003",
+      "group": "A_SUPPORT",
+      "claim": "El Critic estima valores Q.",
+      "evidence": "The critic estimates state-action values.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-029",
+      "group": "B_CONTRADICTION",
+      "claim": "La temperatura no afecta el objetivo.",
+      "evidence": "The temperature coefficient scales the entropy term.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-066",
+      "group": "D_PARAPHRASE",
+      "claim": "El aprendizaje off-policy admite experiencias anteriores.",
+      "evidence": "The target policy can learn from older behavior-policy data.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-037",
+      "group": "B_CONTRADICTION",
+      "claim": "El Actor calcula la pérdida de Bellman.",
+      "evidence": "The critic is trained using a Bellman-style regression loss.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-062",
+      "group": "D_PARAPHRASE",
+      "claim": "El Actor favorece acciones de alto valor y entropía.",
+      "evidence": "The policy update uses Q estimates and an entropy term.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-079",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El entorno actualiza pesos del Actor.",
+      "evidence": "The optimizer updates actor parameters.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-092",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El Actor es estocástico.",
+      "evidence": "The actor outputs a probability distribution. || The critic estimates Q-values.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-085",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Actor mide velocidad angular.",
+      "evidence": "The IMU measures angular velocity.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-071",
+      "group": "D_PARAPHRASE",
+      "claim": "Dos Critics reducen el sesgo optimista.",
+      "evidence": "SAC commonly uses the smaller of two Q estimates.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-008",
+      "group": "A_SUPPORT",
+      "claim": "La temperatura pondera la entropía.",
+      "evidence": "The temperature coefficient controls the entropy contribution.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-064",
+      "group": "D_PARAPHRASE",
+      "claim": "El objetivo usa una estimación del siguiente estado.",
+      "evidence": "The bootstrapped target depends on the next observation and action.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-038",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC es un método exclusivamente on-policy.",
+      "evidence": "SAC is an off-policy actor-critic algorithm.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-034",
+      "group": "B_CONTRADICTION",
+      "claim": "El Actor y el Critic cumplen la misma función.",
+      "evidence": "The actor represents the policy and the critic evaluates state-action values.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-044",
+      "group": "C_NEUTRAL",
+      "claim": "La temperatura inicial fue 0.2.",
+      "evidence": "A replay buffer stores experience tuples.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-001",
+      "group": "A_SUPPORT",
+      "claim": "SAC es off-policy.",
+      "evidence": "SAC is an off-policy reinforcement learning algorithm.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-054",
+      "group": "C_NEUTRAL",
+      "claim": "La frecuencia de control fue 200 Hz.",
+      "evidence": "The policy may be stochastic.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-086",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "Q configura límites articulares.",
+      "evidence": "Joint limits are properties of the robot model.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-078",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Replay Buffer calcula la recompensa.",
+      "evidence": "The environment provides the reward.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-109",
+      "group": "G_ROBUSTNESS",
+      "claim": "La política de SAC puede ser gaussiana.",
+      "evidence": "A common SAC actor uses a Gaussian policy.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-060",
+      "group": "D_PARAPHRASE",
+      "claim": "SAC reutiliza experiencias pasadas.",
+      "evidence": "Previously collected transitions are sampled for gradient updates.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-067",
+      "group": "D_PARAPHRASE",
+      "claim": "El buffer contiene experiencias del agente.",
+      "evidence": "The memory stores tuples collected during interaction.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    }
+  ]
+}

@@ -1,0 +1,746 @@
+{
+  "dataset": "EvidenceVerifier Validation 120 - CALIBRATION_80",
+  "version": "1.0",
+  "partition": "CALIBRATION_80",
+  "purpose": "Uso para explorar y seleccionar umbrales. No usar estos casos para declarar rendimiento final.",
+  "source_dataset": "EvidenceVerifier Validation 120",
+  "split_seed": 20261107,
+  "split_method": "Estratificado por grupo y etiqueta gold_verifier (fallback gold_nli)",
+  "total_cases": 80,
+  "groups": {
+    "F_MULTI_EVIDENCE": 10,
+    "G_ROBUSTNESS": 11,
+    "D_PARAPHRASE": 13,
+    "E_ROLE_DISTINCTION": 10,
+    "A_SUPPORT": 13,
+    "C_NEUTRAL": 10,
+    "B_CONTRADICTION": 13
+  },
+  "gold_labels": {
+    "SUPPORTED": 36,
+    "INSUFFICIENT": 25,
+    "CONTRADICTED": 19
+  },
+  "cases": [
+    {
+      "id": "EV-102",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El buffer almacena transiciones.",
+      "evidence": "The replay buffer stores transitions. || The actor outputs actions.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-110",
+      "group": "G_ROBUSTNESS",
+      "claim": "El buffer conserva experiencias anteriores.",
+      "evidence": "Previously collected experience is retained in replay memory.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-068",
+      "group": "D_PARAPHRASE",
+      "claim": "Q(s,a) depende del estado y la acción.",
+      "evidence": "Q(s,a) represents expected return for action a in state s.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-070",
+      "group": "D_PARAPHRASE",
+      "claim": "La entropía evita una política demasiado concentrada.",
+      "evidence": "The entropy regularizer discourages premature deterministic collapse.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-090",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Actor calcula la recompensa.",
+      "evidence": "The reward function computes reward from environment behavior.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-073",
+      "group": "D_PARAPHRASE",
+      "claim": "El buffer muestrea experiencias no consecutivas.",
+      "evidence": "Mini-batches are randomly drawn from stored experience.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-017",
+      "group": "A_SUPPORT",
+      "claim": "El Actor se optimiza mediante gradientes de política.",
+      "evidence": "The actor is optimized using policy gradients.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-018",
+      "group": "A_SUPPORT",
+      "claim": "Los Critics aproximan funciones Q.",
+      "evidence": "Critic networks approximate Q-functions.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-107",
+      "group": "G_ROBUSTNESS",
+      "claim": "El Actor no estima Q; representa la política.",
+      "evidence": "The actor represents the policy; the critic estimates Q.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-053",
+      "group": "C_NEUTRAL",
+      "claim": "La escena tiene cuatro obstáculos.",
+      "evidence": "The critic evaluates state-action pairs.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-013",
+      "group": "A_SUPPORT",
+      "claim": "Una target network puede estabilizar el aprendizaje.",
+      "evidence": "A slowly updated target network can stabilize critic learning.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-039",
+      "group": "B_CONTRADICTION",
+      "claim": "La entropía se minimiza para eliminar exploración.",
+      "evidence": "The SAC objective rewards policy entropy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-077",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Critic genera acciones.",
+      "evidence": "The actor samples actions.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-099",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "SAC usa exactamente un Critic.",
+      "evidence": "Twin critics are used in standard SAC. || The actor outputs actions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-059",
+      "group": "D_PARAPHRASE",
+      "claim": "La temperatura regula el compromiso entre retorno y aleatoriedad.",
+      "evidence": "A larger entropy coefficient emphasizes stochastic behavior.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-084",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Replay Buffer ejecuta acciones.",
+      "evidence": "The policy outputs actions.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-043",
+      "group": "C_NEUTRAL",
+      "claim": "El entrenamiento duró 300 episodios.",
+      "evidence": "The critic estimates state-action values.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-012",
+      "group": "A_SUPPORT",
+      "claim": "El objetivo de máxima entropía busca maximizar retorno y entropía.",
+      "evidence": "Maximum-entropy RL maximizes expected return and policy entropy.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-050",
+      "group": "C_NEUTRAL",
+      "claim": "El código utiliza Python 3.14.",
+      "evidence": "The SAC objective includes entropy.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-058",
+      "group": "D_PARAPHRASE",
+      "claim": "El Replay Buffer desacopla recolección y aprendizaje.",
+      "evidence": "Random replay sampling reduces temporal correlation.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-094",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "SAC es on-policy.",
+      "evidence": "SAC is off-policy. || The actor outputs a stochastic policy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-069",
+      "group": "D_PARAPHRASE",
+      "claim": "SAC combina evaluación y optimización de política.",
+      "evidence": "The actor is optimized while critics estimate action values.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-076",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Actor estima el valor Q.",
+      "evidence": "The critic estimates Q-values.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-040",
+      "group": "B_CONTRADICTION",
+      "claim": "El Replay Buffer ejecuta acciones.",
+      "evidence": "The policy outputs actions applied to the environment.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-023",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC utiliza exactamente un Critic.",
+      "evidence": "Standard twin-critic SAC uses two Q-functions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-105",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El episodio duró 20 segundos.",
+      "evidence": "The actor is stochastic. || SAC is off-policy.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-088",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El entorno representa la política estocástica.",
+      "evidence": "The actor represents the stochastic policy.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-041",
+      "group": "C_NEUTRAL",
+      "claim": "SAC fue publicado en 2018.",
+      "evidence": "The replay buffer stores past transitions.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-101",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "La política es estocástica.",
+      "evidence": "The actor represents a stochastic policy. || The critic evaluates Q-values.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-035",
+      "group": "B_CONTRADICTION",
+      "claim": "El buffer calcula la recompensa.",
+      "evidence": "The environment provides the reward signal.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-087",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El optimizador almacena observaciones históricas.",
+      "evidence": "The replay buffer stores observations.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-015",
+      "group": "A_SUPPORT",
+      "claim": "SAC se diseñó originalmente para acciones continuas.",
+      "evidence": "The original SAC algorithm targets continuous action spaces.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-048",
+      "group": "C_NEUTRAL",
+      "claim": "La recompensa máxima fue 850.",
+      "evidence": "Twin critics can be used in SAC.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-030",
+      "group": "B_CONTRADICTION",
+      "claim": "La política estocástica siempre elige una acción fija.",
+      "evidence": "A stochastic policy can assign probability to multiple actions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-028",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC requiere exclusivamente acciones discretas.",
+      "evidence": "The original SAC algorithm targets continuous action spaces.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-002",
+      "group": "A_SUPPORT",
+      "claim": "El Actor representa una política estocástica.",
+      "evidence": "The actor parameterizes a stochastic policy.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-022",
+      "group": "B_CONTRADICTION",
+      "claim": "El Actor es determinista.",
+      "evidence": "The SAC actor represents a stochastic policy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-081",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El robot configura la tasa de aprendizaje.",
+      "evidence": "The optimizer configuration sets the learning rate.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-108",
+      "group": "G_ROBUSTNESS",
+      "claim": "SAC emplea dos funciones Q twin-critic.",
+      "evidence": "The twin-critic variant uses two Q estimators.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-026",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC no utiliza recompensas.",
+      "evidence": "The SAC critic target includes the reward signal.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-074",
+      "group": "D_PARAPHRASE",
+      "claim": "La temperatura puede optimizarse automáticamente.",
+      "evidence": "Some SAC implementations optimize the entropy temperature.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-075",
+      "group": "D_PARAPHRASE",
+      "claim": "El Actor produce parámetros de distribución.",
+      "evidence": "The actor outputs distribution parameters such as mean and standard deviation.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-016",
+      "group": "A_SUPPORT",
+      "claim": "El Replay Buffer permite reutilizar datos anteriores.",
+      "evidence": "A replay buffer allows previously collected data to be sampled again.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-045",
+      "group": "C_NEUTRAL",
+      "claim": "El modelo se entrenó en una RTX 5070.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-072",
+      "group": "D_PARAPHRASE",
+      "claim": "Actor y Critics tienen objetivos distintos.",
+      "evidence": "The policy maximizes its objective while Q networks minimize prediction error.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-114",
+      "group": "G_ROBUSTNESS",
+      "claim": "El Critic produce la distribución de acciones.",
+      "evidence": "The actor produces the action distribution.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-021",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC es on-policy.",
+      "evidence": "SAC is an off-policy algorithm.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-033",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC carece de funciones Q.",
+      "evidence": "SAC uses Q-functions to estimate action values.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-057",
+      "group": "D_PARAPHRASE",
+      "claim": "Los Critics estiman la calidad de las acciones.",
+      "evidence": "The Q networks score state-action pairs.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-027",
+      "group": "B_CONTRADICTION",
+      "claim": "El Replay Buffer contiene solo la última transición.",
+      "evidence": "The replay buffer retains many past transitions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-055",
+      "group": "C_NEUTRAL",
+      "claim": "El archivo se llama config.py.",
+      "evidence": "SAC is an actor-critic method.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-056",
+      "group": "D_PARAPHRASE",
+      "claim": "El Actor selecciona acciones desde una política probabilística.",
+      "evidence": "The policy network defines a distribution from which actions are sampled.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-031",
+      "group": "B_CONTRADICTION",
+      "claim": "SAC excluye la entropía.",
+      "evidence": "The maximum-entropy objective explicitly includes policy entropy.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-093",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "SAC utiliza dos Critics.",
+      "evidence": "Twin Q-functions are used in SAC. || The replay buffer stores transitions.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-095",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El Actor estima Q.",
+      "evidence": "The actor represents the policy. || The critic estimates Q-values.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-082",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Actor calcula la pérdida de Bellman.",
+      "evidence": "The critic uses a Bellman-style target.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-112",
+      "group": "G_ROBUSTNESS",
+      "claim": "SAC usa tres Critics.",
+      "evidence": "The standard twin-critic architecture uses two critics.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-005",
+      "group": "A_SUPPORT",
+      "claim": "La entropía favorece la exploración.",
+      "evidence": "The entropy term encourages stochastic exploration.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-096",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "La entropía integra el objetivo.",
+      "evidence": "The SAC objective includes entropy. || The environment returns observations.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-019",
+      "group": "A_SUPPORT",
+      "claim": "SAC es un algoritmo de aprendizaje por refuerzo.",
+      "evidence": "Soft Actor-Critic is a reinforcement learning algorithm.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-119",
+      "group": "G_ROBUSTNESS",
+      "claim": "El Actor siempre produce acciones idénticas.",
+      "evidence": "A stochastic actor can sample different actions.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-047",
+      "group": "C_NEUTRAL",
+      "claim": "El simulador fue CoppeliaSim.",
+      "evidence": "The actor outputs actions according to a policy.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-020",
+      "group": "A_SUPPORT",
+      "claim": "La política puede muestrear acciones diferentes para un mismo estado.",
+      "evidence": "A stochastic policy may sample different actions for the same state.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-010",
+      "group": "A_SUPPORT",
+      "claim": "El Actor genera parámetros de una distribución de acciones.",
+      "evidence": "The actor maps observations to parameters of an action distribution.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-049",
+      "group": "C_NEUTRAL",
+      "claim": "El robot pesa 35 kg.",
+      "evidence": "The replay buffer stores transitions.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    },
+    {
+      "id": "EV-097",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "El entrenamiento duró 100 episodios.",
+      "evidence": "SAC is off-policy. || The actor is stochastic.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-089",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "El Critic controla motores.",
+      "evidence": "The low-level controller sends commands to motors.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-004",
+      "group": "A_SUPPORT",
+      "claim": "El Replay Buffer almacena transiciones.",
+      "evidence": "Experience tuples are stored in a replay buffer.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-106",
+      "group": "G_ROBUSTNESS",
+      "claim": "SAC no es on-policy; es off-policy.",
+      "evidence": "SAC is an off-policy method, not an on-policy method.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-111",
+      "group": "G_ROBUSTNESS",
+      "claim": "Alpha pondera la entropía.",
+      "evidence": "Alpha multiplies the entropy term.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-009",
+      "group": "A_SUPPORT",
+      "claim": "Q depende del estado y la acción.",
+      "evidence": "A Q-function estimates return given a state and action.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Equivalencia factual directa o paráfrasis técnica."
+    },
+    {
+      "id": "EV-091",
+      "group": "F_MULTI_EVIDENCE",
+      "claim": "SAC es off-policy.",
+      "evidence": "SAC is an off-policy algorithm. || The actor represents a stochastic policy.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Caso multievidencia; solo una parte puede ser pertinente."
+    },
+    {
+      "id": "EV-063",
+      "group": "D_PARAPHRASE",
+      "claim": "Los Critics aproximan objetivos Q.",
+      "evidence": "Q parameters are updated using a Bellman-style regression loss.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-036",
+      "group": "B_CONTRADICTION",
+      "claim": "El Critic controla directamente los motores.",
+      "evidence": "The low-level controller sends commands to the motors.",
+      "gold_nli": "CONTRADICTED",
+      "gold_verifier": "CONTRADICTED",
+      "rationale": "Incompatibilidad explícita."
+    },
+    {
+      "id": "EV-120",
+      "group": "G_ROBUSTNESS",
+      "claim": "Se entrenó en CoppeliaSim 4.10.",
+      "evidence": "SAC can be trained in simulated environments.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-117",
+      "group": "G_ROBUSTNESS",
+      "claim": "Alpha vale 0.15.",
+      "evidence": "The entropy coefficient controls entropy contribution.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-065",
+      "group": "D_PARAPHRASE",
+      "claim": "La política no elige siempre la misma acción.",
+      "evidence": "A stochastic policy may sample different actions in the same state.",
+      "gold_nli": "SUPPORTED",
+      "gold_verifier": "SUPPORTED",
+      "rationale": "Paráfrasis técnica que exige equivalencia semántica."
+    },
+    {
+      "id": "EV-118",
+      "group": "G_ROBUSTNESS",
+      "claim": "SAC siempre usa exactamente dos Critics.",
+      "evidence": "Implementations of SAC can differ in critic count.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Prueba de negación, cuantificadores, notación y datos ausentes."
+    },
+    {
+      "id": "EV-080",
+      "group": "E_ROLE_DISTINCTION",
+      "claim": "La IMU almacena transiciones.",
+      "evidence": "The replay buffer stores transitions.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "Componentes distintos; la evidencia no responde al claim."
+    },
+    {
+      "id": "EV-042",
+      "group": "C_NEUTRAL",
+      "claim": "El Unitree G1 tiene 29 grados de libertad.",
+      "evidence": "The SAC actor represents a stochastic policy.",
+      "gold_nli": "INSUFFICIENT",
+      "gold_verifier": "INSUFFICIENT",
+      "rationale": "La evidencia no aporta información sobre el dato afirmado."
+    }
+  ]
+}

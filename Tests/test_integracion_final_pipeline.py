@@ -122,7 +122,7 @@ def main():
     print_claims(report_2)
 
     # Guardar informes completos para auditoría y revisión posterior.
-    output_dir = ROOT / "output" / "Pipeline"
+    output_dir = ROOT / "Tests" / "Pipeline"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_file = output_dir / "integracion_final_report.json"
 
@@ -166,3 +166,4 @@ if __name__ == "__main__":
     except Exception as exc:
         print(f"ERROR EN LA PRUEBA: {type(exc).__name__}: {exc}")
         raise
+

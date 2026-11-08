@@ -1,0 +1,3019 @@
+{
+  "verifier_version": "0.3.0",
+  "adjudication_model": "qwen3:8b",
+  "ollama_url": "http://localhost:11434",
+  "total_cases": 30,
+  "total_elapsed_seconds": 245.822,
+  "results": [
+    {
+      "test": {
+        "id": "EQ01",
+        "category": "equivalencia_es_en",
+        "claim": "El Replay Buffer almacena experiencias anteriores para reutilizarlas durante el entrenamiento.",
+        "evidence": "The replay buffer stores past transitions and samples them later to train the agent.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ01"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Replay Buffer almacena experiencias anteriores para reutilizarlas durante el entrenamiento.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.99755859375,
+                "best_contradiction_score": 0.00030231475830078125,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ01",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.99755859375,
+                      "neutral": 0.0022068023681640625,
+                      "contradiction": 0.00030231475830078125
+                    },
+                    "text": "The replay buffer stores past transitions and samples them later to train the agent.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "El evidence menciona que el buffer almacena transiciones pasadas y las utiliza para entrenar, lo que respalda la afirmación."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 21.141
+    },
+    {
+      "test": {
+        "id": "EQ02",
+        "category": "equivalencia_es_en",
+        "claim": "El Actor representa la política y produce una distribución de acciones a partir del estado.",
+        "evidence": "The actor parameterizes the policy distribution over actions conditioned on the current state.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ02"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Actor representa la política y produce una distribución de acciones a partir del estado.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.90576171875,
+                "best_contradiction_score": 0.03387451171875,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ02",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.90576171875,
+                      "neutral": 0.060577392578125,
+                      "contradiction": 0.03387451171875
+                    },
+                    "text": "The actor parameterizes the policy distribution over actions conditioned on the current state.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "El actor parameteriza la distribución de políticas condicionada al estado, lo que respalda la afirmación."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 8.794
+    },
+    {
+      "test": {
+        "id": "EQ03",
+        "category": "equivalencia_es_en",
+        "claim": "SAC utiliza dos redes críticas para estimar el valor Q de una acción en un estado.",
+        "evidence": "SAC employs two independent Q-functions, also called twin critics, to estimate Q(s,a).",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ03"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "SAC utiliza dos redes críticas para estimar el valor Q de una acción en un estado.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.02447509765625,
+                "best_contradiction_score": 0.0021762847900390625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ03",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.02447509765625,
+                      "neutral": 0.97314453125,
+                      "contradiction": 0.0021762847900390625
+                    },
+                    "text": "SAC employs two independent Q-functions, also called twin critics, to estimate Q(s,a).",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La evidencia menciona dos funciones Q independientes (twin critics) para estimar Q(s,a), lo que coincide con la afirmación."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 8.825
+    },
+    {
+      "test": {
+        "id": "EQ04",
+        "category": "equivalencia_es_en",
+        "claim": "La entropía objetivo establece el nivel de aleatoriedad que se desea para la política.",
+        "evidence": "The target entropy specifies the desired entropy level of the policy.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ04"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "La entropía objetivo establece el nivel de aleatoriedad que se desea para la política.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.031585693359375,
+                "best_contradiction_score": 0.419189453125,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ04",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.031585693359375,
+                      "neutral": 0.54931640625,
+                      "contradiction": 0.419189453125
+                    },
+                    "text": "The target entropy specifies the desired entropy level of the policy.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La entropía objetivo especifica el nivel deseado de entropía, equivalente a aleatoriedad en el contexto de políticas."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 9.075
+    },
+    {
+      "test": {
+        "id": "EQ05",
+        "category": "equivalencia_es_en",
+        "claim": "El coeficiente alfa determina cuánto pesa la entropía en el objetivo de la política.",
+        "evidence": "The temperature parameter alpha controls the relative weight of the entropy term in the policy objective.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ05"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El coeficiente alfa determina cuánto pesa la entropía en el objetivo de la política.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.8330078125,
+                "best_contradiction_score": 0.1224365234375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ05",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.8330078125,
+                      "neutral": 0.044708251953125,
+                      "contradiction": 0.1224365234375
+                    },
+                    "text": "The temperature parameter alpha controls the relative weight of the entropy term in the policy objective.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "El coeficiente alfa controla el peso de la entropía en el objetivo de la política"
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 8.928
+    },
+    {
+      "test": {
+        "id": "EQ06",
+        "category": "equivalencia_es_en",
+        "claim": "La técnica de reparametrización permite calcular gradientes a través de una acción muestreada de forma estocástica.",
+        "evidence": "The reparameterization trick expresses a stochastic action as a differentiable transformation, allowing gradients to pass through the sampled action.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ06"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "La técnica de reparametrización permite calcular gradientes a través de una acción muestreada de forma estocástica.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.94287109375,
+                "best_contradiction_score": 0.0155792236328125,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ06",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.94287109375,
+                      "neutral": 0.041778564453125,
+                      "contradiction": 0.0155792236328125
+                    },
+                    "text": "The reparameterization trick expresses a stochastic action as a differentiable transformation, allowing gradients to pass through the sampled action.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La reparametrización permite calcular gradientes a través de acciones estocásticas."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 5.801
+    },
+    {
+      "test": {
+        "id": "EQ07",
+        "category": "equivalencia_es_en",
+        "claim": "El crítico se entrena minimizando el error entre su estimación Q y un objetivo de Bellman.",
+        "evidence": "The critic is optimized by minimizing the difference between its Q-value prediction and the Bellman target.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ07"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El crítico se entrena minimizando el error entre su estimación Q y un objetivo de Bellman.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.96435546875,
+                "best_contradiction_score": 0.0005130767822265625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ07",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.96435546875,
+                      "neutral": 0.035247802734375,
+                      "contradiction": 0.0005130767822265625
+                    },
+                    "text": "The critic is optimized by minimizing the difference between its Q-value prediction and the Bellman target.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "El texto afirma que el crítico se optimiza minimizando la diferencia entre su predicción Q y el objetivo de Bellman, lo que coincide con la afirmación del reclamo."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.926
+    },
+    {
+      "test": {
+        "id": "EQ08",
+        "category": "equivalencia_es_en",
+        "claim": "El Actor busca acciones que tengan un valor Q alto sin perder el incentivo de mantener entropía.",
+        "evidence": "The actor objective encourages high expected Q-values while retaining an entropy regularization term.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ08"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Actor busca acciones que tengan un valor Q alto sin perder el incentivo de mantener entropía.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.95458984375,
+                "best_contradiction_score": 0.007305145263671875,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ08",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.95458984375,
+                      "neutral": 0.037994384765625,
+                      "contradiction": 0.007305145263671875
+                    },
+                    "text": "The actor objective encourages high expected Q-values while retaining an entropy regularization term.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La evidencia afirma directamente ambos aspectos del reclamo: alto valor Q y retención de regularización de entropía."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 9.019
+    },
+    {
+      "test": {
+        "id": "EQ09",
+        "category": "equivalencia_es_en",
+        "claim": "El ajuste automático de entropía modifica alfa para aproximar la entropía de la política a la entropía objetivo.",
+        "evidence": "Automatic entropy tuning updates the temperature coefficient alpha so that policy entropy approaches the target entropy.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ09"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El ajuste automático de entropía modifica alfa para aproximar la entropía de la política a la entropía objetivo.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.99755859375,
+                "best_contradiction_score": 0.00016188621520996094,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ09",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.99755859375,
+                      "neutral": 0.002155303955078125,
+                      "contradiction": 0.00016188621520996094
+                    },
+                    "text": "Automatic entropy tuning updates the temperature coefficient alpha so that policy entropy approaches the target entropy.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La evidencia afirma que el ajuste automático modifica alfa para acercar la entropía de la política al objetivo."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.562
+    },
+    {
+      "test": {
+        "id": "EQ10",
+        "category": "equivalencia_es_en",
+        "claim": "La actualización suave de la red objetivo combina sus parámetros anteriores con los parámetros actuales de la red principal.",
+        "evidence": "A soft target update performs a Polyak averaging step, interpolating target-network parameters with the current network parameters.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_EQ10"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "La actualización suave de la red objetivo combina sus parámetros anteriores con los parámetros actuales de la red principal.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.92431640625,
+                "best_contradiction_score": 0.0016727447509765625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_EQ10",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.92431640625,
+                      "neutral": 0.0740966796875,
+                      "contradiction": 0.0016727447509765625
+                    },
+                    "text": "A soft target update performs a Polyak averaging step, interpolating target-network parameters with the current network parameters.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La evidencia menciona la interpolación de parámetros de la red objetivo con los actuales, lo que respalda la afirmación."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 9.532
+    },
+    {
+      "test": {
+        "id": "PA01",
+        "category": "parafrasis_conceptual",
+        "claim": "En SAC, la política no está obligada a seleccionar siempre una única acción fija para cada estado.",
+        "evidence": "For a given observation, the policy can represent a probability distribution from which different actions may be sampled.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PA01"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "En SAC, la política no está obligada a seleccionar siempre una única acción fija para cada estado.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.23193359375,
+                "best_contradiction_score": 0.0029544830322265625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PA01",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.23193359375,
+                      "neutral": 0.76513671875,
+                      "contradiction": 0.0029544830322265625
+                    },
+                    "text": "For a given observation, the policy can represent a probability distribution from which different actions may be sampled.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La política puede representar una distribución de probabilidad, permitiendo seleccionar diferentes acciones"
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 9.405
+    },
+    {
+      "test": {
+        "id": "PA02",
+        "category": "parafrasis_conceptual",
+        "claim": "El Replay Buffer desacopla temporalmente la recopilación de experiencias y las actualizaciones de las redes.",
+        "evidence": "Stored transitions can be sampled for learning after the environment interaction that generated them has already finished.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PA02"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Replay Buffer desacopla temporalmente la recopilación de experiencias y las actualizaciones de las redes.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.00925445556640625,
+                "best_contradiction_score": 0.308837890625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PA02",
+                    "role_mismatch": true,
+                    "scores": {
+                      "entailment": 0.00925445556640625,
+                      "neutral": 0.68212890625,
+                      "contradiction": 0.308837890625
+                    },
+                    "text": "Stored transitions can be sampled for learning after the environment interaction that generated them has already finished.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "El buffer almacena experiencias para usarlas después, desacoplándolas de las actualizaciones."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 8.691
+    },
+    {
+      "test": {
+        "id": "PA03",
+        "category": "parafrasis_conceptual",
+        "claim": "Las dos estimaciones Q permiten reducir el riesgo de sobreestimar el valor de las acciones.",
+        "evidence": "SAC takes the minimum of the two critic estimates when constructing its target, which helps mitigate overestimation.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PA03"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "Las dos estimaciones Q permiten reducir el riesgo de sobreestimar el valor de las acciones.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.0509033203125,
+                "best_contradiction_score": 0.0191192626953125,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PA03",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0509033203125,
+                      "neutral": 0.93017578125,
+                      "contradiction": 0.0191192626953125
+                    },
+                    "text": "SAC takes the minimum of the two critic estimates when constructing its target, which helps mitigate overestimation.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La evidencia indica que usar el mínimo de dos estimaciones mitiga la sobreestimación, lo que respalda la afirmación."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 10.91
+    },
+    {
+      "test": {
+        "id": "PA04",
+        "category": "parafrasis_conceptual",
+        "claim": "La temperatura regula el compromiso entre obtener recompensas y conservar diversidad en las acciones.",
+        "evidence": "The entropy temperature balances reward maximization against the policy's tendency to remain stochastic.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PA04"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [
+              {
+                "claim": "La temperatura regula el compromiso entre obtener recompensas y conservar diversidad en las acciones.",
+                "error": "ValueError: Qwen no devolvió el arreglo JSON 'items'."
+              }
+            ],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "La temperatura regula el compromiso entre obtener recompensas y conservar diversidad en las acciones.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": false,
+                "adjudication_error": "ValueError: Qwen no devolvió el arreglo JSON 'items'.",
+                "best_entailment_score": 0.0447998046875,
+                "best_contradiction_score": 0.002925872802734375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PA04",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0447998046875,
+                      "neutral": 0.9521484375,
+                      "contradiction": 0.002925872802734375
+                    },
+                    "text": "The entropy temperature balances reward maximization against the policy's tendency to remain stochastic.",
+                    "adjudication": {
+                      "label": "UNAVAILABLE",
+                      "reason": "No se obtuvo una decisión semántica válida."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 6.376
+    },
+    {
+      "test": {
+        "id": "PA05",
+        "category": "parafrasis_conceptual",
+        "claim": "Las redes objetivo se actualizan gradualmente en lugar de copiarse íntegramente en cada paso.",
+        "evidence": "Target parameters are moved incrementally toward the online parameters using a small interpolation coefficient.",
+        "expected": "SUPPORTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PA05"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "Las redes objetivo se actualizan gradualmente en lugar de copiarse íntegramente en cada paso.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.492431640625,
+                "best_contradiction_score": 0.0004901885986328125,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PA05",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.492431640625,
+                      "neutral": 0.5068359375,
+                      "contradiction": 0.0004901885986328125
+                    },
+                    "text": "Target parameters are moved incrementally toward the online parameters using a small interpolation coefficient.",
+                    "adjudication": {
+                      "label": "SUPPORTED",
+                      "reason": "La evidencia menciona que los parámetros se mueven incrementalmente, lo que respalda la afirmación de actualización gradual."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "SUPPORTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.076
+    },
+    {
+      "test": {
+        "id": "CO01",
+        "category": "contradiccion_explicita",
+        "claim": "En SAC, aumentar alfa reduce el peso del término de entropía en el objetivo de la política.",
+        "evidence": "A higher entropy temperature coefficient increases the weight of the entropy term in the policy objective.",
+        "expected": "CONTRADICTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_CO01"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "En SAC, aumentar alfa reduce el peso del término de entropía en el objetivo de la política.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.03656005859375,
+                "best_contradiction_score": 0.70361328125,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_CO01",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.03656005859375,
+                      "neutral": 0.260009765625,
+                      "contradiction": 0.70361328125
+                    },
+                    "text": "A higher entropy temperature coefficient increases the weight of the entropy term in the policy objective.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia menciona un coeficiente de temperatura de entropía, no alfa, y su efecto es opuesto al reclamado."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 10.525
+    },
+    {
+      "test": {
+        "id": "CO02",
+        "category": "contradiccion_explicita",
+        "claim": "La implementación descrita de SAC utiliza una única red crítica para estimar Q(s,a).",
+        "evidence": "This SAC implementation uses two separate Q-functions, commonly referred to as twin critics, to estimate Q(s,a).",
+        "expected": "CONTRADICTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_CO02"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "La implementación descrita de SAC utiliza una única red crítica para estimar Q(s,a).",
+                "status": "CONTRADICTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.0005140304565429688,
+                "best_contradiction_score": 0.99853515625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_CO02",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0005140304565429688,
+                      "neutral": 0.0008573532104492188,
+                      "contradiction": 0.99853515625
+                    },
+                    "text": "This SAC implementation uses two separate Q-functions, commonly referred to as twin critics, to estimate Q(s,a).",
+                    "adjudication": {
+                      "label": "CONTRADICTED",
+                      "reason": "La evidencia menciona dos Q-functions separados (twin critics), mientras que la afirmación dice que se usa una única red crítica."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "CONTRADICTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 6.079
+    },
+    {
+      "test": {
+        "id": "CO03",
+        "category": "contradiccion_explicita",
+        "claim": "El Replay Buffer descarta cada transición anterior cuando se incorpora una experiencia nueva.",
+        "evidence": "The replay buffer retains previously collected transitions and samples from this stored collection during training.",
+        "expected": "CONTRADICTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_CO03"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Replay Buffer descarta cada transición anterior cuando se incorpora una experiencia nueva.",
+                "status": "CONTRADICTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.00015366077423095703,
+                "best_contradiction_score": 0.998046875,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_CO03",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00015366077423095703,
+                      "neutral": 0.0016279220581054688,
+                      "contradiction": 0.998046875
+                    },
+                    "text": "The replay buffer retains previously collected transitions and samples from this stored collection during training.",
+                    "adjudication": {
+                      "label": "CONTRADICTED",
+                      "reason": "El evidence indica que el buffer conserva las transiciones anteriores, lo que contradice la afirmación de que se descartan."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "CONTRADICTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 5.482
+    },
+    {
+      "test": {
+        "id": "CO04",
+        "category": "contradiccion_explicita",
+        "claim": "En SAC, el Actor produce exclusivamente una acción determinista y no representa una distribución de acciones.",
+        "evidence": "The SAC actor represents a stochastic policy distribution and samples actions from that distribution.",
+        "expected": "CONTRADICTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_CO04"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [
+              {
+                "claim": "En SAC, el Actor produce exclusivamente una acción determinista y no representa una distribución de acciones.",
+                "error": "ValueError: Qwen no devolvió el arreglo JSON 'items'."
+              }
+            ],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "En SAC, el Actor produce exclusivamente una acción determinista y no representa una distribución de acciones.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": false,
+                "adjudication_error": "ValueError: Qwen no devolvió el arreglo JSON 'items'.",
+                "best_entailment_score": 0.00015020370483398438,
+                "best_contradiction_score": 0.99951171875,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_CO04",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00015020370483398438,
+                      "neutral": 0.00033736228942871094,
+                      "contradiction": 0.99951171875
+                    },
+                    "text": "The SAC actor represents a stochastic policy distribution and samples actions from that distribution.",
+                    "adjudication": {
+                      "label": "UNAVAILABLE",
+                      "reason": "No se obtuvo una decisión semántica válida."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 5.127
+    },
+    {
+      "test": {
+        "id": "CO05",
+        "category": "contradiccion_explicita",
+        "claim": "En el ajuste automático de entropía, alfa permanece fijo y nunca se actualiza.",
+        "evidence": "Automatic entropy adjustment optimizes the temperature coefficient alpha during training to match a target entropy.",
+        "expected": "CONTRADICTED"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_CO05"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "En el ajuste automático de entropía, alfa permanece fijo y nunca se actualiza.",
+                "status": "CONTRADICTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 4.5359134674072266e-05,
+                "best_contradiction_score": 0.9990234375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_CO05",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 4.5359134674072266e-05,
+                      "neutral": 0.0009436607360839844,
+                      "contradiction": 0.9990234375
+                    },
+                    "text": "Automatic entropy adjustment optimizes the temperature coefficient alpha during training to match a target entropy.",
+                    "adjudication": {
+                      "label": "CONTRADICTED",
+                      "reason": "La evidencia indica que alfa se optimiza durante el entrenamiento, lo que contradice la afirmación de que permanece fijo."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "CONTRADICTED",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 5.363
+    },
+    {
+      "test": {
+        "id": "IN01",
+        "category": "evidencia_insuficiente",
+        "claim": "En SAC, el Replay Buffer determina directamente el valor del coeficiente alfa.",
+        "evidence": "SAC uses a replay buffer to store transitions collected during interaction with the environment.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_IN01"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "En SAC, el Replay Buffer determina directamente el valor del coeficiente alfa.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.0006542205810546875,
+                "best_contradiction_score": 0.03424072265625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_IN01",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0006542205810546875,
+                      "neutral": 0.96533203125,
+                      "contradiction": 0.03424072265625
+                    },
+                    "text": "SAC uses a replay buffer to store transitions collected during interaction with the environment.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia describe la función del Replay Buffer como almacenamiento de transiciones, pero no menciona su relación con el coeficiente alfa."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 9.349
+    },
+    {
+      "test": {
+        "id": "IN02",
+        "category": "evidencia_insuficiente",
+        "claim": "La entropía objetivo de SAC se calcula a partir de la recompensa acumulada de cada episodio.",
+        "evidence": "The SAC actor is trained using a stochastic policy and an entropy-related objective.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_IN02"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "La entropía objetivo de SAC se calcula a partir de la recompensa acumulada de cada episodio.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.00019025802612304688,
+                "best_contradiction_score": 0.00225067138671875,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_IN02",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00019025802612304688,
+                      "neutral": 0.99755859375,
+                      "contradiction": 0.00225067138671875
+                    },
+                    "text": "The SAC actor is trained using a stochastic policy and an entropy-related objective.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia menciona un objetivo relacionado con la entropía pero no especifica que se calcule a partir de la recompensa acumulada por episodio."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 6.874
+    },
+    {
+      "test": {
+        "id": "IN03",
+        "category": "evidencia_insuficiente",
+        "claim": "SAC necesita exactamente 256 neuronas en cada capa oculta del Actor.",
+        "evidence": "The actor is represented by a neural network that maps observations to a policy distribution.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_IN03"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "SAC necesita exactamente 256 neuronas en cada capa oculta del Actor.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.00016200542449951172,
+                "best_contradiction_score": 0.00148773193359375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_IN03",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00016200542449951172,
+                      "neutral": 0.99853515625,
+                      "contradiction": 0.00148773193359375
+                    },
+                    "text": "The actor is represented by a neural network that maps observations to a policy distribution.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "No se menciona el número de neuronas en las capas ocultas del Actor."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.288
+    },
+    {
+      "test": {
+        "id": "IN04",
+        "category": "evidencia_insuficiente",
+        "claim": "El uso de dos críticos en SAC garantiza que el entrenamiento siempre converja.",
+        "evidence": "SAC uses two Q-functions and takes the smaller estimate in the target calculation to mitigate overestimation.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_IN04"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El uso de dos críticos en SAC garantiza que el entrenamiento siempre converja.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.00060272216796875,
+                "best_contradiction_score": 0.68359375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_IN04",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00060272216796875,
+                      "neutral": 0.31591796875,
+                      "contradiction": 0.68359375
+                    },
+                    "text": "SAC uses two Q-functions and takes the smaller estimate in the target calculation to mitigate overestimation.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia menciona el uso de dos funciones Q para mitigar sobreestimación, pero no aborda la convergencia del entrenamiento."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 5.862
+    },
+    {
+      "test": {
+        "id": "IN05",
+        "category": "evidencia_insuficiente",
+        "claim": "El Replay Buffer de SAC almacena las experiencias durante exactamente 24 horas.",
+        "evidence": "The replay buffer stores transitions so that they can be sampled during subsequent training updates.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_IN05"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Replay Buffer de SAC almacena las experiencias durante exactamente 24 horas.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 9.5367431640625e-05,
+                "best_contradiction_score": 0.0016689300537109375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_IN05",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 9.5367431640625e-05,
+                      "neutral": 0.998046875,
+                      "contradiction": 0.0016689300537109375
+                    },
+                    "text": "The replay buffer stores transitions so that they can be sampled during subsequent training updates.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia no menciona la duración de almacenamiento."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.101
+    },
+    {
+      "test": {
+        "id": "PAI01",
+        "category": "evidencia_parcial",
+        "claim": "SAC utiliza un Replay Buffer y dos redes críticas para estimar los valores Q.",
+        "evidence": "SAC stores previously collected transitions in a replay buffer for later sampling during training.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PAI01"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "SAC utiliza un Replay Buffer y dos redes críticas para estimar los valores Q.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.0014543533325195312,
+                "best_contradiction_score": 0.411865234375,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PAI01",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0014543533325195312,
+                      "neutral": 0.58642578125,
+                      "contradiction": 0.411865234375
+                    },
+                    "text": "SAC stores previously collected transitions in a replay buffer for later sampling during training.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia menciona el buffer de reproducción pero no habla de dos redes críticas."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 5.439
+    },
+    {
+      "test": {
+        "id": "PAI02",
+        "category": "evidencia_parcial",
+        "claim": "El Actor de SAC produce una distribución de acciones y el Replay Buffer almacena los gradientes de la política.",
+        "evidence": "The actor outputs a stochastic policy distribution over actions conditioned on the current state.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PAI02"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El Actor de SAC produce una distribución de acciones y el Replay Buffer almacena los gradientes de la política.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.0020885467529296875,
+                "best_contradiction_score": 0.0010156631469726562,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PAI02",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0020885467529296875,
+                      "neutral": 0.9970703125,
+                      "contradiction": 0.0010156631469726562
+                    },
+                    "text": "The actor outputs a stochastic policy distribution over actions conditioned on the current state.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia respalda la producción de distribución de acciones por el actor, pero no menciona el Replay Buffer ni gradientes de política."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 8.646
+    },
+    {
+      "test": {
+        "id": "PAI03",
+        "category": "evidencia_parcial",
+        "claim": "El coeficiente alfa pondera la entropía y se calcula directamente como el promedio de las recompensas.",
+        "evidence": "The temperature coefficient alpha controls the weight of the entropy term in the SAC policy objective.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PAI03"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El coeficiente alfa pondera la entropía y se calcula directamente como el promedio de las recompensas.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.0006880760192871094,
+                "best_contradiction_score": 0.25634765625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PAI03",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.0006880760192871094,
+                      "neutral": 0.7431640625,
+                      "contradiction": 0.25634765625
+                    },
+                    "text": "The temperature coefficient alpha controls the weight of the entropy term in the SAC policy objective.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia menciona que alpha controla el peso de la entropía, pero no habla sobre su cálculo como promedio de recompensas."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.221
+    },
+    {
+      "test": {
+        "id": "PAI04",
+        "category": "evidencia_parcial",
+        "claim": "Las redes objetivo se actualizan suavemente y utilizan siempre una tasa de actualización de 0,5.",
+        "evidence": "SAC updates target-network parameters gradually through Polyak averaging.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PAI04"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "Las redes objetivo se actualizan suavemente y utilizan siempre una tasa de actualización de 0,5.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.00017774105072021484,
+                "best_contradiction_score": 0.0002313852310180664,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PAI04",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.00017774105072021484,
+                      "neutral": 0.99951171875,
+                      "contradiction": 0.0002313852310180664
+                    },
+                    "text": "SAC updates target-network parameters gradually through Polyak averaging.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "No menciona la tasa de actualización específica de 0,5."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 9.238
+    },
+    {
+      "test": {
+        "id": "PAI05",
+        "category": "evidencia_parcial",
+        "claim": "El crítico minimiza el error de Bellman y el Actor se actualiza mediante gradiente descendente sobre la pérdida del crítico.",
+        "evidence": "The critic is trained to minimize the Bellman error between its Q estimate and the target value.",
+        "expected": "INSUFFICIENT"
+      },
+      "result": {
+        "verifier": "EvidenceVerifier",
+        "version": "0.3.0",
+        "checks": {
+          "web_url_reference_check": {
+            "status": "PASS",
+            "urls_found_in_response": [],
+            "urls_matched_to_search_results": [],
+            "urls_not_found_in_search_results": []
+          },
+          "rag_source_reference_check": {
+            "status": "NOT_CITED",
+            "retrieved_sources": [
+              "controlled_test_PAI05"
+            ],
+            "sources_mentioned_literally": []
+          },
+          "duplicate_web_reference_check": {
+            "status": "PASS",
+            "duplicate_urls": []
+          },
+          "semantic_support_check": {
+            "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+            "adjudication_model": "qwen3:8b",
+            "adjudication_provider": "Ollama",
+            "adjudication_enabled": true,
+            "adjudication_errors": [],
+            "device": "cuda",
+            "thresholds": {
+              "entailment": 0.8,
+              "contradiction": 0.8,
+              "decision_margin": 0.15,
+              "note": "Se conservan por compatibilidad/diagnóstico; no gobiernan la decisión final."
+            },
+            "claims": [
+              {
+                "claim": "El crítico minimiza el error de Bellman y el Actor se actualiza mediante gradiente descendente sobre la pérdida del crítico.",
+                "status": "INSUFFICIENT",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "best_entailment_score": 0.034637451171875,
+                "best_contradiction_score": 0.04742431640625,
+                "comparisons": [
+                  {
+                    "evidence_id": 0,
+                    "evidence_type": "RAG",
+                    "source": "controlled_test_PAI05",
+                    "role_mismatch": false,
+                    "scores": {
+                      "entailment": 0.034637451171875,
+                      "neutral": 0.91796875,
+                      "contradiction": 0.04742431640625
+                    },
+                    "text": "The critic is trained to minimize the Bellman error between its Q estimate and the target value.",
+                    "adjudication": {
+                      "label": "INSUFFICIENT",
+                      "reason": "La evidencia menciona que el crítico minimiza el error de Bellman, pero no habla sobre la actualización del Actor mediante gradiente descendente."
+                    }
+                  }
+                ]
+              }
+            ],
+            "overall_status": "INSUFFICIENT",
+            "limitations": [
+              "La decisión semántica final la realiza Qwen local sobre los textos originales.",
+              "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
+              "Si Ollama falla, se adopta INSUFFICIENT por seguridad (fail-closed).",
+              "La clasificación de un LLM no constituye certificación científica.",
+              "DDGS se evalúa solo con title + description, no con el artículo completo.",
+              "Las afirmaciones deben ser atómicas y suministradas explícitamente.",
+              "La contradicción exige incompatibilidad directa sobre la misma proposición; la falta de mención no es contradicción.",
+              "La selección de evidencia se limita a los primeros elementos recibidos."
+            ]
+          }
+        },
+        "evidence_counts": {
+          "rag_fragments": 1,
+          "rag_unique_sources": 1,
+          "web_results": 0,
+          "web_unique_urls": 0
+        },
+        "overall_status": "RAG_SOURCES_NOT_CITED",
+        "limitations": [
+          "La coincidencia de una URL solo confirma que fue recuperada por DDGS.",
+          "DDGS aporta título, URL y fragmento; este módulo no descarga la página.",
+          "La coincidencia de una ruta RAG no demuestra que respalde la afirmación.",
+          "No se realiza verificación semántica ni comprobación científica.",
+          "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
+        ]
+      },
+      "elapsed_seconds": 7.161
+    }
+  ]
+}

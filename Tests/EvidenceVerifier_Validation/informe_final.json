@@ -1,0 +1,641 @@
+{
+  "dataset": "EvidenceVerifier Validation 120",
+  "cases": 120,
+  "nli_pairs": 135,
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda",
+  "thresholds": {
+    "entailment": 0.8,
+    "contradiction": 0.8,
+    "decision_margin": 0.15
+  },
+  "nli_elapsed_seconds": 1.0530446998309344,
+  "verifier_metrics": {
+    "accuracy": 0.7166666666666667,
+    "correct": 86,
+    "total": 120,
+    "confusion_matrix_gold_rows_pred_columns": {
+      "SUPPORTED": {
+        "SUPPORTED": 30,
+        "CONTRADICTED": 5,
+        "INSUFFICIENT": 17
+      },
+      "CONTRADICTED": {
+        "SUPPORTED": 0,
+        "CONTRADICTED": 25,
+        "INSUFFICIENT": 4
+      },
+      "INSUFFICIENT": {
+        "SUPPORTED": 1,
+        "CONTRADICTED": 5,
+        "INSUFFICIENT": 31
+      }
+    },
+    "per_class": {
+      "SUPPORTED": {
+        "precision": 0.967741935483871,
+        "recall": 0.5769230769230769,
+        "support": 52
+      },
+      "CONTRADICTED": {
+        "precision": 0.7142857142857143,
+        "recall": 0.8620689655172413,
+        "support": 29
+      },
+      "INSUFFICIENT": {
+        "precision": 0.5961538461538461,
+        "recall": 0.8378378378378378,
+        "support": 37
+      }
+    }
+  },
+  "group_metrics": {
+    "A_SUPPORT": {
+      "accuracy": 0.85,
+      "correct": 17,
+      "total": 20,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 17,
+          "CONTRADICTED": 1,
+          "INSUFFICIENT": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.85,
+          "support": 20
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        },
+        "INSUFFICIENT": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        }
+      }
+    },
+    "B_CONTRADICTION": {
+      "accuracy": 0.85,
+      "correct": 17,
+      "total": 20,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 17,
+          "INSUFFICIENT": 3
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": null,
+          "recall": null,
+          "support": 0
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 0.85,
+          "support": 20
+        },
+        "INSUFFICIENT": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        }
+      }
+    },
+    "C_NEUTRAL": {
+      "accuracy": 1.0,
+      "correct": 15,
+      "total": 15,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 15
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": null,
+          "recall": null,
+          "support": 0
+        },
+        "CONTRADICTED": {
+          "precision": null,
+          "recall": null,
+          "support": 0
+        },
+        "INSUFFICIENT": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 15
+        }
+      }
+    },
+    "D_PARAPHRASE": {
+      "accuracy": 0.35,
+      "correct": 7,
+      "total": 20,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 7,
+          "CONTRADICTED": 2,
+          "INSUFFICIENT": 11
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.35,
+          "support": 20
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        },
+        "INSUFFICIENT": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        }
+      }
+    },
+    "E_ROLE_DISTINCTION": {
+      "accuracy": 0.6666666666666666,
+      "correct": 10,
+      "total": 15,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 4,
+          "INSUFFICIENT": 10
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        },
+        "CONTRADICTED": {
+          "precision": 0.0,
+          "recall": null,
+          "support": 0
+        },
+        "INSUFFICIENT": {
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "support": 15
+        }
+      }
+    },
+    "F_MULTI_EVIDENCE": {
+      "accuracy": 0.7333333333333333,
+      "correct": 11,
+      "total": 15,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 5,
+          "INSUFFICIENT": 0
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 3
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.6,
+          "support": 5
+        },
+        "CONTRADICTED": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 5
+        },
+        "INSUFFICIENT": {
+          "precision": 0.6,
+          "recall": 1.0,
+          "support": 3
+        }
+      }
+    },
+    "G_ROBUSTNESS": {
+      "accuracy": 0.6,
+      "correct": 9,
+      "total": 15,
+      "confusion_matrix_gold_rows_pred_columns": {
+        "SUPPORTED": {
+          "SUPPORTED": 3,
+          "CONTRADICTED": 2,
+          "INSUFFICIENT": 2
+        },
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 3,
+          "INSUFFICIENT": 1
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 1,
+          "INSUFFICIENT": 3
+        }
+      },
+      "per_class": {
+        "SUPPORTED": {
+          "precision": 1.0,
+          "recall": 0.42857142857142855,
+          "support": 7
+        },
+        "CONTRADICTED": {
+          "precision": 0.5,
+          "recall": 0.75,
+          "support": 4
+        },
+        "INSUFFICIENT": {
+          "precision": 0.5,
+          "recall": 0.75,
+          "support": 4
+        }
+      }
+    }
+  },
+  "mismatches": [
+    {
+      "id": "EV-003",
+      "group": "A_SUPPORT",
+      "gold": "SUPPORTED",
+      "predicted": "CONTRADICTED",
+      "claim": "El Critic estima valores Q.",
+      "best_entailment_score": 0.0005373954772949219,
+      "best_contradiction_score": 0.98681640625
+    },
+    {
+      "id": "EV-007",
+      "group": "A_SUPPORT",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "SAC puede utilizar dos Critics.",
+      "best_entailment_score": 0.47900390625,
+      "best_contradiction_score": 0.29931640625
+    },
+    {
+      "id": "EV-012",
+      "group": "A_SUPPORT",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El objetivo de máxima entropía busca maximizar retorno y entropía.",
+      "best_entailment_score": 0.55859375,
+      "best_contradiction_score": 0.0011892318725585938
+    },
+    {
+      "id": "EV-025",
+      "group": "B_CONTRADICTION",
+      "gold": "CONTRADICTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Critic genera las acciones.",
+      "best_entailment_score": 0.015960693359375,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-037",
+      "group": "B_CONTRADICTION",
+      "gold": "CONTRADICTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Actor calcula la pérdida de Bellman.",
+      "best_entailment_score": 0.344970703125,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-040",
+      "group": "B_CONTRADICTION",
+      "gold": "CONTRADICTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Replay Buffer ejecuta acciones.",
+      "best_entailment_score": 0.3017578125,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-056",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Actor selecciona acciones desde una política probabilística.",
+      "best_entailment_score": 0.104248046875,
+      "best_contradiction_score": 0.09033203125
+    },
+    {
+      "id": "EV-057",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "Los Critics estiman la calidad de las acciones.",
+      "best_entailment_score": 0.024505615234375,
+      "best_contradiction_score": 0.7998046875
+    },
+    {
+      "id": "EV-058",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "CONTRADICTED",
+      "claim": "El Replay Buffer desacopla recolección y aprendizaje.",
+      "best_entailment_score": 0.005062103271484375,
+      "best_contradiction_score": 0.94091796875
+    },
+    {
+      "id": "EV-059",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "CONTRADICTED",
+      "claim": "La temperatura regula el compromiso entre retorno y aleatoriedad.",
+      "best_entailment_score": 0.00021469593048095703,
+      "best_contradiction_score": 0.9951171875
+    },
+    {
+      "id": "EV-062",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Actor favorece acciones de alto valor y entropía.",
+      "best_entailment_score": 0.1304931640625,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-063",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "Los Critics aproximan objetivos Q.",
+      "best_entailment_score": 0.1390380859375,
+      "best_contradiction_score": 0.323486328125
+    },
+    {
+      "id": "EV-067",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El buffer contiene experiencias del agente.",
+      "best_entailment_score": 0.08209228515625,
+      "best_contradiction_score": 0.041473388671875
+    },
+    {
+      "id": "EV-068",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "Q(s,a) depende del estado y la acción.",
+      "best_entailment_score": 0.60986328125,
+      "best_contradiction_score": 0.035125732421875
+    },
+    {
+      "id": "EV-069",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "SAC combina evaluación y optimización de política.",
+      "best_entailment_score": 0.347412109375,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-070",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "La entropía evita una política demasiado concentrada.",
+      "best_entailment_score": 0.40283203125,
+      "best_contradiction_score": 0.12335205078125
+    },
+    {
+      "id": "EV-071",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "Dos Critics reducen el sesgo optimista.",
+      "best_entailment_score": 0.7216796875,
+      "best_contradiction_score": 0.1634521484375
+    },
+    {
+      "id": "EV-072",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "Actor y Critics tienen objetivos distintos.",
+      "best_entailment_score": 0.171630859375,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-074",
+      "group": "D_PARAPHRASE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "La temperatura puede optimizarse automáticamente.",
+      "best_entailment_score": 0.0032501220703125,
+      "best_contradiction_score": 0.0004420280456542969
+    },
+    {
+      "id": "EV-079",
+      "group": "E_ROLE_DISTINCTION",
+      "gold": "INSUFFICIENT",
+      "predicted": "SUPPORTED",
+      "claim": "El entorno actualiza pesos del Actor.",
+      "best_entailment_score": 0.80322265625,
+      "best_contradiction_score": 0.1278076171875
+    },
+    {
+      "id": "EV-081",
+      "group": "E_ROLE_DISTINCTION",
+      "gold": "INSUFFICIENT",
+      "predicted": "CONTRADICTED",
+      "claim": "El robot configura la tasa de aprendizaje.",
+      "best_entailment_score": 0.0286407470703125,
+      "best_contradiction_score": 0.92822265625
+    },
+    {
+      "id": "EV-085",
+      "group": "E_ROLE_DISTINCTION",
+      "gold": "INSUFFICIENT",
+      "predicted": "CONTRADICTED",
+      "claim": "El Actor mide velocidad angular.",
+      "best_entailment_score": 0.0323486328125,
+      "best_contradiction_score": 0.94384765625
+    },
+    {
+      "id": "EV-086",
+      "group": "E_ROLE_DISTINCTION",
+      "gold": "INSUFFICIENT",
+      "predicted": "CONTRADICTED",
+      "claim": "Q configura límites articulares.",
+      "best_entailment_score": 0.0199127197265625,
+      "best_contradiction_score": 0.8857421875
+    },
+    {
+      "id": "EV-088",
+      "group": "E_ROLE_DISTINCTION",
+      "gold": "INSUFFICIENT",
+      "predicted": "CONTRADICTED",
+      "claim": "El entorno representa la política estocástica.",
+      "best_entailment_score": 0.0009775161743164062,
+      "best_contradiction_score": 0.9951171875
+    },
+    {
+      "id": "EV-091",
+      "group": "F_MULTI_EVIDENCE",
+      "gold": "SUPPORTED",
+      "predicted": "CONFLICTING_EVIDENCE",
+      "claim": "SAC es off-policy.",
+      "best_entailment_score": 0.98486328125,
+      "best_contradiction_score": 0.9765625
+    },
+    {
+      "id": "EV-092",
+      "group": "F_MULTI_EVIDENCE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Actor es estocástico.",
+      "best_entailment_score": 0.54541015625,
+      "best_contradiction_score": 0.1346435546875
+    },
+    {
+      "id": "EV-093",
+      "group": "F_MULTI_EVIDENCE",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "SAC utiliza dos Critics.",
+      "best_entailment_score": 0.07159423828125,
+      "best_contradiction_score": 0.796875
+    },
+    {
+      "id": "EV-104",
+      "group": "F_MULTI_EVIDENCE",
+      "gold": "SUPPORTED",
+      "predicted": "CONFLICTING_EVIDENCE",
+      "claim": "La temperatura regula entropía.",
+      "best_entailment_score": 0.9814453125,
+      "best_contradiction_score": 0.90625
+    },
+    {
+      "id": "EV-107",
+      "group": "G_ROBUSTNESS",
+      "gold": "SUPPORTED",
+      "predicted": "CONTRADICTED",
+      "claim": "El Actor no estima Q; representa la política.",
+      "best_entailment_score": 0.07330322265625,
+      "best_contradiction_score": 0.8642578125
+    },
+    {
+      "id": "EV-108",
+      "group": "G_ROBUSTNESS",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "SAC emplea dos funciones Q twin-critic.",
+      "best_entailment_score": 0.10076904296875,
+      "best_contradiction_score": 0.007068634033203125
+    },
+    {
+      "id": "EV-110",
+      "group": "G_ROBUSTNESS",
+      "gold": "SUPPORTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El buffer conserva experiencias anteriores.",
+      "best_entailment_score": 0.73486328125,
+      "best_contradiction_score": 0.0033130645751953125
+    },
+    {
+      "id": "EV-111",
+      "group": "G_ROBUSTNESS",
+      "gold": "SUPPORTED",
+      "predicted": "CONTRADICTED",
+      "claim": "Alpha pondera la entropía.",
+      "best_entailment_score": 0.04498291015625,
+      "best_contradiction_score": 0.92041015625
+    },
+    {
+      "id": "EV-114",
+      "group": "G_ROBUSTNESS",
+      "gold": "CONTRADICTED",
+      "predicted": "INSUFFICIENT",
+      "claim": "El Critic produce la distribución de acciones.",
+      "best_entailment_score": 0.0007767677307128906,
+      "best_contradiction_score": 0.0
+    },
+    {
+      "id": "EV-118",
+      "group": "G_ROBUSTNESS",
+      "gold": "INSUFFICIENT",
+      "predicted": "CONTRADICTED",
+      "claim": "SAC siempre usa exactamente dos Critics.",
+      "best_entailment_score": 5.233287811279297e-05,
+      "best_contradiction_score": 0.994140625
+    }
+  ],
+  "limitations": [
+    "Dataset sintético; no es benchmark externo.",
+    "Scores NLI no son probabilidades calibradas.",
+    "La evaluación no incluye ClaimExtractor ni la interfaz completa.",
+    "El verificador recibe evidencias RAG sintéticas; no se evalúa aquí DDGS ni el límite mixto RAG/DDGS."
+  ]
+}

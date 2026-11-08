@@ -1,0 +1,971 @@
+{
+  "model": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+  "device": "cuda",
+  "elapsed_seconds": 1.960005760192871,
+  "n_cases": 48,
+  "summary": {
+    "baseline_language": {
+      "n": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "confusion": {
+        "SUPPORTED": {
+          "SUPPORTED": 4,
+          "CONTRADICTED": 1,
+          "INSUFFICIENT": 1
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 2
+        }
+      }
+    },
+    "terminology": {
+      "n": 8,
+      "correct": 3,
+      "accuracy": 0.375,
+      "confusion": {
+        "SUPPORTED": {
+          "SUPPORTED": 1,
+          "CONTRADICTED": 2,
+          "INSUFFICIENT": 3
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 2
+        }
+      }
+    },
+    "syntax": {
+      "n": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "confusion": {
+        "SUPPORTED": {
+          "SUPPORTED": 6,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 0
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 2,
+          "INSUFFICIENT": 0
+        }
+      }
+    },
+    "implicitness": {
+      "n": 8,
+      "correct": 4,
+      "accuracy": 0.5,
+      "confusion": {
+        "SUPPORTED": {
+          "SUPPORTED": 4,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 2
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 2,
+          "INSUFFICIENT": 0
+        }
+      }
+    },
+    "explicitness": {
+      "n": 8,
+      "correct": 0,
+      "accuracy": 0.0,
+      "confusion": {
+        "SUPPORTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 0,
+          "INSUFFICIENT": 6
+        },
+        "INSUFFICIENT": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 2,
+          "INSUFFICIENT": 0
+        }
+      }
+    },
+    "contradiction_control": {
+      "n": 8,
+      "correct": 6,
+      "accuracy": 0.75,
+      "confusion": {
+        "CONTRADICTED": {
+          "SUPPORTED": 0,
+          "CONTRADICTED": 6,
+          "INSUFFICIENT": 2
+        }
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "P2-02-BASE-ES",
+      "case_id": "P2-02",
+      "factor": "baseline_language",
+      "level": "ES_ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+      "evidence": "Al seleccionar transiciones al azar del buffer, se reduce la dependencia temporal entre los ejemplos de entrenamiento.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.9931640625,
+        "neutral": 0.00582122802734375,
+        "contradiction": 0.0009813308715820312
+      }
+    },
+    {
+      "id": "P2-02-BASE-EN",
+      "case_id": "P2-02",
+      "factor": "baseline_language",
+      "level": "EN_EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "Random sampling from the replay buffer reduces temporal correlation between training examples.",
+      "evidence": "Randomly sampling stored transitions helps decorrelate training batches.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.3310546875,
+        "neutral": 0.034820556640625,
+        "contradiction": 0.63427734375
+      }
+    },
+    {
+      "id": "P2-02-TERMINOLOGY-ES",
+      "case_id": "P2-02",
+      "factor": "terminology",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+      "evidence": "El muestreo aleatorio de transiciones almacenadas en la memoria de reproducción reduce la dependencia temporal entre lotes de entrenamiento.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0190582275390625,
+        "neutral": 0.9775390625,
+        "contradiction": 0.0036220550537109375
+      }
+    },
+    {
+      "id": "P2-02-TERMINOLOGY-EN",
+      "case_id": "P2-02",
+      "factor": "terminology",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "Random sampling from the replay buffer reduces temporal correlation between training examples.",
+      "evidence": "Random replay sampling reduces temporal dependence between training batches.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.98583984375,
+        "neutral": 0.0121002197265625,
+        "contradiction": 0.0018520355224609375
+      }
+    },
+    {
+      "id": "P2-02-SYNTAX-ES",
+      "case_id": "P2-02",
+      "factor": "syntax",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+      "evidence": "La correlación temporal entre los ejemplos de entrenamiento disminuye cuando las transiciones del buffer se seleccionan al azar.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.99462890625,
+        "neutral": 0.00511932373046875,
+        "contradiction": 0.0003643035888671875
+      }
+    },
+    {
+      "id": "P2-02-SYNTAX-EN",
+      "case_id": "P2-02",
+      "factor": "syntax",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "Random sampling from the replay buffer reduces temporal correlation between training examples.",
+      "evidence": "Temporal correlation between training examples decreases when transitions from the replay buffer are sampled randomly.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.9833984375,
+        "neutral": 0.016357421875,
+        "contradiction": 0.00026988983154296875
+      }
+    },
+    {
+      "id": "P2-02-IMPLICITNESS-ES",
+      "case_id": "P2-02",
+      "factor": "implicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+      "evidence": "El uso de transiciones seleccionadas al azar hace que los lotes de entrenamiento sean menos dependientes entre sí.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.99609375,
+        "neutral": 0.00373077392578125,
+        "contradiction": 0.000392913818359375
+      }
+    },
+    {
+      "id": "P2-02-IMPLICITNESS-EN",
+      "case_id": "P2-02",
+      "factor": "implicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "Random sampling from the replay buffer reduces temporal correlation between training examples.",
+      "evidence": "Using randomly selected transitions makes training batches less dependent on one another.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.9892578125,
+        "neutral": 0.00992584228515625,
+        "contradiction": 0.0006957054138183594
+      }
+    },
+    {
+      "id": "P2-02-EXPLICITNESS-ES",
+      "case_id": "P2-02",
+      "factor": "explicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+      "evidence": "El muestreo aleatorio del Replay Buffer reduce la correlación temporal entre las transiciones que forman cada lote de entrenamiento.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.029693603515625,
+        "neutral": 0.92822265625,
+        "contradiction": 0.042083740234375
+      }
+    },
+    {
+      "id": "P2-02-EXPLICITNESS-EN",
+      "case_id": "P2-02",
+      "factor": "explicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "Random sampling from the replay buffer reduces temporal correlation between training examples.",
+      "evidence": "Random sampling from the replay buffer reduces temporal correlation among transitions in each training batch.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.02008056640625,
+        "neutral": 0.97607421875,
+        "contradiction": 0.00380706787109375
+      }
+    },
+    {
+      "id": "P2-02-CONTRADICTION-ES",
+      "case_id": "P2-02",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "es",
+      "gold": "CONTRADICTED",
+      "claim": "El muestreo aleatorio del buffer reduce la correlación temporal entre ejemplos de entrenamiento.",
+      "evidence": "El muestreo secuencial del buffer mantiene la correlación temporal entre los ejemplos de entrenamiento.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.00305938720703125,
+        "neutral": 0.84814453125,
+        "contradiction": 0.148681640625
+      }
+    },
+    {
+      "id": "P2-02-CONTRADICTION-EN",
+      "case_id": "P2-02",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "en",
+      "gold": "CONTRADICTED",
+      "claim": "Random sampling from the replay buffer reduces temporal correlation between training examples.",
+      "evidence": "Sequential sampling from the replay buffer preserves temporal correlation between training examples.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.0021152496337890625,
+        "neutral": 0.42822265625,
+        "contradiction": 0.56982421875
+      }
+    },
+    {
+      "id": "P2-03-BASE-ES",
+      "case_id": "P2-03",
+      "factor": "baseline_language",
+      "level": "ES_ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+      "evidence": "La actualización del Actor favorece acciones con estimaciones Q elevadas y conserva una contribución de entropía.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.97802734375,
+        "neutral": 0.0212554931640625,
+        "contradiction": 0.0006046295166015625
+      }
+    },
+    {
+      "id": "P2-03-BASE-EN",
+      "case_id": "P2-03",
+      "factor": "baseline_language",
+      "level": "EN_EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The actor learns to favor actions with higher expected value while retaining the entropy incentive.",
+      "evidence": "The policy update balances high Q estimates with an entropy contribution.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.2286376953125,
+        "neutral": 0.6181640625,
+        "contradiction": 0.1531982421875
+      }
+    },
+    {
+      "id": "P2-03-TERMINOLOGY-ES",
+      "case_id": "P2-03",
+      "factor": "terminology",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+      "evidence": "La red de política optimiza la selección de acciones usando estimaciones de la función Q y un término de entropía.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0140533447265625,
+        "neutral": 0.955078125,
+        "contradiction": 0.0308685302734375
+      }
+    },
+    {
+      "id": "P2-03-TERMINOLOGY-EN",
+      "case_id": "P2-03",
+      "factor": "terminology",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The actor learns to favor actions with higher expected value while retaining the entropy incentive.",
+      "evidence": "The policy network optimizes action selection using Q-function estimates and an entropy term.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0069122314453125,
+        "neutral": 0.990234375,
+        "contradiction": 0.002777099609375
+      }
+    },
+    {
+      "id": "P2-03-SYNTAX-ES",
+      "case_id": "P2-03",
+      "factor": "syntax",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+      "evidence": "Las acciones de mayor valor esperado son favorecidas por el Actor, mientras se mantiene el incentivo entrópico.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.998046875,
+        "neutral": 0.0015420913696289062,
+        "contradiction": 0.00026035308837890625
+      }
+    },
+    {
+      "id": "P2-03-SYNTAX-EN",
+      "case_id": "P2-03",
+      "factor": "syntax",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The actor learns to favor actions with higher expected value while retaining the entropy incentive.",
+      "evidence": "Actions with higher expected value are favored by the actor while the entropy incentive is maintained.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.99560546875,
+        "neutral": 0.00399017333984375,
+        "contradiction": 0.00022685527801513672
+      }
+    },
+    {
+      "id": "P2-03-IMPLICITNESS-ES",
+      "case_id": "P2-03",
+      "factor": "implicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+      "evidence": "La optimización combina la calidad estimada de las acciones con la diversidad del comportamiento de la política.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.012054443359375,
+        "neutral": 0.9853515625,
+        "contradiction": 0.0024852752685546875
+      }
+    },
+    {
+      "id": "P2-03-IMPLICITNESS-EN",
+      "case_id": "P2-03",
+      "factor": "implicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The actor learns to favor actions with higher expected value while retaining the entropy incentive.",
+      "evidence": "Optimization combines estimated action quality with diversity in the policy's behavior.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.1182861328125,
+        "neutral": 0.876953125,
+        "contradiction": 0.004974365234375
+      }
+    },
+    {
+      "id": "P2-03-EXPLICITNESS-ES",
+      "case_id": "P2-03",
+      "factor": "explicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+      "evidence": "Durante su actualización, el Actor aumenta la preferencia por acciones con mayor valor Q y mantiene explícitamente el término de entropía.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.04803466796875,
+        "neutral": 0.8974609375,
+        "contradiction": 0.0545654296875
+      }
+    },
+    {
+      "id": "P2-03-EXPLICITNESS-EN",
+      "case_id": "P2-03",
+      "factor": "explicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The actor learns to favor actions with higher expected value while retaining the entropy incentive.",
+      "evidence": "During its update, the actor increases preference for higher-Q actions and explicitly retains the entropy term.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.00738525390625,
+        "neutral": 0.9892578125,
+        "contradiction": 0.0031490325927734375
+      }
+    },
+    {
+      "id": "P2-03-CONTRADICTION-ES",
+      "case_id": "P2-03",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "es",
+      "gold": "CONTRADICTED",
+      "claim": "El Actor aprende a preferir acciones con mayor valor esperado sin perder el incentivo de entropía.",
+      "evidence": "El Actor optimiza las acciones ignorando por completo el valor Q y eliminando el término de entropía.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.003650665283203125,
+        "neutral": 0.560546875,
+        "contradiction": 0.435791015625
+      }
+    },
+    {
+      "id": "P2-03-CONTRADICTION-EN",
+      "case_id": "P2-03",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "en",
+      "gold": "CONTRADICTED",
+      "claim": "The actor learns to favor actions with higher expected value while retaining the entropy incentive.",
+      "evidence": "The actor optimizes actions while completely ignoring Q-values and removing the entropy term.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.0013551712036132812,
+        "neutral": 0.09893798828125,
+        "contradiction": 0.89990234375
+      }
+    },
+    {
+      "id": "P2-05-BASE-ES",
+      "case_id": "P2-05",
+      "factor": "baseline_language",
+      "level": "ES_ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+      "evidence": "El coeficiente de temperatura determina el peso que tiene la entropía de la política en el objetivo.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.916015625,
+        "neutral": 0.07989501953125,
+        "contradiction": 0.00424957275390625
+      }
+    },
+    {
+      "id": "P2-05-BASE-EN",
+      "case_id": "P2-05",
+      "factor": "baseline_language",
+      "level": "EN_EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The temperature coefficient controls how strongly policy randomness influences the objective.",
+      "evidence": "Changing the temperature coefficient changes the weight assigned to policy entropy.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.97607421875,
+        "neutral": 0.022552490234375,
+        "contradiction": 0.001399993896484375
+      }
+    },
+    {
+      "id": "P2-05-TERMINOLOGY-ES",
+      "case_id": "P2-05",
+      "factor": "terminology",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+      "evidence": "El parámetro alfa pondera la contribución de la entropía de la política en la función objetivo.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.06414794921875,
+        "neutral": 0.056427001953125,
+        "contradiction": 0.87939453125
+      }
+    },
+    {
+      "id": "P2-05-TERMINOLOGY-EN",
+      "case_id": "P2-05",
+      "factor": "terminology",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The temperature coefficient controls how strongly policy randomness influences the objective.",
+      "evidence": "The alpha parameter weights the contribution of policy entropy in the objective function.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.004840850830078125,
+        "neutral": 0.01007080078125,
+        "contradiction": 0.98486328125
+      }
+    },
+    {
+      "id": "P2-05-SYNTAX-ES",
+      "case_id": "P2-05",
+      "factor": "syntax",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+      "evidence": "En el objetivo, el peso asignado a la entropía de la política depende del coeficiente de temperatura.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.99755859375,
+        "neutral": 0.002010345458984375,
+        "contradiction": 0.0002808570861816406
+      }
+    },
+    {
+      "id": "P2-05-SYNTAX-EN",
+      "case_id": "P2-05",
+      "factor": "syntax",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The temperature coefficient controls how strongly policy randomness influences the objective.",
+      "evidence": "In the objective, the weight assigned to policy entropy depends on the temperature coefficient.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.99755859375,
+        "neutral": 0.002105712890625,
+        "contradiction": 0.000255584716796875
+      }
+    },
+    {
+      "id": "P2-05-IMPLICITNESS-ES",
+      "case_id": "P2-05",
+      "factor": "implicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+      "evidence": "El parámetro ajusta el equilibrio entre la recompensa esperada y el comportamiento estocástico de la política.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.60107421875,
+        "neutral": 0.34814453125,
+        "contradiction": 0.0506591796875
+      }
+    },
+    {
+      "id": "P2-05-IMPLICITNESS-EN",
+      "case_id": "P2-05",
+      "factor": "implicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The temperature coefficient controls how strongly policy randomness influences the objective.",
+      "evidence": "The parameter adjusts the balance between expected return and stochastic policy behavior.",
+      "predicted_nli": "entailment",
+      "predicted": "SUPPORTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.7353515625,
+        "neutral": 0.232177734375,
+        "contradiction": 0.03265380859375
+      }
+    },
+    {
+      "id": "P2-05-EXPLICITNESS-ES",
+      "case_id": "P2-05",
+      "factor": "explicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "SUPPORTED",
+      "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+      "evidence": "El coeficiente de temperatura alfa multiplica el término de entropía de la política dentro del objetivo de SAC.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.01094818115234375,
+        "neutral": 0.9521484375,
+        "contradiction": 0.03680419921875
+      }
+    },
+    {
+      "id": "P2-05-EXPLICITNESS-EN",
+      "case_id": "P2-05",
+      "factor": "explicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "SUPPORTED",
+      "claim": "The temperature coefficient controls how strongly policy randomness influences the objective.",
+      "evidence": "The temperature coefficient alpha multiplies the policy entropy term in the SAC objective.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0007290840148925781,
+        "neutral": 0.9951171875,
+        "contradiction": 0.004352569580078125
+      }
+    },
+    {
+      "id": "P2-05-CONTRADICTION-ES",
+      "case_id": "P2-05",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "es",
+      "gold": "CONTRADICTED",
+      "claim": "La temperatura controla cuánto influye la aleatoriedad de la política en el objetivo.",
+      "evidence": "El coeficiente de temperatura no modifica el peso de la entropía de la política en el objetivo.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.0012445449829101562,
+        "neutral": 0.00986480712890625,
+        "contradiction": 0.98876953125
+      }
+    },
+    {
+      "id": "P2-05-CONTRADICTION-EN",
+      "case_id": "P2-05",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "en",
+      "gold": "CONTRADICTED",
+      "claim": "The temperature coefficient controls how strongly policy randomness influences the objective.",
+      "evidence": "The temperature coefficient does not change the weight of policy entropy in the objective.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": true,
+      "scores": {
+        "entailment": 0.0020084381103515625,
+        "neutral": 0.0113372802734375,
+        "contradiction": 0.98681640625
+      }
+    },
+    {
+      "id": "P2-07-BASE-ES",
+      "case_id": "P2-07",
+      "factor": "baseline_language",
+      "level": "ES_ES",
+      "language": "es",
+      "gold": "INSUFFICIENT",
+      "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+      "evidence": "La política produce las acciones que luego se aplican al entorno.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": true,
+      "scores": {
+        "entailment": 0.0228424072265625,
+        "neutral": 0.88818359375,
+        "contradiction": 0.08905029296875
+      }
+    },
+    {
+      "id": "P2-07-BASE-EN",
+      "case_id": "P2-07",
+      "factor": "baseline_language",
+      "level": "EN_EN",
+      "language": "en",
+      "gold": "INSUFFICIENT",
+      "claim": "The replay buffer is the component that executes actions.",
+      "evidence": "The policy outputs actions that are applied to the environment.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": true,
+      "scores": {
+        "entailment": 0.00789642333984375,
+        "neutral": 0.8955078125,
+        "contradiction": 0.09674072265625
+      }
+    },
+    {
+      "id": "P2-07-TERMINOLOGY-ES",
+      "case_id": "P2-07",
+      "factor": "terminology",
+      "level": "ES",
+      "language": "es",
+      "gold": "INSUFFICIENT",
+      "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+      "evidence": "La política de comportamiento genera las acciones que se envían al entorno.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": true,
+      "scores": {
+        "entailment": 0.01702880859375,
+        "neutral": 0.90771484375,
+        "contradiction": 0.07537841796875
+      }
+    },
+    {
+      "id": "P2-07-TERMINOLOGY-EN",
+      "case_id": "P2-07",
+      "factor": "terminology",
+      "level": "EN",
+      "language": "en",
+      "gold": "INSUFFICIENT",
+      "claim": "The replay buffer is the component that executes actions.",
+      "evidence": "The behavior policy generates the actions that are sent to the environment.",
+      "predicted_nli": "neutral",
+      "predicted": "INSUFFICIENT",
+      "correct": true,
+      "scores": {
+        "entailment": 0.01019287109375,
+        "neutral": 0.82373046875,
+        "contradiction": 0.166015625
+      }
+    },
+    {
+      "id": "P2-07-SYNTAX-ES",
+      "case_id": "P2-07",
+      "factor": "syntax",
+      "level": "ES",
+      "language": "es",
+      "gold": "INSUFFICIENT",
+      "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+      "evidence": "Las acciones aplicadas al entorno son generadas por la política, no por el almacenamiento de experiencias.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0006337165832519531,
+        "neutral": 0.02301025390625,
+        "contradiction": 0.9765625
+      }
+    },
+    {
+      "id": "P2-07-SYNTAX-EN",
+      "case_id": "P2-07",
+      "factor": "syntax",
+      "level": "EN",
+      "language": "en",
+      "gold": "INSUFFICIENT",
+      "claim": "The replay buffer is the component that executes actions.",
+      "evidence": "Actions applied to the environment are generated by the policy, not by experience storage.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0014553070068359375,
+        "neutral": 0.0364990234375,
+        "contradiction": 0.9619140625
+      }
+    },
+    {
+      "id": "P2-07-IMPLICITNESS-ES",
+      "case_id": "P2-07",
+      "factor": "implicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "INSUFFICIENT",
+      "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+      "evidence": "El componente que decide qué acción realizar es la política; el buffer conserva transiciones.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.0017976760864257812,
+        "neutral": 0.026123046875,
+        "contradiction": 0.97216796875
+      }
+    },
+    {
+      "id": "P2-07-IMPLICITNESS-EN",
+      "case_id": "P2-07",
+      "factor": "implicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "INSUFFICIENT",
+      "claim": "The replay buffer is the component that executes actions.",
+      "evidence": "The policy decides which action to take; the buffer stores transitions.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.007080078125,
+        "neutral": 0.061767578125,
+        "contradiction": 0.93115234375
+      }
+    },
+    {
+      "id": "P2-07-EXPLICITNESS-ES",
+      "case_id": "P2-07",
+      "factor": "explicitness",
+      "level": "ES",
+      "language": "es",
+      "gold": "INSUFFICIENT",
+      "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+      "evidence": "El Replay Buffer no ejecuta acciones: únicamente almacena transiciones; la política genera las acciones que se aplican al entorno.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 0.00020039081573486328,
+        "neutral": 0.0033206939697265625,
+        "contradiction": 0.99658203125
+      }
+    },
+    {
+      "id": "P2-07-EXPLICITNESS-EN",
+      "case_id": "P2-07",
+      "factor": "explicitness",
+      "level": "EN",
+      "language": "en",
+      "gold": "INSUFFICIENT",
+      "claim": "The replay buffer is the component that executes actions.",
+      "evidence": "The replay buffer does not execute actions; it only stores transitions, while the policy generates actions applied to the environment.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": false,
+      "scores": {
+        "entailment": 6.693601608276367e-05,
+        "neutral": 0.0018930435180664062,
+        "contradiction": 0.998046875
+      }
+    },
+    {
+      "id": "P2-07-CONTRADICTION-ES",
+      "case_id": "P2-07",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "es",
+      "gold": "CONTRADICTED",
+      "claim": "El Replay Buffer es el componente que ejecuta las acciones.",
+      "evidence": "El Replay Buffer no ejecuta acciones; su función es almacenar transiciones y datos de experiencia.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": true,
+      "scores": {
+        "entailment": 7.772445678710938e-05,
+        "neutral": 0.0017032623291015625,
+        "contradiction": 0.998046875
+      }
+    },
+    {
+      "id": "P2-07-CONTRADICTION-EN",
+      "case_id": "P2-07",
+      "factor": "contradiction_control",
+      "level": "explicit_negation",
+      "language": "en",
+      "gold": "CONTRADICTED",
+      "claim": "The replay buffer is the component that executes actions.",
+      "evidence": "The replay buffer does not execute actions; its role is to store transitions and experience data.",
+      "predicted_nli": "contradiction",
+      "predicted": "CONTRADICTED",
+      "correct": true,
+      "scores": {
+        "entailment": 5.984306335449219e-05,
+        "neutral": 0.0011844635009765625,
+        "contradiction": 0.99853515625
+      }
+    }
+  ]
+}

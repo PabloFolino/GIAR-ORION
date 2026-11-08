@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-11-03T17:02:27.511700-03:00",
+  "case_count": 24,
+  "records": 48,
+  "successful_records": 48,
+  "retrieval_expected_source_hit_at_k_pct": 100.0,
+  "mean_retrieval_seconds": 0.326,
+  "mean_retrieved_chunks": 5.0,
+  "generation_records": 48,
+  "nonempty_answer_pct": 100.0,
+  "abstention_match_pct": 52.1,
+  "truncations": 0,
+  "mean_generation_seconds": 15.779,
+  "verification_records": 48,
+  "verification_status_counts": {
+    "CONFLICTING_EVIDENCE": 26,
+    "MIXED_EVIDENCE": 15,
+    "PARTIALLY_SUPPORTED": 5,
+    "CONTRADICTED": 1,
+    "INSUFFICIENT": 1
+  },
+  "mean_verification_seconds": 17.198,
+  "source_mode": "web",
+  "cases_with_web_results": 48,
+  "total_case_web_results": 240,
+  "case_web_search_failures": 0,
+  "ddgs_free_results": 5,
+  "ddgs_authorized_results": 0,
+  "stage_checks": {
+    "rag_initialization": {
+      "ok": true,
+      "seconds": 19.169,
+      "chunks": 1072
+    },
+    "ddgs_free": {
+      "ok": false,
+      "error": "WebSearchError: No se pudo completar la búsqueda DDGS después de probar los motores configurados. Detalles: brave, intento 1/2: No results found. | brave, intento 2/2: No results found. | duckduckgo, intento 1/2: No results found. | duckduckgo, intento 2/2: No results found.",
+      "failure_class": "WEB_DDGS"
+    },
+    "ddgs_authorized": {
+      "ok": false,
+      "error": "WebSearchError: No se pudo completar la búsqueda DDGS después de probar los motores configurados. Detalles: brave, intento 1/2: No results found. | brave, intento 2/2: No results found. | duckduckgo, intento 1/2: No results found. | duckduckgo, intento 2/2: No results found.",
+      "failure_class": "WEB_DDGS"
+    },
+    "verification_pipeline_initialization": {
+      "ok": true,
+      "pipeline_version": "0.1.0",
+      "extractor_version": "0.1.2",
+      "verifier_version": "0.2.1"
+    },
+    "rag_ddgs_llm_verifier_integration": {
+      "ok": true
+    }
+  },
+  "limitations": [
+    "El evaluador reproduce las etapas funcionales, pero no automatiza la interfaz interactiva ni el historial de main_multilinea.py.",
+    "La modalidad seleccionada se aplica a cada caso; en modo web, DDGS se ejecuta una vez por consulta y sus resultados se incorporan a ambas generaciones.",
+    "La verificación NLI compara afirmaciones con fragmentos, no con el contenido completo de las páginas web.",
+    "Los scores NLI no son probabilidades calibradas ni certificaciones científicas.",
+    "expected_source_hit_at_k y evidence_term_coverage son indicadores de cribado, no juicios semánticos definitivos.",
+    "La ejecución de ambos modos duplica las generaciones y verificaciones; los tiempos dependen del hardware y de la carga de Ollama/NLI."
+  ]
+}
