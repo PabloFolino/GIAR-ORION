@@ -1,9 +1,9 @@
 {
-  "verifier_version": "0.3.0",
+  "verifier_version": "0.3.3",
   "adjudication_model": "qwen3:8b",
   "ollama_url": "http://localhost:11434",
   "total_cases": 30,
-  "total_elapsed_seconds": 245.822,
+  "total_elapsed_seconds": 245.124,
   "results": [
     {
       "test": {
@@ -15,7 +15,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -53,6 +53,22 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 13040015900,
+                    "prompt_eval_count": 475,
+                    "eval_count": 350,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia afirma que el Replay Buffer almacena transiciones pasadas para entrenar al agente, coincidiendo con la afirmación.\"\n    }\n] }",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019",
+                  "reinforcement_learning.002"
+                ],
                 "best_entailment_score": 0.99755859375,
                 "best_contradiction_score": 0.00030231475830078125,
                 "comparisons": [
@@ -69,7 +85,7 @@
                     "text": "The replay buffer stores past transitions and samples them later to train the agent.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "El evidence menciona que el buffer almacena transiciones pasadas y las utiliza para entrenar, lo que respalda la afirmación."
+                      "reason": "La evidencia afirma que el Replay Buffer almacena transiciones pasadas para entrenar al agente, coincidiendo con la afirmación."
                     }
                   }
                 ]
@@ -103,7 +119,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 21.141
+      "elapsed_seconds": 28.385
     },
     {
       "test": {
@@ -115,7 +131,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -153,6 +169,23 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 7734354300,
+                    "prompt_eval_count": 538,
+                    "eval_count": 362,
+                    "raw_response": "{\n\n\"items\": [{\"id\": 0, \"label\": \"SUPPORTED\", \"reason\": \"La evidencia afirma que el Actor parametriza la distribución de políticas condicionada al estado, lo que respalda directamente la afirmación.\"}]}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.004",
+                  "reinforcement_learning.017"
+                ],
                 "best_entailment_score": 0.90576171875,
                 "best_contradiction_score": 0.03387451171875,
                 "comparisons": [
@@ -169,7 +202,7 @@
                     "text": "The actor parameterizes the policy distribution over actions conditioned on the current state.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "El actor parameteriza la distribución de políticas condicionada al estado, lo que respalda la afirmación."
+                      "reason": "La evidencia afirma que el Actor parametriza la distribución de políticas condicionada al estado, lo que respalda directamente la afirmación."
                     }
                   }
                 ]
@@ -203,7 +236,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 8.794
+      "elapsed_seconds": 9.907
     },
     {
       "test": {
@@ -215,7 +248,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -253,6 +286,22 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4595598600,
+                    "prompt_eval_count": 465,
+                    "eval_count": 217,
+                    "raw_response": "{\n\n\"items\": [\n    {\"id\": 0, \"label\": \"SUPPORTED\", \"reason\": \"La evidencia afirma que SAC usa dos funciones Q (critics) para estimar Q(s,a), coincidiendo con la afirmación.\"}\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.004",
+                  "reinforcement_learning.006"
+                ],
                 "best_entailment_score": 0.02447509765625,
                 "best_contradiction_score": 0.0021762847900390625,
                 "comparisons": [
@@ -269,7 +318,7 @@
                     "text": "SAC employs two independent Q-functions, also called twin critics, to estimate Q(s,a).",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La evidencia menciona dos funciones Q independientes (twin critics) para estimar Q(s,a), lo que coincide con la afirmación."
+                      "reason": "La evidencia afirma que SAC usa dos funciones Q (critics) para estimar Q(s,a), coincidiendo con la afirmación."
                     }
                   }
                 ]
@@ -303,7 +352,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 8.825
+      "elapsed_seconds": 6.752
     },
     {
       "test": {
@@ -315,7 +364,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -353,6 +402,23 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 6379980200,
+                    "prompt_eval_count": 567,
+                    "eval_count": 369,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia afirma que la entropía objetivo especifica el nivel de entropía deseado para la política, coincidiendo con la afirmación.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.025",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.023"
+                ],
                 "best_entailment_score": 0.031585693359375,
                 "best_contradiction_score": 0.419189453125,
                 "comparisons": [
@@ -369,7 +435,7 @@
                     "text": "The target entropy specifies the desired entropy level of the policy.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La entropía objetivo especifica el nivel deseado de entropía, equivalente a aleatoriedad en el contexto de políticas."
+                      "reason": "La evidencia afirma que la entropía objetivo especifica el nivel de entropía deseado para la política, coincidiendo con la afirmación."
                     }
                   }
                 ]
@@ -403,7 +469,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 9.075
+      "elapsed_seconds": 8.476
     },
     {
       "test": {
@@ -415,7 +481,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -453,6 +519,22 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4399179400,
+                    "prompt_eval_count": 485,
+                    "eval_count": 261,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia afirma que alpha controla el peso de la entropía en el objetivo de la política, coincidiendo con la afirmación.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.023"
+                ],
                 "best_entailment_score": 0.8330078125,
                 "best_contradiction_score": 0.1224365234375,
                 "comparisons": [
@@ -469,7 +551,7 @@
                     "text": "The temperature parameter alpha controls the relative weight of the entropy term in the policy objective.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "El coeficiente alfa controla el peso de la entropía en el objetivo de la política"
+                      "reason": "La evidencia afirma que alpha controla el peso de la entropía en el objetivo de la política, coincidiendo con la afirmación."
                     }
                   }
                 ]
@@ -503,7 +585,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 8.928
+      "elapsed_seconds": 6.647
     },
     {
       "test": {
@@ -515,7 +597,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -553,6 +635,21 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 3767349900,
+                    "prompt_eval_count": 407,
+                    "eval_count": 229,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia afirma que la técnica permite gradientes a través de una acción estocástica, coincidiendo con la afirmación.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.006"
+                ],
                 "best_entailment_score": 0.94287109375,
                 "best_contradiction_score": 0.0155792236328125,
                 "comparisons": [
@@ -569,7 +666,7 @@
                     "text": "The reparameterization trick expresses a stochastic action as a differentiable transformation, allowing gradients to pass through the sampled action.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La reparametrización permite calcular gradientes a través de acciones estocásticas."
+                      "reason": "La evidencia afirma que la técnica permite gradientes a través de una acción estocástica, coincidiendo con la afirmación."
                     }
                   }
                 ]
@@ -603,7 +700,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 5.801
+      "elapsed_seconds": 5.866
     },
     {
       "test": {
@@ -615,7 +712,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -653,6 +750,21 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4962060700,
+                    "prompt_eval_count": 408,
+                    "eval_count": 271,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia describe exactamente el entrenamiento del crítico mediante minimización del error con el objetivo de Bellman.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.018"
+                ],
                 "best_entailment_score": 0.96435546875,
                 "best_contradiction_score": 0.0005130767822265625,
                 "comparisons": [
@@ -669,7 +781,7 @@
                     "text": "The critic is optimized by minimizing the difference between its Q-value prediction and the Bellman target.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "El texto afirma que el crítico se optimiza minimizando la diferencia entre su predicción Q y el objetivo de Bellman, lo que coincide con la afirmación del reclamo."
+                      "reason": "La evidencia describe exactamente el entrenamiento del crítico mediante minimización del error con el objetivo de Bellman."
                     }
                   }
                 ]
@@ -703,7 +815,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.926
+      "elapsed_seconds": 7.048
     },
     {
       "test": {
@@ -715,7 +827,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -753,6 +865,22 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4599144100,
+                    "prompt_eval_count": 473,
+                    "eval_count": 241,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia menciona retención de regularización de entropía, alineándose con la afirmación sobre mantener entropía.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.023",
+                  "reinforcement_learning.017"
+                ],
                 "best_entailment_score": 0.95458984375,
                 "best_contradiction_score": 0.007305145263671875,
                 "comparisons": [
@@ -769,7 +897,7 @@
                     "text": "The actor objective encourages high expected Q-values while retaining an entropy regularization term.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La evidencia afirma directamente ambos aspectos del reclamo: alto valor Q y retención de regularización de entropía."
+                      "reason": "La evidencia menciona retención de regularización de entropía, alineándose con la afirmación sobre mantener entropía."
                     }
                   }
                 ]
@@ -803,7 +931,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 9.019
+      "elapsed_seconds": 6.659
     },
     {
       "test": {
@@ -815,7 +943,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -853,6 +981,24 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5132856400,
+                    "prompt_eval_count": 670,
+                    "eval_count": 254,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia afirma que el ajuste automático modifica alfa (coeficiente de temperatura) para acercar la entropía de la política al objetivo.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.024",
+                  "reinforcement_learning.025",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.023"
+                ],
                 "best_entailment_score": 0.99755859375,
                 "best_contradiction_score": 0.00016188621520996094,
                 "comparisons": [
@@ -869,7 +1015,7 @@
                     "text": "Automatic entropy tuning updates the temperature coefficient alpha so that policy entropy approaches the target entropy.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La evidencia afirma que el ajuste automático modifica alfa para acercar la entropía de la política al objetivo."
+                      "reason": "La evidencia afirma que el ajuste automático modifica alfa (coeficiente de temperatura) para acercar la entropía de la política al objetivo."
                     }
                   }
                 ]
@@ -903,7 +1049,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.562
+      "elapsed_seconds": 7.224
     },
     {
       "test": {
@@ -915,7 +1061,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -953,6 +1099,19 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5314147600,
+                    "prompt_eval_count": 329,
+                    "eval_count": 288,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia menciona interpolación entre parámetros de red objetivo y principales, coincidiendo con la afirmación.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [],
                 "best_entailment_score": 0.92431640625,
                 "best_contradiction_score": 0.0016727447509765625,
                 "comparisons": [
@@ -969,7 +1128,7 @@
                     "text": "A soft target update performs a Polyak averaging step, interpolating target-network parameters with the current network parameters.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La evidencia menciona la interpolación de parámetros de la red objetivo con los actuales, lo que respalda la afirmación."
+                      "reason": "La evidencia menciona interpolación entre parámetros de red objetivo y principales, coincidiendo con la afirmación."
                     }
                   }
                 ]
@@ -1003,7 +1162,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 9.532
+      "elapsed_seconds": 7.384
     },
     {
       "test": {
@@ -1015,7 +1174,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1053,6 +1212,24 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 6519706100,
+                    "prompt_eval_count": 620,
+                    "eval_count": 381,
+                    "raw_response": "{\n\n\"items\": [\n    {\"id\": 0, \"label\": \"SUPPORTED\", \"reason\": \"La política representa una distribución de probabilidad, permitiendo acciones distintas, lo que respalda la afirmación.\"}\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.005",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.004",
+                  "reinforcement_learning.006"
+                ],
                 "best_entailment_score": 0.23193359375,
                 "best_contradiction_score": 0.0029544830322265625,
                 "comparisons": [
@@ -1069,7 +1246,7 @@
                     "text": "For a given observation, the policy can represent a probability distribution from which different actions may be sampled.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La política puede representar una distribución de probabilidad, permitiendo seleccionar diferentes acciones"
+                      "reason": "La política representa una distribución de probabilidad, permitiendo acciones distintas, lo que respalda la afirmación."
                     }
                   }
                 ]
@@ -1103,7 +1280,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 9.405
+      "elapsed_seconds": 8.594
     },
     {
       "test": {
@@ -1115,7 +1292,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1153,6 +1330,22 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5361956500,
+                    "prompt_eval_count": 479,
+                    "eval_count": 315,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"El buffer almacena experiencias para usarlas después, desacoplándolas temporalmente de las actualizaciones.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019",
+                  "reinforcement_learning.003"
+                ],
                 "best_entailment_score": 0.00925445556640625,
                 "best_contradiction_score": 0.308837890625,
                 "comparisons": [
@@ -1169,7 +1362,7 @@
                     "text": "Stored transitions can be sampled for learning after the environment interaction that generated them has already finished.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "El buffer almacena experiencias para usarlas después, desacoplándolas de las actualizaciones."
+                      "reason": "El buffer almacena experiencias para usarlas después, desacoplándolas temporalmente de las actualizaciones."
                     }
                   }
                 ]
@@ -1203,7 +1396,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 8.691
+      "elapsed_seconds": 7.45
     },
     {
       "test": {
@@ -1215,7 +1408,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1253,6 +1446,21 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 7134147700,
+                    "prompt_eval_count": 406,
+                    "eval_count": 439,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia afirma que usar dos estimaciones del crítico mitiga la sobreestimación, lo que respalda directamente la afirmación.\"\n    }\n] }",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.018"
+                ],
                 "best_entailment_score": 0.0509033203125,
                 "best_contradiction_score": 0.0191192626953125,
                 "comparisons": [
@@ -1269,7 +1477,7 @@
                     "text": "SAC takes the minimum of the two critic estimates when constructing its target, which helps mitigate overestimation.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La evidencia indica que usar el mínimo de dos estimaciones mitiga la sobreestimación, lo que respalda la afirmación."
+                      "reason": "La evidencia afirma que usar dos estimaciones del crítico mitiga la sobreestimación, lo que respalda directamente la afirmación."
                     }
                   }
                 ]
@@ -1303,7 +1511,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 10.91
+      "elapsed_seconds": 9.196
     },
     {
       "test": {
@@ -1315,7 +1523,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1339,12 +1547,7 @@
             "adjudication_model": "qwen3:8b",
             "adjudication_provider": "Ollama",
             "adjudication_enabled": true,
-            "adjudication_errors": [
-              {
-                "claim": "La temperatura regula el compromiso entre obtener recompensas y conservar diversidad en las acciones.",
-                "error": "ValueError: Qwen no devolvió el arreglo JSON 'items'."
-              }
-            ],
+            "adjudication_errors": [],
             "device": "cuda",
             "thresholds": {
               "entailment": 0.8,
@@ -1355,9 +1558,26 @@
             "claims": [
               {
                 "claim": "La temperatura regula el compromiso entre obtener recompensas y conservar diversidad en las acciones.",
-                "status": "INSUFFICIENT",
-                "adjudication_available": false,
-                "adjudication_error": "ValueError: Qwen no devolvió el arreglo JSON 'items'.",
+                "status": "SUPPORTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5864689700,
+                    "prompt_eval_count": 551,
+                    "eval_count": 356,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La temperatura equilibra recompensas y estocasticidad, que es diversidad en acciones.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.023",
+                  "reinforcement_learning.007",
+                  "reinforcement_learning.008"
+                ],
                 "best_entailment_score": 0.0447998046875,
                 "best_contradiction_score": 0.002925872802734375,
                 "comparisons": [
@@ -1373,14 +1593,14 @@
                     },
                     "text": "The entropy temperature balances reward maximization against the policy's tendency to remain stochastic.",
                     "adjudication": {
-                      "label": "UNAVAILABLE",
-                      "reason": "No se obtuvo una decisión semántica válida."
+                      "label": "SUPPORTED",
+                      "reason": "La temperatura equilibra recompensas y estocasticidad, que es diversidad en acciones."
                     }
                   }
                 ]
               }
             ],
-            "overall_status": "INSUFFICIENT",
+            "overall_status": "SUPPORTED",
             "limitations": [
               "La decisión semántica final la realiza Qwen local sobre los textos originales.",
               "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
@@ -1408,7 +1628,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 6.376
+      "elapsed_seconds": 7.921
     },
     {
       "test": {
@@ -1420,7 +1640,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1458,6 +1678,19 @@
                 "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 3938381400,
+                    "prompt_eval_count": 317,
+                    "eval_count": 235,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"SUPPORTED\",\n        \"reason\": \"La evidencia menciona actualización incremental con coeficiente pequeño, compatible con la afirmación.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [],
                 "best_entailment_score": 0.492431640625,
                 "best_contradiction_score": 0.0004901885986328125,
                 "comparisons": [
@@ -1474,7 +1707,7 @@
                     "text": "Target parameters are moved incrementally toward the online parameters using a small interpolation coefficient.",
                     "adjudication": {
                       "label": "SUPPORTED",
-                      "reason": "La evidencia menciona que los parámetros se mueven incrementalmente, lo que respalda la afirmación de actualización gradual."
+                      "reason": "La evidencia menciona actualización incremental con coeficiente pequeño, compatible con la afirmación."
                     }
                   }
                 ]
@@ -1508,7 +1741,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.076
+      "elapsed_seconds": 5.972
     },
     {
       "test": {
@@ -1520,7 +1753,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1555,9 +1788,26 @@
             "claims": [
               {
                 "claim": "En SAC, aumentar alfa reduce el peso del término de entropía en el objetivo de la política.",
-                "status": "INSUFFICIENT",
+                "status": "CONTRADICTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 3916909700,
+                    "prompt_eval_count": 573,
+                    "eval_count": 232,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"CONTRADICTED\",\n        \"reason\": \"La evidencia afirma que un mayor coeficiente de temperatura aumenta el peso del término de entropía, lo que contradice la afirmación.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.024",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.023"
+                ],
                 "best_entailment_score": 0.03656005859375,
                 "best_contradiction_score": 0.70361328125,
                 "comparisons": [
@@ -1573,14 +1823,14 @@
                     },
                     "text": "A higher entropy temperature coefficient increases the weight of the entropy term in the policy objective.",
                     "adjudication": {
-                      "label": "INSUFFICIENT",
-                      "reason": "La evidencia menciona un coeficiente de temperatura de entropía, no alfa, y su efecto es opuesto al reclamado."
+                      "label": "CONTRADICTED",
+                      "reason": "La evidencia afirma que un mayor coeficiente de temperatura aumenta el peso del término de entropía, lo que contradice la afirmación."
                     }
                   }
                 ]
               }
             ],
-            "overall_status": "INSUFFICIENT",
+            "overall_status": "CONTRADICTED",
             "limitations": [
               "La decisión semántica final la realiza Qwen local sobre los textos originales.",
               "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
@@ -1608,7 +1858,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 10.525
+      "elapsed_seconds": 5.982
     },
     {
       "test": {
@@ -1620,7 +1870,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1658,6 +1908,19 @@
                 "status": "CONTRADICTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 3596989700,
+                    "prompt_eval_count": 319,
+                    "eval_count": 218,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"CONTRADICTED\",\n        \"reason\": \"La evidencia menciona dos redes críticas (twin critics), lo que contradice la afirmación de una única red crítica.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [],
                 "best_entailment_score": 0.0005140304565429688,
                 "best_contradiction_score": 0.99853515625,
                 "comparisons": [
@@ -1674,7 +1937,7 @@
                     "text": "This SAC implementation uses two separate Q-functions, commonly referred to as twin critics, to estimate Q(s,a).",
                     "adjudication": {
                       "label": "CONTRADICTED",
-                      "reason": "La evidencia menciona dos Q-functions separados (twin critics), mientras que la afirmación dice que se usa una única red crítica."
+                      "reason": "La evidencia menciona dos redes críticas (twin critics), lo que contradice la afirmación de una única red crítica."
                     }
                   }
                 ]
@@ -1708,7 +1971,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 6.079
+      "elapsed_seconds": 5.647
     },
     {
       "test": {
@@ -1720,7 +1983,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1758,6 +2021,22 @@
                 "status": "CONTRADICTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5352709100,
+                    "prompt_eval_count": 484,
+                    "eval_count": 319,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"CONTRADICTED\",\n        \"reason\": \"La evidencia afirma que el Replay Buffer conserva transiciones anteriores, lo que contradice la afirmación de que las descarta.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019",
+                  "reinforcement_learning.020"
+                ],
                 "best_entailment_score": 0.00015366077423095703,
                 "best_contradiction_score": 0.998046875,
                 "comparisons": [
@@ -1774,7 +2053,7 @@
                     "text": "The replay buffer retains previously collected transitions and samples from this stored collection during training.",
                     "adjudication": {
                       "label": "CONTRADICTED",
-                      "reason": "El evidence indica que el buffer conserva las transiciones anteriores, lo que contradice la afirmación de que se descartan."
+                      "reason": "La evidencia afirma que el Replay Buffer conserva transiciones anteriores, lo que contradice la afirmación de que las descarta."
                     }
                   }
                 ]
@@ -1808,7 +2087,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 5.482
+      "elapsed_seconds": 7.425
     },
     {
       "test": {
@@ -1820,7 +2099,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1844,12 +2123,7 @@
             "adjudication_model": "qwen3:8b",
             "adjudication_provider": "Ollama",
             "adjudication_enabled": true,
-            "adjudication_errors": [
-              {
-                "claim": "En SAC, el Actor produce exclusivamente una acción determinista y no representa una distribución de acciones.",
-                "error": "ValueError: Qwen no devolvió el arreglo JSON 'items'."
-              }
-            ],
+            "adjudication_errors": [],
             "device": "cuda",
             "thresholds": {
               "entailment": 0.8,
@@ -1860,9 +2134,26 @@
             "claims": [
               {
                 "claim": "En SAC, el Actor produce exclusivamente una acción determinista y no representa una distribución de acciones.",
-                "status": "INSUFFICIENT",
-                "adjudication_available": false,
-                "adjudication_error": "ValueError: Qwen no devolvió el arreglo JSON 'items'.",
+                "status": "CONTRADICTED",
+                "adjudication_available": true,
+                "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4414123300,
+                    "prompt_eval_count": 536,
+                    "eval_count": 209,
+                    "raw_response": "{\n\n\"items\": [{\"id\": 0, \"label\": \"CONTRADICTED\", \"reason\": \"La evidencia afirma que el Actor representa una distribución estocástica, lo que contradice la afirmación de que produce solo acciones deterministas.\"}]}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.006",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.017"
+                ],
                 "best_entailment_score": 0.00015020370483398438,
                 "best_contradiction_score": 0.99951171875,
                 "comparisons": [
@@ -1878,14 +2169,14 @@
                     },
                     "text": "The SAC actor represents a stochastic policy distribution and samples actions from that distribution.",
                     "adjudication": {
-                      "label": "UNAVAILABLE",
-                      "reason": "No se obtuvo una decisión semántica válida."
+                      "label": "CONTRADICTED",
+                      "reason": "La evidencia afirma que el Actor representa una distribución estocástica, lo que contradice la afirmación de que produce solo acciones deterministas."
                     }
                   }
                 ]
               }
             ],
-            "overall_status": "INSUFFICIENT",
+            "overall_status": "CONTRADICTED",
             "limitations": [
               "La decisión semántica final la realiza Qwen local sobre los textos originales.",
               "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
@@ -1913,7 +2204,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 5.127
+      "elapsed_seconds": 6.504
     },
     {
       "test": {
@@ -1925,7 +2216,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -1963,6 +2254,23 @@
                 "status": "CONTRADICTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 6880100600,
+                    "prompt_eval_count": 579,
+                    "eval_count": 368,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"CONTRADICTED\",\n        \"reason\": \"La evidencia indica que alfa se optimiza durante el entrenamiento, lo que contradice que permanezca fijo.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.024",
+                  "reinforcement_learning.025",
+                  "reinforcement_learning.023"
+                ],
                 "best_entailment_score": 4.5359134674072266e-05,
                 "best_contradiction_score": 0.9990234375,
                 "comparisons": [
@@ -1979,7 +2287,7 @@
                     "text": "Automatic entropy adjustment optimizes the temperature coefficient alpha during training to match a target entropy.",
                     "adjudication": {
                       "label": "CONTRADICTED",
-                      "reason": "La evidencia indica que alfa se optimiza durante el entrenamiento, lo que contradice la afirmación de que permanece fijo."
+                      "reason": "La evidencia indica que alfa se optimiza durante el entrenamiento, lo que contradice que permanezca fijo."
                     }
                   }
                 ]
@@ -2013,7 +2321,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 5.363
+      "elapsed_seconds": 8.937
     },
     {
       "test": {
@@ -2025,7 +2333,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2063,6 +2371,22 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 7057786800,
+                    "prompt_eval_count": 469,
+                    "eval_count": 408,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia describe la función del Replay Buffer, pero no menciona su relación con el coeficiente alfa.\"\n    }\n] }",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019",
+                  "reinforcement_learning.003"
+                ],
                 "best_entailment_score": 0.0006542205810546875,
                 "best_contradiction_score": 0.03424072265625,
                 "comparisons": [
@@ -2079,7 +2403,7 @@
                     "text": "SAC uses a replay buffer to store transitions collected during interaction with the environment.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia describe la función del Replay Buffer como almacenamiento de transiciones, pero no menciona su relación con el coeficiente alfa."
+                      "reason": "La evidencia describe la función del Replay Buffer, pero no menciona su relación con el coeficiente alfa."
                     }
                   }
                 ]
@@ -2113,7 +2437,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 9.349
+      "elapsed_seconds": 9.111
     },
     {
       "test": {
@@ -2125,7 +2449,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2163,6 +2487,25 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5692822900,
+                    "prompt_eval_count": 717,
+                    "eval_count": 324,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia no menciona cálculo de entropía objetivo desde recompensa acumulada.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.025",
+                  "reinforcement_learning.007",
+                  "reinforcement_learning.023",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.017"
+                ],
                 "best_entailment_score": 0.00019025802612304688,
                 "best_contradiction_score": 0.00225067138671875,
                 "comparisons": [
@@ -2179,7 +2522,7 @@
                     "text": "The SAC actor is trained using a stochastic policy and an entropy-related objective.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia menciona un objetivo relacionado con la entropía pero no especifica que se calcule a partir de la recompensa acumulada por episodio."
+                      "reason": "La evidencia no menciona cálculo de entropía objetivo desde recompensa acumulada."
                     }
                   }
                 ]
@@ -2213,7 +2556,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 6.874
+      "elapsed_seconds": 7.742
     },
     {
       "test": {
@@ -2225,7 +2568,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2263,6 +2606,24 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5096919400,
+                    "prompt_eval_count": 617,
+                    "eval_count": 293,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia no menciona neuronas, capas ocultas ni cantidad específica, por lo que no se puede evaluar.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.027",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.017",
+                  "reinforcement_learning.028"
+                ],
                 "best_entailment_score": 0.00016200542449951172,
                 "best_contradiction_score": 0.00148773193359375,
                 "comparisons": [
@@ -2279,7 +2640,7 @@
                     "text": "The actor is represented by a neural network that maps observations to a policy distribution.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "No se menciona el número de neuronas en las capas ocultas del Actor."
+                      "reason": "La evidencia no menciona neuronas, capas ocultas ni cantidad específica, por lo que no se puede evaluar."
                     }
                   }
                 ]
@@ -2313,7 +2674,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.288
+      "elapsed_seconds": 7.167
     },
     {
       "test": {
@@ -2325,7 +2686,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2363,6 +2724,19 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5124273400,
+                    "prompt_eval_count": 317,
+                    "eval_count": 302,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia menciona mitigar sobreestimación, no garantiza convergencia. No hay información sobre convergencia.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [],
                 "best_entailment_score": 0.00060272216796875,
                 "best_contradiction_score": 0.68359375,
                 "comparisons": [
@@ -2379,7 +2753,7 @@
                     "text": "SAC uses two Q-functions and takes the smaller estimate in the target calculation to mitigate overestimation.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia menciona el uso de dos funciones Q para mitigar sobreestimación, pero no aborda la convergencia del entrenamiento."
+                      "reason": "La evidencia menciona mitigar sobreestimación, no garantiza convergencia. No hay información sobre convergencia."
                     }
                   }
                 ]
@@ -2413,7 +2787,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 5.862
+      "elapsed_seconds": 7.199
     },
     {
       "test": {
@@ -2425,7 +2799,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2463,6 +2837,21 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4564160300,
+                    "prompt_eval_count": 401,
+                    "eval_count": 275,
+                    "raw_response": "{\n\n\"items\": [\n    {\"id\": 0, \"label\": \"INSUFFICIENT\", \"reason\": \"La evidencia no menciona duración de almacenamiento, solo función del buffer.\"}\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019"
+                ],
                 "best_entailment_score": 9.5367431640625e-05,
                 "best_contradiction_score": 0.0016689300537109375,
                 "comparisons": [
@@ -2479,7 +2868,7 @@
                     "text": "The replay buffer stores transitions so that they can be sampled during subsequent training updates.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia no menciona la duración de almacenamiento."
+                      "reason": "La evidencia no menciona duración de almacenamiento, solo función del buffer."
                     }
                   }
                 ]
@@ -2513,7 +2902,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.101
+      "elapsed_seconds": 6.609
     },
     {
       "test": {
@@ -2525,7 +2914,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2563,6 +2952,21 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5029561600,
+                    "prompt_eval_count": 402,
+                    "eval_count": 316,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia confirma el uso de Replay Buffer, pero no menciona las dos redes críticas necesarias para estimar valores Q.\"\n    }\n] }",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019"
+                ],
                 "best_entailment_score": 0.0014543533325195312,
                 "best_contradiction_score": 0.411865234375,
                 "comparisons": [
@@ -2579,7 +2983,7 @@
                     "text": "SAC stores previously collected transitions in a replay buffer for later sampling during training.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia menciona el buffer de reproducción pero no habla de dos redes críticas."
+                      "reason": "La evidencia confirma el uso de Replay Buffer, pero no menciona las dos redes críticas necesarias para estimar valores Q."
                     }
                   }
                 ]
@@ -2613,7 +3017,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 5.439
+      "elapsed_seconds": 7.079
     },
     {
       "test": {
@@ -2625,7 +3029,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2660,9 +3064,27 @@
             "claims": [
               {
                 "claim": "El Actor de SAC produce una distribución de acciones y el Replay Buffer almacena los gradientes de la política.",
-                "status": "INSUFFICIENT",
+                "status": "SUPPORTED",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 4781549700,
+                    "prompt_eval_count": 625,
+                    "eval_count": 263,
+                    "raw_response": "{\n\n\"items\": [\n    {\"id\": 0, \"label\": \"SUPPORTED\", \"reason\": \"El Actor genera una distribución estocástica de acciones, como se menciona explícitamente.\"}\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.019",
+                  "reinforcement_learning.008",
+                  "reinforcement_learning.004",
+                  "reinforcement_learning.017"
+                ],
                 "best_entailment_score": 0.0020885467529296875,
                 "best_contradiction_score": 0.0010156631469726562,
                 "comparisons": [
@@ -2678,14 +3100,14 @@
                     },
                     "text": "The actor outputs a stochastic policy distribution over actions conditioned on the current state.",
                     "adjudication": {
-                      "label": "INSUFFICIENT",
-                      "reason": "La evidencia respalda la producción de distribución de acciones por el actor, pero no menciona el Replay Buffer ni gradientes de política."
+                      "label": "SUPPORTED",
+                      "reason": "El Actor genera una distribución estocástica de acciones, como se menciona explícitamente."
                     }
                   }
                 ]
               }
             ],
-            "overall_status": "INSUFFICIENT",
+            "overall_status": "SUPPORTED",
             "limitations": [
               "La decisión semántica final la realiza Qwen local sobre los textos originales.",
               "NLI se conserva como señal diagnóstica y no puede aceptar por sí solo una afirmación.",
@@ -2713,7 +3135,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 8.646
+      "elapsed_seconds": 6.834
     },
     {
       "test": {
@@ -2725,7 +3147,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2763,6 +3185,23 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 6363736400,
+                    "prompt_eval_count": 576,
+                    "eval_count": 362,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia confirma que alpha pondera la entropía, pero no menciona cómo se calcula como promedio de recompensas.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.024",
+                  "reinforcement_learning.023",
+                  "reinforcement_learning.008"
+                ],
                 "best_entailment_score": 0.0006880760192871094,
                 "best_contradiction_score": 0.25634765625,
                 "comparisons": [
@@ -2779,7 +3218,7 @@
                     "text": "The temperature coefficient alpha controls the weight of the entropy term in the SAC policy objective.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia menciona que alpha controla el peso de la entropía, pero no habla sobre su cálculo como promedio de recompensas."
+                      "reason": "La evidencia confirma que alpha pondera la entropía, pero no menciona cómo se calcula como promedio de recompensas."
                     }
                   }
                 ]
@@ -2813,7 +3252,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.221
+      "elapsed_seconds": 8.426
     },
     {
       "test": {
@@ -2825,7 +3264,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2863,6 +3302,19 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 5879963600,
+                    "prompt_eval_count": 316,
+                    "eval_count": 346,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia menciona actualización suave mediante Polyak averaging, pero no especifica la tasa de actualización de 0,5.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [],
                 "best_entailment_score": 0.00017774105072021484,
                 "best_contradiction_score": 0.0002313852310180664,
                 "comparisons": [
@@ -2879,7 +3331,7 @@
                     "text": "SAC updates target-network parameters gradually through Polyak averaging.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "No menciona la tasa de actualización específica de 0,5."
+                      "reason": "La evidencia menciona actualización suave mediante Polyak averaging, pero no especifica la tasa de actualización de 0,5."
                     }
                   }
                 ]
@@ -2913,7 +3365,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 9.238
+      "elapsed_seconds": 7.954
     },
     {
       "test": {
@@ -2925,7 +3377,7 @@
       },
       "result": {
         "verifier": "EvidenceVerifier",
-        "version": "0.3.0",
+        "version": "0.3.3",
         "checks": {
           "web_url_reference_check": {
             "status": "PASS",
@@ -2963,6 +3415,22 @@
                 "status": "INSUFFICIENT",
                 "adjudication_available": true,
                 "adjudication_error": null,
+                "adjudication_diagnostics": [
+                  {
+                    "attempt": 1,
+                    "num_predict": 700,
+                    "done_reason": "stop",
+                    "total_duration_ns": 6937706300,
+                    "prompt_eval_count": 486,
+                    "eval_count": 406,
+                    "raw_response": "{\n\n\"items\": [\n    {\n        \"id\": 0,\n        \"label\": \"INSUFFICIENT\",\n        \"reason\": \"La evidencia solo menciona que el crítico minimiza el error de Bellman, pero no habla sobre la actualización del Actor mediante gradiente descendente.\"\n    }\n]\n}",
+                    "validation_error": null
+                  }
+                ],
+                "terminology_terms_used": [
+                  "reinforcement_learning.018",
+                  "reinforcement_learning.017"
+                ],
                 "best_entailment_score": 0.034637451171875,
                 "best_contradiction_score": 0.04742431640625,
                 "comparisons": [
@@ -2979,7 +3447,7 @@
                     "text": "The critic is trained to minimize the Bellman error between its Q estimate and the target value.",
                     "adjudication": {
                       "label": "INSUFFICIENT",
-                      "reason": "La evidencia menciona que el crítico minimiza el error de Bellman, pero no habla sobre la actualización del Actor mediante gradiente descendente."
+                      "reason": "La evidencia solo menciona que el crítico minimiza el error de Bellman, pero no habla sobre la actualización del Actor mediante gradiente descendente."
                     }
                   }
                 ]
@@ -3013,7 +3481,7 @@
           "La ausencia de una cita no demuestra por sí sola que una afirmación sea falsa."
         ]
       },
-      "elapsed_seconds": 7.161
+      "elapsed_seconds": 9.023
     }
   ]
 }

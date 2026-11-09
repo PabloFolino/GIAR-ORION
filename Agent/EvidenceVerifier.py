@@ -4,7 +4,7 @@ EvidenceVerifier.py
 
 Módulo independiente de verificación de evidencias para GIAR-ORION.
 
-Versión: 0.3.0
+Versión: 0.3.3
 
 Alcance de esta primera versión
 -------------------------------
@@ -17,20 +17,23 @@ Alcance de esta primera versión
 4. Detecta URLs duplicadas dentro de las evidencias.
 5. Devuelve un informe estructurado.
 
-Limitación deliberada
----------------------
-Esta versión NO determina si el contenido de una evidencia demuestra
-semánticamente una afirmación. Tampoco descarga páginas web ni consulta
-modelos externos. Por lo tanto, una referencia coincidente no equivale a
-una afirmación científicamente verificada.
+Alcance
+-------
+Comprueba referencias y adjudica semánticamente afirmaciones frente a las
+evidencias suministradas mediante Qwen local (Ollama). mDeBERTa se conserva
+como señal NLI diagnóstica. El glosario Terminology.json aporta contexto
+terminológico pertinente, sin sustituir ni ampliar la evidencia.
 
-El módulo no modifica RAG, DDGS, Ollama ni la interfaz de GIAR-ORION.
+El módulo no modifica RAG, DDGS ni la interfaz de GIAR-ORION.
 """
 
 from __future__ import annotations
 
+import json
 import re
+import unicodedata
 from collections import Counter
+from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit, urlunsplit
 
@@ -42,7 +45,10 @@ class EvidenceVerifierError(ValueError):
 class EvidenceVerifier:
     """Realiza controles deterministas sobre referencias y evidencias."""
 
-    VERSION = "0.3.0"
+    VERSION = "0.3.3"
+    PROJECT_ROOT = Path(__file__).resolve().parent.parent
+    DEFAULT_TERMINOLOGY_FILE = (PROJECT_ROOT / "Knowledge" / "Terminology.json" )
+    MAX_TERMINOLOGY_CONTEXT_TERMS = 12
 
     # Se capturan URLs HTTP(S) escritas en la respuesta.
     URL_PATTERN = re.compile(r"https?://[^\s<>\]\[\"'()]+", re.IGNORECASE)
@@ -61,6 +67,7 @@ class EvidenceVerifier:
         adjudication_model: str = "qwen3:8b",
         adjudication_timeout: int = 90,
         use_ollama_adjudication: bool = True,
+        terminology_path: str | Path | None = None,
     ) -> None:
         """Inicializa NLI diagnóstico y juez semántico local.
 
@@ -86,6 +93,104 @@ class EvidenceVerifier:
         self.adjudication_model = adjudication_model
         self.adjudication_timeout = adjudication_timeout
         self.use_ollama_adjudication = use_ollama_adjudication
+        self.terminology_path = (
+            Path(terminology_path).expanduser().resolve()
+            if terminology_path is not None
+            else self.DEFAULT_TERMINOLOGY_FILE
+        )
+        if not self.terminology_path.is_file():
+            raise FileNotFoundError(
+                f"No se encontró Terminology.json: {self.terminology_path}"
+            )        
+        self._terminology = self._load_terminology(self.terminology_path)
+
+    @staticmethod
+    def _load_terminology(path: Path) -> dict[str, Any]:
+        """Carga y valida el glosario; no permite continuar sin contexto válido."""
+        if not path.is_file():
+            raise FileNotFoundError(
+                f"No se encontró Terminology.json en: {path}. "
+                "Coloque el archivo junto a EvidenceVerifier.py o indique terminology_path."
+            )
+        try:
+            with path.open("r", encoding="utf-8") as file:
+                data = json.load(file)
+        except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+            raise EvidenceVerifierError(
+                f"No se pudo leer Terminology.json ({path}): {type(exc).__name__}: {exc}"
+            ) from exc
+        if not isinstance(data, dict) or not isinstance(data.get("terms"), list):
+            raise EvidenceVerifierError(
+                "Terminology.json inválido: se requiere un objeto raíz con 'terms' como lista."
+            )
+        if not data["terms"]:
+            raise EvidenceVerifierError("Terminology.json inválido: 'terms' no puede estar vacío.")
+        required_text = ("id", "domain", "term_es", "term_en", "definition_es")
+        seen_ids = set()
+        for index, term in enumerate(data["terms"]):
+            if not isinstance(term, dict):
+                raise EvidenceVerifierError(f"Terminology.json: terms[{index}] debe ser un objeto.")
+            for key in required_text:
+                if not isinstance(term.get(key), str) or not term[key].strip():
+                    raise EvidenceVerifierError(
+                        f"Terminology.json: terms[{index}].{key} debe ser texto no vacío."
+                    )
+            if term["id"] in seen_ids:
+                raise EvidenceVerifierError(
+                    f"Terminology.json: identificador duplicado {term['id']!r}."
+                )
+            seen_ids.add(term["id"])
+            aliases = term.get("aliases", [])
+            if not isinstance(aliases, list) or not all(
+                isinstance(alias, str) and alias.strip() for alias in aliases
+            ):
+                raise EvidenceVerifierError(
+                    f"Terminology.json: terms[{index}].aliases debe ser una lista de textos no vacíos."
+                )
+            if not isinstance(term.get("notes", ""), str):
+                raise EvidenceVerifierError(
+                    f"Terminology.json: terms[{index}].notes debe ser texto."
+                )
+        return data
+
+    @staticmethod
+    def _normalize_terminology_text(text: str) -> str:
+        text = unicodedata.normalize("NFKC", text).casefold()
+        return re.sub(r"\s+", " ", text).strip()
+
+    def _select_terminology(
+        self, claim: str, evidence_items: list[dict[str, Any]]
+    ) -> list[dict[str, str]]:
+        """Selecciona entradas cuyo término aparece literalmente en claim/evidencias."""
+        corpus = self._normalize_terminology_text(
+            " ".join([claim] + [str(item.get("text", "")) for item in evidence_items])
+        )
+        matches = []
+        for entry in self._terminology["terms"]:
+            candidates = [entry["term_es"], entry["term_en"], *entry.get("aliases", [])]
+            matched = []
+            for candidate in candidates:
+                candidate_norm = self._normalize_terminology_text(candidate)
+                if len(candidate_norm) < 2:
+                    continue
+                if re.search(rf"(?<!\w){re.escape(candidate_norm)}(?!\w)", corpus):
+                    matched.append(candidate)
+            if matched:
+                matches.append((max(map(len, matched)), entry, matched))
+        matches.sort(key=lambda item: item[0], reverse=True)
+        selected = []
+        for _, entry, matched in matches[: self.MAX_TERMINOLOGY_CONTEXT_TERMS]:
+            selected.append({
+                "id": entry["id"],
+                "domain": entry["domain"],
+                "term_es": entry["term_es"],
+                "term_en": entry["term_en"],
+                "definition_es": entry["definition_es"],
+                "matched_forms": ", ".join(dict.fromkeys(matched)),
+                "aliases": ", ".join(entry.get("aliases", [])),
+                "notes": entry.get("notes", ""),
+            })
+        return selected
 
     def _load_nli_model(self) -> None:
         """Carga el modelo NLI solo cuando se solicita verificación semántica."""
@@ -162,12 +267,10 @@ class EvidenceVerifier:
         )
 
     def _ollama_adjudicate(self, claim: str, evidence_items: list[dict[str, Any]]) -> dict[str, Any]:
-        """Clasifica todas las evidencias de una afirmación en una llamada local.
+        """Adjudica con JSON Schema y un único reintento ante salida inválida.
 
-        Regla conservadora:
-        - SUPPORTED exige respaldo directo del contenido.
-        - CONTRADICTED exige incompatibilidad directa sobre la misma proposición.
-        - Si solo habla de otro aspecto/componente, es INSUFFICIENT.
+        Los errores HTTP/conectividad no se reintentan. Se conserva la respuesta
+        original de cada intento para diagnosticar fallos de formato o truncamiento.
         """
         import json
         import urllib.request
@@ -176,6 +279,15 @@ class EvidenceVerifier:
             {"id": i, "source": str(item.get("source", "")), "text": item["text"]}
             for i, item in enumerate(evidence_items)
         ]
+        terminology_context = self._select_terminology(claim, evidence_items)
+        terminology_block = (
+            "RELEVANT TERMINOLOGY FROM THE PROJECT GLOSSARY (context only; "
+            "do not treat topical similarity as evidence):\n"
+            + json.dumps(terminology_context, ensure_ascii=False)
+            + "\n\n"
+            if terminology_context else
+            "RELEVANT TERMINOLOGY: no glossary entry matched the supplied claim/evidence.\n\n"
+        )
         prompt = (
             "You are a strict evidence-verification component. Judge ONLY the supplied evidence; "
             "do not use outside knowledge and do not infer missing facts.\n"
@@ -188,56 +300,139 @@ class EvidenceVerifier:
             "Terminology and paraphrases may be equivalent across Spanish and English. "
             "Recognize synonyms only when the meaning is genuinely equivalent. "
             "Do not treat mere topical similarity as support.\n"
-            "Return valid JSON only, with this exact shape: "
-            '{"items":[{"id":0,"label":"SUPPORTED","reason":"short reason"}]}. '
-            "Include every id exactly once. Reasons must be short and in Spanish.\n\n"
+            "In the context of the Soft Actor-Critic (SAC) algorithm, "
+            "'alpha' (α), 'entropy temperature', and "
+            "'entropy temperature coefficient' refer to the same parameter: "
+            "the coefficient that weights the entropy term in the policy objective. "
+            "Treat these terms as equivalent when evaluating evidence about SAC.\n"
+            "Return one item for every evidence id, exactly once. Reasons must be in Spanish and no longer than 20 words.\n\n"
+            f"{terminology_block}"
             f"CLAIM:\n{claim}\n\nEVIDENCE ITEMS:\n"
             f"{json.dumps(numbered, ensure_ascii=False)}"
         )
-        payload = {
-            "model": self.adjudication_model,
-            "messages": [{"role": "user", "content": prompt}],
-            "stream": False,
-            "format": "json",
-            "options": {"temperature": 0, "num_predict": 700},
+        schema = {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {"type": "integer", "minimum": 0},
+                            "label": {"type": "string", "enum": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT"]},
+                            "reason": {"type": "string", "maxLength": 240},
+                        },
+                        "required": ["id", "label", "reason"],
+                        "additionalProperties": False,
+                    },
+                }
+            },
+            "required": ["items"],
+            "additionalProperties": False,
         }
-        request = urllib.request.Request(
-            f"{self.ollama_url}/api/chat",
-            data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        with urllib.request.urlopen(request, timeout=self.adjudication_timeout) as response:
-            body = json.loads(response.read().decode("utf-8"))
-        raw = body.get("message", {}).get("content", "")
-        parsed = json.loads(raw)
-        rows = parsed.get("items") if isinstance(parsed, dict) else None
-        if not isinstance(rows, list):
-            raise ValueError("Qwen no devolvió el arreglo JSON 'items'.")
+        diagnostics = []
+        last_error = None
+        first_done_reason = None
 
-        by_id = {}
-        for row in rows:
-            if not isinstance(row, dict):
-                continue
-            try:
-                idx = int(row.get("id"))
-            except (TypeError, ValueError):
-                continue
-            label = str(row.get("label", "")).upper().strip()
-            if idx not in range(len(evidence_items)) or label not in {
-                "SUPPORTED", "CONTRADICTED", "INSUFFICIENT"
-            }:
-                continue
-            by_id[idx] = {
-                "label": label,
-                "reason": str(row.get("reason", ""))[:500],
+        for attempt in (1, 2):
+            messages = [{"role": "user", "content": prompt}]
+            if attempt == 2:
+                if first_done_reason == "length":
+                    correction = (
+                        "CORRECTION: the previous response was cut off by the output-token limit. "
+                        "Complete the required JSON object. Return exactly one item per evidence id. "
+                        "Keep each Spanish reason to at most 20 words. Return JSON only."
+                    )
+                else:
+                    correction = (
+                        "CORRECTION: the previous output did not satisfy the required schema. "
+                        "Return ONLY an object with the required 'items' array, including every "
+                        "evidence id exactly once. Keep each Spanish reason to at most 20 words. "
+                        "Do not add any other top-level key."
+                    )
+                messages.append({"role": "user", "content": correction})
+
+            # Solo se amplía el límite del segundo intento si Ollama informó
+            # truncamiento ("length") en el primero. Los demás reintentos
+            # conservan el presupuesto original.
+            num_predict = 1000 if attempt == 2 and first_done_reason == "length" else 700
+            payload = {
+                "model": self.adjudication_model,
+                "messages": messages,
+                "stream": False,
+                "format": schema,
+                "options": {"temperature": 0, "num_predict": num_predict},
             }
-        if len(by_id) != len(evidence_items):
-            raise ValueError(
-                f"Qwen devolvió {len(by_id)} clasificaciones válidas de "
-                f"{len(evidence_items)} evidencias."
+            request = urllib.request.Request(
+                f"{self.ollama_url}/api/chat",
+                data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+                headers={"Content-Type": "application/json"},
+                method="POST",
             )
-        return {"items": by_id, "model": self.adjudication_model}
+            # No reintento para errores HTTP, timeout o conectividad.
+            with urllib.request.urlopen(request, timeout=self.adjudication_timeout) as response:
+                body = json.loads(response.read().decode("utf-8"))
+
+            message = body.get("message", {}) if isinstance(body, dict) else {}
+            raw = message.get("content", "") if isinstance(message, dict) else ""
+            done_reason = body.get("done_reason") if isinstance(body, dict) else None
+            if attempt == 1:
+                first_done_reason = done_reason
+            diagnostic = {
+                "attempt": attempt,
+                "num_predict": num_predict,
+                "done_reason": done_reason,
+                "total_duration_ns": body.get("total_duration") if isinstance(body, dict) else None,
+                "prompt_eval_count": body.get("prompt_eval_count") if isinstance(body, dict) else None,
+                "eval_count": body.get("eval_count") if isinstance(body, dict) else None,
+                "raw_response": raw,
+                "validation_error": None,
+            }
+            try:
+                parsed = json.loads(raw)
+                rows = parsed.get("items") if isinstance(parsed, dict) else None
+                if not isinstance(rows, list):
+                    raise ValueError("La respuesta JSON no contiene un arreglo 'items'.")
+
+                by_id = {}
+                for row in rows:
+                    if not isinstance(row, dict):
+                        continue
+                    try:
+                        idx = int(row.get("id"))
+                    except (TypeError, ValueError):
+                        continue
+                    label = str(row.get("label", "")).upper().strip()
+                    if idx not in range(len(evidence_items)) or label not in {
+                        "SUPPORTED", "CONTRADICTED", "INSUFFICIENT"
+                    } or idx in by_id:
+                        continue
+                    by_id[idx] = {
+                        "label": label,
+                        "reason": str(row.get("reason", ""))[:500],
+                    }
+                if len(by_id) != len(evidence_items):
+                    raise ValueError(
+                        f"Se recibieron {len(by_id)} clasificaciones válidas de "
+                        f"{len(evidence_items)} evidencias."
+                    )
+                diagnostics.append(diagnostic)
+                return {
+                    "items": by_id,
+                    "model": self.adjudication_model,
+                    "diagnostics": diagnostics,
+                    "terminology_terms_used": [item["id"] for item in terminology_context],
+                }
+            except (json.JSONDecodeError, ValueError, TypeError) as exc:
+                last_error = f"{type(exc).__name__}: {exc}"
+                diagnostic["validation_error"] = last_error
+                diagnostics.append(diagnostic)
+
+        error = RuntimeError(
+            f"Qwen produjo una salida inválida en los dos intentos. Último error: {last_error}"
+        )
+        error.diagnostics = diagnostics
+        raise error
 
     def verify_claims(
         self,
@@ -354,11 +549,18 @@ class EvidenceVerifier:
                 judge_items = adjudication["items"] if adjudication else {}
                 judge_ok = adjudication is not None
                 judge_error = None
+                adjudication_diagnostics = adjudication.get("diagnostics", []) if adjudication else []
             except Exception as exc:
                 judge_items = {}
                 judge_ok = False
                 judge_error = f"{type(exc).__name__}: {exc}"
-                judge_errors.append({"claim": claim.strip(), "error": judge_error})
+                error_diagnostics = getattr(exc, "diagnostics", [])
+                judge_errors.append({
+                    "claim": claim.strip(),
+                    "error": judge_error,
+                    "diagnostics": error_diagnostics,
+                })
+                adjudication_diagnostics = error_diagnostics
 
             for comparison in comparisons:
                 decision = judge_items.get(comparison["evidence_id"])
@@ -386,6 +588,8 @@ class EvidenceVerifier:
                 "status": status,
                 "adjudication_available": judge_ok,
                 "adjudication_error": judge_error,
+                "adjudication_diagnostics": adjudication_diagnostics,
+                "terminology_terms_used": adjudication.get("terminology_terms_used", []) if judge_ok else [],
                 "best_entailment_score": max(
                     (x["scores"]["entailment"] for x in comparisons), default=0.0
                 ),

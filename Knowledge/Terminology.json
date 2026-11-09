@@ -1,0 +1,1150 @@
+{
+  "title": "GIAR-ORION — Terminología técnica conocida",
+  "version": "1.1",
+  "language": [
+    "es",
+    "en"
+  ],
+  "description": "Glosario bilingüe reconstruido a partir de los temas y proyectos trabajados: aprendizaje por refuerzo, robótica, electrónica, comunicaciones, IA/RAG y LiDAR.",
+  "metadata": {
+    "entry_count": 125,
+    "domain_count": 6,
+    "format": "JSON",
+    "note": "Los términos equivalentes y alias deben interpretarse según el dominio y el contexto. No todas las expresiones relacionadas son sinónimos perfectos."
+  },
+  "domains": [
+    "reinforcement_learning",
+    "robotics",
+    "electronics",
+    "communications_and_networks",
+    "ai_and_information_retrieval",
+    "lidar_and_embedded_systems"
+  ],
+  "terms": [
+    {
+      "id": "reinforcement_learning.001",
+      "domain": "reinforcement_learning",
+      "term_es": "Aprendizaje por refuerzo",
+      "term_en": "Reinforcement Learning",
+      "definition_es": "Paradigma en el que un agente aprende a tomar decisiones mediante la interacción con un entorno y la recepción de recompensas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.002",
+      "domain": "reinforcement_learning",
+      "term_es": "Agente",
+      "term_en": "Agent",
+      "definition_es": "Entidad que observa el estado del entorno y selecciona acciones.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.003",
+      "domain": "reinforcement_learning",
+      "term_es": "Entorno",
+      "term_en": "Environment",
+      "definition_es": "Sistema con el que interactúa el agente.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.004",
+      "domain": "reinforcement_learning",
+      "term_es": "Estado",
+      "term_en": "State",
+      "definition_es": "Representación de la situación del entorno en un instante.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.005",
+      "domain": "reinforcement_learning",
+      "term_es": "Observación",
+      "term_en": "Observation",
+      "definition_es": "Información que recibe el agente sobre el estado del entorno.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.006",
+      "domain": "reinforcement_learning",
+      "term_es": "Acción",
+      "term_en": "Action",
+      "definition_es": "Decisión ejecutada por el agente.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.007",
+      "domain": "reinforcement_learning",
+      "term_es": "Recompensa",
+      "term_en": "Reward",
+      "definition_es": "Señal numérica que evalúa el resultado inmediato de una acción.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.008",
+      "domain": "reinforcement_learning",
+      "term_es": "Política",
+      "term_en": "Policy",
+      "definition_es": "Regla o distribución que determina qué acción tomar ante una observación o estado.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.009",
+      "domain": "reinforcement_learning",
+      "term_es": "Función de valor",
+      "term_en": "Value Function",
+      "definition_es": "Estimación del retorno esperado desde un estado o par estado-acción.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.010",
+      "domain": "reinforcement_learning",
+      "term_es": "Retorno",
+      "term_en": "Return",
+      "definition_es": "Suma acumulada de recompensas, normalmente descontadas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.011",
+      "domain": "reinforcement_learning",
+      "term_es": "Factor de descuento",
+      "term_en": "Discount Factor",
+      "definition_es": "Parámetro gamma que determina la importancia de recompensas futuras.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.012",
+      "domain": "reinforcement_learning",
+      "term_es": "Exploración",
+      "term_en": "Exploration",
+      "definition_es": "Búsqueda de acciones para descubrir comportamientos y recompensas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.013",
+      "domain": "reinforcement_learning",
+      "term_es": "Explotación",
+      "term_en": "Exploitation",
+      "definition_es": "Selección de acciones que se consideran mejores según el conocimiento actual.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.014",
+      "domain": "reinforcement_learning",
+      "term_es": "Q-Learning",
+      "term_en": "Q-Learning",
+      "definition_es": "Algoritmo de aprendizaje por refuerzo basado en actualizar valores acción-estado.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.015",
+      "domain": "reinforcement_learning",
+      "term_es": "Deep Q-Network",
+      "term_en": "Deep Q-Network (DQN)",
+      "definition_es": "Método que utiliza una red neuronal para aproximar la función Q.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.016",
+      "domain": "reinforcement_learning",
+      "term_es": "Soft Actor-Critic",
+      "term_en": "Soft Actor-Critic (SAC)",
+      "definition_es": "Algoritmo off-policy basado en actor-crítico que incorpora maximización de entropía.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.017",
+      "domain": "reinforcement_learning",
+      "term_es": "Actor",
+      "term_en": "Actor",
+      "definition_es": "Componente que representa la política y genera o distribuye acciones.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.018",
+      "domain": "reinforcement_learning",
+      "term_es": "Crítico",
+      "term_en": "Critic",
+      "definition_es": "Componente que estima el valor de estados o pares estado-acción.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.019",
+      "domain": "reinforcement_learning",
+      "term_es": "Replay Buffer",
+      "term_en": "Replay Buffer",
+      "definition_es": "Memoria que almacena experiencias para reutilizarlas durante el entrenamiento.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.020",
+      "domain": "reinforcement_learning",
+      "term_es": "Experiencia",
+      "term_en": "Experience / Transition",
+      "definition_es": "Transición habitualmente representada por estado, acción, recompensa, siguiente estado y condición terminal.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.021",
+      "domain": "reinforcement_learning",
+      "term_es": "Off-policy",
+      "term_en": "Off-policy",
+      "definition_es": "Aprendizaje en el que los datos pueden proceder de una política distinta de la política que se está optimizando.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.022",
+      "domain": "reinforcement_learning",
+      "term_es": "On-policy",
+      "term_en": "On-policy",
+      "definition_es": "Aprendizaje que utiliza datos generados por la política que se está optimizando.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.023",
+      "domain": "reinforcement_learning",
+      "term_es": "Entropía",
+      "term_en": "Entropy",
+      "definition_es": "Medida de la aleatoriedad o diversidad de una distribución de acciones.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.024",
+      "domain": "reinforcement_learning",
+      "term_es": "Coeficiente de temperatura",
+      "term_en": "Temperature Coefficient",
+      "definition_es": "En SAC, parámetro alfa que pondera la contribución de la entropía en el objetivo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.025",
+      "domain": "reinforcement_learning",
+      "term_es": "Entropía objetivo",
+      "term_en": "Target Entropy",
+      "definition_es": "Nivel de entropía deseado que puede utilizarse para ajustar automáticamente alfa en SAC.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.026",
+      "domain": "reinforcement_learning",
+      "term_es": "J(pi)",
+      "term_en": "J(π)",
+      "definition_es": "Objetivo esperado de una política; su definición concreta depende del algoritmo y de la formulación utilizada.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.027",
+      "domain": "reinforcement_learning",
+      "term_es": "Red neuronal",
+      "term_en": "Neural Network",
+      "definition_es": "Modelo parametrizado utilizado para aproximar funciones o políticas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.028",
+      "domain": "reinforcement_learning",
+      "term_es": "Capa",
+      "term_en": "Layer",
+      "definition_es": "Conjunto de operaciones y unidades que transforma una representación.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.029",
+      "domain": "reinforcement_learning",
+      "term_es": "Neurona",
+      "term_en": "Neuron / Unit",
+      "definition_es": "Unidad computacional de una red neuronal.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "reinforcement_learning.030",
+      "domain": "reinforcement_learning",
+      "term_es": "Función de activación",
+      "term_en": "Activation Function",
+      "definition_es": "Transformación no lineal aplicada a la salida de una unidad o capa.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.001",
+      "domain": "robotics",
+      "term_es": "Robótica",
+      "term_en": "Robotics",
+      "definition_es": "Disciplina dedicada al diseño, construcción, control y programación de robots.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.002",
+      "domain": "robotics",
+      "term_es": "Robot",
+      "term_en": "Robot",
+      "definition_es": "Sistema físico programable capaz de percibir y actuar sobre su entorno.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.003",
+      "domain": "robotics",
+      "term_es": "Grado de libertad",
+      "term_en": "Degree of Freedom (DoF)",
+      "definition_es": "Variable independiente de movimiento de un mecanismo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.004",
+      "domain": "robotics",
+      "term_es": "Articulación",
+      "term_en": "Joint",
+      "definition_es": "Conexión mecánica que permite movimiento relativo entre cuerpos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.005",
+      "domain": "robotics",
+      "term_es": "Articulación revoluta",
+      "term_en": "Revolute Joint",
+      "definition_es": "Articulación que permite rotación alrededor de un eje.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.006",
+      "domain": "robotics",
+      "term_es": "Articulación prismática",
+      "term_en": "Prismatic Joint",
+      "definition_es": "Articulación que permite traslación a lo largo de un eje.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.007",
+      "domain": "robotics",
+      "term_es": "Cinemática",
+      "term_en": "Kinematics",
+      "definition_es": "Estudio del movimiento sin analizar las fuerzas que lo producen.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.008",
+      "domain": "robotics",
+      "term_es": "Cinemática directa",
+      "term_en": "Forward Kinematics",
+      "definition_es": "Cálculo de la pose del efector a partir de las variables articulares.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.009",
+      "domain": "robotics",
+      "term_es": "Cinemática inversa",
+      "term_en": "Inverse Kinematics",
+      "definition_es": "Cálculo de variables articulares para alcanzar una pose objetivo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.010",
+      "domain": "robotics",
+      "term_es": "Dinámica",
+      "term_en": "Dynamics",
+      "definition_es": "Estudio del movimiento considerando fuerzas y torques.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.011",
+      "domain": "robotics",
+      "term_es": "Torque",
+      "term_en": "Torque",
+      "definition_es": "Momento de una fuerza que produce o tiende a producir rotación.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.012",
+      "domain": "robotics",
+      "term_es": "Efector final",
+      "term_en": "End Effector",
+      "definition_es": "Elemento terminal del robot que interactúa con el entorno.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.013",
+      "domain": "robotics",
+      "term_es": "IMU",
+      "term_en": "Inertial Measurement Unit",
+      "definition_es": "Sensor que mide magnitudes inerciales, como aceleración y velocidad angular.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.014",
+      "domain": "robotics",
+      "term_es": "Cuaternión",
+      "term_en": "Quaternion",
+      "definition_es": "Representación matemática de una orientación tridimensional.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.015",
+      "domain": "robotics",
+      "term_es": "Controlador",
+      "term_en": "Controller",
+      "definition_es": "Sistema que calcula señales de control para lograr un comportamiento deseado.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.016",
+      "domain": "robotics",
+      "term_es": "Simulación",
+      "term_en": "Simulation",
+      "definition_es": "Representación computacional de un sistema para estudiar su comportamiento.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.017",
+      "domain": "robotics",
+      "term_es": "CoppeliaSim",
+      "term_en": "CoppeliaSim",
+      "definition_es": "Entorno de simulación robótica utilizado para modelado, dinámica y control.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.018",
+      "domain": "robotics",
+      "term_es": "MuJoCo",
+      "term_en": "MuJoCo",
+      "definition_es": "Motor de física y simulación orientado a sistemas articulados y control.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.019",
+      "domain": "robotics",
+      "term_es": "Unitree G1",
+      "term_en": "Unitree G1",
+      "definition_es": "Plataforma robótica humanoide con múltiples grados de libertad.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "robotics.020",
+      "domain": "robotics",
+      "term_es": "Modelo URDF",
+      "term_en": "Unified Robot Description Format (URDF)",
+      "definition_es": "Formato XML para describir la estructura cinemática y visual de un robot.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.001",
+      "domain": "electronics",
+      "term_es": "Electrónica",
+      "term_en": "Electronics",
+      "definition_es": "Área de la ingeniería que estudia circuitos y dispositivos que controlan el flujo de señales eléctricas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.002",
+      "domain": "electronics",
+      "term_es": "Microcontrolador",
+      "term_en": "Microcontroller",
+      "definition_es": "Circuito integrado programable que incorpora procesador, memoria y periféricos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.003",
+      "domain": "electronics",
+      "term_es": "ESP32",
+      "term_en": "ESP32",
+      "definition_es": "Familia de microcontroladores con conectividad y periféricos integrados.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.004",
+      "domain": "electronics",
+      "term_es": "Motor paso a paso",
+      "term_en": "Stepper Motor",
+      "definition_es": "Motor que convierte impulsos eléctricos en desplazamientos angulares discretos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.005",
+      "domain": "electronics",
+      "term_es": "NEMA 17",
+      "term_en": "NEMA 17",
+      "definition_es": "Designación dimensional habitual de una familia de motores paso a paso.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.006",
+      "domain": "electronics",
+      "term_es": "Driver de motor",
+      "term_en": "Motor Driver",
+      "definition_es": "Circuito que adapta señales de control para accionar un motor.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.007",
+      "domain": "electronics",
+      "term_es": "TMC2208",
+      "term_en": "TMC2208",
+      "definition_es": "Driver de motor paso a paso de la familia Trinamic.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.008",
+      "domain": "electronics",
+      "term_es": "Sensor Hall",
+      "term_en": "Hall-effect Sensor",
+      "definition_es": "Sensor que detecta campos magnéticos mediante el efecto Hall.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.009",
+      "domain": "electronics",
+      "term_es": "Fuente de alimentación",
+      "term_en": "Power Supply",
+      "definition_es": "Dispositivo que suministra energía eléctrica con características determinadas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.010",
+      "domain": "electronics",
+      "term_es": "Amplificador operacional",
+      "term_en": "Operational Amplifier (Op-Amp)",
+      "definition_es": "Amplificador diferencial de alta ganancia utilizado en circuitos analógicos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.011",
+      "domain": "electronics",
+      "term_es": "Conversor",
+      "term_en": "Converter",
+      "definition_es": "Circuito o dispositivo que transforma una magnitud o formato eléctrico en otro.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.012",
+      "domain": "electronics",
+      "term_es": "Ruido eléctrico",
+      "term_en": "Electrical Noise",
+      "definition_es": "Señal no deseada que altera la señal útil de un circuito.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "electronics.013",
+      "domain": "electronics",
+      "term_es": "Masa",
+      "term_en": "Ground",
+      "definition_es": "Referencia eléctrica de un circuito; su función concreta depende del diseño.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.001",
+      "domain": "communications_and_networks",
+      "term_es": "Modelo de comunicación",
+      "term_en": "Communication Model",
+      "definition_es": "Esquema que describe los elementos y el proceso de transmisión de información.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.002",
+      "domain": "communications_and_networks",
+      "term_es": "Capacidad de canal",
+      "term_en": "Channel Capacity",
+      "definition_es": "Tasa máxima teórica de información que puede transmitirse por un canal bajo determinadas condiciones.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.003",
+      "domain": "communications_and_networks",
+      "term_es": "Ancho de banda",
+      "term_en": "Bandwidth",
+      "definition_es": "Rango de frecuencias que puede transportar un sistema o canal; en redes también se usa para expresar capacidad de transmisión.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.004",
+      "domain": "communications_and_networks",
+      "term_es": "Frecuencia de corte",
+      "term_en": "Cutoff Frequency",
+      "definition_es": "Frecuencia que delimita una banda de operación según un criterio especificado.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.005",
+      "domain": "communications_and_networks",
+      "term_es": "Overhead",
+      "term_en": "Overhead",
+      "definition_es": "Información o recursos adicionales necesarios para gestionar una transmisión o proceso.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.006",
+      "domain": "communications_and_networks",
+      "term_es": "Bit rate",
+      "term_en": "Bit Rate",
+      "definition_es": "Cantidad de bits transmitidos por unidad de tiempo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.007",
+      "domain": "communications_and_networks",
+      "term_es": "Baud rate",
+      "term_en": "Baud Rate",
+      "definition_es": "Cantidad de símbolos transmitidos por segundo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.008",
+      "domain": "communications_and_networks",
+      "term_es": "RS-232",
+      "term_en": "RS-232",
+      "definition_es": "Estándar de comunicación serie que define características eléctricas y funcionales de la interfaz.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.009",
+      "domain": "communications_and_networks",
+      "term_es": "RS-485",
+      "term_en": "RS-485",
+      "definition_es": "Estándar de interfaz serie diferencial que permite comunicaciones robustas y multipunto.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.010",
+      "domain": "communications_and_networks",
+      "term_es": "USB",
+      "term_en": "Universal Serial Bus (USB)",
+      "definition_es": "Estándar de conexión y comunicación entre dispositivos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.011",
+      "domain": "communications_and_networks",
+      "term_es": "DTE",
+      "term_en": "Data Terminal Equipment (DTE)",
+      "definition_es": "Equipo terminal de datos en una interfaz de comunicación.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.012",
+      "domain": "communications_and_networks",
+      "term_es": "DCE",
+      "term_en": "Data Circuit-terminating Equipment (DCE)",
+      "definition_es": "Equipo de terminación de circuito de datos que proporciona la conexión al medio de comunicación.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.013",
+      "domain": "communications_and_networks",
+      "term_es": "Loopback",
+      "term_en": "Loopback",
+      "definition_es": "Prueba en la que una señal transmitida se devuelve al origen para verificar una interfaz o sistema.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.014",
+      "domain": "communications_and_networks",
+      "term_es": "Línea balanceada",
+      "term_en": "Balanced Line",
+      "definition_es": "Línea de transmisión que utiliza dos conductores con señales diferenciales y características eléctricas equilibradas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.015",
+      "domain": "communications_and_networks",
+      "term_es": "Topología de red",
+      "term_en": "Network Topology",
+      "definition_es": "Disposición física o lógica de los nodos y enlaces de una red.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.016",
+      "domain": "communications_and_networks",
+      "term_es": "Hub",
+      "term_en": "Hub",
+      "definition_es": "Dispositivo de capa física que repite la señal recibida hacia los demás puertos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.017",
+      "domain": "communications_and_networks",
+      "term_es": "Switch",
+      "term_en": "Switch",
+      "definition_es": "Dispositivo que reenvía tramas en función de direcciones MAC.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.018",
+      "domain": "communications_and_networks",
+      "term_es": "Atenuación",
+      "term_en": "Attenuation",
+      "definition_es": "Disminución de la amplitud o potencia de una señal durante su propagación.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.019",
+      "domain": "communications_and_networks",
+      "term_es": "Distorsión",
+      "term_en": "Distortion",
+      "definition_es": "Alteración de la forma de una señal respecto de la señal original.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.020",
+      "domain": "communications_and_networks",
+      "term_es": "Sensibilidad",
+      "term_en": "Sensitivity",
+      "definition_es": "Nivel mínimo de señal que un receptor puede detectar o procesar según un criterio.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.021",
+      "domain": "communications_and_networks",
+      "term_es": "Cableado estructurado",
+      "term_en": "Structured Cabling",
+      "definition_es": "Sistema normalizado de cableado para distribuir servicios de telecomunicaciones en un edificio.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.022",
+      "domain": "communications_and_networks",
+      "term_es": "Transformada de Fourier",
+      "term_en": "Fourier Transform",
+      "definition_es": "Herramienta matemática que representa una señal en función de sus componentes frecuenciales.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.023",
+      "domain": "communications_and_networks",
+      "term_es": "Onda incidente",
+      "term_en": "Incident Wave",
+      "definition_es": "Onda que llega a una discontinuidad o interfaz.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.024",
+      "domain": "communications_and_networks",
+      "term_es": "Onda reflejada",
+      "term_en": "Reflected Wave",
+      "definition_es": "Parte de la onda que retorna desde una discontinuidad.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "communications_and_networks.025",
+      "domain": "communications_and_networks",
+      "term_es": "Onda transmitida",
+      "term_en": "Transmitted Wave",
+      "definition_es": "Parte de la onda que continúa propagándose después de atravesar una interfaz.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.001",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Inteligencia artificial",
+      "term_en": "Artificial Intelligence (AI)",
+      "definition_es": "Campo que desarrolla sistemas capaces de realizar tareas asociadas a capacidades cognitivas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.002",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Modelo de lenguaje",
+      "term_en": "Language Model",
+      "definition_es": "Modelo que aprende patrones de lenguaje y estima o genera secuencias de texto.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.003",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "LLM",
+      "term_en": "Large Language Model (LLM)",
+      "definition_es": "Modelo de lenguaje de gran escala.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.004",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Qwen3",
+      "term_en": "Qwen3",
+      "definition_es": "Familia de modelos de lenguaje desarrollada por Alibaba.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.005",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "RAG",
+      "term_en": "Retrieval-Augmented Generation (RAG)",
+      "definition_es": "Enfoque que combina recuperación de información externa con generación mediante un modelo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.006",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Recuperación",
+      "term_en": "Retrieval",
+      "definition_es": "Proceso de localizar documentos o fragmentos relevantes para una consulta.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.007",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Generación",
+      "term_en": "Generation",
+      "definition_es": "Proceso mediante el cual un modelo produce una respuesta o secuencia.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.008",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Embedding",
+      "term_en": "Embedding",
+      "definition_es": "Representación vectorial de un elemento, como un texto, en un espacio numérico.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.009",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Búsqueda semántica",
+      "term_en": "Semantic Search",
+      "definition_es": "Búsqueda basada en similitud de significado entre representaciones.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.010",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Recuperador",
+      "term_en": "Retriever",
+      "definition_es": "Componente que selecciona documentos o fragmentos relevantes.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.011",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Base de conocimiento",
+      "term_en": "Knowledge Base",
+      "definition_es": "Colección organizada de información utilizada para responder consultas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.012",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Chunk",
+      "term_en": "Chunk",
+      "definition_es": "Fragmento de un documento utilizado como unidad de procesamiento o recuperación.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.013",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Re-ranking",
+      "term_en": "Re-ranking",
+      "definition_es": "Reordenamiento de resultados recuperados mediante un criterio adicional de relevancia.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.014",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Multilingüe",
+      "term_en": "Multilingual",
+      "definition_es": "Capacidad de procesar o representar más de un idioma.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.015",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "mDeBERTa",
+      "term_en": "Multilingual DeBERTa",
+      "definition_es": "Familia de modelos DeBERTa multilingües; puede emplearse, entre otras tareas, en clasificación y evaluación de relaciones textuales.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.016",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "NLI",
+      "term_en": "Natural Language Inference (NLI)",
+      "definition_es": "Tarea que evalúa la relación lógica entre una premisa y una hipótesis.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.017",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Entailment",
+      "term_en": "Entailment",
+      "definition_es": "Relación en la que una hipótesis se desprende de una premisa.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.018",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Contradiction",
+      "term_en": "Contradiction",
+      "definition_es": "Relación en la que una hipótesis contradice una premisa.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.019",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Neutral",
+      "term_en": "Neutral",
+      "definition_es": "Relación en la que la premisa no permite confirmar ni negar la hipótesis.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.020",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Verificación de evidencia",
+      "term_en": "Evidence Verification",
+      "definition_es": "Evaluación de si una afirmación está respaldada por la evidencia disponible.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.021",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Umbral",
+      "term_en": "Threshold",
+      "definition_es": "Valor de decisión a partir del cual se acepta, rechaza o clasifica un resultado.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.022",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Modelo local",
+      "term_en": "Local Model",
+      "definition_es": "Modelo ejecutado en infraestructura bajo control del usuario.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.023",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "Ollama",
+      "term_en": "Ollama",
+      "definition_es": "Herramienta para ejecutar y gestionar modelos de lenguaje localmente.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "ai_and_information_retrieval.024",
+      "domain": "ai_and_information_retrieval",
+      "term_es": "GIAR-ORION",
+      "term_en": "GIAR-ORION",
+      "definition_es": "Agente local orientado a investigación, desarrollo y asistencia técnica en robótica y aprendizaje por refuerzo.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.001",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "LiDAR",
+      "term_en": "Light Detection and Ranging (LiDAR)",
+      "definition_es": "Técnica de medición de distancias mediante emisión y recepción de luz, habitualmente láser.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.002",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Nube de puntos",
+      "term_en": "Point Cloud",
+      "definition_es": "Conjunto de puntos tridimensionales que representan superficies u objetos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.003",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "TFMini-S",
+      "term_en": "TFMini-S",
+      "definition_es": "Sensor LiDAR compacto para medición de distancia.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.004",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Escaneo 3D",
+      "term_en": "3D Scanning",
+      "definition_es": "Proceso de adquisición de datos espaciales para reconstruir geometría tridimensional.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.005",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Sistema embebido",
+      "term_en": "Embedded System",
+      "definition_es": "Sistema computacional integrado en un dispositivo para realizar funciones específicas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.006",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Adquisición de datos",
+      "term_en": "Data Acquisition",
+      "definition_es": "Proceso de capturar señales o mediciones desde sensores.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.007",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Sincronización",
+      "term_en": "Synchronization",
+      "definition_es": "Coordinación temporal de señales, procesos o dispositivos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.008",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Calibración",
+      "term_en": "Calibration",
+      "definition_es": "Procedimiento para establecer la relación entre la salida de un instrumento y valores de referencia.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.009",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Transformación de coordenadas",
+      "term_en": "Coordinate Transformation",
+      "definition_es": "Conversión de una representación geométrica entre sistemas de referencia.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.010",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "STL",
+      "term_en": "STereoLithography (STL)",
+      "definition_es": "Formato de archivo que representa superficies mediante una malla de triángulos.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.011",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Rhino 3D",
+      "term_en": "Rhinoceros 3D",
+      "definition_es": "Software de modelado geométrico tridimensional.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.012",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "Pipeline",
+      "term_en": "Pipeline",
+      "definition_es": "Secuencia organizada de etapas de procesamiento con entradas y salidas definidas.",
+      "aliases": [],
+      "notes": ""
+    },
+    {
+      "id": "lidar_and_embedded_systems.013",
+      "domain": "lidar_and_embedded_systems",
+      "term_es": "GSPL",
+      "term_en": "GIAR Simulation Pipeline LiDAR (GSPL)",
+      "definition_es": "Pipeline del proyecto GIAR para extraer, organizar, transformar y exportar componentes del sistema LiDAR hacia simulación.",
+      "aliases": [],
+      "notes": ""
+    }
+  ]
+}

@@ -241,24 +241,20 @@ para esta revisión. La secuencia interna del pipeline y la eficacia de
 sus veredictos siguen sujetas a inspección y medición.
 
 ```mermaid
-flowchart TB
- U([Usuario]) --> UI([main_multilinea.py<br/>Interfaz principal])
- UI --> R([Recuperación RAG<br/>Base documental])
- UI --> W([Búsqueda web<br/>Según fuente seleccionada])
- R --> C([Construcción del contexto])
- W --> C
- C --> L([Ollama / Qwen3])
- L --> A([Respuesta generada])
- A --> P([ClaimVerificationPipeline])
- P --> CE([ClaimExtractor])
- P --> EV([EvidenceVerifier])
- CE --> I([Informe de verificación])
- EV --> I
- I --> OUT([Presentación al usuario])
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    U([Usuario]) --> M[main_multilinea.py<br/>Interfaz principal]
+    M --> R[Recuperación RAG<br/>Base documental]
+    M --> W[Búsqueda web<br/>Según modalidad]
+    R --> C[Construcción del contexto]
+    W --> C
+    C --> Q[Ollama / Qwen3]
+    Q --> A[Respuesta generada]
+    A --> P[ClaimVerificationPipeline]
+    P --> X[ClaimExtractor]
+    P --> E[EvidenceVerifier]
+    X --> I[Informe de verificación]
+    E --> I
+    I --> V([Presentación al usuario])
 ```
 
 **Alcance de lo confirmado en esta versión:** además de la importación e
@@ -862,27 +858,25 @@ modalidad de fuentes.
 **Resumen del loop**
 
 ```mermaid
-flowchart TB
- U([Usuario]) --> IN([Ingreso de consulta multilínea]) --> Q{¿Es comando?}
- Q -->|Sí| CMD([Ejecutar comando]) --> WAIT([Volver a esperar entrada])
- Q -->|No| H([Agregar pregunta al historial])
- H --> R([Recuperar evidencia local<br/>RAG, si está habilitado])
- R --> W([Buscar en web<br/>según modalidad: local / web / autorizada])
- W --> CTX([Construir contexto temporal<br/>RAG + web disponible])
- CTX --> MSG([Preparar mensajes + historial])
- MSG --> API([POST /api/chat<br/>Ollama / Qwen3])
- API --> RESP([Recibir respuesta generada])
- RESP --> HIST([Incorporar respuesta al historial])
- RESP --> PIPE([ClaimVerificationPipeline.run()])
- PIPE --> EX([ClaimExtractor: extraer afirmaciones])
- EX --> VER([EvidenceVerifier: contrastar con evidencias])
- VER --> REP([Construir informe de verificación])
- HIST --> SHOW([Mostrar respuesta e informe al usuario])
- REP --> SHOW
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    U([Usuario]) --> I[Ingreso de consulta multilínea]
+    I --> D{¿Es un comando?}
+    D -->|Sí| CMD[Ejecutar comando]
+    CMD --> I
+    D -->|No| H[Agregar pregunta al historial]
+    H --> R[Recuperar evidencia local<br/>RAG, si está habilitado]
+    R --> W[Buscar en web según modalidad<br/>local / web / autorizada]
+    W --> C[Construir contexto temporal<br/>RAG + web disponible]
+    C --> M[Preparar mensajes e historial]
+    M --> Q[POST /api/chat<br/>Ollama / Qwen3]
+    Q --> A[Recibir respuesta generada]
+    A --> HS[Incorporar respuesta al historial]
+    A --> P[ClaimVerificationPipeline.run()]
+    P --> X[ClaimExtractor: extraer afirmaciones]
+    X --> E[EvidenceVerifier: contrastar evidencias]
+    E --> INF[Construir informe de verificación]
+    INF --> OUT([Mostrar respuesta e informe al usuario])
+    HS --> OUT
 ```
 
 **Puntos de control de la auditoría**
@@ -1165,12 +1159,9 @@ El pipeline no utiliza cualquier campo del resultado del verificador
 como estado semántico. Busca específicamente:
 
 ```mermaid
-flowchart TB
- V([verification]) --> C([checks]) --> S([semantic_support_check])
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    V[verification] --> C[checks]
+    C --> S[semantic_support_check]
 ```
 
 El método auxiliar `_semantic_report(...)` devuelve ese objeto solamente
@@ -1223,36 +1214,21 @@ las salidas significan que se haya realizado verificación semántica.
 **Diagrama de decisión de `run()`**
 
 ```mermaid
-flowchart TB
- START([run(response, rag_results, web_results)]) --> VALID{¿response es string<br/>no vacío?}
- VALID -->|No| VE([ValueError<br/>se propaga])
- VALID -->|Sí| INIT([Crear informe inicial]) --> EXT([ClaimExtractor.extract(response)])
- EXT --> EXTOK{¿Extracción válida<br/>y salida tipo dict?}
- EXTOK -->|No: excepción o formato inválido| EERR([EXTRACTION_ERROR])
- EXTOK -->|Sí| COMPLETE{¿extraction.complete<br/>es True?}
- COMPLETE -->|No| EINCOMP([EXTRACTION_INCOMPLETE<br/>Detener verificación semántica])
- COMPLETE -->|Sí| CLAIMS([Validar y extraer textos<br/>de claims]) --> STRUCT{¿Estructura válida?}
- STRUCT -->|No| EERR
- STRUCT -->|Sí| HAS{¿Hay claims?}
- HAS -->|No| NONE([EvidenceVerifier.verify<br/>claims=None]) --> NFACT([NO_FACTUAL_CLAIMS<br/>semantic NOT_PERFORMED])
- HAS -->|Sí| VERIFY([EvidenceVerifier.verify<br/>claims=claim_texts]) --> VEX{¿Ocurrió una excepción?}
- VEX -->|Sí| VERR([VERIFICATION_ERROR])
- VEX -->|No| SEM{¿Existe<br/>semantic_support_check?}
- SEM -->|No| NPERF([SEMANTIC_VERIFICATION_NOT_PERFORMED])
- SEM -->|Sí| STATUS{¿Estado reconocido?}
- STATUS -->|No| NPERF
- STATUS -->|Sí| RESULT([status = semantic_status<br/>can_present_as_supported =<br/>status == SUPPORTED])
- NFACT --> REPORT([Devolver informe])
- EERR --> REPORT
- EINCOMP --> REPORT
- VERR --> REPORT
- NPERF --> REPORT
- RESULT --> REPORT
- VE --> REPORT
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    A[run(response, rag_results, web_results)] --> B{¿response es string<br/>no vacío?}
+    B -->|No| ERR[ValueError<br/>se propaga]
+    B -->|Sí| C[Normalizar y preparar entradas]
+    C --> D[Ejecutar ClaimExtractor.extract()]
+    D --> E{¿Extracción complete?}
+    E -->|No| F[Detener verificación semántica<br/>y registrar estado de extracción]
+    E -->|Sí| G{¿Hay claims factuales?}
+    G -->|No| H[Registrar que no hay claims<br/>para verificar]
+    G -->|Sí| I[Ejecutar EvidenceVerifier.verify()]
+    I --> J[Construir resultados y estados]
+    F --> K[Construir informe estructurado]
+    H --> K
+    J --> K
+    K --> L([Devolver informe])
 ```
 
 **Estados y condiciones de salida definidos en el código**
@@ -1566,18 +1542,16 @@ recibe.
 **Diagrama de ejecución**
 
 ```mermaid
-flowchart TB
- A([Respuesta de Qwen3]) --> B([Validar texto no vacío]) --> C([_split_units(response)])
- C --> D([Asignar unit_id a cada unidad]) --> E([_build_prompt(units)])
- E --> F([Ollama /api/chat<br/>modelo configurado<br/>temperature = 0 · format = json])
- F --> G([_extract_json(raw_output)]) --> H([_validate_extraction(units, data, model)])
- H --> I{¿Hay errores estructurales?}
- I -->|Sí| J([complete = False]) --> K([Pipeline detiene<br/>la verificación])
- I -->|No| L([complete = True]) --> M([claims + coverage + notes]) --> N([ClaimVerificationPipeline])
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    A[Respuesta de Qwen3] --> B{¿Texto no vacío?}
+    B -->|No| X[Devolver error de entrada]
+    B -->|Sí| C[_split_units(response)]
+    C --> D[Asignar unit_id a cada unidad]
+    D --> E[_build_extraction_prompt(...)]
+    E --> F[Consultar modelo configurado]
+    F --> G[_extract_json(raw_output)]
+    G --> H[_validate_extraction(...)]
+    H --> I([Devolver extracción estructurada])
 ```
 
 **Limitaciones declaradas por el propio módulo**
@@ -1923,12 +1897,9 @@ Cuando `claims` es una lista, `verify()` incorpora el informe semántico
 bajo:
 
 ```mermaid
-flowchart TB
- A([checks]) --> B([semantic_support_check])
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    A[checks] --> B[semantic_support_check]
+    B --> C[Informe semántico de verify()]
 ```
 
 Cuando `claims=None`, el control semántico se marca como
@@ -1966,29 +1937,16 @@ controles.
 **Diagrama de ejecución**
 
 ```mermaid
-flowchart TB
- IN([Claims + respuesta + resultados RAG / web]) --> V([EvidenceVerifier.verify()])
- V --> REF([Controles de referencias<br/>URL · RAG · duplicados])
- V --> Q{¿Se suministraron claims?}
- Q -->|No| NP([semantic NOT_PERFORMED])
- Q -->|Sí| VC([verify_claims(claims)])
- REF --> EV([Construir evidencias<br/>RAG + snippets DDGS])
- VC --> EV
- EV --> N([Seleccionar primeros N elementos]) --> HAS{¿Hay evidencias?}
- HAS -->|No| INSUF([INSUFFICIENT])
- HAS -->|Sí| NLI([mDeBERTa NLI<br/>Análisis diagnóstico])
- NLI --> QW([Qwen3 / Ollama<br/>Adjudicación por claim])
- QW --> LABEL([Etiqueta por evidencia])
- LABEL --> AGC([Agregación por claim])
- AGC --> AGG([Agregación global semántica])
- NP --> REPORT([Informe estructurado])
- INSUF --> REPORT
- AGG --> REPORT
- REPORT --> PIPE([ClaimVerificationPipeline.run()])
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    A[Claim(s) + respuesta + resultados RAG/web] --> B[EvidenceVerifier.verify()]
+    B --> C[Validaciones de entrada y referencias]
+    C --> D[Preparación de pares claim-evidencia]
+    D --> E[mDeBERTa<br/>Puntajes NLI diagnósticos]
+    D --> F[Qwen3<br/>Adjudicación semántica]
+    E --> G[Combinación según reglas implementadas]
+    F --> G
+    G --> H[Estados por afirmación y estado global]
+    H --> I([Informe de verificación])
 ```
 
 **Limitaciones y riesgos técnicos**
@@ -2092,27 +2050,22 @@ la interfaz presenta ambos resultados por separado y confirmar todas las
 rutas de excepción.
 
 ```mermaid
-flowchart TB
- U([Usuario]) --> UI([main_multilinea.py])
- UI --> H([Historial])
- UI --> R([Recuperador RAG])
- UI --> W([Buscador DDGS<br/>Modalidad local / web / autorizada])
- R --> E([Evidencias documentales])
- H --> CTX([Construcción de contexto<br/>temporal de consulta])
- E --> CTX
- W --> CTX
- CTX --> MSG([Preparación de mensajes]) --> L([Ollama / Qwen3]) --> RESP([Respuesta generada])
- RESP --> PIPE([ClaimVerificationPipeline.run()])
- PIPE --> CE([ClaimExtractor])
- PIPE --> EV([EvidenceVerifier])
- CE --> REP([Informe estructurado])
- EV --> REP
- RESP --> OUT([Presentación al usuario<br/>Respuesta + informe])
- REP --> OUT
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    U([Usuario]) --> M[main_multilinea.py]
+    M --> S[Gestión de sesión e historial]
+    M --> R[Recuperación RAG]
+    M --> W[Búsqueda web condicional]
+    S --> C[Construcción del contexto y mensajes]
+    R --> C
+    W --> C
+    C --> Q[Ollama / Qwen3]
+    Q --> A[Respuesta generada]
+    A --> P[ClaimVerificationPipeline.run()]
+    P --> X[ClaimExtractor]
+    P --> E[EvidenceVerifier]
+    X --> I[Informe]
+    E --> I
+    I --> O([Presentación al usuario])
 ```
 
 La representación no implica que el pipeline corrija la respuesta. La
@@ -2450,36 +2403,27 @@ posterior falle.
 ## 10. Estructura de archivos propuesta
 
 ```mermaid
-flowchart TB
- ROOT([GIAR-ORION]) --> AUD([AUDIT/])
- AUD --> README([README.md])
- AUD --> SPEC([SPEC/])
- AUD --> DATA([Dataset/])
- AUD --> SCRIPTS([Scripts/])
- AUD --> CONFIG([Config/])
- AUD --> RESULTS([Results/])
- SPEC --> SPECFILE([GIAR-ORION-AUDIT-SPEC-001.md])
- DATA --> D1([GIAR_ORION_AUDIT_DATASET.json])
- DATA --> D2([dataset_metadata.json])
- SCRIPTS --> S1([GIAR_ORION_AUDIT.py])
- SCRIPTS --> S2([audit_controller.py])
- SCRIPTS --> S3([audit_rag.py])
- SCRIPTS --> S4([audit_claim_extractor.py])
- SCRIPTS --> S5([audit_evidence_verifier.py])
- SCRIPTS --> S6([audit_qwen3.py])
- SCRIPTS --> S7([audit_pipeline.py])
- SCRIPTS --> S8([audit_reporting.py])
- CONFIG --> C1([audit_config.json])
- RESULTS --> RUN([AUDIT_fecha_hora_RUN_ID/])
- RUN --> R1([environment.json · rag_results.json])
- RUN --> R2([claim_extractor_results.json])
- RUN --> R3([evidence_verifier_results.json · qwen3_results.json])
- RUN --> R4([pipeline_results.json · metrics.json])
- RUN --> R5([execution_log.txt · final_report.md · final_report.xlsx])
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    G[GIAR-ORION/] --> A[AUDIT/]
+    A --> R[README.md]
+    A --> S[SPEC/]
+    S --> SP[GIAR-ORION-AUDIT-SPEC-001.md]
+    A --> D[Dataset/]
+    D --> D1[GIAR_ORION_AUDIT_DATASET.json]
+    D --> D2[dataset_metadata.json]
+    A --> SC[Scripts/]
+    SC --> SC1[GIAR_ORION_AUDIT.py]
+    SC --> SC2[audit_controller.py]
+    SC --> SC3[audit_rag.py]
+    SC --> SC4[audit_claim_extractor.py]
+    SC --> SC5[audit_evidence_verifier.py]
+    SC --> SC6[audit_qwen3.py]
+    SC --> SC7[audit_pipeline.py]
+    SC --> SC8[audit_reporting.py]
+    A --> CF[Config/]
+    CF --> CFG[audit_config.json]
+    A --> RS[Results/<br/>AUDIT_fecha_hora_RUN_ID/]
+    RS --> F[environment.json · métricas.json<br/>logs · resultados · informes]
 ```
 
 La estructura es una propuesta. Los nombres y responsabilidades se
@@ -2620,27 +2564,20 @@ componentes.
 ### A.3 Diagrama de flujo actualizado (parcialmente confirmado)
 
 ```mermaid
-flowchart TB
- U([Usuario]) --> UI([main_multilinea.py])
- UI --> H([Historial])
- UI --> R([Recuperador RAG])
- UI --> W([Buscador DDGS<br/>Modalidad local / web / autorizada])
- R --> E([Evidencias documentales])
- H --> CTX([Construcción de contexto<br/>temporal de consulta])
- E --> CTX
- W --> CTX
- CTX --> MSG([Preparación de mensajes]) --> L([Ollama / Qwen3]) --> RESP([Respuesta generada])
- RESP --> PIPE([ClaimVerificationPipeline.run()])
- PIPE --> CE([ClaimExtractor])
- PIPE --> EV([EvidenceVerifier])
- CE --> REP([Informe estructurado])
- EV --> REP
- RESP --> OUT([Presentación al usuario<br/>Respuesta + informe])
- REP --> OUT
- classDef module fill:#082f52,stroke:#2874a6,color:#d9edff,stroke-width:1.5px;
-classDef decision fill:#123d60,stroke:#4b91bd,color:#ffffff,stroke-width:1.5px;
-classDef outcome fill:#0b344d,stroke:#4b91bd,color:#d9edff,stroke-width:1.5px;
-linkStyle default stroke:#a9b7c6,stroke-width:1.4px;
+flowchart TD
+    U([Usuario]) --> M[main_multilinea.py]
+    M --> R[Recuperador RAG]
+    M --> W[Buscador web<br/>según modalidad]
+    R --> C[Contexto y fuentes]
+    W --> C
+    C --> Q[Ollama / Qwen3]
+    Q --> A[Respuesta generada]
+    A --> P[ClaimVerificationPipeline.run()]
+    P --> X[ClaimExtractor]
+    P --> E[EvidenceVerifier]
+    X --> I[Informe de verificación]
+    E --> I
+    I --> O([Presentación al usuario])
 ```
 
 **Importante:** la importación, la construcción de la instancia y la
