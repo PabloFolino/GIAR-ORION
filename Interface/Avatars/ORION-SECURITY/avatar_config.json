@@ -1,0 +1,9 @@
+﻿{
+    "voice_path":  "Voice",
+    "textures_path":  "Textures",
+    "animations_path":  "Animations",
+    "model_path":  "Model",
+    "avatar_enabled":  true,
+    "agent_id":  "ORION-SECURITY",
+    "display_name":  "ORION-SECURITY"
+}

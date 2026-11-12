@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+<html lang="" xml:lang="" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8"/>
+<meta content="pandoc" name="generator"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=yes" name="viewport"/>
+<title>GIAR-ORION — Bitácora de Trabajo v0.4</title>
+<style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style><style>
+
+:root { color-scheme: light; --text:#263238; --border:#718096; --header:#e8eef5; --row:#f6f8fb; }
+* { box-sizing:border-box; }
+body { max-width:1120px; margin:36px auto; padding:0 28px 60px; color:var(--text); font:15px/1.58 "Segoe UI",Arial,sans-serif; }
+h1,h2,h3,h4 { color:#203449; line-height:1.25; }
+h1 { margin-top:2.2em; padding-bottom:.35em; border-bottom:2px solid #526579; }
+h2 { margin-top:1.8em; } h3 { margin-top:1.4em; }
+table { width:100%; border-collapse:collapse; margin:1.1em 0 1.5em; font-size:.94em; }
+thead { display:table-header-group; } tr { page-break-inside:avoid; }
+th,td { border:1px solid var(--border); padding:7px 9px; text-align:left; vertical-align:top; }
+th { background:var(--header); border-bottom:2px solid #526579; }
+tbody tr:nth-child(even) { background:var(--row); }
+pre { overflow-x:auto; padding:14px 16px; border:1px solid #d4dce5; border-radius:5px; background:#f3f5f7; line-height:1.45; font-size:.9em; }
+code { font-family:Consolas,"Courier New",monospace; overflow-wrap:anywhere; }
+:not(pre)>code { padding:1px 4px; border-radius:3px; background:#eef1f4; }
+blockquote { margin:1em 0; padding:.2em 1em; border-left:4px solid #718096; color:#46596b; background:#f6f8fb; }
+hr { border:0; border-top:1px solid #aab6c2; margin:2em 0; }
+li { margin:.22em 0; }
+@media print { body { max-width:none; margin:12mm; padding:0; font-size:10pt; } pre { white-space:pre-wrap; word-break:break-word; } }
+
+</style></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">GIAR-ORION — Bitácora de Trabajo v0.4</h1>
+</header>
+<h1 id="giar-orion-----bitácora-de-trabajo">GIAR-ORION --- Bitácora de
+trabajo</h1>
+<p><strong>Código:</strong> GIAR-ORION-DOC-002<br/>
+<strong>Versión:</strong> 0.4<br/>
+<strong>Fecha de apertura:</strong> 10/11/2026<br/>
+<strong>Última actualización:</strong> 11/11/2026<br/>
+<strong>Estado:</strong> Registro inicial ampliado; actividades de
+diseño documentadas.</p>
+<h2 id="propósito-y-reglas">Propósito y reglas</h2>
+<p>Esta bitácora registra lo que realmente se hizo: decisiones, tareas,
+archivos, pruebas, resultados y próximos pasos. No registrar planes como
+si fueran tareas terminadas.</p>
+<p>Cada entrada futura debe incluir ID, fecha, módulo, objetivo, pasos
+realizados, decisiones, archivos afectados, pruebas,
+resultados/evidencias, problemas, estado y próximo paso.</p>
+<p>Estados sugeridos: PLANNED, IN_PROGRESS, COMPLETED, TESTING, BLOCKED,
+APPROVED, REJECTED.</p>
+<p>La aprobación conceptual de un módulo no significa implementación. Si
+no hubo código o pruebas, registrar «No aplica: etapa de diseño».</p>
+<h2 id="control-de-versiones">Control de versiones</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Versión</th>
+<th>Fecha</th>
+<th>Cambios</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.1</td>
+<td>10/11/2026</td>
+<td>Apertura y consolidación de decisiones conceptuales de módulos 1–18
+e incorporación de 19–24.</td>
+<td>Registro inicial</td>
+</tr>
+<tr class="even">
+<td>0.2</td>
+<td>11/11/2026</td>
+<td>Registro de ORION CORE y LOG-0018; aprobación funcional de 19.16 y
+normalización documental.</td>
+<td>Ingeniería pendiente</td>
+</tr>
+<tr class="odd">
+<td>0.3</td>
+<td>11/11/2026</td>
+<td>Incorporación de LOG-0019: especificación funcional de M20,
+auditorías, 144 requisitos, diez componentes, contratos, flujos y
+pendientes técnicos.</td>
+<td>M20 aprobado funcionalmente; diseño técnico e implementación
+pendientes</td>
+</tr>
+<tr class="even">
+<td>0.4</td>
+<td>11/11/2026</td>
+<td>Incorporación de LOG-0020: priorización de plataforma e interfaz
+general, secuencia de integración de ORION-ROBOTICS y estado STAND-BY de
+M20 con preservación del trabajo existente.</td>
+<td>Registro de decisión y cambio de prioridad; interfaz general
+pendiente de diseño</td>
+</tr>
+</tbody>
+</table>
+<h1 id="registro-inicial">Registro inicial</h1>
+<h2 id="log-0001-----visión-y-principios-de-giar-orion">LOG-0001 ---
+Visión y principios de GIAR-ORION</h2>
+<p><strong>Fecha:</strong> 10/11/2026 (consolidación de decisiones
+previas)<br/>
+<strong>Área:</strong> Arquitectura general<br/>
+<strong>Trabajo/decisiones:</strong> Plataforma local multiagente; ORION
+coordinador; agentes iniciales Robotics, Software, Security, Languages y
+Marketing; modos coordinador, agente directo y colaborativo;
+comunicación híbrida; offline y Windows/Ubuntu; servicios LLM
+compartidos; autonomía configurable, permisos y auditoría.<br/>
+<strong>Archivos afectados:</strong> No se registraron archivos de
+implementación en esta etapa.<br/>
+<strong>Pruebas:</strong> No aplica, etapa conceptual.<br/>
+<strong>Resultado/estado:</strong> Decisiones consolidadas; APPROVED
+conceptual.<br/>
+<strong>Próximo paso:</strong> Completar especificaciones funcionales y
+arquitectura técnica.</p>
+<h2 id="log-0002-----módulos-1-a-3">LOG-0002 --- Módulos 1 a 3</h2>
+<p><strong>Área:</strong> Interfaz, comunicaciones, tareas y
+recursos.<br/>
+<strong>Trabajo:</strong> Línea visual e interfaz; centro de
+comunicaciones y cuatro tipos; Task Manager, Resource Manager y Model
+Manager; distinción de concurrencia de tareas e inferencia; evitar
+duplicación de Qwen3.<br/>
+<strong>Archivos:</strong> Sin implementación registrada.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Especificar pantallas, protocolos, APIs y
+políticas de recursos.</p>
+<h2 id="log-0003-----módulos-4-y-5">LOG-0003 --- Módulos 4 y 5</h2>
+<p><strong>Área:</strong> Conocimiento y memoria.<br/>
+<strong>Trabajo:</strong> Bibliotecas privadas/compartidas/globales;
+permisos; pipeline documental y pruebas RAG; memoria Working, Episodic,
+Semantic y Procedural; política híbrida de guardado; separación
+Knowledge/RAG y Memory.<br/>
+<strong>Archivos:</strong> Sin implementación registrada.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir esquemas, índices, ciclo de vida
+y recuperación.</p>
+<h2 id="log-0004-----módulos-6-y-7">LOG-0004 --- Módulos 6 y 7</h2>
+<p><strong>Área:</strong> Seguridad, voz y avatar.<br/>
+<strong>Trabajo:</strong> Seguridad híbrida con adaptadores
+Windows/Ubuntu y herramientas consolidadas; avatares 3D, STT/TTS,
+estados reales y servicios compartidos; tecnologías candidatas
+identificadas.<br/>
+<strong>Archivos:</strong> Sin implementación registrada.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir políticas y comparar tecnologías
+con pruebas.</p>
+<h2 id="log-0005-----módulos-8-y-9">LOG-0005 --- Módulos 8 y 9</h2>
+<p><strong>Área:</strong> Proyectos e informes.<br/>
+<strong>Trabajo:</strong> Línea base de proyecto protegida, cambios
+importantes aprobados, tareas y versionado. Reporting con evidencias,
+formatos e historial.<br/>
+<strong>Pendiente:</strong> Modelo de aprobación de informes A/B/C;
+recomendada C, no aceptada expresamente.<br/>
+<strong>Archivos:</strong> Sin implementación registrada.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> Módulo 8 aprobado conceptualmente; módulo 9 en
+definición.<br/>
+<strong>Próximo paso:</strong> Resolver aprobación y criterios de
+validación.</p>
+<h2 id="log-0006-----módulo-10-file-manager">LOG-0006 --- Módulo 10:
+File Manager</h2>
+<p><strong>Trabajo:</strong> Aprobadas lectura/análisis y
+edición/generación; servicio central; formatos de documentos, hojas,
+presentaciones, imágenes, comprimidos, código, audio, video y 3D;
+protección de originales; versionado; autonomía por
+agente/proyecto/formato/operación; bibliotecas candidatas.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Seleccionar bibliotecas, adaptadores y
+pruebas por formato.</p>
+<h2 id="log-0007-----módulo-11-web--research">LOG-0007 --- Módulo 11:
+Web &amp; Research</h2>
+<p><strong>Trabajo:</strong> Investigación online/offline; fuentes web,
+repositorios, académicas y locales; clasificación de evidencias;
+autonomía supervisada; defensa frente a prompt injection y descargas
+peligrosas.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir conectores, límites y evaluación
+de fuentes.</p>
+<h2 id="log-0008-----módulo-12-learning--adaptation">LOG-0008 --- Módulo
+12: Learning &amp; Adaptation</h2>
+<p><strong>Trabajo:</strong> Aprobado aprendizaje integral: operativo,
+optimización de agentes y entrenamiento/fine-tuning; separación de RAG,
+memoria, LLM y entrenamiento; Model Training Manager; LoRA/QLoRA;
+evaluación, versionado y conservación de originales.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir datasets, métricas y criterios de
+aceptación.</p>
+<h2 id="log-0009-----módulo-13-api--integration">LOG-0009 --- Módulo 13:
+API &amp; Integration</h2>
+<p><strong>Trabajo:</strong> Conectores independientes; integraciones
+previstas CoppeliaSim, MuJoCo, Webots, Rhino, Solid Edge, VS Code, Git,
+GitHub, Ollama, ROS 2, Arduino y ESP32; autonomía configurable;
+controles especiales para hardware físico.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Verificar APIs y capacidades reales.</p>
+<h2 id="log-0010-----módulo-14-notification--event">LOG-0010 --- Módulo
+14: Notification &amp; Event</h2>
+<p><strong>Trabajo:</strong> Categorías y prioridades de eventos; PC y
+móvil por Wi-Fi local; autonomía para interpretar eventos, convocar
+agentes y crear/reasignar tareas; límites contra ciclos y autorizaciones
+vencidas.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir esquema, persistencia, cola y
+entrega.</p>
+<h2 id="log-0011-----módulo-15-backup--recovery">LOG-0011 --- Módulo 15:
+Backup &amp; Recovery</h2>
+<p><strong>Trabajo:</strong> Sistema híbrido
+local/externo/NAS/red/remoto opcional; 3-2-1 de referencia; copias
+completas, incrementales, diferenciales y por evento;
+frecuencia/retención inteligente; integridad y pruebas de
+restauración.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir cifrado, herramientas, retención
+y recuperación.</p>
+<h2 id="log-0012-----módulo-16-administration--configuration">LOG-0012
+--- Módulo 16: Administration &amp; Configuration</h2>
+<p><strong>Trabajo:</strong> Administración centralizada de agentes,
+modelos, recursos, permisos, seguridad, conectores, dispositivos y
+configuración; autonomía configurable; auditoría; autorización reforzada
+para cambios críticos.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir configuración, roles, secretos y
+aprobación.</p>
+<h2 id="log-0013-----módulo-17-multi-user--identity">LOG-0013 --- Módulo
+17: Multi-User &amp; Identity</h2>
+<p><strong>Trabajo:</strong> Aprobado modelo multiusuario avanzado;
+identidades, sesiones, preferencias, memoria, permisos, proyectos
+colaborativos y aislamiento de información personal.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir autenticación, MFA, aislamiento y
+concurrencia.</p>
+<h2 id="log-0014-----módulo-18-scheduler--autonomous-operations">LOG-0014
+--- Módulo 18: Scheduler &amp; Autonomous Operations</h2>
+<p><strong>Trabajo:</strong> Modalidades inmediata, programada,
+recurrente, condicional y autónoma; estados; continuidad sin usuario
+conectado; autonomía integral configurable; integración con
+Task/Resource/Event/Project/Recovery.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> APPROVED conceptual.<br/>
+<strong>Próximo paso:</strong> Definir scheduler, persistencia,
+watchdogs y reintentos.</p>
+<h2 id="log-0015-----incorporación-de-módulos-19-a-24">LOG-0015 ---
+Incorporación de módulos 19 a 24</h2>
+<p><strong>Trabajo:</strong> Aceptados seis módulos: Decision &amp;
+Reasoning; Quality &amp; Validation; Knowledge Graph; Data &amp;
+Experiment; Plugin &amp; Extension; Diagnostics &amp; Self-Monitoring.
+Se acordó especificarlos y luego auditar integralmente los 24 módulos
+antes de la arquitectura técnica.<br/>
+<strong>Archivos:</strong> Especificación funcional; sin código
+registrado.<br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Estado:</strong> Incorporación APPROVED; detalle
+IN_PROGRESS.<br/>
+<strong>Próximo paso:</strong> Desarrollar el módulo 19 y seguir en
+orden hasta el 24.</p>
+<h2 id="log-0016-----sistema-documental">LOG-0016 --- Sistema
+documental</h2>
+<p><strong>Trabajo:</strong> Se decidió mantener dos documentos vivos:
+especificación funcional maestra y bitácora de trabajo. Cada módulo
+tendrá tabla de versiones al comienzo con cambios, estado y próximo
+trabajo. Ubicación propuesta bajo
+<code>GIAR-ORION/Documents/</code>.<br/>
+<strong>Archivos generados:</strong>\</p>
+<ul>
+<li><code>GIAR-ORION_Especificacion_Funcional_Maestra_v0.1.md</code>\</li>
+<li><code>GIAR-ORION_Bitacora_de_Trabajo_v0.1.md</code><br/>
+<strong>Pruebas:</strong> No aplica.<br/>
+<strong>Resultado:</strong> Primeros borradores generados para revisión;
+pendiente integrarlos en el repositorio/proyecto en sus rutas
+definitivas.<br/>
+<strong>Estado:</strong> IN_PROGRESS.<br/>
+<strong>Próximo paso:</strong> Revisar, corregir y ubicar los archivos
+dentro de la estructura definitiva.</li>
+</ul>
+<h2 id="log-0017--orion-core-primera-versión-de-la-especificación-funcional">LOG-0017
+— ORION CORE: primera versión de la especificación funcional</h2>
+<p><strong>Fecha:</strong> 11/11/2026<br/>
+<strong>Área:</strong> Núcleo de coordinación y operación de
+GIAR-ORION<br/>
+<strong>Objetivo:</strong> Documentar la primera versión funcional
+aprobada de ORION CORE en los documentos maestros.<br/>
+<strong>Trabajo realizado:</strong> Se consolidó el alcance de ORION
+CORE en diez componentes: inicialización/cierre; registro e
+identificación de agentes; recepción/distribución de solicitudes;
+coordinación de tareas; comunicación con Model Manager; gestión de
+estados; registro de eventos/errores; control de permisos; persistencia;
+e interfaces con módulos futuros. Se incorporaron las doce decisiones
+funcionales aprobadas (ORION-CORE-001 a ORION-CORE-012), los criterios
+transversales, límites de responsabilidad, dependencias y pendientes de
+ingeniería.<br/>
+<strong>Decisiones:</strong> Primera versión aprobada funcionalmente. La
+aprobación no implica diseño técnico final, selección tecnológica,
+implementación ni pruebas.<br/>
+<strong>Archivos afectados:</strong>
+<code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.4.md</code>;
+<code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.4.html</code>;
+<code>CHA-001-GIAR-ORION_Bitacora_de_Trabajo_v0.2.md</code>;
+<code>CHA-001-GIAR-ORION_Bitacora_de_Trabajo_v0.2.html</code>.<br/>
+<strong>Pruebas:</strong> No aplica: etapa de especificación funcional.
+Se revisó la correspondencia entre las versiones Markdown y HTML y la
+presencia de bordes visibles en las tablas HTML.<br/>
+<strong>Resultados/evidencias:</strong> ORION CORE queda documentado
+como núcleo transversal, sin convertirlo en un módulo numerado adicional
+ni alterar el orden de los módulos 1–24.<br/>
+<strong>Problemas:</strong> No se registraron pruebas de código ni
+ejecución. Los detalles técnicos y los contratos concretos siguen
+pendientes.<br/>
+<strong>Estado:</strong> COMPLETED — especificación funcional aprobada;
+ingeniería pendiente.<br/>
+<strong>Próximo paso:</strong> Diseñar técnicamente ORION CORE y definir
+contratos, modelos de datos, políticas, interfaces y pruebas de
+integración.</p>
+<h2 id="log-0018--aprobación-de-la-decisión-1916-y-normalización-documental">LOG-0018
+— Aprobación de la decisión 19.16 y normalización documental</h2>
+<p><strong>Fecha:</strong> 11/11/2026<br/>
+<strong>Módulo/área:</strong> Módulo 19 — Decision &amp; Reasoning
+Engine; gestión documental.<br/>
+<strong>Objetivo:</strong> Registrar la aprobación de la opción C para
+la decisión 19.16 y corregir inconsistencias documentales identificadas
+durante la revisión.<br/>
+<strong>Trabajo realizado:</strong> Se aprobó la explicación adaptativa
+y configurable del razonamiento, con niveles resumido, técnico, completo
+e interactivo; configuración global, por proyecto o por investigación.
+Se actualizó REG-001 v0.4 en Markdown y HTML, manteniendo su
+identificación de versión. Se aclaró en el historial de REG-001 que las
+revisiones 0.2 y 0.3 introdujeron únicamente cambios estéticos, sin
+modificaciones funcionales. Se sincronizaron fecha, versión y cierre del
+HTML. Se actualizó CHA-001 v0.2 en Markdown y HTML, manteniendo su
+identificación de versión y corrigiendo el cierre.<br/>
+<strong>Decisiones:</strong> 19.16 — opción C aprobada funcionalmente.
+La implementación técnica continúa pendiente. No se incrementó la
+versión de REG-001 ni de CHA-001, conforme a la instrucción de mantener
+v0.4 y v0.2, respectivamente.<br/>
+<strong>Archivos afectados:</strong>
+<code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.4.md</code>;
+<code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.4.html</code>;
+<code>CHA-001-GIAR-ORION_Bitacora_de_Trabajo_v0.2.md</code>;
+<code>CHA-001-GIAR-ORION_Bitacora_de_Trabajo_v0.2.html</code>.<br/>
+<strong>Pruebas:</strong> Validación de coherencia de encabezados,
+tablas de versiones, decisión 19.16, pendientes y cierres; verificación
+estructural de los HTML y de los bordes visibles de tablas.<br/>
+<strong>Resultados/evidencias:</strong> La decisión 19.16 queda
+incorporada entre las decisiones aprobadas del Módulo 19. REG-001
+mantiene v0.4 y CHA-001 mantiene v0.2.<br/>
+<strong>Problemas:</strong> No se realizaron pruebas de código ni
+ejecución; corresponde a una actualización documental de diseño
+funcional.<br/>
+<strong>Estado:</strong> COMPLETED — actualización documental realizada;
+ingeniería pendiente.<br/>
+<strong>Próximo paso:</strong> Desarrollar la especificación funcional
+del Módulo 20 — Quality &amp; Validation Engine y continuar
+secuencialmente con los módulos 21 a 24.</p>
+<h2 id="log-0019--especificación-funcional-y-auditorías-del-módulo-20">LOG-0019
+— Especificación funcional y auditorías del Módulo 20</h2>
+<p><strong>Fecha:</strong> 11/11/2026<br/>
+<strong>Módulo/área:</strong> Módulo 20 — Quality &amp; Validation
+Engine.<br/>
+<strong>Objetivo:</strong> Registrar la consolidación de la
+especificación funcional de M20 y sus auditorías.<br/>
+<strong>Trabajo realizado:</strong> Se documentó la arquitectura de diez
+componentes; decisiones DEC-001 a DEC-037; doce contratos C20-001 a
+C20-012 y cuatro contratos transversales; ocho flujos FL-20-001 a
+FL-20-008; 144 requisitos funcionales (107 originales y 37 adicionales
+M20-RF-1101 a M20-RF-1137); estados, permisos, autonomía, evidencias,
+auditoría, concurrencia, planificación, resiliencia y recuperación. Se
+completaron AUD-20-A y AUD-20-H y se consolidaron HALL-20-001 a
+HALL-20-098. Se registraron once pendientes RES-20-001 a
+RES-20-011.<br/>
+<strong>Decisiones:</strong> M20 aprobado funcionalmente en el alcance
+documentado, conservando diez componentes. No se aprobó modificar la
+arquitectura. La aprobación no implica diseño técnico final,
+implementación, pruebas de código ni certificación.<br/>
+<strong>Archivos afectados:</strong>
+<code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.5.md/.html</code>;
+<code>CHA-001-GIAR-ORION_Bitacora_de_Trabajo_v0.3.md/.html</code>.<br/>
+<strong>Pruebas:</strong> No aplica: etapa de especificación funcional y
+auditoría conceptual. No se ejecutaron pruebas de código ni pruebas de
+resiliencia sobre un sistema implementado.<br/>
+<strong>Resultados/evidencias:</strong> Dictamen SATISFACTORIO CON
+OBSERVACIONES TÉCNICAS. Las 576 simulaciones de planificación fueron
+abstractas y no se ejecutaron sobre hardware real.<br/>
+<strong>Problemas:</strong> Permanecen pendientes técnicos de contratos,
+estados, criptografía, datasets, umbrales, persistencia, recuperación y
+aislamiento. No se detectaron fallos de implementación.<br/>
+<strong>Estado:</strong> COMPLETED — especificación funcional y
+auditorías conceptuales consolidadas; diseño técnico e implementación
+pendientes.<br/>
+<strong>Próximo paso:</strong> Iniciar DT-01 — Arquitectura técnica
+general y despliegue de M20.</p>
+<h1 id="plantilla-para-cada-nueva-entrada">Plantilla para cada nueva
+entrada</h1>
+<h2 id="log-xxxx-----título">LOG-XXXX --- Título</h2>
+<p><strong>Fecha:</strong> AAAA-MM-DD<br/>
+<strong>Módulo/área:</strong><br/>
+<strong>Objetivo:</strong><br/>
+<strong>Trabajo realizado:</strong> pasos concretos y ordenados.<br/>
+<strong>Decisiones:</strong> quién aprobó y qué quedó pendiente.<br/>
+<strong>Archivos afectados:</strong> rutas, nombres, versiones y
+cambios.<br/>
+<strong>Pruebas:</strong> comandos, entorno, condiciones y
+procedimiento.<br/>
+<strong>Resultados/evidencias:</strong> logs, métricas, salidas o
+referencias.<br/>
+<strong>Problemas:</strong> describir y clasificar origen (RAG,
+extracción, generación LLM, verificación, decisión, herramienta,
+planificación o infraestructura).<br/>
+<strong>Estado:</strong><br/>
+<strong>Próximo paso:</strong></p>
+<h2 id="log-0020--priorización-de-la-plataforma-general-e-interfaz-m20-en-stand-by">LOG-0020
+— Priorización de la plataforma general e interfaz; M20 en STAND-BY</h2>
+<p><strong>Fecha:</strong> 11/11/2026<br/>
+<strong>Módulo/área:</strong> Arquitectura general, interfaz principal y
+Módulo 20 — Quality &amp; Validation Engine.<br/>
+<strong>Objetivo:</strong> Registrar la secuencia de desarrollo acordada
+y la pausa temporal de M20.<br/>
+<strong>Trabajo realizado:</strong> Se consolidó la secuencia: primero
+desarrollar la plataforma general GIAR-ORION y su interfaz de usuario;
+después adaptar e integrar el agente de robótica existente
+ORION-ROBOTICS; posteriormente evaluar otros agentes especializados solo
+si existe una necesidad justificada. Se estableció que la interfaz debe
+ser general y no exclusiva de robótica. Se actualizó el estado de
+continuidad de M20 a STAND-BY.<br/>
+<strong>Decisiones:</strong> La prioridad inmediata es el diseño de la
+plataforma y de su interfaz general. M20 queda en STAND-BY: se preservan
+su especificación funcional, contratos C20-001 a C20-012, decisiones,
+requisitos, auditorías y diseño técnico existente. La pausa no equivale
+a cancelación, rechazo, aprobación final ni invalidación de acuerdos. No
+continuar por ahora con DT-06 a DT-12 ni con la implementación de M20.
+No se aprueba implementar anticipadamente una plataforma multiagente
+colaborativa completa ni agentes adicionales sin necesidad
+justificada.<br/>
+<strong>Archivos afectados:</strong>
+<code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.7.html</code>;
+<code>DES-M20_Technical_Design_v0.6.md</code>;
+<code>CHA-001-GIAR-ORION_Bitacora_de_Trabajo_v0.4.md</code>.<br/>
+<strong>Pruebas:</strong> No aplica: actualización de planificación y
+documentación. No se ejecutó código ni se realizaron pruebas de interfaz
+o de integración.<br/>
+<strong>Resultados/evidencias:</strong> Secuencia de desarrollo y estado
+STAND-BY documentados. El diseño detallado de la interfaz general
+continúa pendiente.<br/>
+<strong>Problemas:</strong> No se registran fallos de implementación;
+esta entrada no acredita que la plataforma o la interfaz estén
+desarrolladas.<br/>
+<strong>Estado:</strong> COMPLETED — decisión de planificación
+documentada; diseño de interfaz pendiente. M20: STAND-BY.<br/>
+<strong>Próximo paso:</strong> Iniciar el diseño funcional de la
+interfaz general de GIAR-ORION, definiendo estructura, navegación, áreas
+de trabajo, paneles y estados antes de implementar.</p>
+<h1 id="plantilla-para-cada-nueva-entrada-1">Plantilla para cada nueva
+entrada</h1>
+<h2 id="log-xxxx-----título-1">LOG-XXXX --- Título</h2>
+<p><strong>Fecha:</strong> AAAA-MM-DD<br/>
+<strong>Módulo/área:</strong><br/>
+<strong>Objetivo:</strong><br/>
+<strong>Trabajo realizado:</strong> pasos concretos y ordenados.<br/>
+<strong>Decisiones:</strong> quién aprobó y qué quedó pendiente.<br/>
+<strong>Archivos afectados:</strong> rutas, nombres, versiones y
+cambios.<br/>
+<strong>Pruebas:</strong> comandos, entorno, condiciones y
+procedimiento.<br/>
+<strong>Resultados/evidencias:</strong> logs, métricas, salidas o
+referencias.<br/>
+<strong>Problemas:</strong> describir y clasificar origen (RAG,
+extracción, generación LLM, verificación, decisión, herramienta,
+planificación o infraestructura).<br/>
+<strong>Estado:</strong><br/>
+<strong>Próximo paso:</strong></p>
+<p><strong>Fin --- Bitácora v0.4.</strong></p>
+</body>
+</html>

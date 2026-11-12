@@ -50,5 +50,25 @@
             "mujoco.org",
             "coppeliarobotics.com"
         ]
+    },
+    "interface": {
+    "default_mode": "desarrollo",
+    "modes": {
+        "desarrollo": {
+            "show_sources": true,
+            "show_verification": true,
+            "show_diagnostics": true
+        },
+        "intermedio": {
+            "show_sources": true,
+            "show_verification": false,
+            "show_diagnostics": false
+        },
+        "produccion": {
+            "show_sources": false,
+            "show_verification": false,
+            "show_diagnostics": false
+        }
     }
+}
 }

@@ -1,0 +1,9 @@
+﻿{
+    "voice_path":  "Voice",
+    "textures_path":  "Textures",
+    "animations_path":  "Animations",
+    "model_path":  "Model",
+    "avatar_enabled":  true,
+    "agent_id":  "ORION-MARKETING",
+    "display_name":  "ORION-MARKETING"
+}

@@ -88,6 +88,7 @@ class ClaimVerificationPipeline:
         response: str,
         rag_results: Optional[list] = None,
         web_results: Optional[list] = None,
+        think: Optional[bool] = None,
     ) -> dict:
         """
         Ejecuta extracción y verificación.
@@ -96,6 +97,16 @@ class ClaimVerificationPipeline:
         """
         if not isinstance(response, str) or not response.strip():
             raise ValueError("'response' debe ser un string no vacío.")
+        if think is not None and not isinstance(think, bool):
+            raise ValueError("'think' debe ser booleano o None.")
+        if think is not None:
+            # El modo puede cambiar durante la sesión (/modo rapido / investigacion).
+            # Se actualiza la instancia ya creada, sin reinicializar modelos.
+            if not hasattr(self.evidence_verifier, "think"):
+                raise ClaimVerificationPipelineError(
+                    "El EvidenceVerifier configurado no admite el parámetro think."
+                )
+            self.evidence_verifier.think = think
 
         result = {
             "pipeline": "ClaimVerificationPipeline",
@@ -103,6 +114,7 @@ class ClaimVerificationPipeline:
             "status": None,
             "can_present_as_supported": False,
             "claims_submitted": 0,
+            "adjudication_think": getattr(self.evidence_verifier, "think", None),
             "extractor_version": self._version(self.claim_extractor),
             "verifier_version": self._version(self.evidence_verifier),
             "extraction": None,
@@ -215,9 +227,12 @@ class ClaimVerificationPipeline:
         return result
 
     def verify(self, response: str, rag_results: Optional[list] = None,
-               web_results: Optional[list] = None) -> dict:
+               web_results: Optional[list] = None,
+               think: Optional[bool] = None) -> dict:
         """Alias de run()."""
-        return self.run(response, rag_results=rag_results, web_results=web_results)
+        return self.run(
+            response, rag_results=rag_results, web_results=web_results, think=think
+        )
 
 
 def run_pipeline(response: str, rag_results: Optional[list] = None,

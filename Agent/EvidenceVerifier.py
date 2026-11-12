@@ -45,9 +45,8 @@ class EvidenceVerifierError(ValueError):
 class EvidenceVerifier:
     """Realiza controles deterministas sobre referencias y evidencias."""
 
-    VERSION = "0.3.3"
-    PROJECT_ROOT = Path(__file__).resolve().parent.parent
-    DEFAULT_TERMINOLOGY_FILE = (PROJECT_ROOT / "Knowledge" / "Terminology.json" )
+    VERSION = "0.3.4-compact-adjudication"
+    DEFAULT_TERMINOLOGY_FILE = "Terminology.json"
     MAX_TERMINOLOGY_CONTEXT_TERMS = 12
 
     # Se capturan URLs HTTP(S) escritas en la respuesta.
@@ -67,6 +66,7 @@ class EvidenceVerifier:
         adjudication_model: str = "qwen3:8b",
         adjudication_timeout: int = 90,
         use_ollama_adjudication: bool = True,
+        think: bool = False,
         terminology_path: str | Path | None = None,
     ) -> None:
         """Inicializa NLI diagnóstico y juez semántico local.
@@ -93,15 +93,18 @@ class EvidenceVerifier:
         self.adjudication_model = adjudication_model
         self.adjudication_timeout = adjudication_timeout
         self.use_ollama_adjudication = use_ollama_adjudication
+        if not isinstance(think, bool):
+            raise ValueError("think debe ser booleano.")
+        self.think = think
         self.terminology_path = (
             Path(terminology_path).expanduser().resolve()
             if terminology_path is not None
-            else self.DEFAULT_TERMINOLOGY_FILE
+            else (
+                Path(__file__).resolve().parent.parent
+                / "Knowledge"
+                / self.DEFAULT_TERMINOLOGY_FILE
+            )
         )
-        if not self.terminology_path.is_file():
-            raise FileNotFoundError(
-                f"No se encontró Terminology.json: {self.terminology_path}"
-            )        
         self._terminology = self._load_terminology(self.terminology_path)
 
     @staticmethod
@@ -434,6 +437,180 @@ class EvidenceVerifier:
         error.diagnostics = diagnostics
         raise error
 
+    def _ollama_adjudicate_batch(
+        self, claims: list[str], evidence_items: list[dict[str, Any]]
+    ) -> dict[str, Any]:
+        """Adjudica varias afirmaciones en una llamada con salida JSON compacta.
+
+        Devuelve una etiqueta por cada par (afirmación, evidencia). No genera
+        explicaciones para reducir tokens de salida. Si la respuesta no es
+        completa y válida, falla de forma cerrada; no repite una generación
+        extensa que pueda volver a truncarse.
+        """
+        import json
+        import urllib.request
+        import time
+
+        started = time.perf_counter()
+        claim_rows = []
+        for i, claim in enumerate(claims):
+            terms = self._select_terminology(claim, evidence_items)
+            # Solo se conserva el contexto terminológico esencial para reducir
+            # el tamaño del prompt sin convertir el glosario en evidencia.
+            compact_terms = [
+                {
+                    "term_es": item["term_es"],
+                    "term_en": item["term_en"],
+                    "definition_es": item["definition_es"],
+                }
+                for item in terms
+            ]
+            claim_rows.append({"claim_id": i, "claim": claim, "terminology": compact_terms})
+
+        evidence_rows = [
+            {"evidence_id": i, "text": str(item["text"])}
+            for i, item in enumerate(evidence_items)
+        ]
+
+        prompt = (
+            "Actúas como verificador estricto de evidencias. Usa EXCLUSIVAMENTE "
+            "los textos proporcionados; no uses conocimiento externo ni completes "
+            "información ausente. Para cada afirmación, clasifica CADA evidencia:\n"
+            "SUPPORTED: la evidencia afirma directamente o implica claramente toda la afirmación.\n"
+            "CONTRADICTED: afirma un hecho incompatible sobre el mismo sujeto, propiedad y condiciones.\n"
+            "INSUFFICIENT: relación temática, apoyo parcial, aspecto distinto o información insuficiente. "
+            "La falta de mención NO es contradicción.\n"
+            "Acepta equivalencias terminológicas español/inglés solo si el significado es realmente equivalente. "
+            "En SAC, alpha, temperatura de entropía y coeficiente de temperatura de entropía son equivalentes.\n"
+            "El glosario es solo contexto, nunca evidencia. Devuelve SOLO JSON. "
+            "Incluye cada claim_id una vez y exactamente una etiqueta por evidence_id, "
+            "en el mismo orden. No incluyas explicaciones.\n\n"
+            f"CLAIMS:\n{json.dumps(claim_rows, ensure_ascii=False, separators=(',', ':'))}\n\n"
+            f"EVIDENCE:\n{json.dumps(evidence_rows, ensure_ascii=False, separators=(',', ':'))}"
+        )
+
+        schema = {
+            "type": "object",
+            "properties": {
+                "results": {
+                    "type": "array",
+                    "minItems": len(claims),
+                    "maxItems": len(claims),
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "claim_id": {"type": "integer", "minimum": 0},
+                            "labels": {
+                                "type": "array",
+                                "minItems": len(evidence_items),
+                                "maxItems": len(evidence_items),
+                                "items": {
+                                    "type": "string",
+                                    "enum": ["SUPPORTED", "CONTRADICTED", "INSUFFICIENT"],
+                                },
+                            },
+                        },
+                        "required": ["claim_id", "labels"],
+                        "additionalProperties": False,
+                    },
+                }
+            },
+            "required": ["results"],
+            "additionalProperties": False,
+        }
+
+        # La salida compacta necesita pocos tokens. Un solo intento evita
+        # duplicar latencia cuando el modelo no respeta el esquema.
+        num_predict = 256
+        payload = {
+            "model": self.adjudication_model,
+            "messages": [{"role": "user", "content": prompt}],
+            "stream": False,
+            "think": self.think,
+            "format": schema,
+            "options": {"temperature": 0, "num_predict": num_predict},
+        }
+        request = urllib.request.Request(
+            f"{self.ollama_url}/api/chat",
+            data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(request, timeout=self.adjudication_timeout) as response:
+            body = json.loads(response.read().decode("utf-8"))
+
+        message = body.get("message", {}) if isinstance(body, dict) else {}
+        raw = message.get("content", "") if isinstance(message, dict) else ""
+        diagnostic = {
+            "attempt": 1,
+            "think": self.think,
+            "num_predict": num_predict,
+            "done_reason": body.get("done_reason") if isinstance(body, dict) else None,
+            "total_duration_ns": body.get("total_duration") if isinstance(body, dict) else None,
+            "prompt_eval_count": body.get("prompt_eval_count") if isinstance(body, dict) else None,
+            "eval_count": body.get("eval_count") if isinstance(body, dict) else None,
+            "raw_response": raw,
+            "validation_error": None,
+            "batch_claim_count": len(claims),
+            "batch_evidence_count": len(evidence_items),
+            "expected_classifications": len(claims) * len(evidence_items),
+            "wall_time_seconds": round(time.perf_counter() - started, 6),
+        }
+
+        try:
+            parsed = json.loads(raw)
+            rows = parsed.get("results") if isinstance(parsed, dict) else None
+            if not isinstance(rows, list):
+                raise ValueError("La respuesta no contiene 'results'.")
+
+            by_claim: dict[int, dict[int, dict[str, str]]] = {}
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                try:
+                    claim_id = int(row.get("claim_id"))
+                except (TypeError, ValueError):
+                    continue
+                if claim_id not in range(len(claims)) or claim_id in by_claim:
+                    continue
+                labels = row.get("labels")
+                if not isinstance(labels, list) or len(labels) != len(evidence_items):
+                    continue
+                evidence_map = {}
+                valid = True
+                for evidence_id, label_value in enumerate(labels):
+                    label = str(label_value).upper().strip()
+                    if label not in {"SUPPORTED", "CONTRADICTED", "INSUFFICIENT"}:
+                        valid = False
+                        break
+                    # reason vacío conserva la estructura que consume verify_claims.
+                    evidence_map[evidence_id] = {"label": label, "reason": ""}
+                if valid:
+                    by_claim[claim_id] = evidence_map
+
+            if len(by_claim) != len(claims):
+                raise ValueError(
+                    f"Se validaron {len(by_claim)}/{len(claims)} afirmaciones del lote."
+                )
+        except (json.JSONDecodeError, ValueError, TypeError) as exc:
+            diagnostic["validation_error"] = f"{type(exc).__name__}: {exc}"
+            error = RuntimeError(
+                f"Qwen produjo una salida compacta inválida; lote rechazado sin reintento. "
+                f"{diagnostic['validation_error']}"
+            )
+            error.diagnostics = [diagnostic]
+            raise error
+
+        diagnostic["wall_time_seconds"] = round(time.perf_counter() - started, 6)
+        return {
+            "claims": by_claim,
+            "diagnostics": [diagnostic],
+            "terminology_terms_used": {
+                i: [item["id"] for item in self._select_terminology(claim, evidence_items)]
+                for i, claim in enumerate(claims)
+            },
+        }
+
     def verify_claims(
         self,
         claims: list[str],
@@ -541,63 +718,71 @@ class EvidenceVerifier:
 
         reports = []
         judge_errors = []
-        for ci, claim in enumerate(claims):
-            comparisons = grouped[ci]
+        # Experimento: dos afirmaciones por llamada. Mantiene el mismo conjunto
+        # de evidencias y el mismo criterio fail-closed del verificador original.
+        adjudication_batch_size = 3
+        for batch_start in range(0, len(claims), adjudication_batch_size):
+            batch_claims = claims[batch_start:batch_start + adjudication_batch_size]
             try:
-                adjudication = self._ollama_adjudicate(claim.strip(), selected) \
+                batch_result = self._ollama_adjudicate_batch(batch_claims, selected) \
                     if self.use_ollama_adjudication else None
-                judge_items = adjudication["items"] if adjudication else {}
-                judge_ok = adjudication is not None
-                judge_error = None
-                adjudication_diagnostics = adjudication.get("diagnostics", []) if adjudication else []
+                batch_ok = batch_result is not None
+                batch_diagnostics = batch_result.get("diagnostics", []) if batch_result else []
+                batch_items = batch_result.get("claims", {}) if batch_result else {}
+                batch_terms = batch_result.get("terminology_terms_used", {}) if batch_result else {}
+                batch_error = None
             except Exception as exc:
-                judge_items = {}
-                judge_ok = False
-                judge_error = f"{type(exc).__name__}: {exc}"
-                error_diagnostics = getattr(exc, "diagnostics", [])
+                batch_ok = False
+                batch_items = {}
+                batch_terms = {}
+                batch_error = f"{type(exc).__name__}: {exc}"
+                batch_diagnostics = getattr(exc, "diagnostics", [])
                 judge_errors.append({
-                    "claim": claim.strip(),
-                    "error": judge_error,
-                    "diagnostics": error_diagnostics,
+                    "claims": [c.strip() for c in batch_claims],
+                    "error": batch_error,
+                    "diagnostics": batch_diagnostics,
                 })
-                adjudication_diagnostics = error_diagnostics
 
-            for comparison in comparisons:
-                decision = judge_items.get(comparison["evidence_id"])
-                comparison["adjudication"] = decision or {
-                    "label": "UNAVAILABLE",
-                    "reason": "No se obtuvo una decisión semántica válida.",
-                }
-
-            labels = [x["label"] for x in judge_items.values()]
-            has_support = "SUPPORTED" in labels
-            has_contradiction = "CONTRADICTED" in labels
-            if not judge_ok:
-                status = "INSUFFICIENT"
-            elif has_support and has_contradiction:
-                status = "CONFLICTING_EVIDENCE"
-            elif has_support:
-                status = "SUPPORTED"
-            elif has_contradiction:
-                status = "CONTRADICTED"
-            else:
-                status = "INSUFFICIENT"
-
-            reports.append({
-                "claim": claim.strip(),
-                "status": status,
-                "adjudication_available": judge_ok,
-                "adjudication_error": judge_error,
-                "adjudication_diagnostics": adjudication_diagnostics,
-                "terminology_terms_used": adjudication.get("terminology_terms_used", []) if judge_ok else [],
-                "best_entailment_score": max(
-                    (x["scores"]["entailment"] for x in comparisons), default=0.0
-                ),
-                "best_contradiction_score": max(
-                    (x["scores"]["contradiction"] for x in comparisons), default=0.0
-                ),
-                "comparisons": comparisons,
-            })
+            for local_ci, claim in enumerate(batch_claims):
+                ci = batch_start + local_ci
+                comparisons = grouped[ci]
+                judge_items = batch_items.get(local_ci, {}) if batch_ok else {}
+                judge_ok = batch_ok and len(judge_items) == len(selected)
+                judge_error = None if judge_ok else (batch_error or "Adjudicación de lote incompleta.")
+                for comparison in comparisons:
+                    decision = judge_items.get(comparison["evidence_id"])
+                    comparison["adjudication"] = decision or {
+                        "label": "UNAVAILABLE",
+                        "reason": "No se obtuvo una decisión semántica válida.",
+                    }
+                labels = [x["label"] for x in judge_items.values()]
+                has_support = "SUPPORTED" in labels
+                has_contradiction = "CONTRADICTED" in labels
+                if not judge_ok:
+                    status = "INSUFFICIENT"
+                elif has_support and has_contradiction:
+                    status = "CONFLICTING_EVIDENCE"
+                elif has_support:
+                    status = "SUPPORTED"
+                elif has_contradiction:
+                    status = "CONTRADICTED"
+                else:
+                    status = "INSUFFICIENT"
+                reports.append({
+                    "claim": claim.strip(),
+                    "status": status,
+                    "adjudication_available": judge_ok,
+                    "adjudication_error": judge_error,
+                    "adjudication_diagnostics": batch_diagnostics,
+                    "terminology_terms_used": batch_terms.get(local_ci, []) if judge_ok else [],
+                    "best_entailment_score": max(
+                        (x["scores"]["entailment"] for x in comparisons), default=0.0
+                    ),
+                    "best_contradiction_score": max(
+                        (x["scores"]["contradiction"] for x in comparisons), default=0.0
+                    ),
+                    "comparisons": comparisons,
+                })
 
         statuses = [x["status"] for x in reports]
         if "CONFLICTING_EVIDENCE" in statuses:

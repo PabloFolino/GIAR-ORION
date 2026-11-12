@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:giar-orion:schema:resource-reference:1.0",
+  "title": "GIAR-ORION ResourceReference",
+  "description": "Referencia estructurada y portable a un recurso administrado externamente. No transporta el contenido binario.",
+  "type": "object",
+  "required": [
+    "resource_id",
+    "resource_type",
+    "uri"
+  ],
+  "properties": {
+    "resource_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "Identificador lógico estable del recurso."
+    },
+    "resource_type": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "description": "Tipo lógico del recurso; cadena extensible para no cerrar el catálogo de modalidades."
+    },
+    "uri": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z][A-Za-z0-9+.-]*:\\S*$",
+      "description": "URI absoluta con esquema. La resolución efectiva y los permisos se verifican en tiempo de ejecución."
+    },
+    "mime_type": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*/[A-Za-z0-9][A-Za-z0-9!#$&^_.+-]*(?:\\s*;.*)?$"
+    },
+    "size_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Tamaño en bytes; cero es válido."
+    },
+    "checksum": {
+      "type": "object",
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": [
+            "sha256",
+            "sha512"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[A-Fa-f0-9]+$"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "algorithm": {
+                "const": "sha256"
+              }
+            },
+            "required": [
+              "algorithm"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "minLength": 64,
+                "maxLength": 64
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "algorithm": {
+                "const": "sha512"
+              }
+            },
+            "required": [
+              "algorithm"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "minLength": 128,
+                "maxLength": 128
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Metadatos extensibles del recurso; no deben contener credenciales ni secretos."
+    }
+  },
+  "additionalProperties": false
+}

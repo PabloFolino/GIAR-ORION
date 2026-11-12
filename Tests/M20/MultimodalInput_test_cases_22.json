@@ -1,0 +1,327 @@
+{
+  "test_suite": "GIAR-ORION M20 - MultimodalInput",
+  "schema_draft": "2020-12",
+  "description": "22 casos de prueba para validar MultimodalInput.schema.json.",
+  "summary": {
+    "positive_cases": 10,
+    "negative_cases": 12,
+    "total_cases": 22
+  },
+  "cases": [
+    {
+      "id": "MMI-001",
+      "name": "Texto incorporado",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "text",
+            "content": "Analizar esta información."
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-002",
+      "name": "Imagen mediante referencia",
+      "data": {
+        "modality": "image",
+        "items": [
+          {
+            "type": "image",
+            "reference": "data/images/image_001.png"
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-003",
+      "name": "Audio mediante referencia",
+      "data": {
+        "modality": "audio",
+        "items": [
+          {
+            "type": "audio",
+            "reference": "data/audio/audio_001.wav"
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-004",
+      "name": "Vídeo mediante referencia",
+      "data": {
+        "modality": "video",
+        "items": [
+          {
+            "type": "video",
+            "reference": "data/video/video_001.mp4"
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-005",
+      "name": "Entrada multimodal de texto e imagen",
+      "data": {
+        "modality": "multimodal",
+        "items": [
+          {
+            "type": "text",
+            "content": "Describe la imagen."
+          },
+          {
+            "type": "image",
+            "reference": "data/images/image_002.png"
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-006",
+      "name": "Entrada multimodal de texto, imagen y audio",
+      "data": {
+        "modality": "multimodal",
+        "items": [
+          {
+            "type": "text",
+            "content": "Analiza estos recursos."
+          },
+          {
+            "type": "image",
+            "reference": "data/images/image_003.png"
+          },
+          {
+            "type": "audio",
+            "reference": "data/audio/audio_002.wav"
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-007",
+      "name": "Elemento con contenido y metadatos",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "text",
+            "content": "Contenido de prueba.",
+            "metadata": {
+              "language": "es"
+            }
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-008",
+      "name": "Metadatos generales",
+      "data": {
+        "modality": "multimodal",
+        "items": [
+          {
+            "type": "text",
+            "content": "Entrada con metadatos."
+          }
+        ],
+        "metadata": {
+          "source": "test",
+          "sequence": 1
+        }
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-009",
+      "name": "Campos adicionales permitidos",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "text",
+            "content": "Contenido.",
+            "custom_item_field": "valor"
+          }
+        ],
+        "custom_root_field": "valor"
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-010",
+      "name": "Varios elementos de texto",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "text",
+            "content": "Primer fragmento."
+          },
+          {
+            "type": "text",
+            "content": "Segundo fragmento."
+          }
+        ]
+      },
+      "expected_valid": true
+    },
+    {
+      "id": "MMI-011",
+      "name": "Falta el campo modality",
+      "data": {
+        "items": [
+          {
+            "type": "text",
+            "content": "Texto."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-012",
+      "name": "Falta el campo items",
+      "data": {
+        "modality": "text"
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-013",
+      "name": "Modality no es una cadena",
+      "data": {
+        "modality": 123,
+        "items": [
+          {
+            "type": "text",
+            "content": "Texto."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-014",
+      "name": "Modality es una cadena vacía",
+      "data": {
+        "modality": "",
+        "items": [
+          {
+            "type": "text",
+            "content": "Texto."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-015",
+      "name": "Items no es un array",
+      "data": {
+        "modality": "text",
+        "items": {
+          "type": "text",
+          "content": "Texto."
+        }
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-016",
+      "name": "Items es un array vacío",
+      "data": {
+        "modality": "text",
+        "items": []
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-017",
+      "name": "Un elemento no es un objeto",
+      "data": {
+        "modality": "text",
+        "items": [
+          "texto"
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-018",
+      "name": "Falta el campo type en un elemento",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "content": "Texto."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-019",
+      "name": "Type es una cadena vacía",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "",
+            "content": "Texto."
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-020",
+      "name": "El elemento no tiene content ni reference",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "text"
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-021",
+      "name": "Content es null",
+      "data": {
+        "modality": "text",
+        "items": [
+          {
+            "type": "text",
+            "content": null
+          }
+        ]
+      },
+      "expected_valid": false
+    },
+    {
+      "id": "MMI-022",
+      "name": "Content y reference aparecen simultáneamente",
+      "data": {
+        "modality": "image",
+        "items": [
+          {
+            "type": "image",
+            "content": "contenido",
+            "reference": "data/images/image_004.png"
+          }
+        ]
+      },
+      "expected_valid": false
+    }
+  ]
+}

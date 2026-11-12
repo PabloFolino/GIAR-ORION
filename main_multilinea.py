@@ -34,6 +34,10 @@ funciona, usar Esc+Enter o /enviar.
 
 import json
 import sys
+import threading
+import time
+import re
+import unicodedata
 import urllib.error
 import urllib.request
 from datetime import datetime
@@ -143,6 +147,40 @@ def cargar_configuracion() -> dict:
         raise ValueError(
             "Falta 'paths.memory' en config.json."
         )
+
+    # Validar los modos de presentación de la interfaz.
+    interface = config.get("interface")
+    if not isinstance(interface, dict):
+        raise ValueError("Falta la sección 'interface' o no es un objeto.")
+
+    modos_presentacion = interface.get("modes")
+    if not isinstance(modos_presentacion, dict) or not modos_presentacion:
+        raise ValueError("'interface.modes' debe contener al menos un modo.")
+
+    modo_presentacion_inicial = interface.get("default_mode")
+    if modo_presentacion_inicial not in modos_presentacion:
+        raise ValueError(
+            f"El modo de presentación inicial '{modo_presentacion_inicial}' "
+            "no está definido en 'interface.modes'."
+        )
+
+    indicadores_presentacion = (
+        "show_sources",
+        "show_verification",
+        "show_diagnostics",
+    )
+    for nombre_modo, opciones in modos_presentacion.items():
+        if not isinstance(opciones, dict):
+            raise ValueError(
+                f"'interface.modes.{nombre_modo}' debe ser un objeto."
+            )
+        for indicador in indicadores_presentacion:
+            if indicador not in opciones or not isinstance(opciones[indicador], bool):
+                raise ValueError(
+                    f"'interface.modes.{nombre_modo}.{indicador}' "
+                    "debe existir y ser booleano."
+                )
+
 
     rag = config.get("rag", {})
     if not isinstance(rag, dict):
@@ -497,6 +535,32 @@ def crear_recuperador(config: dict):
     )
     return recuperador
 
+def normalizar_consulta_para_clasificacion(texto: str) -> str:
+    """Normaliza una consulta para reconocer saludos y cortesías simples."""
+    texto = unicodedata.normalize("NFD", texto.lower())
+    texto = "".join(c for c in texto if unicodedata.category(c) != "Mn")
+    texto = re.sub(r"[^a-z0-9\\s]", " ", texto)
+    return " ".join(texto.split())
+
+
+def es_interaccion_social_simple(pregunta: str) -> bool:
+    """
+    Reconoce únicamente saludos/cortesías breves y exactos.
+
+    Es deliberadamente conservadora: no omite recuperación si el usuario
+    agrega una pregunta o una instrucción sustantiva al saludo.
+    """
+    consulta = normalizar_consulta_para_clasificacion(pregunta)
+    expresiones = {
+        "hola", "holas", "buenas", "buen dia", "buenos dias",
+        "buenas tardes", "buenas noches", "que tal",
+        "como estas", "como andas", "todo bien",
+        "gracias", "muchas gracias", "mil gracias",
+        "chau", "adios", "hasta luego", "nos vemos",
+    }
+    return consulta in expresiones
+
+
 def construir_contexto_rag(
     recuperador,
     pregunta: str,
@@ -786,7 +850,7 @@ def crear_sesion_entrada() -> PromptSession:
     )
 
 
-def mostrar_ayuda(config: dict, modo_actual: str) -> None:
+def mostrar_ayuda(config: dict, modo_actual: str, modo_presentacion: str) -> None:
     """Muestra la información del agente y los comandos disponibles."""
 
     nombre = config["agent_name"]
@@ -803,7 +867,8 @@ def mostrar_ayuda(config: dict, modo_actual: str) -> None:
     print("=" * 60)
     print(f"Proveedor: {proveedor}")
     print(f"Modelo: {modelo}")
-    print(f"Modo actual: {modo_actual}")
+    print(f"Modo de generación: {modo_actual}")
+    print(f"Modo de presentación: {modo_presentacion}")
     print(f"Servicio: {servicio}")
     print()
     print("Comandos disponibles:")
@@ -813,8 +878,14 @@ def mostrar_ayuda(config: dict, modo_actual: str) -> None:
     print("  /guardar               Guardar la conversación actual")
     print("  /sesiones              Listar conversaciones guardadas")
     print("  /abrir N               Recuperar una conversación guardada por número")
+    print("  /modo                  Mostrar el modo de generación actual")
     print("  /modo rapido           Activar el modo rápido")
     print("  /modo investigacion    Activar el modo de investigación")
+    print("  /estado                Consultar el progreso de la tarea activa")
+    print("  /cancelar              Solicitar la cancelación de la tarea activa")
+    print("  /presentacion          Mostrar el modo de presentación actual")
+    print("  /presentacion desarrollo | intermedio | produccion")
+    print("                         Cambiar el modo de presentación")
     print("  /fuente local          RAG local exclusivamente")
     print("  /fuente web            RAG local + búsqueda web libre")
     print("  /fuente autorizada     RAG local + dominios autorizados")
@@ -825,84 +896,281 @@ def mostrar_ayuda(config: dict, modo_actual: str) -> None:
     print("-" * 60)
 
 
+
+class TareaCancelada(Exception):
+    """Señala una cancelación cooperativa solicitada por el usuario."""
+
+
+class TaskMonitor:
+    """Estado thread-safe de la etapa actual de una consulta."""
+
+    def __init__(self):
+        self._lock = threading.Lock()
+        self._stage = "Inicializando"
+        self._detail = "Preparando la consulta."
+        self._status = "running"
+        self._stop_reporter = threading.Event()
+        self._reporter = threading.Thread(
+            target=self._reportar_periodicamente,
+            name="GIAR-ORION-progress",
+            daemon=True,
+        )
+        self._reporter.start()
+
+    def _reportar_periodicamente(self) -> None:
+        while not self._stop_reporter.wait(5.0):
+            estado = self.snapshot()
+            if estado["status"] != "running":
+                return
+            print(
+                f"\\n[PROGRESO] {estado['stage']} — {estado['detail']}",
+                flush=True,
+            )
+
+    def update(self, stage: str, detail: str = "", status: str = "running") -> None:
+        with self._lock:
+            self._stage = stage
+            self._detail = detail
+            self._status = status
+        if status != "running":
+            self._stop_reporter.set()
+
+    def snapshot(self) -> dict:
+        with self._lock:
+            return {
+                "stage": self._stage,
+                "detail": self._detail,
+                "status": self._status,
+            }
+
+
+
 def iniciar_agente(config: dict) -> None:
-    """Ejecuta la interfaz conversacional."""
+    """Ejecuta la interfaz y permite consultar/cancelar tareas en segundo plano."""
 
     nombre = config["agent_name"]
-    version = config["version"]
-    modelo = config["llm"]["model"]
     modos = config["generation"]["modes"]
-
     modo = config["generation"]["default_mode"]
+
+    configuracion_interfaz = config["interface"]
+    modos_presentacion = configuracion_interfaz["modes"]
+    modo_presentacion = configuracion_interfaz["default_mode"]
+    opciones_presentacion = modos_presentacion[modo_presentacion]
+
     rag_config = config.get("rag", {})
     web_config = config.get("web_search", {})
     recuperador = crear_recuperador(config)
     buscador_web = crear_buscador_web(config)
-
     pipeline_verificacion = ClaimVerificationPipeline(
         ollama_base_url=config["llm"]["base_url"],
         ollama_model=config["llm"]["model"],
     )
 
     fuente_actual = "local"
-
-    mensajes = [
-        {
-            "role": "system",
-            "content": config["llm"]["system_prompt"],
-        }
-    ]
-
-    mostrar_ayuda(config, modo)
-
+    mensajes = [{"role": "system", "content": config["llm"]["system_prompt"]}]
     sesion_entrada = crear_sesion_entrada()
 
+    tarea = {
+        "thread": None,
+        "cancel_event": None,
+        "monitor": None,
+        "started": None,
+        "query": None,
+    }
+    lock_mensajes = threading.Lock()
+
+    mostrar_ayuda(config, modo, modo_presentacion)
+    print("Comandos durante una tarea: /estado y /cancelar")
+
+    def procesar_consulta(
+        pregunta: str,
+        modo_consulta: str,
+        fuente_consulta: str,
+        opciones: dict,
+        historial: list[dict],
+        monitor,
+        cancel_event: threading.Event,
+    ) -> None:
+        """Trabajo ejecutado en segundo plano; cancela cooperativamente entre etapas."""
+        inicio = time.monotonic()
+        try:
+            monitor.update("Clasificación de consulta", "Identificando si requiere recuperación.")
+            consulta_social = es_interaccion_social_simple(pregunta)
+            if cancel_event.is_set():
+                raise TareaCancelada()
+
+            contexto_rag = ""
+            fuentes_rag = []
+            resultados_rag = []
+            contexto_web = ""
+            resultados_web = []
+
+            if consulta_social:
+                monitor.update("Recuperación", "Interacción social simple; se omiten RAG y web.")
+            else:
+                monitor.update("RAG local", "Buscando primero en la base de conocimiento local.")
+                contexto_rag, fuentes_rag, resultados_rag = construir_contexto_rag(
+                    recuperador, pregunta, rag_config.get("top_k", 5)
+                )
+                if cancel_event.is_set():
+                    raise TareaCancelada()
+
+                if fuente_consulta in ("web", "autorizada") and buscador_web is not None:
+                    monitor.update("Búsqueda web", "Consultando motores externos.")
+                    try:
+                        contexto_web, resultados_web = construir_contexto_web(
+                            buscador_web, pregunta, fuente_consulta, web_config
+                        )
+                    except (RuntimeError, OSError, ValueError) as error_web:
+                        print(
+                            "\n[WEB] No se pudo completar la búsqueda externa. "
+                            f"Se continúa con el contexto local. Detalle: {error_web}"
+                        )
+                if cancel_event.is_set():
+                    raise TareaCancelada()
+
+            monitor.update("Preparación del contexto", "Integrando fuentes locales y web.")
+            contextos = [c for c in (contexto_rag, contexto_web) if c]
+            contexto_total = "\n\n" + "\n\n".join(contextos) if contextos else ""
+            mensajes_consulta = list(historial)
+            if contexto_total:
+                mensajes_consulta.insert(1, {"role": "system", "content": contexto_total})
+
+            if opciones["show_sources"]:
+                if fuentes_rag and rag_config.get("show_sources", True):
+                    print("\n[RAG] Fuentes locales recuperadas:")
+                    for fuente_rag in fuentes_rag:
+                        print(f"  - {fuente_rag}")
+                if resultados_web:
+                    print("\n[WEB] Resultados externos:")
+                    for item in resultados_web:
+                        print(f"  - {item['title']} ({item['source']})")
+                        print(f"    {item['url']}")
+                elif fuente_consulta in ("web", "autorizada") and not consulta_social:
+                    diagnostico = getattr(buscador_web, "last_message", "")
+                    if diagnostico:
+                        print(f"\n[WEB] {diagnostico}")
+
+            if cancel_event.is_set():
+                raise TareaCancelada()
+
+            monitor.update("Generación Qwen3", "Esperando respuesta de Ollama.")
+            respuesta, resultado = consultar_ollama(config, mensajes_consulta, modo_consulta)
+            if cancel_event.is_set():
+                raise TareaCancelada()
+
+            monitor.update(
+                "Extracción y verificación",
+                "Ejecutando ClaimVerificationPipeline (extracción + verificación semántica).",
+            )
+            parametros = config["generation"]["modes"][modo_consulta]
+            informe = pipeline_verificacion.run(
+                response=respuesta,
+                rag_results=resultados_rag,
+                web_results=resultados_web,
+                think=parametros["think"],
+            )
+            if cancel_event.is_set():
+                raise TareaCancelada()
+
+            with lock_mensajes:
+                mensajes.append({"role": "user", "content": pregunta})
+                mensajes.append({"role": "assistant", "content": respuesta})
+
+            monitor.update("Completada", "Consulta finalizada correctamente.", status="completed")
+            print(f"\n{respuesta}")
+            if opciones["show_verification"]:
+                mostrar_informe_verificacion(informe)
+            if opciones["show_diagnostics"]:
+                if "total_duration" in resultado:
+                    print(f"\n[Generación principal Ollama: {resultado['total_duration'] / 1_000_000_000:.2f} s]")
+                if "eval_count" in resultado:
+                    print(f"[Tokens generados: {resultado['eval_count']}]")
+                print(f"[Motivo de finalización: {resultado.get('done_reason', 'no informado por Ollama')}]")
+            print(f"[Tiempo total de la tarea: {time.monotonic() - inicio:.2f} s]")
+        except TareaCancelada:
+            monitor.update("Cancelada", "La tarea se detuvo por solicitud del usuario.", status="cancelled")
+            print("\nGIAR-ORION: Tarea cancelada. El historial de la consulta incompleta no se guardó.")
+        except Exception as error:
+            monitor.update("Error", str(error), status="error")
+            print(f"\nGIAR-ORION: La tarea terminó con un error: {error}")
+
     while True:
+        # Recolectar una tarea ya finalizada.
+        hilo = tarea["thread"]
+        if hilo is not None and not hilo.is_alive():
+            hilo.join(timeout=0)
+            tarea.update(thread=None, cancel_event=None, monitor=None, started=None, query=None)
+
         try:
             pregunta = sesion_entrada.prompt("\nVos: ").strip()
-
         except (EOFError, KeyboardInterrupt):
+            if tarea["cancel_event"] is not None:
+                tarea["cancel_event"].set()
+                print("\nGIAR-ORION: Se solicitó cancelar la tarea activa.")
             print(f"\n\n{nombre}: Sesión finalizada.")
             break
 
         if not pregunta:
             continue
-
         comando = pregunta.lower()
 
-        if comando in ("/help", "/ayuda"):
-            mostrar_ayuda(config, modo)
+        tarea_activa = tarea["thread"] is not None and tarea["thread"].is_alive()
+
+        if comando == "/estado":
+            if not tarea_activa:
+                print(f"{nombre}: No hay ninguna tarea en ejecución.")
+            else:
+                estado = tarea["monitor"].snapshot()
+                transcurrido = time.monotonic() - tarea["started"]
+                print("\nGIAR-ORION | ESTADO DE TAREA")
+                print(f"Consulta: {tarea['query']}")
+                print(f"Etapa actual: {estado['stage']}")
+                print(f"Detalle: {estado['detail']}")
+                print(f"Tiempo transcurrido: {transcurrido:.1f} s")
+                print(f"Estado: {estado['status']}")
             continue
 
-        if comando == "/salir":
-            print(f"\n{nombre}: Hasta la próxima.")
-            break
-
-        if comando == "/sesiones":
-            listar_conversaciones(config)
+        if comando == "/cancelar":
+            if not tarea_activa:
+                print(f"{nombre}: No hay ninguna tarea activa para cancelar.")
+            else:
+                tarea["cancel_event"].set()
+                print(
+                    f"{nombre}: Cancelación solicitada. Se detendrá al terminar "
+                    "la operación que esté en curso."
+                )
             continue
 
-        if comando.startswith("/abrir"): 
-            partes = comando.split() 
-            if len(partes) != 2 or not partes[1].isdigit(): 
-                print("Uso correcto: /abrir N") 
-                continue 
-            numero = int(partes[1]) 
-            mensajes_recuperados = recuperar_conversacion( config, numero, ) 
-            if mensajes_recuperados is not None: 
-                mensajes = mensajes[:1]
-                mensajes.extend(mensajes_recuperados) 
-            continue
-
-
-        if comando == "/limpiar":
-            mensajes = mensajes[:1]
+        if tarea_activa:
             print(
-                f"{nombre}: Se borró el historial de esta sesión. "
-                "Las conversaciones guardadas no se modificaron."
+                f"{nombre}: Hay una tarea en ejecución. Usá /estado para consultar "
+                "su progreso o /cancelar para solicitar su detención."
             )
             continue
 
+        if comando in ("/help", "/ayuda"):
+            mostrar_ayuda(config, modo, modo_presentacion)
+            continue
+        if comando == "/salir":
+            print(f"\n{nombre}: Hasta la próxima.")
+            break
+        if comando == "/sesiones":
+            listar_conversaciones(config)
+            continue
+        if comando.startswith("/abrir"):
+            partes = comando.split()
+            if len(partes) != 2 or not partes[1].isdigit():
+                print("Uso correcto: /abrir N")
+                continue
+            recuperados = recuperar_conversacion(config, int(partes[1]))
+            if recuperados is not None:
+                mensajes = mensajes[:1] + recuperados
+            continue
+        if comando == "/limpiar":
+            mensajes = mensajes[:1]
+            print(f"{nombre}: Se borró el historial de esta sesión. Las conversaciones guardadas no se modificaron.")
+            continue
         if comando == "/guardar":
             try:
                 guardar_conversacion(config, mensajes)
@@ -910,156 +1178,83 @@ def iniciar_agente(config: dict) -> None:
                 print(f"Error al guardar la conversación: {error}")
             continue
 
-
         if comando == "/fuente" or comando.startswith("/fuente "):
             partes = comando.split(maxsplit=1)
-
             if len(partes) == 1:
                 print(f"{nombre}: Modalidad de fuentes actual: '{fuente_actual}'.")
                 continue
-
-            nueva_fuente = partes[1].strip().lower()
-            if nueva_fuente not in ("local", "web", "autorizada"):
+            nueva = partes[1].strip().lower()
+            if nueva not in ("local", "web", "autorizada"):
                 print("Uso: /fuente local | /fuente web | /fuente autorizada")
                 continue
-
-            if nueva_fuente in ("web", "autorizada") and buscador_web is None:
-                print(
-                    f"{nombre}: La búsqueda web está deshabilitada en config.json "
-                    "o DDGS no está disponible."
-                )
+            if nueva in ("web", "autorizada") and buscador_web is None:
+                print(f"{nombre}: La búsqueda web está deshabilitada o DDGS no está disponible.")
                 continue
-
-            if nueva_fuente == "autorizada" and not web_config.get(
-                "authorized_domains", []
-            ):
-                print(
-                    f"{nombre}: No hay dominios autorizados configurados "
-                    "en config.json."
-                )
+            if nueva == "autorizada" and not web_config.get("authorized_domains", []):
+                print(f"{nombre}: No hay dominios autorizados configurados en config.json.")
                 continue
-
-            fuente_actual = nueva_fuente
+            fuente_actual = nueva
             print(f"{nombre}: Modalidad de fuentes cambiada a '{fuente_actual}'.")
             continue
 
-        if comando.startswith("/modo"):
+        if comando == "/presentacion" or comando.startswith("/presentacion "):
             partes = comando.split(maxsplit=1)
+            if len(partes) == 1:
+                print(f"{nombre}: Modo de presentación actual: '{modo_presentacion}'.")
+                print("Modos disponibles: " + ", ".join(modos_presentacion))
+                continue
+            nuevo = partes[1].strip().lower()
+            if nuevo not in modos_presentacion:
+                print(f"Modo de presentación desconocido: {nuevo}. Disponibles: {', '.join(modos_presentacion)}")
+                continue
+            modo_presentacion = nuevo
+            opciones_presentacion = modos_presentacion[modo_presentacion]
+            print(f"{nombre}: Modo de presentación cambiado a '{modo_presentacion}'.")
+            continue
 
-            if len(partes) != 2:
+        if comando == "/modo" or comando.startswith("/modo "):
+            partes = comando.split(maxsplit=1)
+            if len(partes) == 1:
+                print(f"{nombre}: Modo de generación actual: '{modo}'.")
                 print(f"Modos disponibles: {', '.join(modos)}")
                 continue
-
-            nuevo_modo = partes[1]
-
-            if nuevo_modo not in modos:
-                print(
-                    f"Modo desconocido: {nuevo_modo}. "
-                    f"Disponibles: {', '.join(modos)}"
-                )
+            nuevo = partes[1].strip()
+            if nuevo not in modos:
+                print(f"Modo desconocido: {nuevo}. Disponibles: {', '.join(modos)}")
                 continue
-
-            modo = nuevo_modo
+            modo = nuevo
             print(f"{nombre}: Modo cambiado a '{modo}'.")
             continue
 
-        mensajes.append({
-            "role": "user",
-            "content": pregunta,
-        })
+        # Se conserva una copia inmutable del historial para la tarea.
+        historial = list(mensajes)
+        cancel_event = threading.Event()
+        monitor = TaskMonitor()
+        opciones_tarea = dict(opciones_presentacion)
+        hilo = threading.Thread(
+            target=procesar_consulta,
+            args=(pregunta, modo, fuente_actual, opciones_tarea, historial, monitor, cancel_event),
+            name="GIAR-ORION-query",
+            daemon=True,
+        )
+        tarea.update(
+            thread=hilo,
+            cancel_event=cancel_event,
+            monitor=monitor,
+            started=time.monotonic(),
+            query=pregunta,
+        )
+        print(f"\n{nombre} [{modo}]: pensando...")
+        hilo.start()
 
-        print(f"\n{nombre} [{modo}]: pensando...\n")
-
-        try:
-            contexto_rag, fuentes_rag, resultados_rag = construir_contexto_rag(
-                recuperador,
-                pregunta,
-                rag_config.get("top_k", 5),
-            )
-
-            contexto_web, resultados_web = construir_contexto_web(
-                buscador_web,
-                pregunta,
-                fuente_actual,
-                web_config,
-            )
-
-            # Ambos contextos se agregan solo a esta solicitud.
-            # El historial persistente conserva únicamente pregunta y respuesta.
-            contextos = []
-            if contexto_rag:
-                contextos.append(contexto_rag)
-            if contexto_web:
-                contextos.append(contexto_web)
-            contexto_total = "\n\n" + ("\n\n".join(contextos)) if contextos else ""
-
-            mensajes_para_consulta = list(mensajes)
-            if contexto_total:
-                mensajes_para_consulta.insert(
-                    1,
-                    {"role": "system", "content": contexto_total},
-                )
-
-            if fuentes_rag and rag_config.get("show_sources", True):
-                print("[RAG] Fuentes locales recuperadas:")
-                for fuente_rag in fuentes_rag:
-                    print(f"  - {fuente_rag}")
-                print()
-
-            if resultados_web:
-                print("[WEB] Resultados externos:")
-                for item in resultados_web:
-                    print(f"  - {item['title']} ({item['source']})")
-                    print(f"    {item['url']}")
-                print()
-            elif fuente_actual in ("web", "autorizada"):
-                print("[WEB] La búsqueda no devolvió resultados.\n")
-
-            respuesta, resultado = consultar_ollama(
-                config,
-                mensajes_para_consulta,
-                modo,
-            )
-
-            informe_verificacion = pipeline_verificacion.run(
-                response=respuesta,
-                rag_results=resultados_rag,
-                web_results=resultados_web,
-            )
-
-        except (RuntimeError, ValueError) as error:
-            mensajes.pop()
-            print(f"Error: {error}")
-            continue
-
-        mensajes.append({
-            "role": "assistant",
-            "content": respuesta,
-        })
-
-        print(respuesta)
-
-        mostrar_informe_verificacion(informe_verificacion)
-
-        if "total_duration" in resultado:
-            segundos = (
-                resultado["total_duration"] / 1_000_000_000
-            )
-            print(f"\n[Tiempo total: {segundos:.2f} s]")
-
-        if "eval_count" in resultado:
-            print(
-                f"[Tokens generados: {resultado['eval_count']}]"
-            )
-
-        # Diagnóstico temporal: motivo de finalización informado por Ollama.
-        motivo = resultado.get("done_reason")
-        if motivo is not None:
-            print(f"[Motivo de finalización: {motivo}]")
-        else:
-            print("[Motivo de finalización: no informado por Ollama]")
-
-    if recuperador is not None:
+    if tarea["cancel_event"] is not None and tarea["thread"] is not None:
+        tarea["cancel_event"].set()
+        tarea["thread"].join(timeout=2.0)
+    # No cerrar el recuperador mientras un hilo de trabajo siga utilizándolo.
+    hilo_final = tarea["thread"]
+    if hilo_final is not None and hilo_final.is_alive():
+        tarea["cancel_event"].set()
+    elif recuperador is not None:
         recuperador.close()
 
 

@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>GIAR-ORION — Especificación funcional maestra</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="orion_style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">GIAR-ORION — Especificación funcional maestra</h1>
+</header>
+<h1 id="giar-orion-especificación-funcional-maestra">GIAR-ORION —
+Especificación funcional maestra</h1>
+<p><strong>Código:</strong> GIAR-ORION-DES-001<br />
+<strong>Versión:</strong> 0.2<br />
+<strong>Fecha:</strong> 10/11/2026<br />
+<strong>Estado:</strong> Borrador consolidado para revisión<br />
+<strong>Alcance:</strong> Diseño funcional conceptual de los módulos 1 a
+24.</p>
+<h2 id="control-de-versiones-del-documento">Control de versiones del
+documento</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Versión</th>
+<th>Fecha</th>
+<th>Cambios</th>
+<th>Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.1</td>
+<td>10/11/2026</td>
+<td>Consolidación inicial de decisiones conversadas para los módulos
+1–24; identificación de pendientes y propuestas no aprobadas.</td>
+<td>Borrador</td>
+</tr>
+<tr class="even">
+<td>0.2</td>
+<td>10/11/2026</td>
+<td>Desarrollo funcional del Módulo 19 con quince decisiones aprobadas;
+actualización de pendientes y próxima etapa.</td>
+<td>Borrador consolidado para revisión</td>
+</tr>
+</tbody>
+</table>
+<h2 id="criterios-de-lectura">Criterios de lectura</h2>
+<ul>
+<li><strong>Aprobado funcionalmente:</strong> decisión aceptada; no
+significa implementado ni probado.</li>
+<li><strong>Aprobado conceptualmente / pendiente de detalle:</strong> se
+aceptó incorporar el módulo, pero falta especificarlo.</li>
+<li><strong>En definición:</strong> hay decisiones pendientes.</li>
+<li><strong>Propuesto:</strong> recomendación no aprobada
+expresamente.</li>
+<li><strong>Pendiente:</strong> falta decisión o especificación.</li>
+</ul>
+<p>Este documento registra diseño conceptual. No afirma que exista
+código, estructura de carpetas o funcionalidad implementada.</p>
+<h1 id="visión-general">1. Visión general</h1>
+<p>GIAR-ORION se concibe como una plataforma local multiagente para
+investigación, desarrollo, robótica, software, seguridad, idiomas,
+mercado y futuras especialidades. ORION coordina agentes, tareas,
+permisos, recursos, proyectos, evidencias y resultados.</p>
+<h2 id="principios-acordados">Principios acordados</h2>
+<ol type="1">
+<li>ORION es el coordinador central y no se deshabilita mediante
+administración ordinaria.</li>
+<li>Agentes especializados tienen identidad, configuración, memoria,
+conocimiento, herramientas, logs, avatar y voz propios.</li>
+<li>Los servicios comunes se centralizan cuando convenga.</li>
+<li>No duplicar innecesariamente instancias del mismo modelo LLM.</li>
+<li>Funcionamiento offline como requisito; Internet es opcional.</li>
+<li>Compatibilidad Windows 11 y Ubuntu desde el diseño.</li>
+<li>Escalabilidad desde una GPU a varias GPU y equipos en red
+local.</li>
+<li>Autonomía configurable, siempre sujeta a objetivos, permisos,
+recursos y límites.</li>
+<li>Seguridad por diseño, auditoría y autenticación reforzada para
+operaciones sensibles.</li>
+<li>Trazabilidad de tareas, archivos, experimentos, cambios, evidencias
+y decisiones.</li>
+<li>Preservar originales y versiones aprobadas.</li>
+<li>Medir y probar antes de modificar arquitectura.</li>
+<li>Separar recuperación RAG, memoria, generación LLM, verificación,
+decisión, aprendizaje y entrenamiento.</li>
+<li>Los objetivos principales, cambios críticos, acciones destructivas y
+operaciones sensibles requieren autorización.</li>
+<li>Mantener documentación versionada y una bitácora de trabajo
+real.</li>
+</ol>
+<h2 id="agentes-iniciales">Agentes iniciales</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 48%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Agente</th>
+<th style="text-align: left;">Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ORION</td>
+<td style="text-align: left;">Coordinador central, políticas,
+asignación, permisos, supervisión y consolidación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORION-ROBOTICS</td>
+<td style="text-align: left;">Robótica, simulación, RL, investigación y
+desarrollo.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ORION-SOFTWARE</td>
+<td style="text-align: left;">Programación e ingeniería de
+software.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORION-SECURITY</td>
+<td style="text-align: left;">Seguridad informática y análisis de
+amenazas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ORION-LANGUAGES</td>
+<td style="text-align: left;">Traducción, interpretación y enseñanza de
+idiomas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ORION-MARKETING</td>
+<td style="text-align: left;">Investigación de mercado, proveedores,
+productos, comparaciones y costos.</td>
+</tr>
+</tbody>
+</table>
+<p>Cada agente tiene identidad y contexto propios. La inferencia LLM y
+otros servicios compartidos se administran centralmente.</p>
+<h2 id="modos-de-interacción">Modos de interacción</h2>
+<ul>
+<li><strong>Coordinador:</strong> el usuario conversa con ORION, que
+deriva tareas.</li>
+<li><strong>Agente directo:</strong> el usuario selecciona un agente;
+ORION sigue coordinando internamente permisos y supervisión.</li>
+<li><strong>Colaborativo:</strong> varios agentes trabajan juntos bajo
+coordinación de ORION.</li>
+</ul>
+<p>Los agentes pueden comunicarse directamente en tareas permitidas.
+ORION interviene en asignación, prioridades, permisos, operaciones
+sensibles, conflictos y consolidación. Los desacuerdos deben hacerse
+visibles; no se convierten opiniones en evidencias.</p>
+<h2 id="contexto-técnico-de-referencia">Contexto técnico de
+referencia</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Elemento</th>
+<th style="text-align: left;">Referencia conocida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SO actual</td>
+<td style="text-align: left;">Windows 11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SO futuro</td>
+<td style="text-align: left;">Ubuntu</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GPU actual</td>
+<td style="text-align: left;">NVIDIA RTX 5070 Laptop, 8 GB VRAM</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Runtime local</td>
+<td style="text-align: left;">Ollama</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Modelo de referencia</td>
+<td style="text-align: left;">Qwen3:8B</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Conectividad</td>
+<td style="text-align: left;">Local/offline, Internet opcional</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Red local</td>
+<td style="text-align: left;">Puede conectar computadora y celular</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Escalabilidad</td>
+<td style="text-align: left;">Varias GPU en el futuro</td>
+</tr>
+</tbody>
+</table>
+<p>Este contexto no limita el diseño a ese hardware.</p>
+<h1 id="especificación-por-módulos">2. Especificación por módulos</h1>
+<p>Cada módulo incluye historial de versiones al comienzo. La versión
+0.1 indica consolidación funcional inicial, no implementación. La
+columna “Próximo trabajo” señala la siguiente actividad de diseño o
+ingeniería.</p>
+<h2 id="módulo-1-interfaz-principal">MÓDULO 1 — INTERFAZ PRINCIPAL</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 26%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aprobada línea visual profesional
+tecnológica + futurista; tema grafito/azul, acentos cian/violeta; panel
+agentes, chat central, avatar/actividad, barra superior y entrada
+texto/voz.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Especificar pantallas, navegación,
+componentes y comportamiento responsive.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Objetivo y detalles</strong> - Interfaz principal para
+usuario, ORION y agentes. - Panel izquierdo: agentes; centro:
+conversación; panel derecho: avatar 3D, identidad y actividad. - Barra
+superior: navegación, estado general e indicador móvil. - Seis agentes
+iniciales visibles y seleccionables. - Estados: disponible, ocupado,
+comunicándose, desconectado, deshabilitado y error. - Accesos:
+comunicaciones, tareas, conocimiento, administración, proyectos y
+reportes. - Niveles de visualización: - Desarrollo: intervenciones,
+comunicaciones, resultados y procesos. - Intermedio: agentes, tareas y
+avances principales. - Producción: respuesta final principalmente. -
+Ocultar informes no desactiva logs ni auditoría. - Indicador móvil: gris
+(no habilitado/no vinculado), verde (conectado), amarillo (habilitado
+pero desconectado), rojo (error). Al abrirlo: estado, dispositivo,
+Wi-Fi, última comunicación, habilitar/deshabilitar y vincular. -
+Pendiente: resolución, accesibilidad, navegación completa y
+especificación visual definitiva.</p>
+<h2 id="módulo-2-centro-de-comunicaciones">MÓDULO 2 — CENTRO DE
+COMUNICACIONES</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Centro con lista de agentes/grupos,
+conversación y detalles; tipos consulta, colaboración, transferencia y
+supervisión; registro.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir protocolo, estados, persistencia,
+búsqueda y adjuntos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Comunicaciones iniciadas por ORION,
+agente autorizado o usuario. - Modelo híbrido: comunicación directa
+permitida entre agentes, con supervisión central de ORION. - Los
+archivos compartidos no entran automáticamente al RAG; pasan por
+Knowledge Manager. - Registro mínimo: ID conversación, emisor/receptor,
+fecha, motivo, mensajes, archivos, tarea y resultado. - Pendiente:
+mensajería síncrona/asíncrona, colas, reintentos, retención y contratos
+de comunicación.</p>
+<h2 id="módulo-3-task-manager-resource-manager-model-manager">MÓDULO 3 —
+TASK MANAGER + RESOURCE MANAGER + MODEL MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 25%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th>Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td>Gestión coordinada de tareas, recursos e inferencia; no duplicar
+innecesariamente Qwen3 por agente.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir contratos, colas, prioridades,
+concurrencia y métricas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Task Manager: tareas, dependencias,
+prioridad, progreso, estado, cancelación, suspensión y reanudación. -
+Resource Manager: CPU, RAM, GPU, VRAM, disponibilidad y ejecuciones. -
+Model Manager: modelos, instancias/servicios de inferencia, solicitudes,
+concurrencia y versiones. - Diferenciar concurrencia de agentes/tareas
+de concurrencia de inferencia. - Una GPU inicialmente; varias en el
+futuro. Los agentes solicitan recursos a los managers y no dependen de
+hardware concreto. - Ante falta de recursos, ordenar prioridades/colas,
+informar al usuario y permitir intervención. - Panel: GPU, VRAM, CPU,
+RAM, modelos activos, cola y ejecuciones. - Pendiente: planificación,
+cuotas, límites por usuario/proyecto y políticas de memoria GPU.</p>
+<h2 id="módulo-4-knowledge-manager">MÓDULO 4 — KNOWLEDGE MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Bibliotecas privadas, compartidas y
+globales; permisos granulares; pipeline documental; evaluación de
+recuperación.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir esquema, motor vectorial,
+pipeline, índices y pruebas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Bibliotecas privadas por agente,
+compartidas y globales. - Acceso libre a biblioteca propia; autorización
+para bibliotecas privadas ajenas; permisos en compartidas/globales. -
+Permisos: READ, WRITE, UPDATE, DELETE, SHARE; posibilidad de permisos
+temporales por proyecto. - Ingesta: validación, extracción,
+normalización, chunking, embeddings, indexación, pruebas y validación. -
+Estados: pendiente, validando, procesando, indexando, indexado, indexado
+con advertencias, error, desactualizado. - Agentes pueden proponer
+conocimiento; bandeja de revisión; incorporación permanente autorizada
+por usuario o política. - Originales separados de índices; referencias
+cuando sea posible. - Pruebas RAG: relevancia, precisión de fragmentos,
+cobertura, recuperación crítica, latencia y comparación de versiones. -
+Distinguir errores RAG de generación LLM. - UI: bibliotecas, documentos,
+procesamiento, validación y propuestas. - Pendiente: búsqueda híbrida,
+reranking, metadatos, versionado y métricas.</p>
+<h2 id="módulo-5-memory-manager">MÓDULO 5 — MEMORY MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 27%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Modelo híbrido de guardado; cuatro tipos
+de memoria; memoria privada/compartida y separación de Knowledge.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir ciclo de vida, recuperación,
+consolidación, contradicciones y permisos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Working: tarea actual. - Episodic:
+experiencias. - Semantic: hechos, relaciones y conclusiones. -
+Procedural: métodos y procedimientos. - Memoria privada por agente y
+compartida. - <code>Knowledge/</code> es biblioteca documental/RAG;
+<code>Memory/</code> es memoria experiencial/operativa. - Memory
+Retriever separado de Knowledge Retriever; pueden combinarse, con
+fuentes y evaluaciones diferenciadas. - Estructura conceptual:
+<code>Memory/Working</code>, <code>Episodic</code>,
+<code>Semantic</code>, <code>Procedural</code>, <code>Indexes</code>;
+<code>Knowledge/Documents</code>, <code>Embeddings</code>,
+<code>Indexes</code>, <code>Metadata</code>. - Memoria no modifica
+automáticamente pesos del LLM ni equivale a entrenamiento. - Metadatos:
+origen, confiabilidad, referencias a tareas/documentos/experimentos;
+detectar duplicados/contradicciones, archivar, versionar, buscar y
+borrar con permisos. - Guardado automático de recuerdos operativos de
+bajo riesgo; conclusiones permanentes, procedimientos y memoria
+compartida requieren validación según políticas. - Pendiente: esquema,
+confianza, caducidad, consolidación, privacidad y pruebas.</p>
+<h2 id="módulo-6-security-threat-detection">MÓDULO 6 — SECURITY &amp;
+THREAT DETECTION</h2>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 32%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Arquitectura híbrida con herramientas
+consolidadas y núcleo propio de supervisión/correlación; Windows y
+Ubuntu.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir amenazas, adaptadores, telemetría,
+respuesta y autorizaciones.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Núcleo ORION SECURITY CORE común y
+adaptadores por SO. - Windows: Defender/API, firewall, Event Logs
+(candidatos). - Ubuntu: ClamAV u otras herramientas, firewall, journald,
+auditd (candidatos). - ORION-SECURITY analiza; el núcleo aplica
+políticas. No delegar toda la seguridad al agente. - Amenazas:
+intrusiones, malware, virus, ransomware, troyanos, spyware, phishing,
+IP/dominios sospechosos, escaneo de puertos, ataques de red,
+procesos/servicios, startup, cambios de archivos y puertos. -
+Respuestas: informativo, advertencia, alto, crítico. - Evitar borrar
+archivos o detener procesos sin validación; contención automática solo
+con políticas explícitas. - Offline: análisis local y firmas
+disponibles; inteligencia online opcional. - Perfiles
+Normal/Alto/Crítico fueron propuestos, no formalmente aprobados. - No
+prometer detección total ni reemplazo del antivirus del SO. - Pendiente:
+matriz de riesgo, contención, telemetría, privacidad, pruebas y
+perfiles.</p>
+<h2 id="módulo-7-voice-avatar-engine">MÓDULO 7 — VOICE &amp; AVATAR
+ENGINE</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Avatares 3D interactivos; STT/TTS; voces
+por agente; servicios compartidos y estados visuales reales.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Comparar tecnologías, latencia, calidad,
+consumo y compatibilidad.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - STT, TTS, push-to-talk, conversación
+continua, VAD e interrupción de TTS. - Voz propia por agente. - Avatar
+humanoide 3D con lip-sync, parpadeo, cabeza, mirada, expresiones y
+gestos discretos. - El avatar refleja estados reales: escuchando,
+procesando, hablando, comunicándose y error. - Componentes separados:
+Agent (lógica), Voice Engine (STT/TTS), Avatar Engine
+(visual/animación). - STT/TTS compartidos cuando sea conveniente. -
+Candidatos: Whisper, Piper/Kokoro, Three.js, VAD y WebSocket; aún no
+seleccionados. - Windows, Ubuntu y móvil; escritorio completo y versión
+móvil adaptada. - Resource Manager controla CPU/GPU. - Pendiente:
+pruebas de calidad, latencia, consumo, licencias y offline.</p>
+<h2 id="módulo-8-project-workflow-manager">MÓDULO 8 — PROJECT &amp;
+WORKFLOW MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Modelo híbrido; línea base aprobada;
+cambios importantes sujetos a aprobación; tareas, dependencias,
+versiones y estructura de proyecto.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir ciclo, esquema, Git, aprobaciones
+y flujos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - ORION planifica/reorganiza dentro de
+objetivos y permisos. - Aprobación necesaria para cambiar objetivos,
+requisitos aprobados, eliminar/reemplazar entregables, cambios
+importantes de arquitectura, operaciones destructivas y finalizar
+proyecto. - Línea base: objetivos, requisitos, alcance, arquitectura,
+entregables y restricciones. No se cambia unilateralmente. - Ciclo:
+inicio, análisis, planificación, desarrollo, validación, integración,
+evaluación y finalización. - Tarea: ID, nombre, descripción,
+responsable, prioridad, estado, dependencias, fechas y resultados. -
+Ejecución paralela coordinada con Resource Manager. - Git/versionado,
+identificación de agente y protección de originales/versiones aprobadas.
+- Persistencia integrada con Session Manager. - Estructura conceptual:
+<code>PROJECTS/&lt;proyecto&gt;/config</code>,
+<code>requirements</code>, <code>planning</code>, <code>tasks</code>,
+<code>documents</code>, <code>experiments</code>, <code>results</code>,
+<code>versions</code>, <code>reports</code>. - Pendiente: plantillas,
+estados, esquema y reglas de colaboración.</p>
+<h2 id="módulo-9-reporting-analytics">MÓDULO 9 — REPORTING &amp;
+ANALYTICS</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Objetivos, evidencias, referencias,
+formatos y estados de informe definidos; falta decidir aprobación.</td>
+<td style="text-align: left;">En definición</td>
+<td style="text-align: left;">Resolver aprobación y completar
+validación, plantillas y formatos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Informes técnicos, investigación,
+experimentos, comparativas, código, seguridad, rendimiento, mercado,
+proyectos y colaboración. - Evidencias: dato verificado, resultado
+experimental, conclusión fundamentada, hipótesis, inferencia del modelo
+e información no verificada. - Referencias a documentos, RAG, web,
+archivos, scripts, experimentos y agentes. - Formatos previstos:
+Markdown, PDF, DOCX, XLSX, CSV, HTML, JSON, PPTX. - Historial/versiones;
+informes aprobados no se sobrescriben. - Estados: Borrador, Revisado,
+Validado; validar requiere criterios explícitos, no solo revisión
+lingüística. - Pendiente: se planteó A usuario, B ORION, C híbrido. Se
+recomendó C (rutinarios con validación automática; científicos,
+experimentales, seguridad y decisiones importantes con aprobación del
+usuario), pero no está aceptada expresamente. - File Manager es
+transversal, no subordinado a Reporting.</p>
+<h2 id="módulo-10-file-manager">MÓDULO 10 — FILE MANAGER</h2>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 39%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Lectura/análisis y edición/generación;
+servicio central; autonomía configurable por
+agente/proyecto/formato/operación.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Seleccionar bibliotecas, adaptadores,
+límites y pruebas por formato.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Lee, analiza, crea, edita, convierte,
+comprime, descomprime, valida integridad y versiona. - Formatos
+contemplados: - Documentos: PDF, DOCX, TXT, MD, ODT, RTF. - Hojas: XLSX,
+XLS, CSV, ODS. - Presentaciones: PPTX, PPT, ODP. - Imágenes: PNG, JPG,
+JPEG, BMP, TIFF, WEBP, SVG. - Comprimidos: ZIP, 7Z, TAR, GZ. -
+Código/datos: PY, C, C++, JS, HTML, CSS, JSON, XML. - Audio: WAV, MP3,
+FLAC, OGG, M4A. - Video: MP4, AVI, MKV, MOV, WEBM. - 3D: STL, OBJ, GLTF,
+GLB, 3DM. - Comprender contenido requiere adaptadores especializados;
+abrir un archivo no implica comprenderlo. - Imagen: OCR,
+diagramas/gráficos, comparación, conversión y redimensionamiento. - ZIP:
+inspección, extracción, análisis, duplicados, creación/modificación. -
+Protección: ZIP bombs, path traversal, archivos maliciosos y límites de
+tamaño. - Originales protegidos; edición genera copia/nueva versión;
+reemplazo/eliminación según permisos. - Arquitectura propuesta: File
+Detector, Reader, Writer, Converter, Archive Manager, Security Manager,
+Version Manager y Format Adapters. - Permisos: READ, ANALYZE, CREATE,
+WRITE, CONVERT, COMPRESS, DELETE, SHARE. - Niveles: automático,
+autorizado por proyecto, requiere autorización, prohibido. - Bibliotecas
+candidatas: PyMuPDF/pypdf, python-docx, openpyxl, python-pptx, Pillow,
+OpenCV, Tesseract, zipfile, py7zr, FFmpeg, librosa, trimesh, pygltflib,
+rhino3dm, BeautifulSoup, lxml y Tree-sitter. No son selección
+definitiva. - Servicio transversal a Knowledge, Memory, Project,
+Reporting, agentes y Security. - Pendiente: selección técnica y
+validación formato por formato.</p>
+<h2 id="módulo-11-web-research-engine">MÓDULO 11 — WEB &amp; RESEARCH
+ENGINE</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Investigación online/offline, fuentes
+múltiples, clasificación de evidencia y autonomía supervisada.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir conectores, límites, extracción,
+evaluación de fuentes y defensa prompt injection.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Fuentes: buscadores, GitHub/GitLab,
+índices académicos, documentación oficial, fabricantes y bases técnicas.
+- Offline: bibliotecas, repositorios descargados, documentación local,
+Knowledge y Memory. Indicar fecha de obtención/última verificación. -
+Capacidades: buscar, consultar, analizar páginas/repositorios, descargar
+documentos autorizados, extraer, comparar, contrastar, verificar y
+generar informes. - Evidencias: verificada, respaldada, contradictoria,
+hipótesis, inferencia y no verificada. - Metadatos: URL/ubicación,
+título/autor, publicación, consulta, fragmento de respaldo y agente. -
+Una respuesta del LLM no es evidencia por sí misma. - Autonomía
+aprobada: agentes inician investigación si necesitan información; ORION
+supervisa prioridades, consultas, descargas, recursos, permisos, agentes
+y consolidación. - Seguridad: páginas/documentos son contenido no
+confiable; protección prompt injection; validar descargas; no ejecutar
+automáticamente; límites y auditoría. - Pendiente: conectores, APIs,
+términos de uso, confiabilidad y caché offline.</p>
+<h2 id="módulo-12-learning-adaptation-engine">MÓDULO 12 — LEARNING &amp;
+ADAPTATION ENGINE</h2>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 33%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aprendizaje integral: operativo,
+optimización de agentes y entrenamiento/fine-tuning justificado.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir métricas, ciclo, datasets,
+aceptación y límites.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Categorías: experiencial, procedimental,
+estratégica, colaborativa y adaptativa. - Evaluación: precisión, calidad
+de fuentes, objetivos, errores, tiempo, recursos, intervención humana,
+pruebas y entregables. - Métricas diferentes según especialidad. -
+Separación: - Knowledge/RAG: recuperación documental. - Memory:
+experiencias. - Learning: evaluación/propuesta de mejora. - LLM:
+interpretación/generación. - Training: modificación de pesos. -
+Experimentación: hipótesis, diseño, variables, pruebas autorizadas,
+registro, comparación, reproducibilidad, resultados negativos y
+conclusiones. - Aprendizaje integral aprobado: 1. Operativo. 2.
+Optimización de prompts, procedimientos, estrategias y RAG. 3.
+Fine-tuning, LoRA, QLoRA y modelos especializados. - Model Training
+Manager propuesto: datasets, validación, modelos base, fine-tuning,
+LoRA/QLoRA, evaluación antes/después, comparación, versionado,
+aprobación y conservación de originales. - Ciclo de mejora: hipótesis,
+preparación, prueba, comparación, evaluación, aprobación cuando
+corresponda, adopción o descarte. - Hardware actual: RTX 5070 Laptop con
+8 GB VRAM; evaluar modelos pequeños, cuantización y técnicas eficientes;
+no asumir GPU ilimitada. - Pendiente: métricas, datasets, criterios y
+herramientas.</p>
+<h2 id="módulo-13-api-integration-engine">MÓDULO 13 — API &amp;
+INTEGRATION ENGINE</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Conectores independientes y autonomía
+configurable; agregados Webots y Solid Edge.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Verificar APIs, capacidades, contratos,
+permisos y pruebas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Componentes propuestos: API Manager,
+Connector Manager, Device Manager, Data Exchange, Command Executor,
+Event Manager, Security Manager. - Robótica/simulación: CoppeliaSim,
+MuJoCo, Webots, ROS 2. - CAD: Rhino 3D y Solid Edge. - Desarrollo: VS
+Code, Git, GitHub; GitLab posible. - IA: Ollama. - Hardware: Arduino,
+ESP32, sensores y robots. - Niveles: consulta, interacción operativa y
+control físico. - Autonomía aprobada por agente, aplicación, proyecto,
+dispositivo, operación y riesgo. - Simuladores: experimentos, parámetros
+autorizados, iniciar simulación y analizar resultados. - Hardware
+físico: controles reforzados; permiso de simulación no habilita control
+real. - Seguridad: permisos por conector, auditoría, credenciales
+seguras, aprobación destructiva y bloqueo/desconexión. - Pendiente:
+comprobar API real, autenticación, eventos y límites de cada
+aplicación.</p>
+<h2 id="módulo-14-notification-event-manager">MÓDULO 14 — NOTIFICATION
+&amp; EVENT MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 25%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th>Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td>Gestión autónoma de acontecimientos; acciones correctivas
+autorizadas, coordinación y notificación PC/móvil.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir esquema, colas, persistencia,
+deduplicación y reglas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Categorías: agentes, tareas,
+investigación, experimentos, seguridad, recursos, proyectos,
+autorizaciones y plataforma. - Prioridades: informativo, normal,
+importante, alto y crítico. - Centro de notificaciones: nuevas,
+historial, filtros por agente/proyecto/prioridad, marcar leídas, acceder
+a tarea y ver detalles. - Móvil por Wi-Fi local sin cloud; almacenar y
+sincronizar al reconectar. - Autorizaciones con vencimiento; no ejecutar
+una autorización expirada al reconectar. - Autonomía aprobada: ORION
+interpreta eventos, inicia acciones permitidas, convoca agentes,
+crea/reasigna tareas y pide intervención cuando corresponda. - Ejemplo:
+experimento falla, evento registrado, ORION analiza, convoca software,
+crea diagnóstico y coordina continuación. - Evitar ciclos infinitos: ID,
+límites de reintentos y de convocatorias. - Pendiente: modelo de
+eventos, broker/cola y reglas.</p>
+<h2 id="módulo-15-backup-recovery-manager">MÓDULO 15 — BACKUP &amp;
+RECOVERY MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 29%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Sistema híbrido, estrategia 3-2-1 de
+referencia, frecuencia/retención inteligentes y verificación.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir herramientas, cifrado, retención,
+restauración y pruebas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Destinos: disco local, externo, NAS, otra
+computadora LAN y remoto opcional. - Offline sin dependencia cloud. -
+Referencia 3-2-1: tres copias, dos medios, una externa al equipo. -
+Modalidades: completa, incremental, diferencial y por evento. - Eventos:
+cambios críticos, actualizaciones, modelos, procedimientos,
+administración y proyectos. - Proteger configuración, agentes, memoria,
+bibliotecas, proyectos, experimentos, modelos según disponibilidad,
+código y logs. - Índices RAG pueden reconstruirse; no necesariamente
+duplicarlos en cada backup. - Recuperación de cierre inesperado, error
+de agente, corrupción, fallo de plataforma y fallo de equipo. -
+Verificación: SHA-256, integridad, fecha/versión, componentes, detección
+de copias incompletas y pruebas de restauración. - Migración
+Windows/Ubuntu con validación de dependencias. - Frecuencia/retención
+inteligente según criticidad, cambios, actividad, riesgo, espacio y
+última copia. Respetar límites del usuario; no borrar copias necesarias
+por falta de espacio. - Panel: último/próximo backup, integridad,
+espacio, destinos, versiones, alertas y restauraciones. - Pendiente:
+cifrado, inmutabilidad, herramientas y restauración completa.</p>
+<h2 id="módulo-16-administration-configuration-manager">MÓDULO 16 —
+ADMINISTRATION &amp; CONFIGURATION MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Administración centralizada y autonomía
+configurable con auditoría y aprobación reforzada para cambios
+críticos.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir esquema de configuración, roles,
+secretos y aprobaciones.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Administra agentes, modelos, recursos,
+permisos, seguridad, integraciones, conocimiento/memoria, dispositivos,
+configuración y actualizaciones. - Agentes: crear, configurar, asignar
+herramientas/permisos, habilitar/deshabilitar, actualizar y consultar
+actividad. - ORION no se deshabilita desde administración ordinaria. -
+Modelos: registrar, configurar Ollama/proveedores, asignar modelos,
+versiones/parámetros, modelos entrenados y recursos. - Permisos por
+agente, usuario, proyecto, aplicación, dispositivo, archivo, operación y
+riesgo; permisos temporales. - Auditoría: ID, responsable, fecha,
+parámetro, valor anterior/nuevo, motivo, autorización y resultado. -
+Autonomía C aprobada: ajustes rutinarios y optimizaciones autorizadas
+autónomas; cambios importantes requieren aprobación; cambios críticos,
+permisos y operaciones destructivas requieren autorización reforzada. -
+ORION no cambia unilateralmente arquitectura o seguridad ni elimina
+agentes fundamentales. - Pendiente: esquema, secretos, roles, validación
+y reversión.</p>
+<h2 id="módulo-17-multi-user-identity-manager">MÓDULO 17 — MULTI-USER
+&amp; IDENTITY MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Modelo multiusuario avanzado con
+identidad, sesiones, memoria, preferencias, permisos y proyectos.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir autenticación, aislamiento, MFA,
+roles y sesiones.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Roles iniciales propuestos: administrador
+principal, administrador, investigador, desarrollador, operador e
+invitado; configurables. - Identidad: ID, perfil, credenciales, roles,
+permisos, preferencias, sesiones, dispositivos y proyectos. -
+Memoria/conversaciones privadas no se comparten automáticamente. -
+Sesiones simultáneas; servicios centrales compartidos y contextos
+aislados. - Proyectos colaborativos con permisos consultar, crear,
+modificar, experimentar, aprobar y administrar participantes. -
+Auditoría de cambios por usuario y agente. - Seguridad: hash de
+contraseñas, autenticación reforzada, bloqueo, vencimiento/revocación de
+sesiones y dispositivos. - Pendiente: autenticación local, MFA,
+separación de datos y recuperación de cuenta.</p>
+<h2 id="módulo-18-scheduler-autonomous-operations">MÓDULO 18 — SCHEDULER
+&amp; AUTONOMOUS OPERATIONS</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Autonomía integral configurable para
+planificar, programar, iniciar, detener, reorganizar y reanudar
+tareas.</td>
+<td style="text-align: left;">Aprobado funcionalmente</td>
+<td style="text-align: left;">Definir scheduler, triggers, persistencia,
+reintentos y límites.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalles</strong> - Modalidades: inmediata, programada,
+recurrente, condicional y autónoma. - Estados: pendiente, programada,
+preparando, ejecutando, en espera, suspendida, recuperándose,
+finalizada, fallida y cancelada. - Tareas largas conservan estado,
+progreso, resultados parciales y logs. - Recuperación desde último punto
+válido; estado no confiable requiere reinicio o intervención. -
+Distinguir cerrar interfaz, cerrar sesión, cerrar GIAR-ORION y apagar
+equipo. - Puede seguir trabajando sin usuario conectado mientras
+servicios estén activos. - Resource Manager controla concurrencia,
+prioridad, suspensión/reanudación, CPU/GPU/RAM/VRAM y límites
+térmicos/energéticos. - Autonomía C aprobada sujeta a objetivos,
+permisos, recursos, seguridad y autorizaciones sensibles. - Pendiente:
+motor, watchdog, persistencia, reintentos y apagado.</p>
+<h2 id="módulo-19-decision-reasoning-engine">MÓDULO 19 — DECISION &amp;
+REASONING ENGINE</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Versión</th>
+<th>Cambios realizados</th>
+<th>Estado</th>
+<th>Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.1</td>
+<td>Incorporación inicial del motor de razonamiento compartido, análisis
+de alternativas y resolución de conflictos entre agentes.</td>
+<td>Aprobado conceptualmente</td>
+<td>Completar definición funcional.</td>
+</tr>
+<tr class="even">
+<td>0.2</td>
+<td>Especificación funcional ampliada: quince decisiones aprobadas sobre
+arquitectura, hipótesis, confiabilidad, desacuerdos, trazabilidad,
+aprendizaje, experimentación, métodos, suficiencia, revisión,
+recuperación, comparación de soluciones e intervención humana.</td>
+<td>Aprobado funcionalmente en el alcance definido; implementación
+pendiente</td>
+<td>Definir criterios medibles, algoritmos, contratos con módulos
+relacionados, métricas y pruebas.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="objetivo">Objetivo</h3>
+<p>Proporcionar un motor de razonamiento compartido por toda la
+plataforma. ORION administra las solicitudes, coordina análisis
+colaborativos y consolida decisiones de los agentes. El motor recomienda
+y fundamenta; la ejecución de acciones queda sujeta a permisos,
+políticas, recursos y autorizaciones.</p>
+<h3 id="decisiones-funcionales-aprobadas">Decisiones funcionales
+aprobadas</h3>
+<p><strong>19.1 — Motor de razonamiento compartido</strong></p>
+<p>El motor será un servicio común de GIAR-ORION. ORION administra las
+solicitudes, coordina análisis entre agentes y consolida resultados. Los
+agentes especializados aportan conocimiento de sus respectivos dominios.
+La recomendación del motor no equivale por sí misma a autorización para
+ejecutar acciones.</p>
+<p><strong>19.2 — Arquitectura híbrida de razonamiento</strong></p>
+<p>El razonamiento combinará componentes con responsabilidades
+diferenciadas:</p>
+<ul>
+<li>LLM: interpretación del problema, formulación de hipótesis y
+propuesta de soluciones.</li>
+<li>Algoritmos y métodos matemáticos: cálculos y análisis
+cuantitativos.</li>
+<li>Reglas lógicas: restricciones, consistencia y comprobaciones
+formales.</li>
+<li>Knowledge Manager: recuperación y consulta de evidencias
+documentales.</li>
+<li>Memory Manager: experiencias y procedimientos previos.</li>
+<li>Quality &amp; Validation Engine: verificación de respuestas, métodos
+y resultados.</li>
+<li>ORION: coordinación, adjudicación y consolidación.</li>
+</ul>
+<p>La salida del LLM no será considerada evidencia por sí misma.</p>
+<p><strong>19.3 — Razonamiento adaptativo</strong></p>
+<p>La profundidad del análisis se ajustará según complejidad,
+criticidad, especialidad, evidencias disponibles, precisión requerida y
+recursos. Se contemplan niveles directo, intermedio y profundo. Los
+límites de iteraciones, tiempo y recursos serán configurables.</p>
+<p><strong>19.4 — Hipótesis competitivas y colaborativas</strong></p>
+<p>El motor podrá generar varias hipótesis y contrastarlas. Para cada
+una deberá buscar evidencias favorables y contrarias, evaluar
+consistencia, identificar información faltante, convocar agentes
+especializados, detectar contradicciones y descartar hipótesis solo
+cuando existan fundamentos suficientes. Si la información no alcanza,
+conservará las hipótesis abiertas y podrá proponer experimentos
+discriminantes.</p>
+<p>La coincidencia entre varios agentes no constituye por sí sola
+evidencia.</p>
+<p><strong>19.5 — Evaluación híbrida de confiabilidad</strong></p>
+<p>Cada hipótesis y conclusión podrá incluir:</p>
+<ul>
+<li>Puntuación cuantitativa basada en criterios definidos.</li>
+<li>Clasificación cualitativa: alta, media o baja confiabilidad.</li>
+<li>Evidencias favorables y contrarias.</li>
+<li>Incertidumbres e información faltante.</li>
+<li>Condiciones o nuevas evidencias que podrían modificar la
+evaluación.</li>
+</ul>
+<p>Una puntuación generada por el LLM no se interpretará como
+probabilidad estadística. Las probabilidades requerirán métodos
+apropiados y calibrados.</p>
+<p><strong>19.6 — Resolución de desacuerdos mediante evidencia y
+evaluación técnica</strong></p>
+<p>Ante desacuerdos, cada agente presentará su conclusión y fundamentos.
+El motor identificará coincidencias y discrepancias, podrá solicitar
+argumentos o análisis adicionales y contrastará las posiciones mediante
+evidencias, reglas, cálculos, documentación o pruebas. ORION consolidará
+el resultado. Si no existe fundamento suficiente para resolver el
+desacuerdo, conservará las posiciones discrepantes e informará al
+usuario.</p>
+<p>La cantidad de agentes que respalda una conclusión no determina su
+veracidad; la evidencia y la consistencia técnica tienen prioridad. La
+votación, si se utiliza, será complementaria y no decisoria.</p>
+<p><strong>19.7 — Registro estructurado y configurable</strong></p>
+<p>El proceso de razonamiento tendrá un registro auditable que incluya
+problema y objetivo, agentes participantes, hipótesis, evidencias a
+favor y en contra, métodos utilizados, desacuerdos, evaluaciones,
+conclusiones, confiabilidad, incertidumbres, información faltante,
+decisión final, fecha, duración y recursos.</p>
+<p>El nivel de detalle será configurable: resumido, intermedio o
+completo. El registro deberá permitir reconstruir y auditar el proceso
+cuando sea posible, sin almacenar indiscriminadamente todo intercambio
+interno.</p>
+<p><strong>19.8 — Aprendizaje controlado y evaluado</strong></p>
+<p>El motor registrará decisiones y resultados, identificará errores,
+aciertos y patrones, y propondrá mejoras en sus métodos. Las mejoras se
+evaluarán mediante pruebas comparativas y métricas. Solo se incorporarán
+si cumplen los criterios de calidad establecidos. Se conservarán
+versiones anteriores y capacidad de reversión.</p>
+<p>Integración: Memory Manager conserva experiencias; Learning &amp;
+Adaptation Engine administra el ciclo de aprendizaje; Quality &amp;
+Validation Engine verifica las mejoras. El motor no modificará
+autónomamente sus criterios sin evaluación y control.</p>
+<p><strong>19.9 — Ejecución autónoma de pruebas con límites y
+permisos</strong></p>
+<p>El motor podrá diseñar y ejecutar experimentos para comprobar
+hipótesis en entornos autorizados, incluidos simuladores integrados.
+Deberá respetar límites de tiempo, recursos y cantidad de experimentos;
+registrar parámetros, condiciones, procedimientos y resultados; y
+proteger archivos originales y configuraciones aprobadas.</p>
+<p>La autorización para simulación no habilita control de hardware
+físico. El control real requiere permisos específicos y controles
+reforzados. Las acciones sensibles requieren aprobación. Los resultados
+deberán contrastarse con las hipótesis iniciales.</p>
+<p>Integración: Project &amp; Workflow Manager, API &amp; Integration
+Engine, Scheduler &amp; Autonomous Operations, Quality &amp; Validation
+Engine y Data &amp; Experiment Manager.</p>
+<p><strong>19.10 — Selección adaptativa y combinada de
+métodos</strong></p>
+<p>El motor analizará el problema y seleccionará uno o varios métodos
+adecuados. Podrá combinarlos y cambiar de estrategia si los resultados
+son insuficientes. Registrará qué métodos utilizó y por qué. La
+selección considerará tipo y complejidad del problema, especialidad,
+criticidad, evidencias, precisión requerida y recursos disponibles.</p>
+<p>Entre los métodos posibles se encuentran razonamiento lógico,
+análisis matemático, diagnóstico causal, generación y contraste de
+hipótesis, simulación, análisis estadístico e investigación documental.
+Esta lista describe capacidades, no una selección tecnológica
+definitiva.</p>
+<p><strong>19.11 — Criterios adaptativos de suficiencia de
+información</strong></p>
+<p>El motor definirá qué información necesita según el problema y
+evaluará calidad, cantidad y confiabilidad de evidencias,
+contradicciones, criticidad y precisión requerida. Determinará si
+necesita investigar, consultar agentes o ejecutar experimentos. Podrá
+declarar insuficiencia de información y deberá exponer limitaciones e
+incertidumbres.</p>
+<p>No confundirá la capacidad de generar una respuesta con disponer de
+evidencia suficiente para fundamentarla.</p>
+<p><strong>19.12 — Revisión crítica independiente y
+multicapa</strong></p>
+<p>Antes de presentar una conclusión como fundamentada, se revisará su
+coherencia con el problema, el respaldo de evidencias, la validez
+lógica, los cálculos cuando corresponda y el alcance de las
+afirmaciones. Podrá solicitar revisión de agentes especializados y
+devolver el análisis para corrección.</p>
+<p>La revisión deberá distinguir, como mínimo, errores de recuperación
+RAG, extracción documental, generación LLM, razonamiento, cálculos,
+verificación de evidencias y adjudicación entre agentes. Una respuesta
+bien redactada no equivale a una respuesta técnicamente correcta.</p>
+<p><strong>19.13 — Recuperación inteligente ante errores</strong></p>
+<p>Ante un error, el motor identificará su origen y alcance, analizará
+qué etapas y resultados quedaron afectados, conservará los resultados
+todavía válidos y repetirá únicamente las etapas comprometidas. Podrá
+convocar agentes, verificará la corrección y registrará causa y
+solución. Si no puede resolverlo, informará al usuario y no presentará
+el resultado como validado.</p>
+<p>No deberá descartar todo el análisis por un error localizado ni
+conservar resultados cuya validez dependa de una etapa defectuosa.</p>
+<p><strong>19.14 — Evaluación comparativa multicriterio de
+soluciones</strong></p>
+<p>El motor generará alternativas, comprobará su viabilidad y comparará
+ventajas, desventajas, limitaciones, precisión, complejidad, costo,
+tiempo, recursos, riesgos y compatibilidad con los requisitos del
+proyecto. Asignará ponderaciones según objetivos y prioridades,
+presentará una clasificación fundamentada y explicará la recomendación.
+Informará si ninguna alternativa satisface adecuadamente los
+requisitos.</p>
+<p>La solución más conveniente no será necesariamente la más rápida ni
+la de mayor precisión aislada; dependerá de los objetivos y
+restricciones.</p>
+<p><strong>19.15 — Intervención humana según riesgo, incertidumbre e
+impacto</strong></p>
+<p>El motor solicitará intervención humana cuando existan consecuencias
+importantes, evidencias insuficientes o contradictorias, confiabilidad
+inadecuada, desacuerdos irresueltos, cambios importantes de
+arquitectura, impacto posible sobre hardware o sistemas externos,
+permisos insuficientes o riesgo para proyectos y datos.</p>
+<p>En tareas rutinarias y de bajo riesgo podrá continuar dentro de sus
+permisos. La intervención dependerá del riesgo real de la decisión, no
+solamente de la dificultad del problema.</p>
+<h3 id="decisión-pendiente-19.16">Decisión pendiente: 19.16</h3>
+<p>Se planteó definir cómo debe explicar ORION el proceso que conduce a
+una conclusión. Se presentaron tres alternativas: explicación resumida,
+detallada o adaptativa/configurable (resumida, técnica, completa e
+interactiva). Se recomendó la alternativa C, pero <strong>no fue
+aprobada expresamente</strong>. Por lo tanto, permanece pendiente y no
+forma parte de las decisiones aprobadas del módulo.</p>
+<h3 id="integración-y-límites-de-responsabilidad">Integración y límites
+de responsabilidad</h3>
+<p>El motor se integra principalmente con:</p>
+<ul>
+<li>Módulo 3 — Task, Resource &amp; Model Manager: disponibilidad y
+límites de recursos.</li>
+<li>Módulo 4 — Knowledge Manager: evidencias documentales y recuperación
+RAG.</li>
+<li>Módulo 5 — Memory Manager: experiencias y procedimientos.</li>
+<li>Módulo 8 — Project &amp; Workflow Manager: objetivos, requisitos y
+línea base de proyectos.</li>
+<li>Módulo 11 — Web &amp; Research Engine: investigación y fuentes
+externas.</li>
+<li>Módulo 12 — Learning &amp; Adaptation Engine: evaluación y adopción
+de mejoras.</li>
+<li>Módulo 13 — API &amp; Integration Engine: herramientas, simuladores
+y dispositivos.</li>
+<li>Módulo 18 — Scheduler &amp; Autonomous Operations: ejecución y
+programación de tareas.</li>
+<li>Módulo 20 — Quality &amp; Validation Engine: validación
+independiente.</li>
+<li>Módulo 22 — Data &amp; Experiment Manager: datasets y resultados
+experimentales.</li>
+</ul>
+<p>El Módulo 19 coordina el razonamiento y la toma de decisiones, pero
+no reemplaza a los módulos especializados. La recuperación documental
+sigue siendo responsabilidad de Knowledge/RAG; la generación, del LLM;
+la validación, del módulo 20; la ejecución, de los gestores y conectores
+correspondientes; y la autorización, de las políticas de ORION.</p>
+<h3 id="pendientes-de-ingeniería">Pendientes de ingeniería</h3>
+<ul>
+<li>Definir métricas operativas y umbrales por especialidad.</li>
+<li>Precisar algoritmos y métodos de evaluación para confiabilidad y
+suficiencia.</li>
+<li>Definir formatos de hipótesis, evidencias, decisiones y
+registros.</li>
+<li>Establecer límites de iteraciones, tiempo y recursos por nivel de
+razonamiento.</li>
+<li>Definir contratos e interfaces con los módulos relacionados.</li>
+<li>Diseñar pruebas de calidad, reproducibilidad y calibración.</li>
+<li>Resolver la decisión 19.16.</li>
+</ul>
+<h2 id="módulo-20-quality-validation-engine">MÓDULO 20 — QUALITY &amp;
+VALIDATION ENGINE</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aceptada incorporación para validar
+respuestas, código, experimentos, investigaciones e informes.</td>
+<td style="text-align: left;">Aprobado conceptualmente; detalle
+pendiente</td>
+<td style="text-align: left;">Definir criterios, métricas, pruebas y
+umbrales.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Alcance propuesto</strong> - Evaluar respuestas. - Validar
+código. - Ejecutar pruebas. - Comprobar resultados experimentales. -
+Evaluar investigaciones e informes. - Detectar inconsistencias. -
+Comparar versiones. - Calidad lingüística no equivale a validez
+técnica.</p>
+<h2 id="módulo-21-knowledge-graph-engine">MÓDULO 21 — KNOWLEDGE GRAPH
+ENGINE</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aceptada incorporación de relaciones
+explícitas entre conceptos, documentos, proyectos, agentes, experimentos
+y resultados.</td>
+<td style="text-align: left;">Aprobado conceptualmente; detalle
+pendiente</td>
+<td style="text-align: left;">Definir ontología, nodos, relaciones,
+almacenamiento y consultas.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Alcance propuesto</strong> - Entidades: conceptos,
+documentos, investigaciones, experimentos, proyectos, agentes, modelos,
+procedimientos, resultados y conclusiones. - Complementa RAG mediante
+relaciones explícitas; no lo reemplaza. - Pendiente: ontología, base de
+datos, procedencia, contradicciones y evaluación.</p>
+<h2 id="módulo-22-data-experiment-manager">MÓDULO 22 — DATA &amp;
+EXPERIMENT MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 24%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aceptada incorporación para datasets,
+datos experimentales, entrenamiento y resultados.</td>
+<td style="text-align: left;">Aprobado conceptualmente; detalle
+pendiente</td>
+<td style="text-align: left;">Definir catálogo, esquemas, versionado,
+linaje y reproducibilidad.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Alcance propuesto</strong> - Administrar datasets y preparar
+datos. - Versionar conjuntos. - Registrar experimentos, variables y
+parámetros. - Almacenar/comparar resultados. - Gestionar entrenamiento,
+validación y prueba. - Evaluar reproducibilidad. - Pendiente: formatos,
+metadatos, almacenamiento, privacidad y retención.</p>
+<h2 id="módulo-23-plugin-extension-manager">MÓDULO 23 — PLUGIN &amp;
+EXTENSION MANAGER</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aceptada incorporación para herramientas,
+conectores y extensiones de terceros o desarrolladas por agentes.</td>
+<td style="text-align: left;">Aprobado conceptualmente; detalle
+pendiente</td>
+<td style="text-align: left;">Definir API, manifiesto, ciclo de vida,
+aislamiento y firma.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Alcance propuesto</strong> - Incorporar, instalar, versionar,
+validar, habilitar/deshabilitar extensiones. - Controlar compatibilidad,
+dependencias y permisos. - Extensiones aisladas; no modificar libremente
+el núcleo. - Pendiente: formato, sandbox, firma, actualización, rollback
+y repositorio offline.</p>
+<h2 id="módulo-24-diagnostics-self-monitoring">MÓDULO 24 — DIAGNOSTICS
+&amp; SELF-MONITORING</h2>
+<table style="width:97%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Cambios realizados</th>
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Próximo trabajo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Aceptada incorporación para salud de
+plataforma, fallos, degradaciones y diagnóstico.</td>
+<td style="text-align: left;">Aprobado conceptualmente; detalle
+pendiente</td>
+<td style="text-align: left;">Definir métricas, health checks,
+telemetría y límites de auto-reparación.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Alcance propuesto</strong> - Supervisar módulos. - Detectar
+errores/degradaciones. - Controlar recursos. - Detectar fallos de
+comunicación. - Analizar logs. - Detectar conflictos. - Proponer
+soluciones y verificar correcciones. - Diagnóstico autónomo permitido;
+cambios críticos requieren autorización. - Pendiente: métricas,
+umbrales, trazas, aislamiento y auto-reparación.</p>
+<h1 id="políticas-transversales">3. Políticas transversales</h1>
+<h2 id="autonomía-y-permisos">Autonomía y permisos</h2>
+<p>Los permisos se podrán definir por agente, usuario, proyecto,
+aplicación, conector, dispositivo, formato, operación, riesgo y
+duración. Niveles usados conceptualmente: automático, supervisado,
+requiere autorización y prohibido. La semántica común se unificará en
+arquitectura técnica.</p>
+<h2 id="autorización-móvil">Autorización móvil</h2>
+<ul>
+<li>Opcional para uso normal.</li>
+<li>Wi-Fi local; sin cloud.</li>
+<li>El móvil aprueba solicitudes concretas, no tiene administración
+general.</li>
+<li>Solicitud identificada, vencimiento, un solo uso y protección contra
+replay.</li>
+<li>Comunicación cifrada, dispositivo vinculado y auditoría.</li>
+<li>Si se pierde conexión, no se ejecuta una operación que exige
+confirmación móvil.</li>
+<li>Una autorización vencida no se ejecuta al reconectar.</li>
+</ul>
+<h2 id="autenticación-administrativa">Autenticación administrativa</h2>
+<p>La clave administrativa no se almacena en texto plano ni en
+código/configuración. Se propuso hash Argon2id con sal, límite de
+intentos y bloqueo. No usar cifrado reversible para almacenar la
+clave.</p>
+<h2 id="reset">RESET</h2>
+<ol type="1">
+<li>Reiniciar sesión: limpiar conversaciones/contexto operativo.</li>
+<li>Reiniciar plataforma: reiniciar agentes/servicios y estados
+operativos, conservando bibliotecas/config/logs.</li>
+<li>Restablecimiento de fábrica: valores iniciales y eliminación de
+personalizaciones con autorización. No borrar documentos/bibliotecas sin
+autorización expresa.</li>
+</ol>
+<p>Antes de RESET: gestionar tareas, informar pérdidas, backup,
+confirmación, ejecución y verificación.</p>
+<h2 id="sesiones-y-recuperación">Sesiones y recuperación</h2>
+<p>Al iniciar, preguntar continuar sesión anterior o comenzar nueva. Al
+continuar, restaurar, verificar integridad y recuperar tareas. Reanudar
+desde punto válido si confiable; reiniciar si corrupto/no confiable;
+consultar si faltan datos o autorización. Nunca marcar una tarea
+interrumpida como finalizada.</p>
+<h2 id="evidencias">Evidencias</h2>
+<p>Separar dato verificado, resultado experimental, conclusión
+fundamentada, hipótesis, inferencia del modelo e información no
+verificada.</p>
+<h2 id="archivos-originales">Archivos originales</h2>
+<p>Lectura no modifica; edición crea copia/versión;
+reemplazo/eliminación sujetos a permisos y autorización; versiones
+aprobadas protegidas.</p>
+<h2 id="diagnóstico-de-problemas">Diagnóstico de problemas</h2>
+<p>Distinguir errores de recuperación RAG, extracción documental,
+generación LLM, verificación NLI/evidencia, adjudicación/decisión,
+herramienta/conector, planificación/ejecución e infraestructura. No
+modificar arquitectura antes de medir.</p>
+<h1 id="estructura-documental-propuesta">4. Estructura documental
+propuesta</h1>
+<p>La estructura siguiente es una propuesta lógica; no se afirma que ya
+esté creada en el equipo.</p>
+<pre class="text"><code>GIAR-ORION/
+├── Agents/
+│   ├── ORION/{Core,Configuration,Memory,Knowledge,Tools,Logs}/
+│   ├── ORION-ROBOTICS/
+│   ├── ORION-SOFTWARE/
+│   ├── ORION-SECURITY/
+│   ├── ORION-LANGUAGES/
+│   └── ORION-MARKETING/
+├── Interface/{UI,Avatars}/
+├── LLM/{Models,Configuration,Services}/
+├── Projects/
+├── Documents/
+│   ├── INDEX.md
+│   ├── 00_Governance/
+│   ├── 01_Functional_Specification/
+│   ├── 02_Work_Log/
+│   ├── 03_Architecture/
+│   ├── 04_Requirements/
+│   ├── 05_Design/
+│   ├── 06_Implementation/
+│   ├── 07_Testing/
+│   ├── 08_Changes/
+│   └── 09_Reports/
+├── Data/
+├── Backups/
+├── Logs/
+└── Tools/</code></pre>
+<p><strong>Ubicación de los dos documentos maestros:</strong> -
+<code>GIAR-ORION/Documents/01_Functional_Specification/GIAR-ORION_Especificacion_Funcional_Maestra.md</code>
+-
+<code>GIAR-ORION/Documents/02_Work_Log/GIAR-ORION_Bitacora_de_Trabajo.md</code></p>
+<p>Son documentos de todo el proyecto, por eso van en
+<code>Documents/</code>, no dentro de un agente.</p>
+<h1 id="convención-documental">5. Convención documental</h1>
+<p>Identificadores: - DOC: documento general. - REQ: requerimiento. -
+DES: diseño. - IMP: implementación. - TEST: prueba. - CHANGE:
+cambio.</p>
+<p>Estados: - DRAFT. - REVIEW. - APPROVED. - IN_PROGRESS. - TESTING. -
+COMPLETED. - BLOCKED.</p>
+<p>Al comienzo de cada módulo se mantiene tabla de versiones con
+versión, fecha, cambios, estado y próximo trabajo. Una aprobación
+conceptual no cambia el estado a implementado.</p>
+<h1 id="pendientes-explícitos">6. Pendientes explícitos</h1>
+<ol type="1">
+<li>Módulo 9: falta aprobar modelo de aprobación de informes. Se
+recomendó opción híbrida C, pero no fue aceptada expresamente.</li>
+<li>Módulo 6: perfiles Normal/Alto/Crítico propuestos, no
+formalizados.</li>
+<li>Módulo 19: quince decisiones funcionales aprobadas; queda pendiente
+la decisión 19.16 y el detalle de ingeniería. Módulos 20–24:
+incorporación aceptada; falta especificación funcional detallada.</li>
+<li>Tecnologías nombradas: candidatas, no selección final, salvo que se
+indique expresamente.</li>
+<li>Estructura de carpetas: propuesta, no confirmada como creada.</li>
+<li>No hay módulos que deban considerarse implementados por su
+aprobación conceptual.</li>
+</ol>
+<h1 id="próxima-etapa">7. Próxima etapa</h1>
+<p>Completar la decisión pendiente 19.16 y continuar las
+especificaciones funcionales de los módulos 20 Quality &amp; Validation,
+21 Knowledge Graph, 22 Data &amp; Experiment, 23 Plugin &amp; Extension
+y 24 Diagnostics &amp; Self-Monitoring.</p>
+<p>Después realizar auditoría integral de los 24 módulos:
+responsabilidades, duplicaciones, dependencias, interfaces, servicios
+compartidos, conflictos, riesgos y pendientes. Luego arquitectura
+técnica, contratos, estructura real, plan de implementación y pruebas
+incrementales.</p>
+<p><strong>Fin — Especificación funcional maestra v0.2.</strong></p>
+</body>
+</html>

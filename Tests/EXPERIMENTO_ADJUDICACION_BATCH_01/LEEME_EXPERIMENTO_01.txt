@@ -1,0 +1,41 @@
+EXPERIMENTO 01 - ADJUDICACION POR LOTES
+
+Objetivo
+Reducir llamadas secuenciales a Qwen3 agrupando 2 afirmaciones por llamada.
+
+Instalacion
+1. Cerrar GIAR-ORION si esta ejecutandose.
+2. Hacer una copia de seguridad del archivo actual:
+   Tests/TEST_PERFORMANCE/Agent/EvidenceVerifier.py
+   por ejemplo EvidenceVerifier_pre_batch.py (dentro de la carpeta de pruebas).
+3. Extraer este ZIP en la raiz de GIAR-ORION, conservando la estructura Tests/.
+   El archivo reemplazara SOLAMENTE la copia de EvidenceVerifier dentro de TEST_PERFORMANCE.
+4. No copiarlo a GIAR-ORION/Agent. El original queda intacto.
+5. Ejecutar desde la raiz:
+   python .\Tests\TEST_PERFORMANCE\main_multilinea_test.py
+
+Diseno experimental
+- Se mantienen ClaimExtractor, RAG, E5, BGE-M3, mDeBERTa y la evidencia seleccionada.
+- Se mantiene la clasificacion SUPPORTED / CONTRADICTED / INSUFFICIENT.
+- Se mantiene fail-closed: si el lote no valida todas las combinaciones afirmacion-evidencia,
+  las afirmaciones de ese lote quedan INSUFFICIENT.
+- Se agrupan 2 afirmaciones por llamada a Qwen3. Con 20 afirmaciones se esperan 10 llamadas
+  en lugar de 20, salvo reintentos.
+- No se cambia el original ni el pipeline productivo.
+
+Prueba
+1. Reiniciar el proceso de prueba para que importe la nueva clase.
+2. Ejecutar la misma consulta: ¿Qué es SAC?
+3. Guardar performance_metrics.jsonl y el informe completo de verificacion.
+4. Comparar contra la linea base: 20 afirmaciones, 20 llamadas individuales, aproximadamente
+   341-361 s acumulados en adjudicacion Qwen3.
+
+Criterio de aceptacion
+No alcanza con bajar el tiempo. Comparar tambien: cantidad de afirmaciones, cantidad de
+clasificaciones, estados por afirmacion, estado global, errores JSON/reintentos y evidencia
+utilizada. Si hay diferencias de calidad, no adoptar el cambio.
+
+Nota
+Este es un experimento, no una version para produccion. El lote de 2 puede producir una
+salida mas larga; por eso se valida cada claim_id y evidence_id. Los lotes incompletos
+fallan de forma cerrada.

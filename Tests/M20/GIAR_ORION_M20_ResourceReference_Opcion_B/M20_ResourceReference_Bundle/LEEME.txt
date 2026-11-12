@@ -1,0 +1,26 @@
+GIAR-ORION - M20 - ResourceReference (Opción B)
+
+Copiar respetando esta estructura:
+Tests/
+  M20/
+    test_resource_reference.py
+    ResourceReference_test_cases_40.json
+  Schemas/
+    M20/
+      ResourceReference.schema.json
+      MultimodalInput.schema.json
+
+IMPORTANTE:
+- Este MultimodalInput.schema.json es la versión 1.1 que cambia `reference`
+  de string a objeto estructurado y referencia ResourceReference por $id.
+- Hacer copia de seguridad del esquema MultimodalInput.schema.json actual
+  antes de reemplazarlo.
+- No reemplazar el test anterior de 22 casos; conservarlo como antecedente.
+- Instalar dependencia si falta: python -m pip install jsonschema referencing
+
+Ejecutar desde la raíz de GIAR-ORION:
+python Tests/M20/test_resource_reference.py
+
+Los 40 casos cubren validación independiente del recurso e integración
+con la entrada multimodal. El test no puede probar que una URI exista,
+que el archivo sea recuperable o que el solicitante tenga permisos.

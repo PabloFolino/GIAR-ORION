@@ -1,0 +1,9 @@
+﻿{
+    "language":  "es",
+    "tts_engine":  "",
+    "voice_id":  "",
+    "voice_enabled":  true,
+    "pitch":  1,
+    "agent_id":  "ORION-ROBOTICS",
+    "speed":  1
+}

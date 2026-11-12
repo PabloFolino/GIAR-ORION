@@ -1,0 +1,3556 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>GIAR-ORION — DES-M20 Technical Design v0.5</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+<style>
+
+:root { color-scheme: light; --text:#263238; --border:#718096; --header:#e8eef5; --row:#f6f8fb; }
+* { box-sizing:border-box; }
+body { max-width:1120px; margin:36px auto; padding:0 28px 60px; color:var(--text); font:15px/1.58 "Segoe UI",Arial,sans-serif; }
+h1,h2,h3,h4 { color:#203449; line-height:1.25; }
+h1 { margin-top:2.2em; padding-bottom:.35em; border-bottom:2px solid #526579; }
+h2 { margin-top:1.8em; } h3 { margin-top:1.4em; }
+table { width:100%; border-collapse:collapse; margin:1.1em 0 1.5em; font-size:.94em; }
+thead { display:table-header-group; } tr { page-break-inside:avoid; }
+th,td { border:1px solid var(--border); padding:7px 9px; text-align:left; vertical-align:top; }
+th { background:var(--header); border-bottom:2px solid #526579; }
+tbody tr:nth-child(even) { background:var(--row); }
+pre { overflow-x:auto; padding:14px 16px; border:1px solid #d4dce5; border-radius:5px; background:#f3f5f7; line-height:1.45; font-size:.9em; }
+code { font-family:Consolas,"Courier New",monospace; overflow-wrap:anywhere; }
+:not(pre)>code { padding:1px 4px; border-radius:3px; background:#eef1f4; }
+blockquote { margin:1em 0; padding:.2em 1em; border-left:4px solid #718096; color:#46596b; background:#f6f8fb; }
+hr { border:0; border-top:1px solid #aab6c2; margin:2em 0; }
+li { margin:.22em 0; }
+@media print { body { max-width:none; margin:12mm; padding:0; font-size:10pt; } pre { white-space:pre-wrap; word-break:break-word; } }
+
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">GIAR-ORION — DES-M20 Technical Design v0.5</h1>
+</header>
+<h1 id="giar-orion--technical-design">GIAR-ORION — Technical Design</h1>
+<h2 id="des-m20--technical-design">DES-M20 — Technical Design</h2>
+<p><strong>Código:</strong> DES-M20<br />
+<strong>Versión:</strong> 0.5<br />
+<strong>Fecha:</strong> 11/11/2026<br />
+<strong>Estado:</strong> Borrador técnico integrado para revisión<br />
+<strong>Documento funcional de referencia:</strong> REG-001 —
+GIAR-ORION, Especificación Funcional Maestra v0.5<br />
+<strong>Alcance de esta versión:</strong> DT-01 a DT-04 y ampliación de
+DT-05 (transiciones, catálogos normativos y validaciones semánticas de
+solicitudes de inferencia)<br />
+<strong>Ubicación prevista en el repositorio:</strong>
+<code>GIAR-ORION/02_DESIGN/M20/</code></p>
+<blockquote>
+<p><strong>Nota de estado:</strong> este documento consolida decisiones
+y propuestas de diseño técnico. Las decisiones ARC-001 a ARC-006
+indicadas como aprobadas fueron aceptadas expresamente. La aprobación de
+una decisión o de una especificación funcional no significa que exista
+una implementación ni que se hayan superado pruebas.</p>
+</blockquote>
+<hr />
+<h1 id="control-documental">Control documental</h1>
+<h2 id="historial-de-versiones">Historial de versiones</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Versión</th>
+<th style="text-align: left;">Fecha</th>
+<th style="text-align: left;">Cambios</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">11/11/2026</td>
+<td style="text-align: left;">Primera consolidación del diseño técnico:
+DT-01 a DT-04; incorporación de ARC-001 a ARC-006.</td>
+<td style="text-align: left;">Borrador técnico</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.3</td>
+<td style="text-align: left;">11/11/2026</td>
+<td style="text-align: left;">Incorporación de DT-05: contrato común de
+eventos de inferencia, catálogo de diez eventos y payloads individuales
+acordados. Se mantienen DT-01 a DT-04.</td>
+<td style="text-align: left;">Borrador técnico integrado para
+revisión</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">11/11/2026</td>
+<td style="text-align: left;">Se conserva íntegramente la versión 0.3 y
+se amplía DT-05 con la matriz aprobada de transiciones, diagrama
+completo de estados, reglas de terminalidad, concurrencia, cancelación,
+timeout, errores, invariantes y criterios de aceptación.</td>
+<td style="text-align: left;">Borrador técnico integrado para
+revisión</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0.5</td>
+<td style="text-align: left;">11/11/2026</td>
+<td style="text-align: left;">Se conserva íntegramente la versión 0.4 y
+se amplía DT-05 con DT05-CAT-001 (catálogos normativos aprobados de
+task_type, rejection_code y error_code) y las diez reglas aprobadas de
+validación semántica de solicitudes. Se mantienen como pendientes los
+esquemas JSON definitivos y las pruebas.</td>
+<td style="text-align: left;">Borrador técnico integrado para
+revisión</td>
+</tr>
+</tbody>
+</table>
+<h2 id="convenciones-de-estado">Convenciones de estado</h2>
+<ul>
+<li><strong>APROBADA:</strong> decisión aceptada expresamente.</li>
+<li><strong>PROPUESTA:</strong> solución planteada que todavía requiere
+aprobación.</li>
+<li><strong>PENDIENTE:</strong> definición técnica que debe
+resolverse.</li>
+<li><strong>BORRADOR:</strong> contenido sujeto a revisión.</li>
+<li><strong>NO IMPLEMENTADO:</strong> no debe interpretarse como
+funcionalidad existente.</li>
+<li><strong>NO PROBADO:</strong> no existen resultados de pruebas que
+permitan afirmar conformidad.</li>
+</ul>
+<h2 id="documentos-y-decisiones-de-referencia">Documentos y decisiones
+de referencia</h2>
+<ul>
+<li><code>REG-001-GIAR-ORION_Especificacion_Funcional_Maestra_v0.5.md</code>.</li>
+<li>ORION CORE — especificación funcional, versión 0.1, incorporada en
+REG-001.</li>
+<li>M20 — Quality &amp; Validation Engine, especificación funcional,
+versión 0.2, incorporada en REG-001.</li>
+<li>Decisiones arquitectónicas ARC-001 a ARC-006, registradas en este
+documento.</li>
+</ul>
+<h2 id="relación-entre-diseño-funcional-y-diseño-técnico">Relación entre
+diseño funcional y diseño técnico</h2>
+<p>REG-001 define el comportamiento funcional aprobado. Este documento
+desarrolla propuestas de arquitectura y contratos técnicos para permitir
+su implementación.</p>
+<p>Los contratos funcionales <code>C20-001</code> a <code>C20-012</code>
+y <code>C20-T01</code> a <code>C20-T04</code> pertenecen a M20. No son
+API, esquemas JSON ni contratos técnicos de ORION CORE. Su formalización
+técnica corresponde al desarrollo de DT-11 y no debe confundirse con los
+contratos generales de este documento.</p>
+<hr />
+<h1 id="registro-de-decisiones-arquitectónicas">Registro de decisiones
+arquitectónicas</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Decisión</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">ARC-001</td>
+<td style="text-align: left;">Simplicidad arquitectónica.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARC-002</td>
+<td style="text-align: left;">ORION CORE como aplicación modular
+inicial; agentes ejecutables como procesos independientes cuando se
+justifique.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ARC-003</td>
+<td style="text-align: left;">La comunicación entre agentes
+especializados pasará inicialmente por el Message Broker de ORION
+CORE.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARC-004</td>
+<td style="text-align: left;">El Broker comenzará con colas en memoria y
+persistirá selectivamente los mensajes y operaciones que requieran
+recuperación.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ARC-005</td>
+<td style="text-align: left;">JSON será el formato común de intercambio
+de mensajes.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ARC-006</td>
+<td style="text-align: left;">Todos los agentes especializados
+implementarán un contrato común mínimo, manteniendo libertad sobre su
+arquitectura interna.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+</tbody>
+</table>
+<h2 id="arc-001--simplicidad-arquitectónica">ARC-001 — Simplicidad
+arquitectónica</h2>
+<p><strong>Estado: APROBADA</strong></p>
+<p>ORION CORE deberá adoptar la arquitectura técnicamente más sencilla
+que permita satisfacer los requisitos funcionales, de seguridad,
+disponibilidad, rendimiento y escalabilidad. Toda incorporación de
+componentes, servicios, procesos o tecnologías adicionales deberá
+justificarse mediante una necesidad verificable. Se priorizará la
+modularidad y la posibilidad de evolución progresiva, evitando
+complejidad prematura.</p>
+<p><strong>Consecuencias:</strong> - No incorporar microservicios,
+servidores externos o infraestructura adicional por anticipado. - Evitar
+componentes que dupliquen responsabilidades existentes. - Justificar las
+tecnologías y procesos independientes por requisitos verificables. -
+Medir antes de optimizar o distribuir componentes.</p>
+<h2 id="arc-002--modelo-inicial-de-ejecución">ARC-002 — Modelo inicial
+de ejecución</h2>
+<p><strong>Estado: APROBADA</strong></p>
+<p>ORION CORE se implementará inicialmente como una aplicación modular,
+con sus componentes separados lógica y funcionalmente. Los agentes
+especializados podrán ejecutarse como procesos independientes cuando sus
+necesidades de aislamiento, disponibilidad, recursos o escalabilidad lo
+justifiquen.</p>
+<p><strong>Consecuencias:</strong> - La separación lógica de componentes
+no exige separarlos en procesos. - No todos los agentes deben ejecutarse
+desde el inicio como procesos independientes. - La arquitectura
+conservará la posibilidad de distribuir agentes progresivamente.</p>
+<h2 id="arc-003--comunicación-inicial-entre-agentes">ARC-003 —
+Comunicación inicial entre agentes</h2>
+<p><strong>Estado: APROBADA</strong></p>
+<p>Inicialmente, la comunicación entre agentes especializados también
+pasará por el Message Broker de ORION CORE para mantener trazabilidad y
+control centralizados.</p>
+<p><strong>Consecuencias:</strong> - Se evita establecer canales punto a
+punto independientes como mecanismo predeterminado. - ORION CORE puede
+aplicar las políticas de identidad, permisos y trazabilidad. - Una
+modalidad directa futura requerirá justificación y definición de
+controles equivalentes.</p>
+<h2 id="arc-004--colas-y-persistencia-del-broker">ARC-004 — Colas y
+persistencia del Broker</h2>
+<p><strong>Estado: APROBADA</strong></p>
+<p>El Broker comenzará con colas en memoria y persistirá únicamente los
+mensajes y operaciones que requieran recuperación.</p>
+<p><strong>Consecuencias:</strong> - No se incorpora inicialmente una
+infraestructura externa de colas. - La persistencia será selectiva y
+responderá a requisitos de continuidad, recuperación o auditoría. - La
+pérdida de mensajes en memoria ante una interrupción deberá contemplarse
+en el análisis de riesgos y en las reglas de reintento. - Los mensajes
+críticos deberán persistirse antes de depender de ellos para una
+operación recuperable.</p>
+<h2 id="arc-005--formato-común-de-mensajes">ARC-005 — Formato común de
+mensajes</h2>
+<p><strong>Estado: APROBADA</strong></p>
+<p>GIAR-ORION utilizará JSON como formato común de intercambio de
+mensajes entre ORION CORE, los agentes especializados y los módulos del
+sistema.</p>
+<p><strong>Alcance:</strong> - JSON define la representación de los
+mensajes. - JSON no determina el protocolo, el transporte ni la
+topología de red. - Las estructuras se validarán mediante esquemas
+técnicos que se definirán posteriormente. - La elección del transporte
+queda pendiente.</p>
+<h2 id="arc-006--contrato-común-de-agentes">ARC-006 — Contrato común de
+agentes</h2>
+<p><strong>Estado: APROBADA</strong></p>
+<p>Todos los agentes especializados deberán implementar un contrato
+común mínimo de identidad, registro, capacidades, comunicación, estados
+y permisos. Sus arquitecturas internas, modelos, herramientas y
+mecanismos de memoria podrán ser diferentes.</p>
+<p><strong>Consecuencias:</strong> - Un agente de robótica, uno de
+investigación y uno de visión artificial podrán utilizar modelos y
+herramientas diferentes. - Todos deberán cumplir las interfaces mínimas
+de integración. - ORION CORE no deberá depender de la implementación
+interna de cada agente. - La conformidad con el contrato común será
+verificable mediante pruebas.</p>
+<hr />
+<h1 id="dt-01--arquitectura-técnica-general-de-orion-core">DT-01 —
+Arquitectura técnica general de ORION CORE</h1>
+<p><strong>Estado:</strong> Borrador para revisión<br />
+<strong>Versión:</strong> 0.1</p>
+<h2 id="1-objetivo">1. Objetivo</h2>
+<p>Definir la arquitectura técnica general de ORION CORE, estableciendo
+sus componentes, responsabilidades, relaciones internas y mecanismos de
+interacción con agentes especializados y módulos de GIAR-ORION.</p>
+<p>El diseño proporciona una base técnica sencilla, modular, extensible
+y multiplataforma, evitando incorporar complejidad que no esté
+justificada por requisitos verificables.</p>
+<h2 id="2-alcance">2. Alcance</h2>
+<p>Este documento define: - La arquitectura lógica de ORION CORE. - La
+organización y responsabilidad de sus componentes. - Las relaciones
+entre ORION CORE y los agentes especializados. - La comunicación con
+Model Manager. - La gestión de tareas, estados y eventos. - Los
+principios generales de seguridad, persistencia y recuperación. - Los
+criterios generales de despliegue.</p>
+<p>No define todavía los esquemas detallados de mensajes, las API
+definitivas, la implementación interna del Message Broker ni la
+selección de tecnologías.</p>
+<h2 id="3-principios-técnicos">3. Principios técnicos</h2>
+<ol type="1">
+<li><strong>Modularidad:</strong> responsabilidades claramente
+delimitadas.</li>
+<li><strong>Bajo acoplamiento:</strong> interacción mediante interfaces
+definidas.</li>
+<li><strong>Responsabilidad única:</strong> evitar duplicar
+funciones.</li>
+<li><strong>Servicios compartidos:</strong> centralizar servicios
+comunes cuando resulte conveniente.</li>
+<li><strong>Trazabilidad:</strong> identificar y reconstruir operaciones
+relevantes.</li>
+<li><strong>Seguridad:</strong> aplicar permisos y autorizaciones antes
+de operaciones protegidas.</li>
+<li><strong>Resiliencia:</strong> gestionar fallos sin comprometer
+innecesariamente el funcionamiento general.</li>
+<li><strong>Evolución progresiva:</strong> incorporar capacidades sin
+rediseñar toda la plataforma.</li>
+<li><strong>Multiplataforma:</strong> contemplar Windows 11 y
+Ubuntu.</li>
+<li><strong>Funcionamiento local:</strong> la operación básica no
+dependerá obligatoriamente de servicios externos.</li>
+<li><strong>Escalabilidad gradual:</strong> conservar la posibilidad de
+utilizar varias GPU y equipos en red local, sin imponer una arquitectura
+distribuida desde el inicio.</li>
+<li><strong>Medición previa:</strong> justificar cambios de arquitectura
+con requisitos, métricas o pruebas.</li>
+</ol>
+<h2 id="4-modelo-arquitectónico">4. Modelo arquitectónico</h2>
+<p>Se adopta una arquitectura modular para ORION CORE. Los componentes
+estarán separados lógica y funcionalmente, aunque inicialmente podrán
+ejecutarse dentro de una misma aplicación y proceso.</p>
+<p>La separación de componentes en procesos o servicios independientes
+se realizará cuando exista una necesidad demostrable de aislamiento,
+disponibilidad, rendimiento, recursos o escalabilidad.</p>
+<h3 id="41-bloques-lógicos">4.1. Bloques lógicos</h3>
+<p><strong>A. Coordinación central</strong> - Inicialización y cierre. -
+Registro e identificación de agentes. - Recepción y distribución de
+solicitudes. - Coordinación de tareas. - Gestión de estados. -
+Supervisión general.</p>
+<p><strong>B. Comunicación</strong> - Recepción y emisión de mensajes. -
+Enrutamiento. - Gestión de solicitudes y respuestas. - Identificación y
+correlación de mensajes. - Gestión de errores de comunicación.</p>
+<p><strong>C. Servicios compartidos</strong> - Comunicación con Model
+Manager. - Consulta de disponibilidad de modelos. - Solicitud de
+inferencias. - Gestión de recursos compartidos mediante los módulos
+responsables.</p>
+<p><strong>D. Seguridad y control</strong> - Identificación de agentes.
+- Verificación de permisos. - Autorización de operaciones. - Registro de
+operaciones sensibles.</p>
+<p><strong>E. Persistencia y recuperación</strong> - Registro de
+eventos. - Persistencia de estados. - Recuperación de sesiones y tareas.
+- Verificación de integridad.</p>
+<p>Estos bloques son agrupaciones lógicas de responsabilidades. No
+implican crear cinco servicios independientes ni agregar componentes
+funcionales a los diez ya aprobados.</p>
+<h2 id="5-componentes-funcionales-de-orion-core">5. Componentes
+funcionales de ORION CORE</h2>
+<p>Se conservan los diez componentes definidos en REG-001:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Componente</th>
+<th style="text-align: left;">Responsabilidad principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">OC-01</td>
+<td style="text-align: left;">Inicialización y cierre</td>
+<td style="text-align: left;">Gestionar el ciclo de vida de ORION CORE y
+el orden de inicio y cierre.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OC-02</td>
+<td style="text-align: left;">Registro e identificación de agentes</td>
+<td style="text-align: left;">Registrar agentes y administrar sus
+identidades e información operativa.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OC-03</td>
+<td style="text-align: left;">Recepción y distribución de
+solicitudes</td>
+<td style="text-align: left;">Recibir solicitudes y encaminarlas según
+especialidad, disponibilidad y condiciones.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OC-04</td>
+<td style="text-align: left;">Coordinación de tareas</td>
+<td style="text-align: left;">Organizar y supervisar tareas,
+dependencias y colaboración entre agentes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OC-05</td>
+<td style="text-align: left;">Comunicación con Model Manager</td>
+<td style="text-align: left;">Acceder a los servicios centralizados de
+modelos e inferencia mediante una interfaz común.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OC-06</td>
+<td style="text-align: left;">Gestión jerárquica de estados</td>
+<td style="text-align: left;">Administrar estados de plataforma, agentes
+y tareas de forma coherente y auditable.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OC-07</td>
+<td style="text-align: left;">Registro de eventos y errores</td>
+<td style="text-align: left;">Registrar acontecimientos, incidencias y
+errores, preservando la auditoría crítica.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OC-08</td>
+<td style="text-align: left;">Control de permisos</td>
+<td style="text-align: left;">Verificar permisos y autorizaciones antes
+de operaciones protegidas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">OC-09</td>
+<td style="text-align: left;">Persistencia</td>
+<td style="text-align: left;">Conservar la información necesaria para
+continuidad y recuperación, verificando integridad.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">OC-10</td>
+<td style="text-align: left;">Interfaces con módulos futuros</td>
+<td style="text-align: left;">Proporcionar interfaces estables para
+integrar módulos presentes y futuros.</td>
+</tr>
+</tbody>
+</table>
+<p>Los bloques lógicos del apartado 4 no constituyen componentes
+adicionales. La división interna de cada componente se definirá durante
+el diseño detallado.</p>
+<h2 id="6-relación-con-agentes-especializados">6. Relación con agentes
+especializados</h2>
+<p>ORION CORE coordina la actividad general de los agentes
+especializados. Cada agente tendrá identidad propia y declarará
+especialidad, capacidades, versión, herramientas y requisitos
+operativos.</p>
+<p>La arquitectura permitirá: - Registrar agentes disponibles. -
+Consultar capacidades y estados. - Asignar tareas. - Supervisar la
+ejecución. - Recibir resultados y errores. - Controlar permisos. -
+Registrar operaciones relevantes. - Suspender, reanudar o finalizar
+agentes y tareas según las políticas aplicables.</p>
+<p>Los agentes podrán colaborar entre sí. Inicialmente, sus mensajes
+pasarán por el Message Broker de ORION CORE conforme a ARC-003. ORION
+conservará autoridad sobre coordinación general, permisos y operaciones
+que requieran intervención central.</p>
+<p>El contrato común de agente se desarrolla en DT-04.</p>
+<h2 id="7-relación-con-model-manager">7. Relación con Model Manager</h2>
+<p>ORION CORE no administrará directamente la infraestructura interna de
+los modelos de inteligencia artificial. La comunicación se realizará
+mediante Model Manager.</p>
+<p>Model Manager será responsable de centralizar, según su
+especificación: - Registro y disponibilidad de modelos. - Administración
+de instancias de inferencia. - Asignación de recursos. - Recepción de
+solicitudes de inferencia. - Devolución de resultados. - Información de
+disponibilidad y errores.</p>
+<p>Se evitará cargar múltiples instancias del mismo modelo cuando puedan
+compartir un servicio de inferencia. Los agentes accederán a los modelos
+mediante la interfaz autorizada, sin administrar por separado instancias
+compartidas.</p>
+<p>La API específica se desarrollará en DT-05.</p>
+<h2 id="8-comunicación-interna">8. Comunicación interna</h2>
+<p>Los componentes utilizarán interfaces desacopladas. El mecanismo de
+comunicación deberá permitir: - Comunicación entre componentes de ORION
+CORE. - Comunicación entre ORION CORE y agentes. - Comunicación entre
+agentes mediante el Broker. - Comunicación con Model Manager. -
+Comunicación con otros módulos.</p>
+<p>Se admitirán modalidades síncronas y asíncronas según la naturaleza
+de cada operación. La tecnología de transporte no se selecciona en esta
+versión.</p>
+<p>La especificación del Message Broker se desarrolla en DT-02; las
+estructuras comunes se desarrollan en DT-03.</p>
+<h2 id="9-seguridad-y-permisos">9. Seguridad y permisos</h2>
+<p>La arquitectura deberá garantizar que: - Cada agente y componente
+tenga una identidad reconocible. - Las operaciones estén sujetas a
+permisos. - Las autorizaciones se verifiquen antes de ejecutar
+operaciones sensibles. - Los componentes no puedan otorgarse permisos a
+sí mismos. - Las operaciones críticas queden registradas. - Los errores
+de autorización se traten de manera controlada.</p>
+<p>ORION CORE conserva la autoridad transversal sobre permisos y
+coordinación. La definición técnica detallada corresponde al DT-09.</p>
+<h2 id="10-estados-y-eventos">10. Estados y eventos</h2>
+<p>ORION CORE administrará estados generales de plataforma y permitirá
+el seguimiento de estados de agentes y tareas. Los cambios relevantes
+deberán generar eventos registrables.</p>
+<p>Se distinguirán, como mínimo: - Estado de plataforma. - Estado de
+componente o servicio. - Estado de agente. - Estado de tarea. - Estado
+de sesión.</p>
+<p>Las transiciones específicas y sus reglas de consistencia se
+definirán en los contratos técnicos y en los diseños de los módulos
+correspondientes. Los estados funcionales propios de M20 no deben
+confundirse con los estados generales de ORION CORE.</p>
+<h2 id="11-persistencia-y-recuperación">11. Persistencia y
+recuperación</h2>
+<p>La arquitectura contemplará la conservación de: - Identidades y
+registros de agentes. - Configuraciones necesarias. - Estados de tareas
+y sesiones. - Eventos relevantes. - Registros de errores. - Información
+necesaria para recuperación.</p>
+<p>La persistencia deberá permitir verificar integridad y detectar
+inconsistencias. La recuperación de información histórica no implica
+recuperar automáticamente permisos o autorizaciones anteriores.</p>
+<p>El diseño detallado se desarrollará en DT-08. La persistencia
+selectiva de mensajes del Broker se rige además por ARC-004.</p>
+<h2 id="12-despliegue">12. Despliegue</h2>
+<p>La arquitectura deberá poder ejecutarse en Windows 11 y Ubuntu,
+priorizando tecnologías multiplataforma y de código abierto.</p>
+<p>El despliegue inicial será local y sencillo. Se conservará la
+posibilidad de ejecutar agentes en procesos independientes y,
+posteriormente, en otros equipos de la red local, cuando los requisitos
+lo justifiquen.</p>
+<p>El procedimiento de instalación y despliegue se desarrollará en
+DT-10.</p>
+<h2 id="13-integración-con-m20">13. Integración con M20</h2>
+<p>M20 — Quality &amp; Validation Engine se integrará a GIAR-ORION como
+módulo especializado. ORION CORE proporcionará los servicios generales
+que M20 necesite: - Identidad y registro de agentes. - Comunicación. -
+Coordinación de tareas. - Acceso a Model Manager. - Gestión de permisos.
+- Estados y eventos. - Persistencia y trazabilidad.</p>
+<p>M20 conserva sus responsabilidades específicas de validación,
+evaluación de calidad, decisión, corrección y gestión de evidencias.</p>
+<p>Los contratos <code>C20-001</code> a <code>C20-012</code> y
+<code>C20-T01</code> a <code>C20-T04</code> pertenecen a las
+interacciones internas de M20. No son contratos generales de ORION
+CORE.</p>
+<p>La especificación técnica de M20 corresponde a DT-11.</p>
+<h2 id="14-aspectos-pendientes">14. Aspectos pendientes</h2>
+<ol type="1">
+<li>Estructura interna de paquetes y módulos.</li>
+<li>Alcance técnico definitivo del Message Broker.</li>
+<li>Protocolo y transporte de comunicación.</li>
+<li>Esquemas técnicos de mensajes.</li>
+<li>Contrato técnico completo de agentes.</li>
+<li>Interfaces técnicas con Model Manager.</li>
+<li>Mecanismos de persistencia y almacenamiento.</li>
+<li>Autenticación y autorización.</li>
+<li>Estrategia multiproceso y distribuida.</li>
+<li>Requisitos cuantitativos de rendimiento y escalabilidad.</li>
+</ol>
+<h2 id="15-criterios-de-aceptación">15. Criterios de aceptación</h2>
+<p>DT-01 podrá considerarse consolidado cuando: - La arquitectura lógica
+esté definida. - Las responsabilidades de los componentes estén
+delimitadas. - Las relaciones entre ORION CORE, agentes y servicios
+compartidos estén establecidas. - Las decisiones arquitectónicas estén
+identificadas y justificadas. - Las dependencias con otros módulos estén
+documentadas. - No existan contradicciones con REG-001. - Los aspectos
+pendientes estén identificados y asignados.</p>
+<hr />
+<h1 id="dt-02--especificación-técnica-del-message-broker">DT-02 —
+Especificación técnica del Message Broker</h1>
+<p><strong>Estado:</strong> Borrador para revisión<br />
+<strong>Versión:</strong> 0.1</p>
+<h2 id="1-objetivo-1">1. Objetivo</h2>
+<p>Definir el diseño técnico del mecanismo de comunicación de
+GIAR-ORION, responsable de transportar mensajes entre ORION CORE,
+agentes especializados y módulos del sistema.</p>
+<p>El diseño prioriza simplicidad, trazabilidad, confiabilidad y
+evolución progresiva.</p>
+<h2 id="2-alcance-1">2. Alcance</h2>
+<p>Este documento establece: - Responsabilidades del Message Broker. -
+Modelo general de comunicación. - Tipos de mensajes. - Enrutamiento. -
+Identificación y correlación. - Comunicación síncrona y asíncrona. -
+Gestión de errores y reintentos. - Tratamiento de duplicados. -
+Seguridad y trazabilidad. - Criterios de persistencia y
+recuperación.</p>
+<p>No selecciona todavía una tecnología concreta ni define la
+implementación definitiva.</p>
+<h2 id="3-responsabilidades-del-broker">3. Responsabilidades del
+Broker</h2>
+<p>El Message Broker deberá: 1. Recibir mensajes de componentes
+autorizados. 2. Identificar emisor y destinatario. 3. Validar la
+estructura básica del mensaje. 4. Determinar el destino indicado. 5.
+Entregar el mensaje. 6. Gestionar respuestas y confirmaciones cuando
+correspondan. 7. Controlar errores de comunicación. 8. Facilitar
+trazabilidad. 9. Aplicar políticas de reintentos. 10. Permitir detectar
+mensajes duplicados cuando corresponda.</p>
+<p>El Broker no será responsable de: - Decidir qué agente debe resolver
+una tarea. - Ejecutar inferencias. - Validar la calidad del contenido de
+una respuesta. - Conceder permisos. - Administrar memoria de agentes. -
+Resolver conflictos funcionales entre agentes.</p>
+<p>Estas responsabilidades corresponden a otros componentes.</p>
+<h2 id="4-modelo-arquitectónico-1">4. Modelo arquitectónico</h2>
+<h3 id="41-implementación-inicial">4.1. Implementación inicial</h3>
+<p>El Message Broker será inicialmente un componente lógico integrado a
+ORION CORE. No se requiere de inicio un servidor independiente, clúster
+de mensajería, infraestructura distribuida ni base de datos exclusiva
+para mensajes.</p>
+<p>Su interfaz deberá permitir una eventual separación en otro proceso
+sin modificar innecesariamente los contratos de comunicación.</p>
+<h3 id="42-modalidades-de-comunicación">4.2. Modalidades de
+comunicación</h3>
+<ul>
+<li><strong>Interna:</strong> entre componentes de ORION CORE.</li>
+<li><strong>Con agentes:</strong> entre ORION CORE y agentes
+especializados.</li>
+<li><strong>Entre agentes:</strong> entre agentes especializados,
+pasando inicialmente por el Broker conforme a ARC-003.</li>
+<li><strong>Con módulos:</strong> intercambio con Model Manager y otros
+módulos registrados, de acuerdo con sus interfaces.</li>
+</ul>
+<h2 id="5-tipos-de-mensajes">5. Tipos de mensajes</h2>
+<p>Se contemplan inicialmente estas categorías:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>REQUEST</code></td>
+<td style="text-align: left;">Solicitud de ejecución o información.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>RESPONSE</code></td>
+<td style="text-align: left;">Respuesta a una solicitud.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>COMMAND</code></td>
+<td style="text-align: left;">Instrucción dirigida a un componente o
+agente.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>EVENT</code></td>
+<td style="text-align: left;">Notificación de un acontecimiento.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>STATUS</code></td>
+<td style="text-align: left;">Información sobre el estado de un
+componente, agente o tarea.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ERROR</code></td>
+<td style="text-align: left;">Notificación de un error.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>CONTROL</code></td>
+<td style="text-align: left;">Mensajes de coordinación y
+administración.</td>
+</tr>
+</tbody>
+</table>
+<p>La clasificación y los esquemas definitivos se establecerán en
+DT-03.</p>
+<h2 id="6-identificación-de-mensajes">6. Identificación de mensajes</h2>
+<p>Todo mensaje deberá disponer de un identificador único. La estructura
+común prevista incluye: - <code>message_id</code>: identificador único
+del mensaje. - <code>correlation_id</code>: identificador que relaciona
+mensajes de una misma operación. - <code>sender_id</code>: identidad del
+emisor. - <code>recipient_id</code>: identidad del destinatario. -
+<code>message_type</code>: tipo de mensaje. - <code>timestamp</code>:
+fecha y hora de creación. - <code>version</code>: versión del contrato.
+- <code>payload</code>: contenido específico.</p>
+<p>Los formatos definitivos y las reglas de validación se especificarán
+en DT-03.</p>
+<h2 id="7-enrutamiento">7. Enrutamiento</h2>
+<p>El Broker determinará el destino utilizando la identificación del
+destinatario. Los destinos podrán ser: - Un componente de ORION CORE. -
+Un agente especializado. - Model Manager. - Otro módulo registrado. - Un
+conjunto de destinatarios autorizados, cuando corresponda.</p>
+<p>El Broker no seleccionará agentes según especialidad, prioridad o
+disponibilidad. Esa decisión corresponde al componente de coordinación
+de tareas.</p>
+<h2 id="8-comunicación-síncrona-y-asíncrona">8. Comunicación síncrona y
+asíncrona</h2>
+<p>Se admitirán ambas modalidades.</p>
+<h3 id="81-síncrona">8.1. Síncrona</h3>
+<p>Se utilizará cuando el emisor necesite una respuesta antes de
+continuar. Deberá contemplar tiempo máximo de espera, respuesta
+satisfactoria, respuesta de error y expiración.</p>
+<h3 id="82-asíncrona">8.2. Asíncrona</h3>
+<p>Se utilizará cuando el emisor pueda continuar sin esperar una
+respuesta inmediata. Deberá contemplar recepción, confirmación cuando
+corresponda, notificación de finalización y seguimiento mediante
+<code>correlation_id</code>.</p>
+<p>La modalidad se elegirá según la operación. No se impondrá asincronía
+a todos los intercambios.</p>
+<h2 id="9-colas-y-procesamiento">9. Colas y procesamiento</h2>
+<p>Conforme a ARC-004, la implementación inicial utilizará colas en
+memoria. El Broker deberá gestionar mensajes pendientes de entrega o
+procesamiento.</p>
+<p>La persistencia se aplicará selectivamente a los mensajes y
+operaciones que requieran recuperación, continuidad o auditoría. La
+política deberá identificar qué mensajes son críticos y en qué momento
+deben persistirse.</p>
+<p>No se incorpora inicialmente un sistema externo de colas. La pérdida
+de mensajes no persistidos ante una interrupción deberá tratarse
+mediante límites explícitos, confirmaciones, reintentos o reconstrucción
+de la operación, según corresponda.</p>
+<h2 id="10-reintentos-y-errores">10. Reintentos y errores</h2>
+<p>Se deberán contemplar: - Destinatario no disponible. - Tiempo de
+espera agotado. - Error de transmisión. - Mensaje inválido. -
+Destinatario inexistente. - Rechazo por falta de autorización. - Error
+durante el procesamiento.</p>
+<p>Los reintentos serán controlados y limitados. No se repetirán
+automáticamente operaciones con efectos secundarios sin verificar
+previamente que la repetición sea segura.</p>
+<p>Los errores definitivos deberán registrarse y notificarse al
+componente responsable.</p>
+<h2 id="11-duplicación-e-idempotencia">11. Duplicación e
+idempotencia</h2>
+<p>El sistema contemplará que un mensaje pueda recibirse más de una
+vez.</p>
+<ul>
+<li>Cada mensaje tendrá un identificador único.</li>
+<li>Los componentes podrán reconocer mensajes ya procesados cuando
+corresponda.</li>
+<li>Las operaciones sensibles deberán protegerse contra ejecuciones
+duplicadas.</li>
+<li>Los reintentos no deberán producir efectos secundarios no
+deseados.</li>
+</ul>
+<p>No se garantizará entrega exactamente una vez en todos los
+escenarios. Se priorizará entrega confiable, detección de duplicados e
+idempotencia en las operaciones que lo requieran.</p>
+<h2 id="12-seguridad">12. Seguridad</h2>
+<p>El Broker deberá verificar la identidad del emisor mediante
+mecanismos definidos por Security Core, la existencia del destinatario,
+la estructura del mensaje y las reglas de comunicación aplicables.</p>
+<p>La autorización de una operación protegida corresponderá al sistema
+de seguridad y permisos; el Broker no podrá conceder permisos ni
+sustituir esa autoridad.</p>
+<p>Los mensajes no autorizados o inválidos deberán rechazarse y
+registrarse sin exponer información sensible.</p>
+<h2 id="13-trazabilidad">13. Trazabilidad</h2>
+<p>Los mensajes deberán poder relacionarse con: - Solicitud original. -
+Tarea correspondiente. - Agente emisor y destinatario. - Respuesta. -
+Eventos y errores asociados.</p>
+<p>Se utilizarán identificadores de mensaje y correlación para
+reconstruir el recorrido de una operación. El registro respetará
+políticas de privacidad, seguridad y retención.</p>
+<h2 id="14-persistencia-y-recuperación">14. Persistencia y
+recuperación</h2>
+<p>Se distinguirán: - Mensajes temporales en memoria. - Mensajes
+pendientes. - Mensajes procesados. - Mensajes fallidos. - Registros de
+auditoría asociados.</p>
+<p>La persistencia no deberá duplicar innecesariamente el almacenamiento
+general de GIAR-ORION. Las reglas de persistencia y recuperación se
+coordinarán con DT-08.</p>
+<h2 id="15-evolución">15. Evolución</h2>
+<p>El Broker deberá permitir: 1. Comenzar integrado a ORION CORE. 2.
+Atender agentes ejecutados en procesos independientes. 3. Incorporar
+comunicación entre equipos de una red local. 4. Separarse en un servicio
+independiente si necesidades verificables lo justifican.</p>
+<p>La evolución deberá preservar los contratos de comunicación siempre
+que sea técnicamente posible.</p>
+<h2 id="16-aspectos-pendientes">16. Aspectos pendientes</h2>
+<ol type="1">
+<li>Tecnología de comunicación.</li>
+<li>Protocolo de transporte.</li>
+<li>Implementación de colas.</li>
+<li>Esquemas técnicos definitivos.</li>
+<li>Política de reintentos y tiempos máximos.</li>
+<li>Política de persistencia selectiva.</li>
+<li>Comunicación entre equipos.</li>
+<li>Retención de mensajes.</li>
+<li>Pruebas de rendimiento, concurrencia y recuperación.</li>
+</ol>
+<h2 id="17-criterios-de-aceptación">17. Criterios de aceptación</h2>
+<p>DT-02 podrá considerarse consolidado cuando las responsabilidades,
+modalidades, enrutamiento, identificación, correlación, tratamiento de
+errores, duplicados, seguridad y trazabilidad estén definidos y sean
+coherentes con ARC-001 a ARC-005, DT-01 y REG-001.</p>
+<hr />
+<h1 id="dt-03--contratos-técnicos-de-orion-core">DT-03 — Contratos
+técnicos de ORION CORE</h1>
+<p><strong>Estado:</strong> Borrador para revisión<br />
+<strong>Versión:</strong> 0.1</p>
+<h2 id="1-objetivo-2">1. Objetivo</h2>
+<p>Definir los contratos técnicos que regulan la comunicación y la
+interacción entre componentes de ORION CORE, agentes especializados,
+Model Manager y módulos del sistema.</p>
+<p>Los contratos establecerán estructuras de datos, responsabilidades,
+condiciones de intercambio, respuestas y mecanismos de control para
+permitir que los componentes evolucionen sin perder compatibilidad.</p>
+<h2 id="2-alcance-2">2. Alcance</h2>
+<p>Se definen: - Convenciones generales de comunicación. - Estructura
+común de mensajes. - Contratos de solicitudes, respuestas, comandos y
+eventos. - Contratos de estados y errores. - Identidad, correlación y
+trazabilidad. - Permisos y autorización. - Comunicación con agentes y
+Model Manager. - Versionado y compatibilidad.</p>
+<p>No se define la implementación interna de cada componente ni se
+selecciona una tecnología de transporte.</p>
+<h2 id="3-principios">3. Principios</h2>
+<ol type="1">
+<li>Cada mensaje tendrá una estructura identificable.</li>
+<li>Los componentes conocerán solamente las interfaces necesarias.</li>
+<li>Los mensajes tendrán identificadores únicos.</li>
+<li>Los mensajes relacionados compartirán un identificador de
+correlación.</li>
+<li>Los errores utilizarán estructuras comunes.</li>
+<li>Los contratos tendrán versiones.</li>
+<li>Las operaciones sensibles requerirán autorización.</li>
+<li>Los cambios preservarán compatibilidad cuando sea posible.</li>
+<li>No se transmitirán datos innecesarios.</li>
+<li>Los contratos serán independientes del transporte.</li>
+</ol>
+<h2 id="4-formato-común">4. Formato común</h2>
+<p>Conforme a ARC-005, JSON será el formato común de representación e
+intercambio de mensajes. Esta decisión no determina si el transporte
+será local, HTTP, WebSocket, RPC u otro mecanismo; esa selección queda
+pendiente.</p>
+<h3 id="41-campos-comunes-propuestos">4.1. Campos comunes
+propuestos</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Descripción</th>
+<th style="text-align: left;">Obligatorio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>message_id</code></td>
+<td style="text-align: left;">Identificador único del mensaje.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>correlation_id</code></td>
+<td style="text-align: left;">Identificador de la operación
+relacionada.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sender_id</code></td>
+<td style="text-align: left;">Identidad declarada del emisor.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>recipient_id</code></td>
+<td style="text-align: left;">Identidad del destinatario.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>message_type</code></td>
+<td style="text-align: left;">Tipo de mensaje.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>timestamp</code></td>
+<td style="text-align: left;">Fecha y hora de creación.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>version</code></td>
+<td style="text-align: left;">Versión del contrato.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>payload</code></td>
+<td style="text-align: left;">Contenido específico del mensaje.</td>
+<td style="text-align: left;">Sí</td>
+</tr>
+</tbody>
+</table>
+<p>La obligatoriedad y el formato definitivo de cada campo deberán
+verificarse al construir los esquemas JSON. Los mensajes de difusión o
+eventos sin respuesta deberán definir una regla explícita para
+<code>recipient_id</code> y <code>correlation_id</code>, evitando
+valores ambiguos.</p>
+<h3 id="42-ejemplo-conceptual">4.2. Ejemplo conceptual</h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message_id&quot;</span><span class="fu">:</span> <span class="st">&quot;msg-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;correlation_id&quot;</span><span class="fu">:</span> <span class="st">&quot;task-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;sender_id&quot;</span><span class="fu">:</span> <span class="st">&quot;orion_core&quot;</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;recipient_id&quot;</span><span class="fu">:</span> <span class="st">&quot;agent_research&quot;</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message_type&quot;</span><span class="fu">:</span> <span class="st">&quot;REQUEST&quot;</span><span class="fu">,</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-11-11T15:00:00Z&quot;</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0&quot;</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;payload&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;operation&quot;</span><span class="fu">:</span> <span class="st">&quot;research&quot;</span><span class="fu">,</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;parameters&quot;</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Este ejemplo ilustra la estructura, no constituye todavía un esquema
+normativo ni fija el formato definitivo de los identificadores o
+fechas.</p>
+<h2 id="5-contrato-de-solicitudes-request">5. Contrato de solicitudes
+(<code>REQUEST</code>)</h2>
+<p>Las solicitudes representan pedidos de ejecución o información
+dirigidos a un componente o agente. Deberán permitir identificar: -
+Operación solicitada. - Destinatario. - Contexto necesario. - Parámetros
+de ejecución. - Prioridad, cuando corresponda. - Tiempo máximo de
+espera, cuando corresponda.</p>
+<p>La solicitud deberá poder relacionarse con su respuesta mediante
+<code>correlation_id</code>.</p>
+<h2 id="6-contrato-de-respuestas-response">6. Contrato de respuestas
+(<code>RESPONSE</code>)</h2>
+<p>Las respuestas identificarán la solicitud original, emisor,
+resultado, datos devueltos, condición de finalización y errores u
+observaciones.</p>
+<p>Se distinguirá entre: - Respuesta satisfactoria. - Respuesta
+satisfactoria con observaciones. - Respuesta fallida. - Respuesta
+incompleta. - Respuesta no disponible.</p>
+<p>Una respuesta satisfactoria no implica que M20 haya validado el
+resultado.</p>
+<h2 id="7-contrato-de-comandos-command">7. Contrato de comandos
+(<code>COMMAND</code>)</h2>
+<p>Los comandos representan instrucciones dirigidas a un componente o
+agente. Ejemplos: iniciar, suspender, reanudar o cancelar una tarea;
+actualizar un estado; ejecutar una acción autorizada.</p>
+<p>Los comandos deberán identificar la operación solicitada y verificar
+los permisos correspondientes antes de ejecutarse.</p>
+<h2 id="8-contrato-de-eventos-event">8. Contrato de eventos
+(<code>EVENT</code>)</h2>
+<p>Los eventos informarán que ocurrió una situación relevante, por
+ejemplo: - Agente registrado o disponible. - Agente desconectado. -
+Tarea iniciada o finalizada. - Error detectado. - Recurso no disponible.
+- Cambio de estado.</p>
+<p>Los eventos no implican necesariamente una solicitud de
+respuesta.</p>
+<h2 id="9-contrato-de-estados-status">9. Contrato de estados
+(<code>STATUS</code>)</h2>
+<p>Los componentes podrán informar su estado operativo, incluyendo
+identidad, estado actual, fecha de actualización, disponibilidad e
+información complementaria.</p>
+<p>Se distinguirán los estados de plataforma, componentes, agentes,
+tareas, sesiones y servicios compartidos. Los estados específicos
+deberán respetar REG-001 y los documentos de cada módulo.</p>
+<h2 id="10-contrato-de-errores-error">10. Contrato de errores
+(<code>ERROR</code>)</h2>
+<p>Se propone la siguiente estructura común:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>error_code</code></td>
+<td style="text-align: left;">Código identificador del error.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>error_type</code></td>
+<td style="text-align: left;">Categoría del error.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>message</code></td>
+<td style="text-align: left;">Descripción breve.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>source_id</code></td>
+<td style="text-align: left;">Componente que informa el error.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>correlation_id</code></td>
+<td style="text-align: left;">Operación relacionada.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>timestamp</code></td>
+<td style="text-align: left;">Fecha y hora.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>recoverable</code></td>
+<td style="text-align: left;">Indica si admite recuperación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>details</code></td>
+<td style="text-align: left;">Información técnica complementaria, sujeta
+a permisos.</td>
+</tr>
+</tbody>
+</table>
+<p>Categorías iniciales: - Comunicación. - Validación. - Autorización. -
+Ejecución. - Recursos. - Persistencia. - Error interno.</p>
+<p>Los mensajes de error no deberán exponer información sensible. El
+catálogo definitivo de códigos queda pendiente.</p>
+<h2 id="11-identidad-y-trazabilidad">11. Identidad y trazabilidad</h2>
+<p>Todo componente participante deberá disponer de una identidad
+reconocible. Los mensajes permitirán reconstruir quién inició una
+operación, qué componentes participaron, qué mensajes se intercambiaron,
+qué resultado se obtuvo y qué errores ocurrieron.</p>
+<p><code>message_id</code> identifica el mensaje y
+<code>correlation_id</code> relaciona los mensajes de una operación. La
+identidad declarada dentro del JSON no sustituye la autenticación del
+emisor.</p>
+<h2 id="12-permisos-y-autorización">12. Permisos y autorización</h2>
+<p>Los contratos deberán proporcionar información suficiente para
+identificar la operación y verificar si el emisor está autorizado.</p>
+<p>Reglas: 1. La capacidad técnica no implica autorización. 2. Los
+permisos se verifican antes de operaciones protegidas. 3. Los agentes no
+pueden concederse permisos a sí mismos. 4. El Broker no reemplaza al
+sistema de seguridad. 5. Las operaciones sensibles deben quedar
+registradas.</p>
+<p>La definición técnica detallada corresponde a DT-09.</p>
+<h2 id="13-contrato-con-model-manager">13. Contrato con Model
+Manager</h2>
+<p>ORION CORE y los agentes autorizados accederán a modelos mediante
+Model Manager. El intercambio deberá contemplar: - Identidad del
+solicitante. - Identificación del modelo solicitado. - Tipo de
+operación. - Parámetros de inferencia. - Datos de entrada. - Resultado.
+- Errores. - Información de consumo y recursos, cuando esté
+disponible.</p>
+<p>Model Manager administrará disponibilidad y ejecución de modelos. Los
+agentes no deberán administrar directamente instancias compartidas de
+inferencia. La API específica se desarrollará en DT-05.</p>
+<h2 id="14-contratos-transversales">14. Contratos transversales</h2>
+<p>Se mantienen los cuatro contratos transversales funcionales de ORION
+CORE:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Contrato</th>
+<th style="text-align: left;">Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">C-CORE-T01</td>
+<td style="text-align: left;">Identity &amp; Traceability</td>
+<td style="text-align: left;">Identidad, correlación y
+trazabilidad.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-CORE-T02</td>
+<td style="text-align: left;">Permission &amp; Authorization</td>
+<td style="text-align: left;">Verificación de permisos y
+autorizaciones.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C-CORE-T03</td>
+<td style="text-align: left;">State &amp; Event Management</td>
+<td style="text-align: left;">Gestión de estados y eventos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C-CORE-T04</td>
+<td style="text-align: left;">Error &amp; Exception Management</td>
+<td style="text-align: left;">Gestión uniforme de errores y
+excepciones.</td>
+</tr>
+</tbody>
+</table>
+<p>Estos contratos son transversales; no representan componentes
+independientes. Sus esquemas técnicos deberán especificarse en el
+desarrollo posterior.</p>
+<h2 id="15-versionado-y-compatibilidad">15. Versionado y
+compatibilidad</h2>
+<p>Se propone evaluar versionado semántico: - <strong>MAJOR:</strong>
+cambios incompatibles. - <strong>MINOR:</strong> incorporación
+compatible de funcionalidades. - <strong>PATCH:</strong> correcciones
+que no modifican la estructura contractual.</p>
+<p>Esta convención es una propuesta técnica y queda pendiente de
+aprobación. Los componentes deberán validar compatibilidad antes de
+intercambiar información. Los cambios incompatibles deberán documentarse
+y contar con un procedimiento de transición.</p>
+<h2 id="16-validación-de-contratos">16. Validación de contratos</h2>
+<p>Antes de procesar un mensaje, el receptor deberá verificar: 1.
+Presencia de campos obligatorios. 2. Tipo de mensaje reconocido. 3.
+Versión compatible. 4. Identidad autenticada del emisor. 5. Destinatario
+válido. 6. Estructura del contenido. 7. Permisos requeridos.</p>
+<p>Los mensajes inválidos deberán rechazarse y generar un registro de
+error.</p>
+<h2 id="17-aspectos-pendientes">17. Aspectos pendientes</h2>
+<ol type="1">
+<li>Esquemas JSON definitivos.</li>
+<li>Tipos de datos y restricciones.</li>
+<li>Catálogo de códigos de error.</li>
+<li>Catálogo de operaciones y comandos.</li>
+<li>Estructuras específicas por tipo de mensaje.</li>
+<li>Mecanismos técnicos de autenticación.</li>
+<li>Formatos definitivos de fechas e identificadores.</li>
+<li>Herramientas de validación automática.</li>
+<li>Convención de versionado y compatibilidad.</li>
+</ol>
+<h2 id="18-criterios-de-aceptación">18. Criterios de aceptación</h2>
+<p>DT-03 podrá considerarse consolidado cuando exista una estructura
+común de mensajes, estén definidos los tipos de intercambio, la
+correlación y trazabilidad, los errores tengan estructura común, los
+contratos transversales estén especificados y la comunicación con
+agentes y Model Manager sea coherente con DT-02, DT-04 y REG-001.</p>
+<hr />
+<h1 id="dt-04--contrato-técnico-de-agente-especializado">DT-04 —
+Contrato técnico de agente especializado</h1>
+<p><strong>Estado:</strong> Borrador para revisión<br />
+<strong>Versión:</strong> 0.1</p>
+<h2 id="1-objetivo-3">1. Objetivo</h2>
+<p>Definir el contrato técnico que deberán cumplir los agentes
+especializados para integrarse a GIAR-ORION y operar bajo la
+coordinación de ORION CORE.</p>
+<p>El contrato establece una estructura común de identidad, capacidades,
+comunicación, estados y permisos, permitiendo incorporar, actualizar o
+reemplazar agentes sin modificar innecesariamente la arquitectura
+general.</p>
+<h2 id="2-alcance-3">2. Alcance</h2>
+<p>Este documento define: - Identidad y registro. - Especialidad y
+capacidades. - Comunicación con ORION CORE y otros agentes. - Acceso a
+Model Manager. - Gestión de tareas. - Estados y ciclo de vida. -
+Permisos y seguridad. - Memoria, conocimiento y herramientas. - Registro
+de actividad, monitoreo y recuperación. - Ejecución, despliegue y
+versionado.</p>
+<p>No define la arquitectura interna de cada agente ni obliga a utilizar
+un modelo de inteligencia artificial determinado.</p>
+<h2 id="3-principios-generales">3. Principios generales</h2>
+<ol type="1">
+<li>Cada agente tendrá identidad única dentro de GIAR-ORION.</li>
+<li>Declarará especialidad y capacidades.</li>
+<li>Informará su estado operativo.</li>
+<li>Recibirá tareas mediante mecanismos autorizados.</li>
+<li>Respetará las políticas de seguridad.</li>
+<li>Utilizará Model Manager para acceder a modelos compartidos.</li>
+<li>Registrará operaciones relevantes.</li>
+<li>Mantendrá delimitadas sus responsabilidades.</li>
+<li>Podrá actualizarse o reemplazarse respetando contratos.</li>
+<li>No asumirá la coordinación general propia de ORION CORE.</li>
+</ol>
+<h2 id="4-contrato-común-mínimo">4. Contrato común mínimo</h2>
+<p>Conforme a ARC-006, todos los agentes deberán implementar como
+mínimo:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Área</th>
+<th style="text-align: left;">Obligación del agente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Identidad</td>
+<td style="text-align: left;">Exponer un identificador estable y datos
+de identificación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Registro</td>
+<td style="text-align: left;">Poder registrarse y actualizar su
+información operativa.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Capacidades</td>
+<td style="text-align: left;">Declarar especialidades, capacidades y
+limitaciones.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Comunicación</td>
+<td style="text-align: left;">Intercambiar mensajes compatibles con
+DT-02 y DT-03.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estados</td>
+<td style="text-align: left;">Informar estados operativos y cambios
+relevantes.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Permisos</td>
+<td style="text-align: left;">Respetar permisos y autorizaciones
+aplicables.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tareas</td>
+<td style="text-align: left;">Aceptar, rechazar, ejecutar e informar
+resultados de tareas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Errores</td>
+<td style="text-align: left;">Informar fallos mediante estructuras
+comunes.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Trazabilidad</td>
+<td style="text-align: left;">Relacionar actividad con mensajes y
+tareas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Versionado</td>
+<td style="text-align: left;">Informar versión y compatibilidad
+contractual.</td>
+</tr>
+</tbody>
+</table>
+<p>Este contrato mínimo no obliga a que los agentes compartan el mismo
+modelo, arquitectura interna, herramientas, memoria o tecnología de
+ejecución.</p>
+<h2 id="5-identidad-del-agente">5. Identidad del agente</h2>
+<p>Cada agente tendrá una identidad única. La información inicial
+propuesta es:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>agent_id</code></td>
+<td style="text-align: left;">Identificador único y estable.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>agent_name</code></td>
+<td style="text-align: left;">Nombre del agente.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>agent_version</code></td>
+<td style="text-align: left;">Versión de la implementación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>agent_type</code></td>
+<td style="text-align: left;">Categoría o especialidad principal.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>description</code></td>
+<td style="text-align: left;">Descripción de sus funciones.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>registration_date</code></td>
+<td style="text-align: left;">Fecha de registro.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;">Estado operativo.</td>
+</tr>
+</tbody>
+</table>
+<p>La actualización de versión no generará una nueva identidad, salvo
+que se trate de un agente distinto. El formato definitivo del registro
+se especificará mediante un esquema JSON.</p>
+<h2 id="6-registro-del-agente">6. Registro del agente</h2>
+<p>Todo agente deberá registrarse en ORION CORE antes de recibir
+tareas.</p>
+<p>El registro permitirá: - Identificar al agente. - Conocer su
+especialidad y capacidades. - Consultar su versión. - Identificar
+herramientas disponibles. - Conocer requisitos de recursos. - Verificar
+compatibilidad. - Determinar permisos aplicables.</p>
+<p>ORION CORE aceptará o rechazará el registro según las políticas
+vigentes. La declaración de capacidades no implica que esas capacidades
+estén autorizadas.</p>
+<h2 id="7-especialidad-y-capacidades">7. Especialidad y capacidades</h2>
+<p>Cada agente declarará las funciones que puede realizar. La
+descripción permitirá evaluar su adecuación a una tarea.</p>
+<p>Ejemplos de especialidades: - Investigación científica y técnica. -
+Programación e ingeniería de software. - Aprendizaje por refuerzo. -
+Robótica. - Simulación. - Visión artificial. - Procesamiento de audio. -
+Análisis de datos. - Gestión documental. - Validación y
+verificación.</p>
+<p>La lista es ilustrativa y no cerrada. Cada capacidad deberá describir
+identificador, nombre, descripción, tipo de operación, requisitos y
+limitaciones conocidas.</p>
+<h2 id="8-comunicación">8. Comunicación</h2>
+<p>Los agentes utilizarán JSON conforme a ARC-005 y las estructuras
+comunes de DT-03.</p>
+<p>El modelo inicial de comunicación será: 1. Agente emisor → Message
+Broker. 2. Message Broker → ORION CORE o agente destinatario. 3. Agente
+destinatario → Message Broker. 4. Message Broker → agente
+solicitante.</p>
+<p>La comunicación entre agentes pasará inicialmente por el Broker. Los
+mensajes deberán incluir identificadores y campos comunes. El agente no
+podrá eludir controles de identidad, permisos o trazabilidad.</p>
+<h2 id="9-ejecución-de-tareas">9. Ejecución de tareas</h2>
+<p>Un agente deberá poder: 1. Recibir una solicitud. 2. Verificar que
+corresponde a sus capacidades. 3. Comprobar requisitos de ejecución. 4.
+Verificar permisos. 5. Aceptar o rechazar la tarea. 6. Ejecutar la
+operación. 7. Informar cambios de estado. 8. Devolver resultados. 9.
+Comunicar errores u observaciones.</p>
+<p>El agente no podrá modificar unilateralmente la asignación de una
+tarea ni asumir atribuciones de ORION CORE. La suspensión, reanudación o
+cancelación se regirá por las políticas del sistema.</p>
+<h2 id="10-acceso-a-model-manager">10. Acceso a Model Manager</h2>
+<p>Los agentes utilizarán Model Manager para acceder a modelos
+compartidos. Deberán poder solicitar un modelo, informar parámetros,
+enviar entradas, recibir resultados y comunicar errores o requisitos de
+recursos.</p>
+<p>No deberán crear instancias redundantes de modelos compartidos cuando
+estén administrados por Model Manager.</p>
+<p>Podrá admitirse la utilización de modelos locales propios cuando esté
+justificada y autorizada. La arquitectura y los modelos internos del
+agente no quedan uniformados por este contrato.</p>
+<h2 id="11-memoria-y-conocimiento">11. Memoria y conocimiento</h2>
+<p>Cada agente podrá disponer de mecanismos propios de: - Memoria de
+trabajo. - Memoria de sesión. - Memoria persistente. - Base de
+conocimiento. - Recuperación RAG.</p>
+<p>La gestión será responsabilidad del agente o del módulo especializado
+correspondiente y respetará las políticas generales de GIAR-ORION.</p>
+<p>La información compartida entre agentes estará sujeta a permisos. La
+memoria de un agente no se confundirá con el registro central de eventos
+ni con la persistencia de ORION CORE.</p>
+<h2 id="12-herramientas">12. Herramientas</h2>
+<p>Cada agente podrá disponer de herramientas específicas, por ejemplo:
+- Intérpretes y entornos de ejecución. - Herramientas de análisis de
+código. - Simuladores. - Sistemas de visión artificial. - Sistemas de
+procesamiento de audio. - Herramientas de investigación. - Acceso a
+archivos y documentos.</p>
+<p>El agente declarará las herramientas disponibles y sus requisitos. La
+disponibilidad de una herramienta no implica autorización para
+utilizarla. Las operaciones que modifiquen archivos, ejecuten código o
+interactúen con sistemas externos respetarán las políticas de
+seguridad.</p>
+<h2 id="13-estados-del-agente">13. Estados del agente</h2>
+<p>Se propone el siguiente conjunto inicial de estados operativos:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>REGISTERED</code></td>
+<td style="text-align: left;">Agente registrado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>INITIALIZING</code></td>
+<td style="text-align: left;">Preparando su entorno.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>READY</code></td>
+<td style="text-align: left;">Disponible para recibir tareas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>BUSY</code></td>
+<td style="text-align: left;">Ejecutando una tarea.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>WAITING</code></td>
+<td style="text-align: left;">Esperando recursos o información.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>SUSPENDED</code></td>
+<td style="text-align: left;">Ejecución suspendida.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ERROR</code></td>
+<td style="text-align: left;">Presenta un error operativo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>OFFLINE</code></td>
+<td style="text-align: left;">No se encuentra disponible.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>TERMINATING</code></td>
+<td style="text-align: left;">Finalizando su ejecución.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>TERMINATED</code></td>
+<td style="text-align: left;">Ejecución finalizada.</td>
+</tr>
+</tbody>
+</table>
+<p>Este catálogo es una propuesta técnica inicial. Las transiciones
+permitidas, estados adicionales y condiciones deberán validarse contra
+el modelo jerárquico de REG-001 y las pruebas de integración.</p>
+<h2 id="14-ciclo-de-vida">14. Ciclo de vida</h2>
+<p>El ciclo de vida general comprenderá: 1. Creación o incorporación. 2.
+Registro. 3. Validación de identidad y capacidades. 4. Inicialización.
+5. Disponibilidad. 6. Asignación de tareas. 7. Ejecución. 8. Suspensión
+o recuperación, cuando corresponda. 9. Finalización. 10. Desactivación o
+eliminación del registro según las políticas aplicables.</p>
+<p>ORION CORE deberá poder conocer la situación operativa del
+agente.</p>
+<h2 id="15-permisos-y-seguridad">15. Permisos y seguridad</h2>
+<p>Los agentes operarán bajo permisos explícitamente autorizados. Se
+contemplan permisos relacionados con: - Comunicación. - Acceso a
+archivos. - Acceso a conocimiento. - Utilización de modelos. - Ejecución
+de herramientas. - Modificación de información. - Acceso a otros
+agentes. - Operaciones administrativas.</p>
+<p>Reglas: 1. Un agente no podrá concederse permisos a sí mismo. 2. Las
+capacidades declaradas no implican autorización. 3. Los permisos se
+verificarán antes de operaciones protegidas. 4. Las operaciones
+sensibles quedarán registradas. 5. Se respetarán restricciones de acceso
+a información.</p>
+<p>ORION CORE conservará la autoridad transversal sobre coordinación y
+permisos. La definición técnica detallada corresponde a DT-09.</p>
+<h2 id="16-registro-de-actividad">16. Registro de actividad</h2>
+<p>Cada agente proporcionará información suficiente para reconstruir sus
+operaciones relevantes. Se registrarán, según corresponda: - Inicio y
+finalización de tareas. - Solicitudes recibidas. - Respuestas emitidas.
+- Cambios de estado. - Utilización de herramientas. - Solicitudes a
+Model Manager. - Errores. - Operaciones sensibles.</p>
+<p>Los registros se relacionarán con identificadores de mensaje y tarea.
+Su detalle y retención respetarán las políticas del sistema.</p>
+<h2 id="17-monitoreo-y-recuperación">17. Monitoreo y recuperación</h2>
+<p>ORION CORE deberá poder conocer la disponibilidad de los agentes. Se
+contemplan mecanismos para: - Consultar estados. - Detectar falta de
+respuesta. - Identificar errores e interrupciones. - Solicitar
+suspensión o finalización. - Recuperar tareas cuando corresponda. -
+Reasignar tareas a otros agentes si está permitido.</p>
+<p>La recuperación deberá considerar si repetir una tarea es seguro y si
+sus efectos secundarios pueden evitarse. No se deberá declarar
+recuperada una operación sin verificar su estado.</p>
+<h2 id="18-ejecución-y-despliegue">18. Ejecución y despliegue</h2>
+<p>Los agentes podrán ejecutarse: - Dentro del mismo proceso de ORION
+CORE cuando resulte apropiado. - Como procesos independientes. - En
+otros equipos de la red local cuando la arquitectura y la seguridad lo
+permitan.</p>
+<p>La modalidad dependerá de requisitos de recursos, aislamiento,
+disponibilidad y escalabilidad. No se exigirá que todos los agentes
+utilicen la misma tecnología o modelo.</p>
+<h2 id="19-versionado-y-compatibilidad">19. Versionado y
+compatibilidad</h2>
+<p>Cada agente informará su versión. Los cambios deberán contemplar: -
+Compatibilidad con contratos vigentes. - Identificación de cambios
+incompatibles. - Actualización de capacidades declaradas. -
+Compatibilidad con versiones de GIAR-ORION. - Posibilidad de reemplazo o
+reversión.</p>
+<p>Una actualización no modificará silenciosamente los contratos de
+comunicación. La convención técnica de versionado queda pendiente de
+consolidación en DT-03.</p>
+<h2 id="20-aspectos-pendientes">20. Aspectos pendientes</h2>
+<ol type="1">
+<li>Esquema JSON definitivo del registro.</li>
+<li>Esquema JSON de declaración de capacidades.</li>
+<li>Estructura de solicitudes y respuestas de tareas.</li>
+<li>Catálogo definitivo de estados y transiciones.</li>
+<li>Mecanismo de identificación y autenticación.</li>
+<li>Modelo detallado de permisos.</li>
+<li>Interfaz de monitoreo.</li>
+<li>Política de recuperación de tareas.</li>
+<li>Requisitos de compatibilidad entre versiones.</li>
+<li>Pruebas de conformidad de agentes.</li>
+</ol>
+<h2 id="21-criterios-de-aceptación">21. Criterios de aceptación</h2>
+<p>DT-04 podrá considerarse consolidado cuando: - La identidad de los
+agentes esté definida. - El registro tenga una estructura común. - Las
+capacidades puedan declararse y verificarse. - La comunicación respete
+DT-02 y DT-03. - La interacción con Model Manager esté definida. - Los
+estados y el ciclo de vida sean consistentes. - Los permisos estén
+delimitados. - Existan mecanismos de monitoreo y recuperación. - Se
+pueda incorporar un nuevo agente sin modificar innecesariamente ORION
+CORE. - No existan contradicciones con REG-001.</p>
+<hr />
+<h1 id="dt-05--api-técnica-de-model-manager">DT-05 — API técnica de
+Model Manager</h1>
+<p><strong>Estado:</strong> Borrador técnico integrado; catálogo y
+criterios de eventos aprobados durante la definición.<br />
+<strong>Versión:</strong> 0.5<br />
+<strong>Alcance:</strong> contrato de eventos del ciclo de vida de
+inferencias, catálogos normativos y validaciones semánticas.<br />
+<strong>Responsable de emisión de eventos:</strong> Model Manager.</p>
+<h2 id="1-objetivo-4">1. Objetivo</h2>
+<p>Definir el contrato técnico de eventos mediante el cual Model Manager
+informa a ORION CORE y a los agentes autorizados sobre el ciclo de vida
+de las solicitudes de inferencia, manteniendo independencia respecto del
+proveedor de modelos utilizado.</p>
+<p>El diseño establece un sobre común (<code>ENVELOPE</code>), un
+catálogo inicial de diez eventos y la estructura de datos específica
+(<code>PAYLOAD</code>) de cada evento.</p>
+<h2 id="2-alcance-y-límites">2. Alcance y límites</h2>
+<p>DT-05 define en esta versión:</p>
+<ul>
+<li>El contrato común de los eventos de inferencia.</li>
+<li>Los diez eventos iniciales y sus condiciones generales de
+emisión.</li>
+<li>Los campos de los payloads, su obligatoriedad y sus reglas
+básicas.</li>
+<li>La responsabilidad de Model Manager como emisor de estos
+eventos.</li>
+<li>Las reglas generales de secuencia, estados, terminalidad y
+trazabilidad.</li>
+</ul>
+<p>DT-05 no selecciona todavía el protocolo de transporte, el mecanismo
+de publicación/suscripción, la tecnología de cola, el almacenamiento de
+resultados ni el proveedor de inferencia. Tampoco define la API completa
+de administración de modelos, carga/descarga de instancias o asignación
+de recursos. Esos aspectos deberán desarrollarse en las secciones
+técnicas correspondientes.</p>
+<h2 id="3-decisiones-aprobadas">3. Decisiones aprobadas</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Decisión</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DT05-DEC-001</td>
+<td style="text-align: left;">Model Manager abstrae a los proveedores de
+inferencia. Los consumidores no deben depender de la API particular de
+Ollama u otro proveedor.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT05-DEC-002</td>
+<td style="text-align: left;">Model Manager es el emisor de los diez
+eventos del ciclo de vida definidos en este DT. Puede recibir datos
+originados en el proveedor, pero los normaliza y emite bajo el contrato
+GIAR-ORION.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT05-DEC-003</td>
+<td style="text-align: left;">Todos los eventos utilizan una estructura
+común <code>ENVELOPE + PAYLOAD</code>.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT05-DEC-004</td>
+<td style="text-align: left;">Se adopta el catálogo inicial de diez
+eventos indicado en el apartado 5.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT05-DEC-005</td>
+<td style="text-align: left;">El evento <code>INFERENCE_SUBMITTED</code>
+utiliza <code>input</code> como estructura multimodal extensible desde
+esta versión.</td>
+<td style="text-align: left;">APROBADA</td>
+</tr>
+</tbody>
+</table>
+<p>La aprobación de estas decisiones y de las estructuras aquí
+documentadas no implica que la API esté implementada ni que haya
+superado pruebas de conformidad.</p>
+<p><strong>Límite de aprobación:</strong> quedaron aprobados el envelope
+común, el catálogo de diez eventos, la emisión lógica por Model Manager
+y los campos funcionales acordados para cada payload. Los tipos de
+datos, obligatoriedad detallada, rangos, enumeraciones, ejemplos JSON,
+reglas de transición y restricciones adicionales que se formalizan en
+esta versión constituyen la especificación técnica propuesta para
+revisión. No deben interpretarse como decisiones aprobadas
+individualmente cuando no fueron validadas expresamente.</p>
+<h2 id="4-contrato-común-de-eventos--envelope">4. Contrato común de
+eventos — ENVELOPE</h2>
+<p>Todos los eventos definidos en DT-05 DEBEN utilizar el siguiente
+sobre común:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;event_id&quot;</span><span class="fu">:</span> <span class="st">&quot;evt-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;event_type&quot;</span><span class="fu">:</span> <span class="st">&quot;INFERENCE_SUBMITTED&quot;</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;event_version&quot;</span><span class="fu">:</span> <span class="st">&quot;1.0&quot;</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;request_id&quot;</span><span class="fu">:</span> <span class="st">&quot;req-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;correlation_id&quot;</span><span class="fu">:</span> <span class="st">&quot;task-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;sequence_number&quot;</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-11-11T19:23:00Z&quot;</span><span class="fu">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;payload&quot;</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="41-definición-de-campos">4.1. Definición de campos</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>event_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador único del evento. No se
+reutiliza.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>event_type</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Uno de los diez valores del catálogo
+DT-05.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>event_version</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Versión del esquema del evento. En esta
+edición inicial: <code>1.0</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>request_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador estable de la solicitud de
+inferencia durante todo su ciclo de vida.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>correlation_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador que relaciona la solicitud
+con la tarea o proceso de origen.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sequence_number</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Número secuencial creciente dentro de una
+misma solicitud, comenzando en 1.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>timestamp</code></td>
+<td style="text-align: left;">string, date-time</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Instante de emisión del evento en UTC,
+expresado en RFC 3339/ISO 8601 y terminado en <code>Z</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>payload</code></td>
+<td style="text-align: left;">object</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Datos específicos del evento. Su esquema
+depende de <code>event_type</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-reglas-del-envelope">4.2. Reglas del envelope</h3>
+<ol type="1">
+<li>Cada evento tiene un <code>event_id</code> propio.</li>
+<li>Todos los eventos de una misma solicitud conservan el mismo
+<code>request_id</code> y <code>correlation_id</code>.</li>
+<li><code>sequence_number</code> aumenta estrictamente para cada nuevo
+evento de esa solicitud. No se reutilizan números.</li>
+<li><code>timestamp</code> representa el instante en que Model Manager
+emite el evento, no necesariamente el instante en que comenzó la
+operación subyacente.</li>
+<li>Los campos temporales específicos que se mantengan dentro de un
+payload deberán representar el instante funcional correspondiente y ser
+coherentes con el <code>timestamp</code> del envelope.</li>
+<li>El receptor no debe inferir el orden exclusivamente a partir de
+<code>timestamp</code>; debe utilizar <code>sequence_number</code>
+dentro de cada <code>request_id</code>.</li>
+<li><code>payload</code> debe ser un objeto JSON. No se admiten valores
+nulos ni estructuras arbitrarias en su lugar.</li>
+<li>Los eventos de una solicitud deben ser compatibles con el mismo
+<code>event_version</code>, salvo que se documente explícitamente una
+transición de versión.</li>
+</ol>
+<h2 id="5-catálogo-aprobado-de-eventos">5. Catálogo aprobado de
+eventos</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;"><code>event_type</code></th>
+<th style="text-align: left;">Finalidad</th>
+<th style="text-align: center;">Terminal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">EVT-001</td>
+<td style="text-align: left;"><code>INFERENCE_SUBMITTED</code></td>
+<td style="text-align: left;">Model Manager recibió una solicitud de
+inferencia.</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EVT-002</td>
+<td style="text-align: left;"><code>INFERENCE_VALIDATED</code></td>
+<td style="text-align: left;">La solicitud superó las validaciones
+iniciales.</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EVT-003</td>
+<td style="text-align: left;"><code>INFERENCE_REJECTED</code></td>
+<td style="text-align: left;">La solicitud fue rechazada y no será
+procesada.</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EVT-004</td>
+<td style="text-align: left;"><code>INFERENCE_QUEUED</code></td>
+<td style="text-align: left;">La solicitud validada ingresó en una cola
+de ejecución.</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EVT-005</td>
+<td style="text-align: left;"><code>INFERENCE_STARTED</code></td>
+<td style="text-align: left;">Comenzó la ejecución de la
+inferencia.</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EVT-006</td>
+<td style="text-align: left;"><code>INFERENCE_PROGRESS</code></td>
+<td style="text-align: left;">Se comunicó un avance de la
+ejecución.</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EVT-007</td>
+<td style="text-align: left;"><code>INFERENCE_COMPLETED</code></td>
+<td style="text-align: left;">La inferencia finalizó correctamente.</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EVT-008</td>
+<td style="text-align: left;"><code>INFERENCE_FAILED</code></td>
+<td style="text-align: left;">La inferencia finalizó con un error.</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">EVT-009</td>
+<td style="text-align: left;"><code>INFERENCE_CANCELLED</code></td>
+<td style="text-align: left;">La cancelación fue aplicada y
+confirmada.</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">EVT-010</td>
+<td style="text-align: left;"><code>INFERENCE_TIMEOUT</code></td>
+<td style="text-align: left;">Se alcanzó el límite temporal
+permitido.</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+</tbody>
+</table>
+<p>Un evento terminal cierra el ciclo de procesamiento de la solicitud.
+Una solicitud no puede tener más de un resultado terminal válido. Los
+eventos posteriores de la misma solicitud solo podrán ser eventos
+administrativos o de auditoría definidos fuera de este catálogo; no
+podrán reabrir implícitamente la inferencia.</p>
+<h2 id="6-payloads-individuales">6. Payloads individuales</h2>
+<p>En las tablas siguientes, “obligatorio” significa que el campo debe
+estar presente en el payload cuando se emite ese evento. Los campos
+opcionales pueden omitirse cuando el dato no exista o el proveedor no lo
+proporcione; no deben completarse con valores inventados.</p>
+<h3 id="61-evt-001--inference_submitted">6.1. EVT-001 —
+<code>INFERENCE_SUBMITTED</code></h3>
+<p><strong>Finalidad:</strong> registrar la recepción de una solicitud
+de inferencia.</p>
+<p><strong>Emisor:</strong> Model Manager.<br />
+<strong>Condición:</strong> Model Manager recibe una solicitud y puede
+identificarla para iniciar su validación.<br />
+<strong>Estado resultante:</strong> <code>SUBMITTED</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>model_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador lógico del modelo
+solicitado; no debe exponer el identificador interno del proveedor.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>task_type</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Tipo de tarea solicitada, según el
+catálogo de tareas que se formalizará para Model Manager.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>input</code></td>
+<td style="text-align: left;">object</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Entrada multimodal extensible. Debe
+contener al menos una representación de entrada o referencia a
+ella.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>priority</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Prioridad de 1 a 5. Valor por defecto: 3
+cuando el solicitante no indique prioridad.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>requested_by</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identidad del agente o componente
+solicitante.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>request_metadata</code></td>
+<td style="text-align: left;">object</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Metadatos adicionales no necesarios para
+interpretar la operación.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="estructura-multimodal-de-input">Estructura multimodal de
+<code>input</code></h4>
+<p><code>input</code> se define como objeto extensible para admitir
+texto, imágenes, audio, video y otros tipos de entrada sin modificar el
+envelope. La representación concreta deberá identificar la modalidad y
+contener el dato o una referencia recuperable.</p>
+<p>Ejemplo conceptual:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;modality&quot;</span><span class="fu">:</span> <span class="st">&quot;multimodal&quot;</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;items&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;text&quot;</span><span class="fu">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;Analizar la siguiente escena.&quot;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;image&quot;</span><span class="fu">,</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;reference&quot;</span><span class="fu">:</span> <span class="st">&quot;input://images/scene-0001&quot;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;audio&quot;</span><span class="fu">,</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;reference&quot;</span><span class="fu">:</span> <span class="st">&quot;input://audio/sample-0001&quot;</span><span class="fu">,</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&quot;metadata&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;format&quot;</span><span class="fu">:</span> <span class="st">&quot;wav&quot;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;metadata&quot;</span><span class="fu">:</span> <span class="fu">{}</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<p>Reglas:</p>
+<ul>
+<li><code>input.items</code> debe contener al menos un elemento.</li>
+<li>Cada elemento debe declarar <code>type</code>.</li>
+<li>El elemento puede transportar <code>content</code> o una
+<code>reference</code> válida; no se exige incluir archivos binarios
+directamente en el evento.</li>
+<li><code>metadata</code> es opcional y puede describir formato,
+dimensiones, duración, codificación u otras propiedades
+pertinentes.</li>
+<li>La lista de modalidades y los esquemas detallados por modalidad
+quedan sujetos a evolución compatible.</li>
+<li>Las referencias deben ser resolubles por Model Manager y estar
+sometidas a los controles de acceso correspondientes.</li>
+</ul>
+<p>Ejemplo de payload:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;model_id&quot;</span><span class="fu">:</span> <span class="st">&quot;orion.general&quot;</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;task_type&quot;</span><span class="fu">:</span> <span class="st">&quot;TEXT_GENERATION&quot;</span><span class="fu">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;input&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;modality&quot;</span><span class="fu">:</span> <span class="st">&quot;text&quot;</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;items&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;text&quot;</span><span class="fu">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;Explicar el resultado del experimento.&quot;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;priority&quot;</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;requested_by&quot;</span><span class="fu">:</span> <span class="st">&quot;agent_research&quot;</span><span class="fu">,</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;request_metadata&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;source&quot;</span><span class="fu">:</span> <span class="st">&quot;research_task&quot;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="62-evt-002--inference_validated">6.2. EVT-002 —
+<code>INFERENCE_VALIDATED</code></h3>
+<p><strong>Finalidad:</strong> informar que la solicitud superó las
+validaciones iniciales.<br />
+<strong>Condición:</strong> todos los controles de admisión definidos
+para la solicitud resultan satisfactorios.<br />
+<strong>Estado resultante:</strong> <code>VALIDATED</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>validation_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador único del proceso o registro
+de validación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>validated_model_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador lógico del modelo cuya
+compatibilidad fue validada.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>validation_timestamp</code></td>
+<td style="text-align: left;">string, date-time</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Instante de finalización de la validación
+en UTC. Debe ser coherente con el <code>timestamp</code> del
+envelope.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>validation_details</code></td>
+<td style="text-align: left;">object</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Resultado estructurado de las
+comprobaciones realizadas. Debe permitir conocer qué controles se
+ejecutaron y su resultado.</td>
+</tr>
+</tbody>
+</table>
+<p>La validación no significa que la inferencia haya comenzado ni
+garantiza que el proveedor permanezca disponible posteriormente.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;validation_id&quot;</span><span class="fu">:</span> <span class="st">&quot;val-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;validated_model_id&quot;</span><span class="fu">:</span> <span class="st">&quot;orion.general&quot;</span><span class="fu">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;validation_timestamp&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-11-11T19:23:01Z&quot;</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;validation_details&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;valid&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;checks&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;model_available&quot;</span><span class="fu">,</span> <span class="dt">&quot;passed&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;task_supported&quot;</span><span class="fu">,</span> <span class="dt">&quot;passed&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;input_accepted&quot;</span><span class="fu">,</span> <span class="dt">&quot;passed&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">}</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="63-evt-003--inference_rejected">6.3. EVT-003 —
+<code>INFERENCE_REJECTED</code></h3>
+<p><strong>Finalidad:</strong> informar que una solicitud no puede ser
+admitida para procesamiento.<br />
+<strong>Condición:</strong> falla una condición obligatoria de admisión
+o validación.<br />
+<strong>Estado resultante:</strong> <code>REJECTED</code>.<br />
+<strong>Terminal:</strong> sí.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>rejection_code</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Código estable que identifica la causa del
+rechazo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>rejection_reason</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Explicación breve y comprensible del
+rechazo.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>rejected_field</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Campo de la solicitud que originó el
+rechazo, cuando pueda identificarse.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>possible_recoverability</code></td>
+<td style="text-align: left;">boolean</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Indica si el solicitante podría corregir
+la causa y enviar una nueva solicitud.</td>
+</tr>
+</tbody>
+</table>
+<p><code>possible_recoverability</code> no autoriza a reabrir la
+solicitud rechazada. Una corrección deberá originar una nueva solicitud
+con un nuevo <code>request_id</code>.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;rejection_code&quot;</span><span class="fu">:</span> <span class="st">&quot;UNSUPPORTED_TASK&quot;</span><span class="fu">,</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;rejection_reason&quot;</span><span class="fu">:</span> <span class="st">&quot;El modelo lógico solicitado no admite el tipo de tarea indicado.&quot;</span><span class="fu">,</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;rejected_field&quot;</span><span class="fu">:</span> <span class="st">&quot;task_type&quot;</span><span class="fu">,</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;possible_recoverability&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="64-evt-004--inference_queued">6.4. EVT-004 —
+<code>INFERENCE_QUEUED</code></h3>
+<p><strong>Finalidad:</strong> informar que una solicitud validada
+ingresó en una cola de ejecución.<br />
+<strong>Condición:</strong> la ejecución no comienza inmediatamente y la
+solicitud queda esperando recursos o turno.<br />
+<strong>Estado resultante:</strong> <code>QUEUED</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>queue_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador de la cola lógica o de
+planificación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>queue_position</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Posición estimada de la solicitud en la
+cola, si el planificador puede determinarla. Debe ser mayor o igual que
+1.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>estimated_wait_time</code></td>
+<td style="text-align: left;">number</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Tiempo de espera estimado, expresado en
+segundos y mayor o igual que cero. Es una estimación, no una
+garantía.</td>
+</tr>
+</tbody>
+</table>
+<p>El instante de ingreso a la cola queda registrado en
+<code>timestamp</code> del envelope. No se duplica mediante un campo
+<code>queued_at</code> en el payload.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;queue_id&quot;</span><span class="fu">:</span> <span class="st">&quot;inference-default&quot;</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;queue_position&quot;</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;estimated_wait_time&quot;</span><span class="fu">:</span> <span class="fl">8.5</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="65-evt-005--inference_started">6.5. EVT-005 —
+<code>INFERENCE_STARTED</code></h3>
+<p><strong>Finalidad:</strong> informar que comenzó el procesamiento
+efectivo de la inferencia.<br />
+<strong>Condición:</strong> Model Manager confirma el inicio de la
+ejecución en una instancia de inferencia.<br />
+<strong>Estado resultante:</strong> <code>RUNNING</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>provider_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador normalizado del proveedor
+que ejecuta la inferencia.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>instance_id</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador de la instancia de ejecución
+asignada.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>model_version</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Versión concreta del modelo, si el
+proveedor la informa.</td>
+</tr>
+</tbody>
+</table>
+<p>El instante de inicio se registra en el campo <code>timestamp</code>
+del envelope, que cumple la función de <code>started_at</code>. No se
+agrega otro campo temporal redundante al payload.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;provider_id&quot;</span><span class="fu">:</span> <span class="st">&quot;ollama&quot;</span><span class="fu">,</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;instance_id&quot;</span><span class="fu">:</span> <span class="st">&quot;ollama-local-01&quot;</span><span class="fu">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;model_version&quot;</span><span class="fu">:</span> <span class="st">&quot;8b&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="66-evt-006--inference_progress">6.6. EVT-006 —
+<code>INFERENCE_PROGRESS</code></h3>
+<p><strong>Finalidad:</strong> comunicar un avance durante una
+inferencia en ejecución.<br />
+<strong>Condición:</strong> Model Manager recibe información de progreso
+confiable y útil desde el proveedor o desde el mecanismo de
+ejecución.<br />
+<strong>Estado resultante:</strong> <code>RUNNING</code>.<br />
+<strong>Emisión:</strong> opcional y repetible.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>percentage</code></td>
+<td style="text-align: left;">number</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Porcentaje de avance entre 0 y 100, cuando
+pueda calcularse de forma válida.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>stage</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Etapa de procesamiento informada.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>message</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Descripción breve del avance.</td>
+</tr>
+</tbody>
+</table>
+<p>Debe existir al menos uno de los campos <code>percentage</code>,
+<code>stage</code> o <code>message</code>. El <code>timestamp</code> del
+envelope indica cuándo se emitió la actualización.</p>
+<p>No se debe inventar un porcentaje cuando el proveedor no ofrece una
+métrica de progreso. En ese caso, Model Manager podrá informar una etapa
+o mensaje, si dispone de información útil, o no emitir este evento.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;percentage&quot;</span><span class="fu">:</span> <span class="dv">45</span><span class="fu">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;stage&quot;</span><span class="fu">:</span> <span class="st">&quot;GENERATING&quot;</span><span class="fu">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;message&quot;</span><span class="fu">:</span> <span class="st">&quot;Se está generando la respuesta.&quot;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="67-evt-007--inference_completed">6.7. EVT-007 —
+<code>INFERENCE_COMPLETED</code></h3>
+<p><strong>Finalidad:</strong> informar que la inferencia terminó
+correctamente y que el resultado puede recuperarse.<br />
+<strong>Condición:</strong> Model Manager recibió y verificó que existe
+un resultado final utilizable.<br />
+<strong>Estado resultante:</strong> <code>COMPLETED</code>.<br />
+<strong>Terminal:</strong> sí.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>result_reference</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Identificador o URI lógica para recuperar
+el resultado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>output_type</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Tipo de resultado: texto, imagen, audio,
+video, datos estructurados u otro tipo admitido.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>output_size</code></td>
+<td style="text-align: left;">integer</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Tamaño del resultado en bytes, cuando sea
+medible. Debe ser mayor o igual que cero.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>output_metadata</code></td>
+<td style="text-align: left;">object</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Metadatos descriptivos del resultado, por
+ejemplo formato, codificación, dimensiones o duración.</td>
+</tr>
+</tbody>
+</table>
+<p>El resultado completo no debe incorporarse al evento cuando su tamaño
+o naturaleza hagan inconveniente su transporte dentro del mensaje. Se
+utilizará <code>result_reference</code>. El instante de finalización se
+registra en el <code>timestamp</code> del envelope.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;result_reference&quot;</span><span class="fu">:</span> <span class="st">&quot;result://req-000001/output-000001&quot;</span><span class="fu">,</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;output_type&quot;</span><span class="fu">:</span> <span class="st">&quot;text&quot;</span><span class="fu">,</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;output_size&quot;</span><span class="fu">:</span> <span class="dv">1842</span><span class="fu">,</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;output_metadata&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;format&quot;</span><span class="fu">:</span> <span class="st">&quot;text/plain&quot;</span><span class="fu">,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&quot;encoding&quot;</span><span class="fu">:</span> <span class="st">&quot;utf-8&quot;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="68-evt-008--inference_failed">6.8. EVT-008 —
+<code>INFERENCE_FAILED</code></h3>
+<p><strong>Finalidad:</strong> informar que la inferencia no pudo
+completarse debido a un error.<br />
+<strong>Condición:</strong> la ejecución falla y Model Manager determina
+que no existe un resultado final satisfactorio para esa solicitud.<br />
+<strong>Estado resultante:</strong> <code>FAILED</code>.<br />
+<strong>Terminal:</strong> sí.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>error_code</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Código estable que identifica el tipo de
+error.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>error_message</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Descripción breve del error, sin
+credenciales ni información sensible.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>possible_recoverability</code></td>
+<td style="text-align: left;">boolean</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Indica si una nueva tentativa podría
+resolver la causa.</td>
+</tr>
+</tbody>
+</table>
+<p>El instante del error se registra en el <code>timestamp</code> del
+envelope. Los detalles técnicos ampliados, trazas y datos internos del
+proveedor deberán quedar en registros protegidos y solo se expondrán
+mediante mecanismos autorizados.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;error_code&quot;</span><span class="fu">:</span> <span class="st">&quot;PROVIDER_UNAVAILABLE&quot;</span><span class="fu">,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;error_message&quot;</span><span class="fu">:</span> <span class="st">&quot;El proveedor dejó de estar disponible durante la ejecución.&quot;</span><span class="fu">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;possible_recoverability&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="69-evt-009--inference_cancelled">6.9. EVT-009 —
+<code>INFERENCE_CANCELLED</code></h3>
+<p><strong>Finalidad:</strong> informar que una solicitud fue cancelada
+y que Model Manager confirmó que dejó de procesarse.<br />
+<strong>Condición:</strong> la cancelación fue aplicada, ya sea sobre
+una solicitud en cola o en ejecución.<br />
+<strong>Estado resultante:</strong> <code>CANCELLED</code>.<br />
+<strong>Terminal:</strong> sí.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>cancellation_stage</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Etapa en la que se aplicó la cancelación:
+<code>QUEUED</code> o <code>RUNNING</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>requested_by</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: left;">Identidad del agente o componente que
+solicitó la cancelación, si se conoce.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>cancelled_at</code></td>
+<td style="text-align: left;">string, date-time</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Instante en que la cancelación quedó
+efectivamente aplicada. Debe ser coherente con el <code>timestamp</code>
+del envelope.</td>
+</tr>
+</tbody>
+</table>
+<p>No debe emitirse <code>INFERENCE_CANCELLED</code> por el solo hecho
+de recibir una petición de cancelación. Si la cancelación no puede
+aplicarse, deberá informarse mediante el mecanismo de respuesta/error
+correspondiente, sin declarar terminal la solicitud.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;cancellation_stage&quot;</span><span class="fu">:</span> <span class="st">&quot;RUNNING&quot;</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;requested_by&quot;</span><span class="fu">:</span> <span class="st">&quot;agent_research&quot;</span><span class="fu">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;cancelled_at&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-11-11T19:24:10Z&quot;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h3 id="610-evt-010--inference_timeout">6.10. EVT-010 —
+<code>INFERENCE_TIMEOUT</code></h3>
+<p><strong>Finalidad:</strong> informar que se alcanzó el límite
+temporal configurado para una solicitud.<br />
+<strong>Condición:</strong> vence el límite aplicable y Model Manager
+determina que la solicitud no puede continuar bajo ese plazo.<br />
+<strong>Estado resultante:</strong> <code>TIMEOUT</code>.<br />
+<strong>Terminal:</strong> sí.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Campo</th>
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: center;">Obligatorio</th>
+<th style="text-align: left;">Descripción y regla</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>timeout_threshold</code></td>
+<td style="text-align: left;">number</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Límite temporal configurado, expresado en
+segundos y mayor que cero.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>elapsed_time</code></td>
+<td style="text-align: left;">number</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Tiempo transcurrido hasta declarar el
+timeout, expresado en segundos y mayor o igual que cero.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>execution_stage</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: center;">Sí</td>
+<td style="text-align: left;">Etapa en que venció el límite:
+<code>QUEUED</code> o <code>RUNNING</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>El instante en que se declara el timeout queda registrado en el
+<code>timestamp</code> del envelope.</p>
+<p>Ejemplo:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode json"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;timeout_threshold&quot;</span><span class="fu">:</span> <span class="dv">120</span><span class="fu">,</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;elapsed_time&quot;</span><span class="fu">:</span> <span class="fl">120.4</span><span class="fu">,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&quot;execution_stage&quot;</span><span class="fu">:</span> <span class="st">&quot;RUNNING&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div>
+<h2 id="7-estados-y-transiciones">7. Estados y transiciones</h2>
+<p>Los eventos representan hechos; el estado de la solicitud se deriva
+de la secuencia de eventos válidos. No se agrega un campo
+<code>current_state</code> al envelope, para evitar contradicciones
+entre el tipo de evento y un estado duplicado.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Estado</th>
+<th style="text-align: left;">Evento que lo establece</th>
+<th style="text-align: left;">Naturaleza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>SUBMITTED</code></td>
+<td style="text-align: left;"><code>INFERENCE_SUBMITTED</code></td>
+<td style="text-align: left;">No terminal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>VALIDATED</code></td>
+<td style="text-align: left;"><code>INFERENCE_VALIDATED</code></td>
+<td style="text-align: left;">No terminal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>QUEUED</code></td>
+<td style="text-align: left;"><code>INFERENCE_QUEUED</code></td>
+<td style="text-align: left;">No terminal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>INFERENCE_STARTED</code></td>
+<td style="text-align: left;">No terminal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>COMPLETED</code></td>
+<td style="text-align: left;"><code>INFERENCE_COMPLETED</code></td>
+<td style="text-align: left;">Terminal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>REJECTED</code></td>
+<td style="text-align: left;"><code>INFERENCE_REJECTED</code></td>
+<td style="text-align: left;">Terminal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>FAILED</code></td>
+<td style="text-align: left;"><code>INFERENCE_FAILED</code></td>
+<td style="text-align: left;">Terminal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>CANCELLED</code></td>
+<td style="text-align: left;"><code>INFERENCE_CANCELLED</code></td>
+<td style="text-align: left;">Terminal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>TIMEOUT</code></td>
+<td style="text-align: left;"><code>INFERENCE_TIMEOUT</code></td>
+<td style="text-align: left;">Terminal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="71-transiciones-válidas-iniciales">7.1. Transiciones válidas
+iniciales</h3>
+<pre class="text"><code>SUBMITTED
+   |
+   +----&gt; REJECTED
+   |
+   v
+VALIDATED
+   |
+   +----&gt; QUEUED ----+
+   |                |
+   +----------------+----&gt; RUNNING
+                              |
+                              +----&gt; PROGRESS (permanece RUNNING)
+                              |
+                              +----&gt; COMPLETED
+                              +----&gt; FAILED
+                              +----&gt; CANCELLED
+                              +----&gt; TIMEOUT
+
+Desde QUEUED también puede producirse CANCELLED o TIMEOUT.</code></pre>
+<p>Reglas:</p>
+<ol type="1">
+<li><code>INFERENCE_SUBMITTED</code> inicia la secuencia y utiliza
+<code>sequence_number = 1</code>.</li>
+<li>Una solicitud aceptada debe generar <code>INFERENCE_VALIDATED</code>
+antes de <code>INFERENCE_QUEUED</code> o
+<code>INFERENCE_STARTED</code>.</li>
+<li><code>INFERENCE_QUEUED</code> es opcional: una solicitud puede pasar
+de <code>VALIDATED</code> directamente a <code>RUNNING</code>.</li>
+<li><code>INFERENCE_PROGRESS</code> solo puede emitirse mientras la
+solicitud esté en <code>RUNNING</code>.</li>
+<li><code>INFERENCE_REJECTED</code> solo puede cerrar una solicitud que
+todavía no haya iniciado su ejecución.</li>
+<li><code>INFERENCE_CANCELLED</code> puede cerrar una solicitud en
+<code>QUEUED</code> o <code>RUNNING</code>, una vez aplicada la
+cancelación.</li>
+<li><code>INFERENCE_TIMEOUT</code> puede cerrar una solicitud en
+<code>QUEUED</code> o <code>RUNNING</code>, según el límite que haya
+vencido.</li>
+<li><code>COMPLETED</code>, <code>REJECTED</code>, <code>FAILED</code>,
+<code>CANCELLED</code> y <code>TIMEOUT</code> son resultados terminales
+mutuamente excluyentes.</li>
+<li>No se admitirán eventos de progreso ni de ejecución posteriores a un
+evento terminal para el mismo <code>request_id</code>.</li>
+</ol>
+<h3 id="72-matriz-normativa-de-transiciones-aprobadas">7.2. Matriz
+normativa de transiciones aprobadas</h3>
+<p>La siguiente matriz establece las transiciones permitidas para el
+ciclo de vida de una solicitud de inferencia. Toda transición no
+incluida expresamente se considera inválida.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Estado de origen</th>
+<th style="text-align: left;">Estado de destino permitido</th>
+<th style="text-align: left;">Evento que confirma la transición</th>
+<th style="text-align: left;">Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>SUBMITTED</code></td>
+<td style="text-align: left;"><code>VALIDATED</code></td>
+<td style="text-align: left;"><code>INFERENCE_VALIDATED</code></td>
+<td style="text-align: left;">La solicitud supera las validaciones de
+admisión.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>SUBMITTED</code></td>
+<td style="text-align: left;"><code>REJECTED</code></td>
+<td style="text-align: left;"><code>INFERENCE_REJECTED</code></td>
+<td style="text-align: left;">La solicitud no supera una condición
+obligatoria de admisión.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>VALIDATED</code></td>
+<td style="text-align: left;"><code>QUEUED</code></td>
+<td style="text-align: left;"><code>INFERENCE_QUEUED</code></td>
+<td style="text-align: left;">La solicitud validada debe esperar turno o
+recursos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>VALIDATED</code></td>
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>INFERENCE_STARTED</code></td>
+<td style="text-align: left;">La ejecución comienza sin pasar por una
+cola de espera observable.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>QUEUED</code></td>
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>INFERENCE_STARTED</code></td>
+<td style="text-align: left;">Se asignan recursos y comienza la
+ejecución.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>QUEUED</code></td>
+<td style="text-align: left;"><code>CANCELLED</code></td>
+<td style="text-align: left;"><code>INFERENCE_CANCELLED</code></td>
+<td style="text-align: left;">La solicitud se retira de la cola y la
+cancelación queda aplicada.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>QUEUED</code></td>
+<td style="text-align: left;"><code>TIMEOUT</code></td>
+<td style="text-align: left;"><code>INFERENCE_TIMEOUT</code></td>
+<td style="text-align: left;">Vence el límite temporal aplicable
+mientras la solicitud espera en cola.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>QUEUED</code></td>
+<td style="text-align: left;"><code>FAILED</code></td>
+<td style="text-align: left;"><code>INFERENCE_FAILED</code></td>
+<td style="text-align: left;">Se produce un fallo que impide continuar
+con la solicitud en cola.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>COMPLETED</code></td>
+<td style="text-align: left;"><code>INFERENCE_COMPLETED</code></td>
+<td style="text-align: left;">Existe un resultado final utilizable y
+verificable.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>FAILED</code></td>
+<td style="text-align: left;"><code>INFERENCE_FAILED</code></td>
+<td style="text-align: left;">La ejecución termina por un error sin
+resultado satisfactorio.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>CANCELLED</code></td>
+<td style="text-align: left;"><code>INFERENCE_CANCELLED</code></td>
+<td style="text-align: left;">La ejecución se ha detenido efectivamente
+por cancelación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>RUNNING</code></td>
+<td style="text-align: left;"><code>TIMEOUT</code></td>
+<td style="text-align: left;"><code>INFERENCE_TIMEOUT</code></td>
+<td style="text-align: left;">Vence el límite temporal y la ejecución
+deja de continuar bajo esa solicitud.</td>
+</tr>
+</tbody>
+</table>
+<p>Los estados <code>COMPLETED</code>, <code>REJECTED</code>,
+<code>FAILED</code>, <code>CANCELLED</code> y <code>TIMEOUT</code> son
+terminales. No admiten transiciones ordinarias de salida ni reapertura
+de la solicitud.</p>
+<p><code>INFERENCE_PROGRESS</code> no representa una transición de
+estado: se emite durante <code>RUNNING</code> y la solicitud permanece
+en ese estado.</p>
+<h3 id="73-diagrama-completo-de-estados">7.3. Diagrama completo de
+estados</h3>
+<p>El siguiente diagrama representa las transiciones aprobadas. Las
+flechas hacia estados terminales son definitivas. <code>PROGRESS</code>
+es una actualización dentro de <code>RUNNING</code>, no un estado
+independiente.</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; SUBMITTED
+
+    SUBMITTED --&gt; VALIDATED : INFERENCE_VALIDATED
+    SUBMITTED --&gt; REJECTED : INFERENCE_REJECTED
+
+    VALIDATED --&gt; QUEUED : INFERENCE_QUEUED
+    VALIDATED --&gt; RUNNING : INFERENCE_STARTED
+
+    QUEUED --&gt; RUNNING : INFERENCE_STARTED
+    QUEUED --&gt; CANCELLED : INFERENCE_CANCELLED
+    QUEUED --&gt; TIMEOUT : INFERENCE_TIMEOUT
+    QUEUED --&gt; FAILED : INFERENCE_FAILED
+
+    RUNNING --&gt; RUNNING : INFERENCE_PROGRESS
+    RUNNING --&gt; COMPLETED : INFERENCE_COMPLETED
+    RUNNING --&gt; FAILED : INFERENCE_FAILED
+    RUNNING --&gt; CANCELLED : INFERENCE_CANCELLED
+    RUNNING --&gt; TIMEOUT : INFERENCE_TIMEOUT
+
+    COMPLETED --&gt; [*]
+    REJECTED --&gt; [*]
+    FAILED --&gt; [*]
+    CANCELLED --&gt; [*]
+    TIMEOUT --&gt; [*]</code></pre>
+<p>No se representan transiciones entre estados terminales. Una nueva
+tentativa posterior a un resultado terminal deberá tratarse como una
+nueva solicitud, con un nuevo <code>request_id</code>, y respetar la
+política de reintentos que se defina.</p>
+<h3 id="74-condiciones-de-cancelación-timeout-y-concurrencia">7.4.
+Condiciones de cancelación, timeout y concurrencia</h3>
+<h4 id="741-cancelación">7.4.1. Cancelación</h4>
+<ol type="1">
+<li>La recepción de una petición de cancelación no significa que la
+solicitud ya esté cancelada.</li>
+<li>Para una solicitud en <code>QUEUED</code>, Model Manager debe
+retirarla de la cola e impedir que comience la ejecución.</li>
+<li>Para una solicitud en <code>RUNNING</code>, Model Manager debe
+solicitar la interrupción al mecanismo de ejecución y verificar que la
+ejecución haya dejado de procesar la solicitud.</li>
+<li><code>INFERENCE_CANCELLED</code> solo puede emitirse después de
+confirmar que la cancelación fue aplicada efectivamente.</li>
+<li>Si la ejecución ya alcanzó un resultado terminal válido, una
+petición de cancelación posterior no modifica ese resultado.</li>
+<li>Si no puede confirmarse la detención, Model Manager no debe declarar
+la solicitud <code>CANCELLED</code>; deberá informar el error mediante
+el mecanismo de respuesta/error aplicable.</li>
+</ol>
+<h4 id="742-timeout">7.4.2. Timeout</h4>
+<ol type="1">
+<li>El timeout puede producirse mientras la solicitud está en
+<code>QUEUED</code> o <code>RUNNING</code>.</li>
+<li>Al vencer el límite, Model Manager debe aplicar la acción necesaria
+para impedir que la solicitud continúe consumiendo recursos bajo ese
+ciclo de vida.</li>
+<li>Si la solicitud está en ejecución, Model Manager debe solicitar la
+interrupción y verificar la finalización efectiva antes de confirmar el
+estado terminal <code>TIMEOUT</code>.</li>
+<li>El evento <code>INFERENCE_TIMEOUT</code> debe reflejar el estado
+real de la solicitud y la etapa en que venció el límite.</li>
+<li>Un resultado recibido después de que <code>TIMEOUT</code> haya
+quedado confirmado no puede reabrir la solicitud ni reemplazar su estado
+terminal.</li>
+</ol>
+<h4 id="743-concurrencia-y-condiciones-de-carrera">7.4.3. Concurrencia y
+condiciones de carrera</h4>
+<p>Las operaciones que puedan competir por cerrar una misma solicitud
+—finalización, fallo, cancelación o timeout— deben resolverse de forma
+atómica y exclusiva para cada <code>request_id</code>.</p>
+<p>La primera transición terminal que sea confirmada y registrada
+atómicamente determina el resultado definitivo. Las solicitudes
+concurrentes posteriores no pueden sustituirlo.</p>
+<p>Ejemplos:</p>
+<ul>
+<li>Si <code>COMPLETED</code> queda confirmado primero, una petición
+posterior de cancelación o timeout no cambia el resultado.</li>
+<li>Si <code>CANCELLED</code> queda confirmado primero, un resultado
+tardío del proveedor se descarta como resultado de esa solicitud y no
+puede producir <code>COMPLETED</code>.</li>
+<li>La misma regla se aplica cuando el primer resultado terminal
+confirmado es <code>FAILED</code> o <code>TIMEOUT</code>.</li>
+<li>Si una cancelación y una finalización se producen casi
+simultáneamente, Model Manager debe resolver la competencia mediante el
+mecanismo atómico por <code>request_id</code>; no se permite emitir dos
+eventos terminales válidos.</li>
+</ul>
+<p>La implementación deberá asegurar que la actualización del estado y
+el registro del evento terminal no puedan dejar una solicitud en una
+situación contradictoria. Los detalles de la tecnología de
+sincronización quedan sujetos al diseño de implementación.</p>
+<h3 id="75-invariantes-del-ciclo-de-vida">7.5. Invariantes del ciclo de
+vida</h3>
+<p>Las siguientes condiciones deben cumplirse para toda solicitud:</p>
+<ol type="1">
+<li><strong>Estado único:</strong> cada <code>request_id</code> tiene un
+único estado vigente en cada instante lógico.</li>
+<li><strong>Transiciones permitidas:</strong> solo pueden aplicarse las
+transiciones enumeradas en la matriz del apartado 7.2.</li>
+<li><strong>Secuencia creciente:</strong> <code>sequence_number</code>
+aumenta estrictamente dentro de cada <code>request_id</code>.</li>
+<li><strong>Terminalidad única:</strong> una solicitud puede alcanzar
+como máximo un estado terminal válido.</li>
+<li><strong>Terminalidad inmutable:</strong> una vez confirmado un
+estado terminal, no puede modificarse ni reabrirse.</li>
+<li><strong>Evento fiel al estado:</strong> un evento solo se emite
+cuando la transición que representa ha sido confirmada; no debe anunciar
+un estado que todavía no se alcanzó.</li>
+<li><strong>Atomicidad:</strong> la resolución de transiciones
+terminales concurrentes debe ser atómica y exclusiva por solicitud.</li>
+<li><strong>Cancelación efectiva:</strong>
+<code>INFERENCE_CANCELLED</code> requiere confirmación de que la
+ejecución se detuvo o de que la solicitud fue retirada de la cola.</li>
+<li><strong>Timeout efectivo:</strong> <code>INFERENCE_TIMEOUT</code>
+requiere que la solicitud haya dejado de continuar bajo ese ciclo de
+vida.</li>
+<li><strong>Resultados tardíos:</strong> los resultados recibidos
+después de un estado terminal no alteran el estado ni generan una
+segunda finalización.</li>
+<li><strong>Progreso no terminal:</strong>
+<code>INFERENCE_PROGRESS</code> solo se admite en <code>RUNNING</code> y
+no modifica el estado.</li>
+<li><strong>Trazabilidad:</strong> todos los eventos del ciclo de vida
+conservan el mismo <code>request_id</code> y
+<code>correlation_id</code>.</li>
+</ol>
+<p>Los eventos inválidos, duplicados o incompatibles con el estado
+vigente no deben provocar una transición. Deben ser rechazados o
+tratados conforme a las reglas de idempotencia, orden y recuperación de
+los apartados 9 y 10.</p>
+<h3 id="76-criterios-de-aceptación-de-las-transiciones">7.6. Criterios
+de aceptación de las transiciones</h3>
+<p>La definición de transiciones de DT-05 podrá considerarse conforme
+cuando las pruebas demuestren, como mínimo, que:</p>
+<ul>
+<li>Cada transición permitida de la matriz puede ejecutarse y produce el
+evento correspondiente.</li>
+<li>Toda transición no incluida en la matriz es rechazada sin modificar
+el estado.</li>
+<li><code>INFERENCE_PROGRESS</code> solo se acepta durante
+<code>RUNNING</code> y no cambia el estado.</li>
+<li>Los cinco estados terminales son mutuamente excluyentes e
+inmutables.</li>
+<li>Una cancelación en cola retira la solicitud e impide su ejecución
+posterior.</li>
+<li>Una cancelación durante la ejecución solo se confirma después de
+verificar la detención.</li>
+<li>Un timeout en cola o en ejecución cierra la solicitud de acuerdo con
+la etapa informada.</li>
+<li>Un resultado tardío no modifica una solicitud ya cancelada, fallida
+o expirada.</li>
+<li>Las carreras entre finalización, fallo, cancelación y timeout
+producen un único resultado terminal confirmado.</li>
+<li>La secuencia de eventos permanece estrictamente creciente y
+coherente ante solicitudes concurrentes.</li>
+<li>La actualización del estado y el registro del evento terminal no
+generan estados contradictorios.</li>
+</ul>
+<p>Estos criterios deberán incorporarse a la matriz de pruebas e
+integración de DT-12. Su inclusión en el diseño no acredita que las
+pruebas hayan sido ejecutadas ni superadas.</p>
+<h3 id="77-catálogos-normativos-aprobados--dt05-cat-001">7.7. Catálogos
+normativos aprobados — DT05-CAT-001</h3>
+<p><strong>Estado:</strong> APROBADO funcionalmente el 11/11/2026.<br />
+<strong>Alcance:</strong> identificadores admitidos para
+<code>task_type</code>, <code>rejection_code</code> y
+<code>error_code</code>.<br />
+<strong>Límite:</strong> la aprobación de los catálogos no implica que
+existan validadores implementados ni que se hayan ejecutado pruebas. Los
+catálogos son extensibles mediante control de versiones y aprobación
+documentada; no se admitirán valores nuevos de manera silenciosa.</p>
+<h4 id="771-catálogo-task_type">7.7.1. Catálogo
+<code>task_type</code></h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>TEXT_GENERATION</code></td>
+<td style="text-align: left;">Generación de contenido textual a partir
+de una entrada.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>CHAT_COMPLETION</code></td>
+<td style="text-align: left;">Generación de una respuesta conversacional
+considerando el contexto de diálogo.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>TEXT_EMBEDDING</code></td>
+<td style="text-align: left;">Conversión de texto en representaciones
+vectoriales.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>TEXT_CLASSIFICATION</code></td>
+<td style="text-align: left;">Asignación de una o más categorías a un
+texto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>TEXT_EXTRACTION</code></td>
+<td style="text-align: left;">Extracción de información o entidades
+presentes en un texto.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>IMAGE_UNDERSTANDING</code></td>
+<td style="text-align: left;">Análisis, interpretación o descripción de
+imágenes de entrada.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>IMAGE_GENERATION</code></td>
+<td style="text-align: left;">Generación de imágenes a partir de
+instrucciones u otras entradas admitidas.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>AUDIO_TRANSCRIPTION</code></td>
+<td style="text-align: left;">Conversión de audio hablado a texto.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>AUDIO_UNDERSTANDING</code></td>
+<td style="text-align: left;">Análisis o interpretación de contenido de
+audio sin limitarse a transcribirlo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>AUDIO_GENERATION</code></td>
+<td style="text-align: left;">Generación de contenido de audio.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>VIDEO_UNDERSTANDING</code></td>
+<td style="text-align: left;">Análisis temporal y semántico de contenido
+de vídeo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>MULTIMODAL_GENERATION</code></td>
+<td style="text-align: left;">Generación de una salida que integra más
+de una modalidad.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="772-catálogo-rejection_code">7.7.2. Catálogo
+<code>rejection_code</code></h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Descripción / condición de uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>INVALID_REQUEST</code></td>
+<td style="text-align: left;">La solicitud no cumple la estructura
+general requerida.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>MISSING_REQUIRED_FIELD</code></td>
+<td style="text-align: left;">Falta un campo obligatorio.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>UNKNOWN_MODEL</code></td>
+<td style="text-align: left;">El identificador lógico del modelo no está
+registrado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>UNKNOWN_TASK_TYPE</code></td>
+<td style="text-align: left;">El <code>task_type</code> no pertenece al
+catálogo admitido.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>UNSUPPORTED_TASK</code></td>
+<td style="text-align: left;">El modelo existe, pero no admite la tarea
+solicitada.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>UNSUPPORTED_MODALITY</code></td>
+<td style="text-align: left;">La modalidad de entrada o salida
+solicitada no está admitida.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>INVALID_INPUT</code></td>
+<td style="text-align: left;">La entrada está presente, pero su
+contenido o estructura no es válido.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>INVALID_PARAMETERS</code></td>
+<td style="text-align: left;">Uno o más parámetros están fuera de los
+valores o límites admitidos.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>INPUT_TOO_LARGE</code></td>
+<td style="text-align: left;">La entrada supera los límites de tamaño
+establecidos.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>UNAUTHORIZED</code></td>
+<td style="text-align: left;">El solicitante no está autenticado o no
+presenta una identidad válida para la operación.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>PERMISSION_DENIED</code></td>
+<td style="text-align: left;">El solicitante está identificado, pero
+carece del permiso requerido.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>RESOURCE_LIMIT_EXCEEDED</code></td>
+<td style="text-align: left;">La solicitud excede un límite de recursos
+o una cuota que impide su admisión.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>MODEL_NOT_READY</code></td>
+<td style="text-align: left;">El modelo está registrado, pero no se
+encuentra disponible para aceptar la solicitud.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>POLICY_VIOLATION</code></td>
+<td style="text-align: left;">La solicitud incumple una política
+aplicable de GIAR-ORION.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="773-catálogo-error_code">7.7.3. Catálogo
+<code>error_code</code></h4>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Código</th>
+<th style="text-align: left;">Descripción / condición de uso</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>PROVIDER_UNAVAILABLE</code></td>
+<td style="text-align: left;">El proveedor de inferencia no está
+disponible.</td>
+</tr>
+<tr class="even">
+<td
+style="text-align: left;"><code>PROVIDER_COMMUNICATION_ERROR</code></td>
+<td style="text-align: left;">Se produjo un fallo de comunicación con el
+proveedor.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>PROVIDER_EXECUTION_ERROR</code></td>
+<td style="text-align: left;">El proveedor informó un error durante el
+procesamiento.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>MODEL_LOAD_FAILED</code></td>
+<td style="text-align: left;">No fue posible cargar o inicializar el
+modelo requerido.</td>
+</tr>
+<tr class="odd">
+<td
+style="text-align: left;"><code>INFERENCE_EXECUTION_FAILED</code></td>
+<td style="text-align: left;">La ejecución de la inferencia falló
+después de su admisión.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>RESOURCE_EXHAUSTED</code></td>
+<td style="text-align: left;">Los recursos necesarios se agotaron
+durante la operación.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>OUT_OF_MEMORY</code></td>
+<td style="text-align: left;">La operación no pudo continuar por falta
+de memoria disponible.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>WORKER_CRASHED</code></td>
+<td style="text-align: left;">El proceso o worker encargado de la
+ejecución terminó inesperadamente.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>EXECUTION_INTERRUPTED</code></td>
+<td style="text-align: left;">La ejecución se interrumpió de forma
+inesperada o no atribuible a una cancelación confirmada.</td>
+</tr>
+<tr class="even">
+<td
+style="text-align: left;"><code>RESULT_SERIALIZATION_FAILED</code></td>
+<td style="text-align: left;">No fue posible serializar el resultado
+generado.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>RESULT_STORAGE_FAILED</code></td>
+<td style="text-align: left;">No fue posible almacenar o hacer
+recuperable el resultado.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>INTERNAL_ERROR</code></td>
+<td style="text-align: left;">Se produjo un error interno no clasificado
+por los códigos anteriores.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="774-reglas-de-clasificación">7.7.4. Reglas de clasificación</h4>
+<ol type="1">
+<li><code>rejection_code</code> identifica una condición que impide
+admitir o iniciar el procesamiento de la solicitud; se informa mediante
+<code>INFERENCE_REJECTED</code>.</li>
+<li><code>error_code</code> identifica un fallo ocurrido durante una
+operación ya admitida o durante su ejecución; se informa mediante
+<code>INFERENCE_FAILED</code>.</li>
+<li>La falta de autenticación o de permisos se clasifica como rechazo,
+no como fallo de ejecución.</li>
+<li><code>TIMEOUT</code> y <code>CANCELLED</code> conservan sus eventos
+terminales específicos; no deben sustituirse por un código genérico de
+error.</li>
+<li><code>possible_recoverability</code> se determina según la causa
+concreta. No significa que la solicitud terminal pueda reabrirse: una
+nueva tentativa constituye una nueva solicitud y utiliza un nuevo
+<code>request_id</code>.</li>
+<li>Los códigos son identificadores estables. La descripción puede
+ampliarse sin cambiar su significado contractual.</li>
+<li>Un código no incluido en el catálogo no debe emitirse como si fuera
+normativo. Su incorporación requiere revisión, aprobación y
+versionado.</li>
+</ol>
+<h3
+id="78-validaciones-semánticas-aprobadas-para-inference_submitted">7.8.
+Validaciones semánticas aprobadas para
+<code>INFERENCE_SUBMITTED</code></h3>
+<p><strong>Estado:</strong> APROBADAS funcionalmente el
+11/11/2026.<br />
+<strong>Aplicación:</strong> validaciones de admisión que Model Manager
+debe realizar antes de permitir que la solicitud avance desde
+<code>SUBMITTED</code>.<br />
+<strong>Límite:</strong> estas reglas definen el comportamiento
+esperado; los esquemas JSON Schema, los validadores ejecutables y las
+pruebas positivas/negativas permanecen pendientes.</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">ID</th>
+<th style="text-align: left;">Elemento</th>
+<th style="text-align: left;">Regla de validación semántica</th>
+<th style="text-align: left;">Tratamiento ante incumplimiento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">SEM-001</td>
+<td style="text-align: left;"><code>model_id</code></td>
+<td style="text-align: left;">El identificador lógico debe existir en el
+registro de Model Manager y corresponder a un modelo conocido.</td>
+<td style="text-align: left;">Rechazar con
+<code>UNKNOWN_MODEL</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEM-002</td>
+<td style="text-align: left;"><code>model_id</code> /
+<code>task_type</code></td>
+<td style="text-align: left;">El modelo seleccionado debe admitir el
+tipo de tarea solicitado. La existencia del modelo no implica
+compatibilidad con cualquier tarea.</td>
+<td style="text-align: left;">Rechazar con <code>UNSUPPORTED_TASK</code>
+o <code>UNKNOWN_TASK_TYPE</code>, según corresponda.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEM-003</td>
+<td style="text-align: left;"><code>input</code></td>
+<td style="text-align: left;">La estructura multimodal debe ser válida:
+objeto <code>input</code>, modalidad identificable, colección
+<code>items</code> no vacía y elementos con tipo y contenido o
+referencia recuperable, según las reglas del contrato.</td>
+<td style="text-align: left;">Rechazar con <code>INVALID_INPUT</code> o
+<code>UNSUPPORTED_MODALITY</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEM-004</td>
+<td style="text-align: left;"><code>priority</code></td>
+<td style="text-align: left;">El valor debe estar comprendido entre 1 y
+5. Si el solicitante no lo proporciona, se aplica el valor por defecto 3
+ya definido en el payload.</td>
+<td style="text-align: left;">Rechazar valores fuera del rango con
+<code>INVALID_PARAMETERS</code>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEM-005</td>
+<td style="text-align: left;"><code>requested_by</code> / permisos</td>
+<td style="text-align: left;">La identidad solicitante debe poder
+verificarse y estar autorizada para solicitar el modelo y acceder a los
+recursos de entrada asociados.</td>
+<td style="text-align: left;">Rechazar con <code>UNAUTHORIZED</code> o
+<code>PERMISSION_DENIED</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEM-006</td>
+<td style="text-align: left;">Recursos</td>
+<td style="text-align: left;">Model Manager debe comprobar que la
+solicitud pueda ser atendida según la disponibilidad y los límites de
+recursos. La falta temporal de capacidad puede derivar en cola cuando la
+política lo permita; el exceso de límites que impida la admisión debe
+rechazarse.</td>
+<td style="text-align: left;">Encolar cuando corresponda; si se excede
+un límite de admisión, rechazar con
+<code>RESOURCE_LIMIT_EXCEEDED</code>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEM-007</td>
+<td style="text-align: left;">Parámetros</td>
+<td style="text-align: left;">Los parámetros de inferencia, cuando estén
+presentes, deben respetar los tipos, rangos y límites admitidos por el
+modelo y la operación solicitada.</td>
+<td style="text-align: left;">Rechazar con
+<code>INVALID_PARAMETERS</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEM-008</td>
+<td style="text-align: left;">Admisión</td>
+<td style="text-align: left;">Si una validación obligatoria falla, la
+solicitud no debe avanzar a <code>VALIDATED</code>, <code>QUEUED</code>
+ni <code>RUNNING</code>.</td>
+<td style="text-align: left;">Emitir <code>INFERENCE_REJECTED</code> con
+código estructurado.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEM-009</td>
+<td style="text-align: left;">Emisión</td>
+<td style="text-align: left;">Model Manager es responsable de normalizar
+el resultado de las validaciones y emitir el evento contractual
+correspondiente; el proveedor no emite directamente los eventos
+GIAR-ORION.</td>
+<td style="text-align: left;">El evento debe ser emitido por Model
+Manager; incumplimiento constituye una no conformidad de
+integración.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEM-010</td>
+<td style="text-align: left;">Diagnóstico</td>
+<td style="text-align: left;">Todo rechazo debe incluir un código
+estable y una explicación legible, sin exponer secretos, credenciales ni
+información interna sensible.</td>
+<td style="text-align: left;">Completar <code>rejection_code</code> y
+<code>rejection_reason</code>; no emitir un rechazo opaco o sin causa
+identificable.</td>
+</tr>
+</tbody>
+</table>
+<p>Una solicitud que supere todas las validaciones obligatorias podrá
+producir <code>INFERENCE_VALIDATED</code>. La validación satisfactoria
+no garantiza que el proveedor permanezca disponible ni que la inferencia
+vaya a completarse; los fallos posteriores se informan mediante los
+eventos correspondientes.</p>
+<h3 id="79-enumeraciones-aún-pendientes-de-aprobación">7.9.
+Enumeraciones aún pendientes de aprobación</h3>
+<p>Las siguientes enumeraciones se conservan como propuesta técnica y
+<strong>no forman parte de DT05-CAT-001 aprobado</strong>:</p>
+<ul>
+<li><code>output_type</code>: <code>TEXT</code>,
+<code>STRUCTURED_DATA</code>, <code>EMBEDDING</code>,
+<code>IMAGE</code>, <code>AUDIO</code>, <code>VIDEO</code>,
+<code>MULTIMODAL</code>, <code>BINARY_FILE</code>.</li>
+<li><code>execution_stage</code>: <code>QUEUED</code>,
+<code>RUNNING</code>.</li>
+<li><code>cancellation_stage</code>: <code>QUEUED</code>,
+<code>RUNNING</code>.</li>
+</ul>
+<p>Su incorporación normativa requiere aprobación expresa. Hasta
+entonces, no deben tratarse como catálogos aprobados ni utilizarse para
+declarar conformidad.</p>
+<h2 id="8-reglas-de-emisión-y-responsabilidad">8. Reglas de emisión y
+responsabilidad</h2>
+<p>Model Manager es el único emisor lógico de los diez eventos de DT-05.
+Los proveedores pueden originar datos de ejecución, progreso o error,
+pero no publican directamente eventos contractuales de GIAR-ORION.</p>
+<p>Flujo general:</p>
+<ol type="1">
+<li>El solicitante envía una solicitud a Model Manager.</li>
+<li>Model Manager asigna o confirma <code>request_id</code> y
+<code>correlation_id</code>.</li>
+<li>Model Manager valida la solicitud y emite el evento
+correspondiente.</li>
+<li>Model Manager administra cola, proveedor e instancia.</li>
+<li>Model Manager normaliza los cambios relevantes y emite los eventos
+del catálogo.</li>
+<li>ORION CORE y los consumidores autorizados reciben los eventos sin
+depender de la API del proveedor.</li>
+</ol>
+<p>Model Manager debe verificar el resultado antes de emitir
+<code>INFERENCE_COMPLETED</code>. La recepción de una respuesta del
+proveedor, por sí sola, no basta si el resultado no puede recuperarse o
+no supera las verificaciones mínimas de integridad.</p>
+<h2 id="9-reglas-generales-de-validación">9. Reglas generales de
+validación</h2>
+<p>Antes de publicar un evento, Model Manager deberá verificar:</p>
+<ul>
+<li>Presencia y tipo de todos los campos obligatorios del envelope.</li>
+<li>Reconocimiento de <code>event_type</code> y compatibilidad de
+<code>event_version</code>.</li>
+<li>Unicidad de <code>event_id</code>.</li>
+<li>Consistencia de <code>request_id</code> y
+<code>correlation_id</code>.</li>
+<li>Secuencia válida de <code>sequence_number</code>.</li>
+<li>Formato UTC válido de <code>timestamp</code>.</li>
+<li>Conformidad del payload con el esquema del evento.</li>
+<li>Validez de rangos numéricos, enumeraciones y referencias.</li>
+<li>Ausencia de credenciales, secretos o datos sensibles
+innecesarios.</li>
+<li>Consistencia entre el evento y el estado previo de la
+solicitud.</li>
+</ul>
+<p>Los consumidores deberán validar los mismos aspectos antes de
+actualizar su representación del ciclo de vida. Los eventos inválidos no
+deben modificar el estado de la solicitud y deben generar un registro de
+error.</p>
+<h2 id="10-idempotencia-duplicados-y-orden">10. Idempotencia, duplicados
+y orden</h2>
+<p>La entrega puede producir duplicados o retrasos según el transporte
+que se seleccione. Por ello:</p>
+<ul>
+<li><code>event_id</code> permite detectar una repetición del mismo
+evento.</li>
+<li><code>request_id</code> identifica el ciclo de vida de la
+inferencia.</li>
+<li><code>sequence_number</code> permite detectar eventos faltantes,
+repetidos o fuera de orden dentro de una solicitud.</li>
+<li>Un consumidor no debe aplicar dos veces el mismo
+<code>event_id</code>.</li>
+<li>Un consumidor que detecte un salto de secuencia debe solicitar
+recuperación o reconstrucción mediante el mecanismo que se defina en la
+implementación.</li>
+<li>No se afirma entrega exactamente una vez en esta versión.</li>
+</ul>
+<p>La política concreta de reintentos, confirmaciones y recuperación se
+coordinará con DT-02 y DT-08.</p>
+<h2 id="11-persistencia-y-referencias">11. Persistencia y
+referencias</h2>
+<p>El evento no debe transportar innecesariamente archivos binarios ni
+resultados de gran tamaño. Las entradas y salidas multimodales podrán
+referenciar recursos externos al mensaje mediante identificadores o URI
+lógicas.</p>
+<p>Las referencias deben:</p>
+<ul>
+<li>Ser resolubles por el componente autorizado.</li>
+<li>Tener permisos de acceso verificables.</li>
+<li>Mantener integridad durante el período de retención requerido.</li>
+<li>No exponer rutas locales, credenciales ni información sensible.</li>
+<li>Permitir identificar el tipo de recurso y sus metadatos
+relevantes.</li>
+</ul>
+<p>La tecnología de almacenamiento, el ciclo de vida de las referencias,
+la retención y la limpieza de recursos quedan pendientes de definición
+coordinada con DT-08.</p>
+<h2 id="12-seguridad-y-privacidad">12. Seguridad y privacidad</h2>
+<p>Model Manager deberá verificar que el solicitante esté autorizado
+para utilizar el modelo y acceder a los recursos de entrada y salida.
+Los eventos no deberán incluir tokens, claves, credenciales ni trazas
+internas sin filtrar.</p>
+<p><code>requested_by</code> y <code>correlation_id</code> son datos de
+trazabilidad; no sustituyen la autenticación ni la autorización
+definidas por los mecanismos de seguridad de GIAR-ORION.</p>
+<p>Los consumidores solo podrán recuperar entradas y resultados para los
+que tengan permisos.</p>
+<h2 id="13-aspectos-pendientes-de-dt-05">13. Aspectos pendientes de
+DT-05</h2>
+<p>La definición del catálogo y de los payloads no resuelve todavía
+todos los detalles de la API. Quedan pendientes:</p>
+<ol type="1">
+<li>Esquemas JSON Schema definitivos y validados automáticamente para
+envelope y payloads.</li>
+<li>Aprobación de las enumeraciones <code>output_type</code>,
+<code>execution_stage</code> y <code>cancellation_stage</code>.</li>
+<li>Esquemas detallados de cada modalidad de <code>input</code> y de los
+resultados multimodales.</li>
+<li>Contrato de la solicitud de cancelación y su respuesta.</li>
+<li>Política de timeout: límites por defecto, límites máximos y
+precedencia entre timeout de cola y de ejecución.</li>
+<li>Política de reintentos y relación entre una nueva tentativa y un
+nuevo <code>request_id</code>.</li>
+<li>Transporte, mecanismo de suscripción y confirmación de
+recepción.</li>
+<li>Persistencia, retención y recuperación de eventos y recursos
+referenciados.</li>
+<li>Política de autorización para solicitar modelos y recuperar
+resultados.</li>
+<li>Métricas de rendimiento y pruebas de concurrencia.</li>
+</ol>
+<h2 id="14-criterios-de-aceptación-de-dt-05">14. Criterios de aceptación
+de DT-05</h2>
+<p>DT-05 podrá considerarse técnicamente consolidado cuando:</p>
+<ul>
+<li>Los diez eventos estén implementados con el envelope común.</li>
+<li>Cada payload cumpla su esquema y sus reglas de validación.</li>
+<li>Los valores de <code>task_type</code>, <code>rejection_code</code> y
+<code>error_code</code> respeten los catálogos normativos
+DT05-CAT-001.</li>
+<li>Se apliquen las diez validaciones semánticas SEM-001 a SEM-010 antes
+de admitir una solicitud.</li>
+<li>Model Manager sea el emisor lógico único de los eventos
+contractuales.</li>
+<li>Se respeten las transiciones y la terminalidad definidas.</li>
+<li>Se cumplan la matriz de transiciones aprobada, las reglas de
+cancelación y timeout, la exclusividad de resultados terminales y las
+invariantes de concurrencia del apartado 7.</li>
+<li>Se mantengan identificadores y secuencias coherentes.</li>
+<li>Los eventos duplicados o fuera de orden se detecten sin corromper el
+estado.</li>
+<li>Las referencias multimodales sean recuperables y estén protegidas
+por permisos.</li>
+<li>Existan pruebas positivas y negativas para cada evento.</li>
+<li>Se verifique la independencia respecto del proveedor de
+inferencia.</li>
+<li>Se documenten resultados de pruebas en DT-12.</li>
+</ul>
+<p><strong>Estado de implementación:</strong> NO IMPLEMENTADO / NO
+PROBADO hasta que existan código y evidencias de conformidad.</p>
+<hr />
+<h1 id="consolidación-de-dt-01-a-dt-05">Consolidación de DT-01 a
+DT-05</h1>
+<h2 id="estado-de-los-documentos">Estado de los documentos</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Documento</th>
+<th style="text-align: left;">Tema</th>
+<th style="text-align: left;">Estado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DT-01</td>
+<td style="text-align: left;">Arquitectura técnica general de ORION
+CORE</td>
+<td style="text-align: left;">Borrador para revisión</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT-02</td>
+<td style="text-align: left;">Especificación técnica del Message
+Broker</td>
+<td style="text-align: left;">Borrador para revisión</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT-03</td>
+<td style="text-align: left;">Contratos técnicos de ORION CORE</td>
+<td style="text-align: left;">Borrador para revisión</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DT-04</td>
+<td style="text-align: left;">Contrato técnico de agente
+especializado</td>
+<td style="text-align: left;">Borrador para revisión</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DT-05</td>
+<td style="text-align: left;">API técnica de Model Manager — eventos de
+inferencia</td>
+<td style="text-align: left;">Borrador técnico integrado; catálogo de
+eventos, payloads acordados, transiciones, DT05-CAT-001 y validaciones
+semánticas aprobados; implementación no acreditada</td>
+</tr>
+</tbody>
+</table>
+<p>Las decisiones ARC-001 a ARC-006 están aprobadas. Esto no significa
+que DT-01 a DT-04 estén cerrados en su totalidad: contienen definiciones
+pendientes, esquemas no formalizados y aspectos que requieren
+pruebas.</p>
+<h2 id="próxima-secuencia-de-trabajo">Próxima secuencia de trabajo</h2>
+<ol type="1">
+<li>Completar los esquemas técnicos y aspectos pendientes de DT-05 y
+preparar las pruebas positivas y negativas de conformidad para eventos,
+catálogos y validaciones semánticas.</li>
+<li>Completar los esquemas JSON y contratos técnicos pendientes,
+priorizando los de uso inmediato.</li>
+<li>Continuar DT-06 a DT-10.</li>
+<li>Desarrollar DT-11 — Especificación técnica de M20, formalizando los
+contratos C20-001 a C20-012 y sus contratos transversales.</li>
+<li>Elaborar DT-12 — Matriz de pruebas e integración.</li>
+</ol>
+<h2 id="regla-de-control">Regla de control</h2>
+<p>Ninguna tecnología, biblioteca, protocolo, servicio externo, esquema
+definitivo o mecanismo de persistencia se considerará seleccionado por
+aparecer mencionado como ejemplo o alternativa. La selección requerirá
+una decisión documentada y justificada.</p>
+<p><strong>Fin de DES-M20_Technical_Design_v0.5.</strong></p>
+</body>
+</html>
